@@ -1,0 +1,239 @@
+{
+  "ui": {
+    "spiral": "espiral",
+    "list": "lista",
+    "menu": "menú",
+    "close": "cerrar",
+    "scrollHint": "desliza para explorar",
+    "downloadCv": "Descargar CV",
+    "lang": "EN",
+    "open": "abrir",
+    "viewCode": "Ver código",
+    "links": "Enlaces",
+    "tech": "Tecnología"
+  },
+  "alt": {
+    "portrait": "Retrato de Nicolas Invernizzi con traje oscuro",
+    "hocr": "Una tripulación remando en un bote amarillo en la regata Head of the Charles",
+    "paraguay": "La tripulación nacional de remo de Paraguay en plena palada",
+    "itti": "ITTI",
+    "marietta": "Marietta College"
+  },
+  "art": {
+    "orquestador": { "question": "Pregunta", "planner": "Planificador", "sql": "Agente SQL", "analyst": "Analista", "report": "Reporte" },
+    "forecast": { "forecast": "Pronóstico", "actual": "Real", "anomaly": "Día inusual" },
+    "dashboard": { "transactions": "Transacciones", "active": "Activos", "trend": "Tendencia" }
+  },
+  "meta": {
+    "title": "Nicolas Invernizzi | Portafolio",
+    "description": "Estudiante de Ciencias de la Computación, IA y datos, y remero de nivel nacional. Portafolio de Nicolas Invernizzi.",
+    "name": "Nicolas Invernizzi",
+    "role": "Estudiante de Ciencias de la Computación · IA y Datos",
+    "tagline": "Convierto datos en decisiones y código en herramientas que la gente realmente usa.",
+    "location": "Marietta, Ohio · Asunción, Paraguay"
+  },
+  "links": {
+    "email": "nico20.invernizzi@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/nicolas-invernizzi-822a84349",
+    "github": "https://github.com/orinvernizzi",
+    "cv": "/cv/Nicolas_Invernizzi_CV_ES.pdf"
+  },
+  "sections": [
+    { "id": "intro", "title": "Hola" },
+    { "id": "about", "title": "Sobre mí" },
+    { "id": "experience", "title": "Experiencia" },
+    { "id": "skills", "title": "Con lo que trabajo" },
+    { "id": "education", "title": "Educación" },
+    { "id": "projects", "title": "Proyectos" },
+    { "id": "rowing", "title": "Remo" },
+    { "id": "learning", "title": "Aprendiendo" },
+    { "id": "leadership", "title": "Liderazgo" },
+    { "id": "contact", "title": "Contacto" }
+  ],
+  "about": {
+    "lead": "Soy estudiante de Ciencias de la Computación en Marietta College y remero de nivel nacional por Paraguay. Me gusta construir sistemas que combinan datos, algoritmos y una buena experiencia de usuario.",
+    "points": [
+      "IA y datos aplicados: pronósticos, dashboards y agentes de IA que le ahorran tiempo a los equipos.",
+      "Proyectos full-stack desde la base de datos hasta la interfaz, hechos para ser simples de usar.",
+      "Disciplina de deporte de élite: trabajo en equipo, resistencia y liderazgo bajo presión."
+    ]
+  },
+  "experience": [
+    {
+      "period": "Jun 2026 — Ago 2026",
+      "role": "Practicante de IA y Datos",
+      "org": "ITTI S.A.E. (Grupo Vázquez)",
+      "place": "Asunción, Paraguay",
+      "logo": "itti",
+      "bullets": [
+        "Miembro del equipo de Performance & Data Analytics, trabajando con áreas de negocio de las empresas de Grupo Vázquez.",
+        "Ayudé a construir un pipeline de pronóstico en Python que predice el volumen diario de 9 productos transaccionales de ueno bank, marca días inusuales y proyecta el cierre del mes.",
+        "Agregué un módulo de feriados paraguayos para que los pronósticos anticipen subas y bajas antes y después de feriados, con el motivo de cada ajuste exportado para la gerencia.",
+        "Ayudé a construir un dashboard ejecutivo en vivo de transacciones de tarjetas de crédito y clientes activos.",
+        "Co-diseñé el Orquestador, una herramienta interna multiagente de IA que convierte preguntas en lenguaje natural en SQL, análisis y reportes."
+      ]
+    },
+    {
+      "period": "Ago 2023 — May 2024",
+      "role": "Asistente de laboratorio",
+      "org": "Greenhouse Lab, Marietta College",
+      "place": "Marietta, Ohio",
+      "bullets": [
+        "Cuidado de plantas, animales y herramientas del laboratorio.",
+        "Implementé y trabajé en un sistema de riego automático durante 3 meses."
+      ]
+    },
+    {
+      "period": "Mar 2023 — Ago 2023",
+      "role": "Ayudante de delivery y panadería",
+      "org": "La Tata",
+      "place": "Asunción, Paraguay",
+      "bullets": [
+        "Preparé pedidos especiales, manejé dinero y comunicación con clientes.",
+        "Planifiqué y recorrí rutas de entrega de forma eficiente."
+      ]
+    },
+    {
+      "period": "Ago 2022 — Feb 2023",
+      "role": "Empleado de comida rápida",
+      "org": "McDonald's",
+      "place": "Mullingar, Irlanda",
+      "bullets": [
+        "Caja, control de inventario, apertura y cierre del local.",
+        "Capacité a empleados nuevos."
+      ]
+    }
+  ],
+  "skills": {
+    "groups": [
+      { "title": "Datos e IA", "items": ["Python", "pandas", "NumPy", "SciPy", "SQL", "Amazon Athena", "DuckDB", "dbt", "Claude", "Cursor"] },
+      { "title": "Software", "items": ["JavaScript", "TypeScript", "React", "HTML", "PHP", "C", "C++", "Java", "Pep9"] },
+      { "title": "Herramientas", "items": ["Git", "GitHub", "Unity", "Excel", "JSON Schema", "Vercel", "Supabase"] }
+    ],
+    "other": ["Pronóstico estadístico", "detección de anomalías", "pensamiento sistémico", "comunicación", "trabajo en equipo", "facilitación de capacitaciones"],
+    "languages": "Español (nativo) · Inglés (avanzado, Cambridge C1) · Guaraní (comprensión)"
+  },
+  "education": [
+    {
+      "period": "Ago 2023 — May 2027",
+      "title": "Licenciatura en Ciencias de la Computación",
+      "org": "Marietta College",
+      "place": "Marietta, Ohio",
+      "logo": "marietta",
+      "bullets": [
+        "Subespecialización en Matemáticas · Certificado en Liderazgo · GPA 3.5/4.0",
+        "Dean's List: Primavera y Otoño 2024",
+        "Beca Charles Sumner Harrison (matrícula completa) y Beca de Liderazgo",
+        "Equipo universitario de remo"
+      ]
+    },
+    {
+      "period": "Ago 2022 — May 2023",
+      "title": "Cambridge C1 Advanced",
+      "org": "Ned College",
+      "place": "Dublín, Irlanda",
+      "bullets": ["GPA 3.8/4.0"]
+    },
+    {
+      "period": "2018 — 2020",
+      "title": "Bachillerato en Ciencias Sociales",
+      "org": "Colegio Cristo Rey",
+      "place": "Asunción, Paraguay",
+      "bullets": ["Honores de estudiante-atleta · fútbol, vóley y remo"]
+    }
+  ],
+  "projects": [
+    {
+      "id": "orquestador",
+      "title": "Orquestador",
+      "tag": "ITTI · Agentes de IA",
+      "text": "Herramienta interna multiagente de IA, co-diseñada con mi equipo y construida con Cursor. Convierte preguntas en lenguaje natural en SQL, análisis y reportes. La imagen es una ilustración, no datos de la empresa.",
+      "stack": ["Cursor", "SQL", "Amazon Athena", "Agentes de IA"]
+    },
+    {
+      "id": "forecast",
+      "title": "Pronóstico de transacciones",
+      "tag": "ITTI · Datos",
+      "text": "Un pipeline en Python que predice el volumen diario esperado de 9 productos de ueno bank, marca días inusuales, proyecta el cierre del mes y ajusta por feriados paraguayos.",
+      "stack": ["Python", "pandas", "SciPy", "DuckDB", "Athena"]
+    },
+    {
+      "id": "dashboard",
+      "title": "Dashboard ejecutivo",
+      "tag": "ITTI · BI",
+      "text": "Un dashboard en vivo de transacciones de tarjetas de crédito y clientes activos, con tendencias semanales y mensuales medidas con estadística robusta. Solo ilustración.",
+      "stack": ["SQL", "Estadística robusta", "Dashboards"]
+    },
+    {
+      "id": "catch",
+      "title": "Catch Analysis",
+      "tag": "Remo · Full-stack",
+      "text": "Un registro de entrenamiento de remo que importa datos del ergómetro y los convierte en metas y consejos para mejorar. Hecho con React, TypeScript, Tailwind y Supabase, alojado en Vercel.",
+      "stack": ["React", "TypeScript", "Tailwind", "Supabase", "Vercel"],
+      "live": "https://nico-rowing.vercel.app"
+    },
+    {
+      "id": "erg",
+      "title": "Calculadora de ritmo en ergómetro",
+      "tag": "Remo · Herramienta",
+      "text": "Una pequeña herramienta web para el ritmo en el ergómetro: define una meta y obtén los parciales que necesitas mantener.",
+      "stack": ["TypeScript"],
+      "code": "https://github.com/orinvernizzi/erg-pace-calculator"
+    },
+    {
+      "id": "web",
+      "title": "Proyectos de programación web",
+      "tag": "Universidad · Web",
+      "text": "Sitios full-stack hechos en clase con HTML, CSS, JavaScript, PHP y SQL: entrada de usuario, sesiones, procesamiento en servidor y base de datos.",
+      "stack": ["HTML", "CSS", "JavaScript", "PHP", "SQL"],
+      "code": "https://github.com/orinvernizzi/Web-Programming"
+    },
+    {
+      "id": "db",
+      "title": "Diseño de bases de datos",
+      "tag": "Universidad · SQL",
+      "text": "Esquemas relacionales normalizados de 1NF a BCNF, con claves primarias y foráneas y consultas complejas con joins y subconsultas.",
+      "stack": ["SQL", "Microsoft SQL"]
+    },
+    {
+      "id": "csci405",
+      "title": "CSCI-405",
+      "tag": "Universidad · Java",
+      "text": "Trabajo de curso en Java.",
+      "stack": ["Java"],
+      "code": "https://github.com/orinvernizzi/CSCI-405"
+    },
+    {
+      "id": "pep9",
+      "title": "Sistemas operativos con Pep9",
+      "tag": "Universidad · Bajo nivel",
+      "text": "Trabajo a nivel ensamblador en la máquina Pep9 para las clases de Organización de Computadoras y Sistemas Operativos.",
+      "stack": ["Pep9", "C"]
+    }
+  ],
+  "rowing": {
+    "lead": "El remo es el hilo de toda mi vida: equipo universitario en Marietta College y regatas internacionales por Paraguay.",
+    "medals": [
+      "Plata, Juegos Panamericanos Junior y U23 2025",
+      "Plata, Campeonato Sudamericano de Remo, Asunción 2021",
+      "Plata y Bronce, Copa de Remo Costero, Lima 2022",
+      "Bronce, Clasificatorio a los Juegos Panamericanos, Yucatán 2021"
+    ]
+  },
+  "learning": {
+    "lead": "Quiero entender cómo los modelos de IA aprenden de los datos, cómo toman decisiones y cómo medirlos y mejorarlos.",
+    "points": [
+      "IA y datos en el deporte: modelos sobre métricas del ergómetro y cargas de entrenamiento para dar feedback personal, estrategias de ritmo y entrenamientos más inteligentes.",
+      "IA aplicada que sirva a las comunidades: herramientas comprensibles, accesibles y útiles.",
+      "Después de ITTI, quiero seguir construyendo herramientas que faciliten el trabajo de todo un equipo."
+    ]
+  },
+  "leadership": [
+    { "period": "2018 — 2023", "title": "TECHO Paraguay", "text": "Construí casas de madera accesibles con comunidades, recluté voluntarios y capacité a los nuevos." },
+    { "period": "2020", "title": "Teletón Paraguay", "text": "Recaudé fondos para niños y adolescentes con discapacidad y lideré grupos de voluntarios." },
+    { "period": "2019", "title": "Fundación Koeju", "text": "Servicio comunitario con alimentos y ropa para comunidades con pocos recursos." }
+  ],
+  "contact": {
+    "lead": "¿Quieres trabajar juntos, hablar de IA y datos, o simplemente saludar? Escríbeme."
+  }
+}

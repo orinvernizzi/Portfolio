@@ -1,0 +1,239 @@
+{
+  "ui": {
+    "spiral": "spiral",
+    "list": "list",
+    "menu": "menu",
+    "close": "close",
+    "scrollHint": "scroll to explore",
+    "downloadCv": "Download CV",
+    "lang": "ES",
+    "open": "open",
+    "viewCode": "View code",
+    "links": "Links",
+    "tech": "Tech"
+  },
+  "alt": {
+    "portrait": "Portrait of Nicolas Invernizzi in a dark suit",
+    "hocr": "A crew rowing a yellow boat at the Head of the Charles regatta",
+    "paraguay": "The Paraguay national rowing crew mid-stroke",
+    "itti": "ITTI",
+    "marietta": "Marietta College"
+  },
+  "art": {
+    "orquestador": { "question": "Question", "planner": "Planner", "sql": "SQL agent", "analyst": "Analyst", "report": "Report" },
+    "forecast": { "forecast": "Forecast", "actual": "Actual", "anomaly": "Unusual day" },
+    "dashboard": { "transactions": "Transactions", "active": "Active", "trend": "Trend" }
+  },
+  "meta": {
+    "title": "Nicolas Invernizzi | Portfolio",
+    "description": "Computer Science student, AI and data, and national-level rower. Portfolio of Nicolas Invernizzi.",
+    "name": "Nicolas Invernizzi",
+    "role": "Computer Science student · AI & Data",
+    "tagline": "I turn data into decisions and code into tools people actually use.",
+    "location": "Marietta, Ohio · Asunción, Paraguay"
+  },
+  "links": {
+    "email": "nico20.invernizzi@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/nicolas-invernizzi-822a84349",
+    "github": "https://github.com/orinvernizzi",
+    "cv": "/cv/Nicolas_Invernizzi_CV_EN.pdf"
+  },
+  "sections": [
+    { "id": "intro", "title": "Hello" },
+    { "id": "about", "title": "About me" },
+    { "id": "experience", "title": "Experience" },
+    { "id": "skills", "title": "Things I work with" },
+    { "id": "education", "title": "Education" },
+    { "id": "projects", "title": "Projects" },
+    { "id": "rowing", "title": "Rowing" },
+    { "id": "learning", "title": "Learning" },
+    { "id": "leadership", "title": "Leadership" },
+    { "id": "contact", "title": "Contact" }
+  ],
+  "about": {
+    "lead": "I'm a Computer Science student at Marietta College and a national-level rower for Paraguay. I like building systems that mix data, algorithms and a good user experience.",
+    "points": [
+      "Applied AI and data: forecasting, dashboards and AI agents that save teams time.",
+      "Full-stack projects from database to interface, built to be simple to use.",
+      "Elite-sport discipline: teamwork, endurance and leadership under pressure."
+    ]
+  },
+  "experience": [
+    {
+      "period": "Jun 2026 — Aug 2026",
+      "role": "AI & Data Trainee",
+      "org": "ITTI S.A.E. (Grupo Vázquez)",
+      "place": "Asunción, Paraguay",
+      "logo": "itti",
+      "bullets": [
+        "Member of the Performance & Data Analytics team, working with business areas across Grupo Vázquez companies.",
+        "Helped build a Python forecasting pipeline that predicts daily volume for 9 ueno bank transaction products, flags unusual days and projects the month-end close.",
+        "Added a Paraguayan holiday module so forecasts anticipate pre- and post-holiday spikes and drops, with the reason for each adjustment exported for management.",
+        "Helped build a live executive dashboard for credit card transactions and active customers.",
+        "Co-designed the Orquestador, an internal multi-agent AI tool that turns plain-language questions into SQL, analysis and reports."
+      ]
+    },
+    {
+      "period": "Aug 2023 — May 2024",
+      "role": "Lab Assistant",
+      "org": "Greenhouse Lab, Marietta College",
+      "place": "Marietta, Ohio",
+      "bullets": [
+        "Cared for plants, animals and tools in the lab.",
+        "Implemented and worked on an automatic watering system for 3 months."
+      ]
+    },
+    {
+      "period": "Mar 2023 — Aug 2023",
+      "role": "Delivery and Bakery Helper",
+      "org": "La Tata",
+      "place": "Asunción, Paraguay",
+      "bullets": [
+        "Prepared special orders, handled money and customer communication.",
+        "Planned and navigated delivery routes efficiently."
+      ]
+    },
+    {
+      "period": "Aug 2022 — Feb 2023",
+      "role": "Fast Food Worker",
+      "org": "McDonald's",
+      "place": "Mullingar, Ireland",
+      "bullets": [
+        "Cashier, stock control, store opening and closing.",
+        "Trained new employees."
+      ]
+    }
+  ],
+  "skills": {
+    "groups": [
+      { "title": "Data & AI", "items": ["Python", "pandas", "NumPy", "SciPy", "SQL", "Amazon Athena", "DuckDB", "dbt", "Claude", "Cursor"] },
+      { "title": "Software", "items": ["JavaScript", "TypeScript", "React", "HTML", "PHP", "C", "C++", "Java", "Pep9"] },
+      { "title": "Tools", "items": ["Git", "GitHub", "Unity", "Excel", "JSON Schema", "Vercel", "Supabase"] }
+    ],
+    "other": ["Statistical forecasting", "anomaly detection", "system thinking", "communication", "teamwork", "training facilitation"],
+    "languages": "Spanish (native) · English (advanced, Cambridge C1) · Guaraní (understanding)"
+  },
+  "education": [
+    {
+      "period": "Aug 2023 — May 2027",
+      "title": "B.S. in Computer Science",
+      "org": "Marietta College",
+      "place": "Marietta, Ohio",
+      "logo": "marietta",
+      "bullets": [
+        "Minor in Math · Certificate in Leadership · GPA 3.5/4.0",
+        "Dean's List: Spring and Fall 2024",
+        "Charles Sumner Harrison Scholarship (full tuition) and Leadership Scholarship",
+        "Varsity Rowing Team"
+      ]
+    },
+    {
+      "period": "Aug 2022 — May 2023",
+      "title": "Cambridge C1 Advanced",
+      "org": "Ned College",
+      "place": "Dublin, Ireland",
+      "bullets": ["GPA 3.8/4.0"]
+    },
+    {
+      "period": "2018 — 2020",
+      "title": "High School Diploma, Social Sciences",
+      "org": "Colegio Cristo Rey",
+      "place": "Asunción, Paraguay",
+      "bullets": ["Student-Athlete honors · soccer, volleyball and rowing"]
+    }
+  ],
+  "projects": [
+    {
+      "id": "orquestador",
+      "title": "Orquestador",
+      "tag": "ITTI · AI agents",
+      "text": "An internal multi-agent AI tool, co-designed with my team and built with Cursor. It turns plain-language questions into SQL, analysis and reports. The visual here is an illustration, not company data.",
+      "stack": ["Cursor", "SQL", "Amazon Athena", "AI agents"]
+    },
+    {
+      "id": "forecast",
+      "title": "Transaction forecasting",
+      "tag": "ITTI · Data",
+      "text": "A Python pipeline that predicts expected daily volume for 9 ueno bank products, flags unusual days, projects the month-end close and adjusts for Paraguayan holidays.",
+      "stack": ["Python", "pandas", "SciPy", "DuckDB", "Athena"]
+    },
+    {
+      "id": "dashboard",
+      "title": "Executive dashboard",
+      "tag": "ITTI · BI",
+      "text": "A live dashboard tracking credit card transactions and active customers, with weekly and monthly trends measured using robust statistics. Illustration only.",
+      "stack": ["SQL", "Robust statistics", "Dashboards"]
+    },
+    {
+      "id": "catch",
+      "title": "Catch Analysis",
+      "tag": "Rowing · Full-stack",
+      "text": "A rowing training log that imports ergometer data and turns it into goals and tips to improve. Built with React, TypeScript, Tailwind and Supabase, hosted on Vercel.",
+      "stack": ["React", "TypeScript", "Tailwind", "Supabase", "Vercel"],
+      "live": "https://nico-rowing.vercel.app"
+    },
+    {
+      "id": "erg",
+      "title": "Erg pace calculator",
+      "tag": "Rowing · Tool",
+      "text": "A small web tool for ergometer pacing: set a goal and get the splits you need to hold.",
+      "stack": ["TypeScript"],
+      "code": "https://github.com/orinvernizzi/erg-pace-calculator"
+    },
+    {
+      "id": "web",
+      "title": "Web programming projects",
+      "tag": "School · Web",
+      "text": "Full-stack sites built in class with HTML, CSS, JavaScript, PHP and SQL: user input, sessions, server-side processing and database storage.",
+      "stack": ["HTML", "CSS", "JavaScript", "PHP", "SQL"],
+      "code": "https://github.com/orinvernizzi/Web-Programming"
+    },
+    {
+      "id": "db",
+      "title": "Database design",
+      "tag": "School · SQL",
+      "text": "Relational schemas normalized from 1NF to BCNF, with primary and foreign keys and complex queries using joins and subqueries.",
+      "stack": ["SQL", "Microsoft SQL"]
+    },
+    {
+      "id": "csci405",
+      "title": "CSCI-405",
+      "tag": "School · Java",
+      "text": "Coursework in Java.",
+      "stack": ["Java"],
+      "code": "https://github.com/orinvernizzi/CSCI-405"
+    },
+    {
+      "id": "pep9",
+      "title": "Pep9 operating systems",
+      "tag": "School · Low level",
+      "text": "Assembly-level work in the Pep9 machine for Computer Organization and Operating Systems classes.",
+      "stack": ["Pep9", "C"]
+    }
+  ],
+  "rowing": {
+    "lead": "Rowing is the thread through my whole life: varsity at Marietta College and international regattas for Paraguay.",
+    "medals": [
+      "Silver, U23 & Junior PanAmerican Games 2025",
+      "Silver, South American Rowing Championships, Asunción 2021",
+      "Silver and Bronze, Coastal Rowing Cup, Lima 2022",
+      "Bronze, PanAmerican Games Qualifier, Yucatán 2021"
+    ]
+  },
+  "learning": {
+    "lead": "I want to understand how AI models learn from data, how decisions are made, and how to measure and improve them.",
+    "points": [
+      "AI and data in sport: models over ergometer metrics and training loads to give personal feedback, pacing strategies and smarter training.",
+      "Applied AI that serves communities: understandable, accessible, useful tools.",
+      "After ITTI, I want to keep building tools that make a whole team's work easier."
+    ]
+  },
+  "leadership": [
+    { "period": "2018 — 2023", "title": "TECHO Paraguay", "text": "Built affordable wooden houses with communities, recruited volunteers and trained new ones." },
+    { "period": "2020", "title": "Teletón Paraguay", "text": "Fundraised for children and teens with disabilities and led volunteer groups." },
+    { "period": "2019", "title": "Fundación Koeju", "text": "Community service with food and clothing for communities with limited resources." }
+  ],
+  "contact": {
+    "lead": "Want to work together, talk AI and data, or just say hi? Write to me."
+  }
+}
