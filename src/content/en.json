@@ -19,23 +19,19 @@
     "itti": "ITTI",
     "marietta": "Marietta College",
     "cambridge": "Cambridge University Press & Assessment",
-    "cristorey": "Colegio Cristo Rey"
+    "cristorey": "Colegio Cristo Rey",
+    "techo": "TECHO",
+    "techo1": "TECHO volunteers posing in front of a wooden house on stilts they built",
+    "techo2": "Volunteers nailing the roof frame of a wooden house"
   },
   "art": {
-    "orquestador": {
-      "label": "Diagram: a question goes to a router, which sends it to one of three agents (analysis, reports or SQL) that produce the answer. A write to the database passes through a dashed step where a person confirms. Invented example."
-    },
+    "orquestador": "Illustration: a question goes to a planner (highlighted), which hands the work to three agents: SQL agent, analyst and report. A small SELECT ... FROM ... snippet sits under the SQL agent. Simplified, invented example.",
     "forecast": {
       "label": "Diagram of a line chart with invented numbers: an expected line inside a light band, one dip and one spike marked as unusual days, and a dotted forecast continuing to the month end."
     },
-    "dashboard": {
-      "label": "Diagram of two dashboard tiles, Transactions and Customers. Each has a status dot (filled means on track, hollow means to watch) and two small bars comparing this week with last week. Invented numbers."
-    },
+    "dashboard": "Picture of a web dashboard on a dark background, with invented numbers: two tiles, Transactions with a green Normal verdict and Active customers with an amber Watch verdict, a Monday to Sunday bar chart of this week against last week with a normal-range band and one unusual Friday marked, and a small trend line of the last 8 weeks.",
     "catch": {
       "label": "Diagram: four sources (Concept2 Logbook, a CSV file, a PM5 photo and live Bluetooth) feed one review step, then a database protected by row-level security, then a verdict such as improved by 2.1%."
-    },
-    "erg": {
-      "label": "Diagram: a 2k row split into four 500 m pieces gives time and watts. Below, the web app and the iPhone app both feed one shared logbook."
     },
     "pep9": {
       "label": "Diagram of the Pep/9 simulator: memory with hex cells feeds a CPU showing the registers A, X, SP and HP and the flags N, Z, V and C, which sends results to output. A fetch, decode, execute loop runs below."
@@ -228,7 +224,7 @@
       "place": "Marietta, Ohio",
       "logo": "marietta",
       "bullets": [
-        "Minor in Math · Certificate in Leadership · GPA 3.5/4.0",
+        "Minors in Math and Leadership · GPA 3.5/4.0",
         "Dean's List: Spring and Fall 2024",
         "Charles Sumner Harrison Scholarship (full tuition) and Leadership Scholarship",
         "Varsity Rowing Team"
@@ -282,8 +278,8 @@
         "tag": "AI agents · team project",
         "text": "An internal tool where a coworker asks a business question in plain language and a team of AI agents works out the answer. I co-designed it with my team and built the first version. It is still a prototype.",
         "details": [
-          "A router picks the next agent, an executor runs it, and every step is logged. The loop stops after 10 steps.",
-          "Six agents: SQL, analysis, opportunities, modeling, storytelling and reports.",
+          "A planner picks the next agent, an executor runs it, and every step is logged. The loop stops after 10 steps.",
+          "Six agents: SQL, analysis, opportunities, modeling, storytelling and reports. The graphic shows three of them.",
           "Each agent is a folder with a SKILL.md contract, so anyone can add a new one.",
           "Anything that writes needs a person to confirm it first."
         ],
@@ -294,7 +290,7 @@
           "dbt",
           "AI agents"
         ],
-        "note": "The graphic is an illustration. It shows no company data."
+        "legal": "I can't share the code or real screenshots: it was a company project and sharing it would be a legal problem, so it stays private. The graphic is an illustration."
       },
       {
         "id": "forecast",
@@ -332,19 +328,21 @@
           "Robust statistics",
           "Dashboards"
         ],
-        "note": "The graphic is an illustration with invented numbers."
+        "note": "The picture is an illustration of how it looks, with invented numbers.",
+        "image": "webp"
       },
       {
         "id": "catch",
         "group": "rowing",
         "title": "Catch Analysis",
         "tag": "Full-stack · solo project",
-        "text": "A rowing training log I built on my own. It brings in erg data, checks it on a review screen and tells me after each session whether I improved. It sits behind a login and the code is private.",
+        "text": "A rowing training log I built on my own. It brings in erg data, checks it on a review screen and tells me after each session whether I improved. It sits behind a login and the code is private. Before it, I built ErgCalc, a Concept2 pace and watts planner with a logbook.",
         "details": [
           "Three ways in, one review screen: Concept2 Logbook sync (OAuth), a CSV or XLSX file, or a photo of the PM5 screen read by OCR in the browser. A live Bluetooth page exists too.",
           "After each session it compares with the last and the best comparable session, and suggests reasons if it was slower.",
           "Theil-Sen trend labels, training zones, fitness and fatigue curves, and a race-time predictor (Riegel and Paul’s law).",
-          "English and Spanish PWA on Supabase with row-level security. About 16,000 lines and 54 test files."
+          "English and Spanish PWA on Supabase with row-level security. About 16,000 lines and 54 test files.",
+          "ErgCalc came first: a pace and watts planner with a logbook, as a web app and an iPhone app (Next.js and Expo). Its code is public; the link below is the ErgCalc repo. Catch Analysis itself is private. Watts come from pace with the Concept2 formula, W = 2.80 / (split ÷ 500)³, with the split in seconds per 500 m."
         ],
         "stack": [
           "React",
@@ -352,33 +350,13 @@
           "Tailwind",
           "Supabase",
           "Vercel",
-          "Vitest"
-        ],
-        "live": "https://nico-rowing.vercel.app"
-      },
-      {
-        "id": "erg",
-        "group": "rowing",
-        "title": "ErgCalc",
-        "tag": "Full-stack + iPhone app",
-        "text": "A planner for Concept2 erg races and time pieces: pick a distance, set a split for each piece and see the time, average split and watts, then save it to a logbook. It started as a Flask prototype in February 2026 and was rebuilt in August 2026. The live site needs a login.",
-        "details": [
-          "Watts come from pace with the Concept2 formula, W = 2.80 / (split ÷ 500)³, with the split in seconds per 500 m.",
-          "Accounts with login, plus a coach role: invite athletes, see a roster and set training plans.",
-          "The Next.js web app and an Expo iPhone app share the same logbook.",
-          "Live PM5 Bluetooth is planned for later and is not built yet."
-        ],
-        "stack": [
+          "Vitest",
           "Next.js",
-          "TypeScript",
-          "Prisma",
-          "Postgres (Neon)",
-          "Expo",
-          "Vercel",
-          "Vitest"
+          "Expo"
         ],
-        "live": "https://erg-pace-calculator.vercel.app",
-        "code": "https://github.com/orinvernizzi/erg-pace-calculator"
+        "live": "https://nico-rowing.vercel.app",
+        "code": "https://github.com/orinvernizzi/erg-pace-calculator",
+        "codeLabel": "View ErgCalc code"
       },
       {
         "id": "pep9",
@@ -485,10 +463,43 @@
   "rowing": {
     "lead": "Rowing is the thread through my whole life: varsity at Marietta College and international regattas for Paraguay.",
     "medals": [
-      "Silver, U23 & Junior PanAmerican Games 2025",
-      "Silver, South American Rowing Championships, Asunción 2021",
-      "Silver and Bronze, Coastal Rowing Cup, Lima 2022",
-      "Bronze, PanAmerican Games Qualifier, Yucatán 2021"
+      {
+        "medals": [
+          "silver"
+        ],
+        "label": "Silver",
+        "event": "U23 & Junior PanAmerican Games",
+        "place": "Asunción, Paraguay",
+        "year": 2025
+      },
+      {
+        "medals": [
+          "silver",
+          "bronze"
+        ],
+        "label": "Silver and Bronze",
+        "event": "Coastal Rowing Cup",
+        "place": "Lima, Peru",
+        "year": 2022
+      },
+      {
+        "medals": [
+          "silver"
+        ],
+        "label": "Silver",
+        "event": "South American Rowing Championships",
+        "place": "Asunción, Paraguay",
+        "year": 2021
+      },
+      {
+        "medals": [
+          "bronze"
+        ],
+        "label": "Bronze",
+        "event": "PanAmerican Games Qualifier",
+        "place": "Yucatán, Mexico",
+        "year": 2021
+      }
     ]
   },
   "learning": {
@@ -499,23 +510,31 @@
       "After ITTI, I want to keep building tools that make a whole team's work easier."
     ]
   },
-  "leadership": [
-    {
-      "period": "2018 — 2023",
-      "title": "TECHO Paraguay",
-      "text": "Built affordable wooden houses with communities, recruited volunteers and trained new ones."
-    },
-    {
-      "period": "2020",
-      "title": "Teletón Paraguay",
-      "text": "Fundraised for children and teens with disabilities and led volunteer groups."
-    },
-    {
-      "period": "2019",
-      "title": "Fundación Koeju",
-      "text": "Community service with food and clothing for communities with limited resources."
-    }
-  ],
+  "leadership": {
+    "lead": "I'm also pursuing a Minor in Leadership at Marietta College, after years of leading through community service.",
+    "items": [
+      {
+        "period": "2018 — 2023",
+        "title": "TECHO Paraguay",
+        "text": "Built affordable wooden houses with communities, recruited volunteers and trained new ones.",
+        "logo": "techo",
+        "photos": [
+          "techo1",
+          "techo2"
+        ]
+      },
+      {
+        "period": "2020",
+        "title": "Teletón Paraguay",
+        "text": "Fundraised for children and teens with disabilities and led volunteer groups."
+      },
+      {
+        "period": "2019",
+        "title": "Fundación Koeju",
+        "text": "Community service with food and clothing for communities with limited resources."
+      }
+    ]
+  },
   "contact": {
     "lead": "Want to work together, talk AI and data, or just say hi? Write to me."
   }

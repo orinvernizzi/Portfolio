@@ -96,6 +96,20 @@ html.no-scroll body {
   animation: hint-line 2s ease-in-out infinite;
 }
 
+/* Photos melt into the black panel below them. */
+.fade-bottom {
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 60%, rgba(0, 0, 0, 0.7) 76%, rgba(0, 0, 0, 0.25) 90%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 60%, rgba(0, 0, 0, 0.7) 76%, rgba(0, 0, 0, 0.25) 90%, transparent 100%);
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+.rise {
+  animation: rise 0.5s ease-out both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

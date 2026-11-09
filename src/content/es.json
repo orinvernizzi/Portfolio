@@ -19,23 +19,19 @@
     "itti": "ITTI",
     "marietta": "Marietta College",
     "cambridge": "Cambridge University Press & Assessment",
-    "cristorey": "Colegio Cristo Rey"
+    "cristorey": "Colegio Cristo Rey",
+    "techo": "TECHO",
+    "techo1": "Voluntarios de TECHO posando frente a una casa de madera sobre pilotes que construyeron",
+    "techo2": "Voluntarios clavando la estructura del techo de una casa de madera"
   },
   "art": {
-    "orquestador": {
-      "label": "Diagrama: una pregunta llega a un enrutador, que la envía a uno de tres agentes (análisis, informes o SQL) para producir la respuesta. Escribir en la base de datos pasa por un paso punteado donde una persona confirma. Ejemplo inventado."
-    },
+    "orquestador": "Ilustración: una pregunta llega a un planificador (resaltado), que reparte el trabajo entre tres agentes: agente SQL, analista y reporte. Debajo del agente SQL hay un pequeño fragmento SELECT ... FROM .... Ejemplo simplificado e inventado.",
     "forecast": {
       "label": "Diagrama de un gráfico de líneas con números inventados: una línea esperada dentro de una banda tenue, una caída y un pico marcados como días inusuales, y un pronóstico punteado hasta el fin de mes."
     },
-    "dashboard": {
-      "label": "Diagrama de dos tarjetas de un panel, Transacciones y Clientes. Cada una tiene un punto de estado (lleno significa en camino, vacío significa a vigilar) y dos barras pequeñas que comparan esta semana con la anterior. Números inventados."
-    },
+    "dashboard": "Imagen de un panel web con fondo oscuro y números inventados: dos tarjetas, Transacciones con veredicto verde Normal y Clientes activos con veredicto ámbar Vigilar, un gráfico de barras de lunes a domingo de esta semana contra la pasada con una banda de rango normal y un viernes inusual marcado, y una pequeña línea de tendencia de las últimas 8 semanas.",
     "catch": {
       "label": "Diagrama: cuatro fuentes (Logbook de Concept2, un archivo CSV, una foto del PM5 y Bluetooth en vivo) llegan a un paso de revisión, luego a una base de datos con seguridad por filas, y después a un veredicto como mejoró 2,1 %."
-    },
-    "erg": {
-      "label": "Diagrama: una prueba de 2k dividida en cuatro tramos de 500 m da tiempo y watts. Abajo, la app web y la app de iPhone alimentan un mismo registro compartido."
     },
     "pep9": {
       "label": "Diagrama del simulador Pep/9: la memoria con celdas hexadecimales alimenta una CPU que muestra los registros A, X, SP y HP y las banderas N, Z, V y C, y envía resultados a la salida. Abajo corre el ciclo buscar, decodificar, ejecutar."
@@ -228,7 +224,7 @@
       "place": "Marietta, Ohio",
       "logo": "marietta",
       "bullets": [
-        "Subespecialización en Matemáticas · Certificado en Liderazgo · GPA 3.5/4.0",
+        "Subespecializaciones en Matemáticas y Liderazgo · GPA 3.5/4.0",
         "Dean's List: Primavera y Otoño 2024",
         "Beca Charles Sumner Harrison (matrícula completa) y Beca de Liderazgo",
         "Equipo universitario de remo"
@@ -282,8 +278,8 @@
         "tag": "Agentes de IA · proyecto en equipo",
         "text": "Una herramienta interna donde un compañero hace una pregunta de negocio en lenguaje natural y un equipo de agentes de IA arma la respuesta. La diseñé junto con mi equipo y construí la primera versión. Todavía es un prototipo.",
         "details": [
-          "Un router elige el siguiente agente, un ejecutor lo corre y cada paso queda registrado. El ciclo se detiene a los 10 pasos.",
-          "Seis agentes: SQL, análisis, oportunidades, modelado, narrativa y reportes.",
+          "Un planificador elige el siguiente agente, un ejecutor lo corre y cada paso queda registrado. El ciclo se detiene a los 10 pasos.",
+          "Seis agentes: SQL, análisis, oportunidades, modelado, narrativa y reportes. El gráfico muestra tres.",
           "Cada agente es una carpeta con un contrato SKILL.md, así que cualquiera puede sumar uno nuevo.",
           "Todo lo que escribe datos necesita que una persona lo confirme antes."
         ],
@@ -294,7 +290,7 @@
           "dbt",
           "Agentes de IA"
         ],
-        "note": "La imagen es una ilustración. No muestra datos de la empresa."
+        "legal": "No puedo compartir el código ni capturas reales: era un proyecto de la empresa y compartirlo sería un problema legal, así que se queda privado. El gráfico es una ilustración."
       },
       {
         "id": "forecast",
@@ -332,19 +328,21 @@
           "Estadística robusta",
           "Dashboards"
         ],
-        "note": "La imagen es una ilustración con números inventados."
+        "note": "La imagen es una ilustración de cómo se ve, con números inventados.",
+        "image": "webp"
       },
       {
         "id": "catch",
         "group": "rowing",
         "title": "Catch Analysis",
         "tag": "Full-stack · proyecto individual",
-        "text": "Un registro de entrenamiento de remo que construí yo solo. Trae datos del erg, los revisa en una pantalla de verificación y me dice después de cada sesión si mejoré. Está detrás de un login y el código es privado.",
+        "text": "Un registro de entrenamiento de remo que construí yo solo. Trae datos del erg, los revisa en una pantalla de verificación y me dice después de cada sesión si mejoré. Está detrás de un login y el código es privado. Antes construí ErgCalc, un planificador de ritmo y watts de Concept2 con logbook.",
         "details": [
           "Tres formas de entrada, una sola pantalla de revisión: sincronización con Concept2 Logbook (OAuth), un archivo CSV o XLSX, o una foto de la pantalla del PM5 leída con OCR en el navegador. También hay una página en vivo por Bluetooth.",
           "Después de cada sesión compara con la última y la mejor sesión comparable, y sugiere motivos si fue más lenta.",
           "Etiquetas de tendencia con Theil-Sen, zonas de entrenamiento, curvas de estado físico y fatiga, y un predictor de tiempos (Riegel y ley de Paul).",
-          "PWA en inglés y español sobre Supabase con seguridad por fila. Unas 16.000 líneas y 54 archivos de pruebas."
+          "PWA en inglés y español sobre Supabase con seguridad por fila. Unas 16.000 líneas y 54 archivos de pruebas.",
+          "Primero fue ErgCalc: un planificador de ritmo y watts con logbook, como app web y app para iPhone (Next.js y Expo). Su código es público; el enlace de abajo es el repositorio de ErgCalc. Catch Analysis en sí es privado. Los watts salen del ritmo con la fórmula de Concept2, W = 2,80 / (split ÷ 500)³, con el split en segundos por 500 m."
         ],
         "stack": [
           "React",
@@ -352,33 +350,13 @@
           "Tailwind",
           "Supabase",
           "Vercel",
-          "Vitest"
-        ],
-        "live": "https://nico-rowing.vercel.app"
-      },
-      {
-        "id": "erg",
-        "group": "rowing",
-        "title": "ErgCalc",
-        "tag": "Full-stack + app para iPhone",
-        "text": "Un planificador para carreras y piezas por tiempo en el erg Concept2: eliges una distancia, defines un split por tramo y ves el tiempo, el split promedio y los watts, y lo guardas en un logbook. Empezó como prototipo en Flask en febrero de 2026 y lo reconstruí en agosto de 2026. El sitio en vivo pide iniciar sesión.",
-        "details": [
-          "Los watts salen del ritmo con la fórmula de Concept2, W = 2,80 / (split ÷ 500)³, con el split en segundos por 500 m.",
-          "Cuentas con login y un rol de entrenador: invitar atletas, ver la nómina y armar planes de entrenamiento.",
-          "La app web en Next.js y una app de iPhone con Expo comparten el mismo logbook.",
-          "El Bluetooth en vivo con el PM5 está pensado para más adelante y todavía no existe."
-        ],
-        "stack": [
+          "Vitest",
           "Next.js",
-          "TypeScript",
-          "Prisma",
-          "Postgres (Neon)",
-          "Expo",
-          "Vercel",
-          "Vitest"
+          "Expo"
         ],
-        "live": "https://erg-pace-calculator.vercel.app",
-        "code": "https://github.com/orinvernizzi/erg-pace-calculator"
+        "live": "https://nico-rowing.vercel.app",
+        "code": "https://github.com/orinvernizzi/erg-pace-calculator",
+        "codeLabel": "Ver código de ErgCalc"
       },
       {
         "id": "pep9",
@@ -485,10 +463,43 @@
   "rowing": {
     "lead": "El remo es el hilo de toda mi vida: equipo universitario en Marietta College y regatas internacionales por Paraguay.",
     "medals": [
-      "Plata, Juegos Panamericanos Junior y U23 2025",
-      "Plata, Campeonato Sudamericano de Remo, Asunción 2021",
-      "Plata y Bronce, Copa de Remo Costero, Lima 2022",
-      "Bronce, Clasificatorio a los Juegos Panamericanos, Yucatán 2021"
+      {
+        "medals": [
+          "silver"
+        ],
+        "label": "Plata",
+        "event": "Juegos Panamericanos Junior y U23",
+        "place": "Asunción, Paraguay",
+        "year": 2025
+      },
+      {
+        "medals": [
+          "silver",
+          "bronze"
+        ],
+        "label": "Plata y Bronce",
+        "event": "Copa de Remo Costero",
+        "place": "Lima, Perú",
+        "year": 2022
+      },
+      {
+        "medals": [
+          "silver"
+        ],
+        "label": "Plata",
+        "event": "Campeonato Sudamericano de Remo",
+        "place": "Asunción, Paraguay",
+        "year": 2021
+      },
+      {
+        "medals": [
+          "bronze"
+        ],
+        "label": "Bronce",
+        "event": "Clasificatorio a los Juegos Panamericanos",
+        "place": "Yucatán, México",
+        "year": 2021
+      }
     ]
   },
   "learning": {
@@ -499,23 +510,31 @@
       "Después de ITTI, quiero seguir construyendo herramientas que faciliten el trabajo de todo un equipo."
     ]
   },
-  "leadership": [
-    {
-      "period": "2018 — 2023",
-      "title": "TECHO Paraguay",
-      "text": "Construí casas de madera accesibles con comunidades, recluté voluntarios y capacité a los nuevos."
-    },
-    {
-      "period": "2020",
-      "title": "Teletón Paraguay",
-      "text": "Recaudé fondos para niños y adolescentes con discapacidad y lideré grupos de voluntarios."
-    },
-    {
-      "period": "2019",
-      "title": "Fundación Koeju",
-      "text": "Servicio comunitario con alimentos y ropa para comunidades con pocos recursos."
-    }
-  ],
+  "leadership": {
+    "lead": "También estoy cursando una subespecialización en Liderazgo en Marietta College, tras años liderando a través del servicio comunitario.",
+    "items": [
+      {
+        "period": "2018 — 2023",
+        "title": "TECHO Paraguay",
+        "text": "Construí casas de madera accesibles con comunidades, recluté voluntarios y capacité a los nuevos.",
+        "logo": "techo",
+        "photos": [
+          "techo1",
+          "techo2"
+        ]
+      },
+      {
+        "period": "2020",
+        "title": "Teletón Paraguay",
+        "text": "Recaudé fondos para niños y adolescentes con discapacidad y lideré grupos de voluntarios."
+      },
+      {
+        "period": "2019",
+        "title": "Fundación Koeju",
+        "text": "Servicio comunitario con alimentos y ropa para comunidades con pocos recursos."
+      }
+    ]
+  },
   "contact": {
     "lead": "¿Quieres trabajar juntos, hablar de IA y datos, o simplemente saludar? Escríbeme."
   }

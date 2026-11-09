@@ -1,6 +1,8 @@
 import { useContent, type Block } from '../lib/content'
 import { LogoChip } from './ui'
 
+const PHOTOS = { techo1: '/img/techo-1.webp', techo2: '/img/techo-2.webp' } as const
+
 export function Timeline({ items }: { items: Block[] }) {
   const { alt } = useContent()
   return (
@@ -21,7 +23,27 @@ export function Timeline({ items }: { items: Block[] }) {
             {(item.org || item.place) && (
               <p className="m-0 mt-1 text-sm text-muted">{[item.org, item.place].filter(Boolean).join(' · ')}</p>
             )}
-            {item.text && <p className="m-0 mt-3 max-w-prose text-base leading-relaxed text-fg/85">{item.text}</p>}
+            {item.photos && (
+              <div
+                role="group"
+                aria-label={heading}
+                tabIndex={0}
+                className="-mb-6 mt-4 flex max-w-xl snap-x snap-mandatory gap-3 overflow-x-auto md:grid md:grid-cols-2 md:overflow-visible"
+              >
+                {item.photos.map((key) => (
+                  <img
+                    key={key}
+                    src={PHOTOS[key]}
+                    alt={alt[key]}
+                    width={1000}
+                    height={1333}
+                    loading="lazy"
+                    className="fade-bottom aspect-[3/4] w-[72%] shrink-0 snap-center rounded-2xl object-cover md:w-full"
+                  />
+                ))}
+              </div>
+            )}
+            {item.text && <p className="relative m-0 mt-3 max-w-prose text-base leading-relaxed text-fg/85">{item.text}</p>}
             {item.bullets && (
               <ul className="m-0 mt-3 max-w-prose list-disc space-y-2 pl-5 text-base leading-relaxed text-fg/85 marker:text-accent-text">
                 {item.bullets.map((b) => (

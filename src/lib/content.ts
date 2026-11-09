@@ -7,9 +7,18 @@ export interface Block {
   role?: string
   org?: string
   place?: string
-  logo?: 'itti' | 'marietta' | 'cambridge' | 'cristorey'
+  logo?: 'itti' | 'marietta' | 'cambridge' | 'cristorey' | 'techo'
+  photos?: ('techo1' | 'techo2')[]
   bullets?: string[]
   text?: string
+}
+
+export interface Medal {
+  medals: ('silver' | 'bronze')[]
+  label: string
+  event: string
+  place: string
+  year: number
 }
 
 export interface Project {
@@ -21,8 +30,11 @@ export interface Project {
   details: string[]
   stack: string[]
   note?: string
+  legal?: string
   live?: string
   code?: string
+  codeLabel?: string
+  image?: 'svg' | 'webp'
 }
 
 export interface Content {
@@ -30,7 +42,7 @@ export interface Content {
     'spiral' | 'list' | 'menu' | 'close' | 'scrollHint' | 'downloadCv' | 'lang' | 'open' | 'viewCode' | 'links' | 'tech',
     string
   >
-  alt: Record<'portrait' | 'hocr' | 'paraguay' | 'itti' | 'marietta' | 'cambridge' | 'cristorey', string>
+  alt: Record<'portrait' | 'hocr' | 'paraguay' | 'itti' | 'marietta' | 'cambridge' | 'cristorey' | 'techo' | 'techo1' | 'techo2', string>
   art: Record<string, { label: string }>
   meta: { title: string; description: string; name: string; role: string; tagline: string; location: string }
   links: { email: string; linkedin: string; github: string; cv: string }
@@ -40,9 +52,9 @@ export interface Content {
   skills: { groups: { title: string; items: string[] }[]; other: string[]; languages: string }
   education: Block[]
   projects: { groups: { id: string; title: string }[]; items: Project[] }
-  rowing: { lead: string; medals: string[] }
+  rowing: { lead: string; medals: Medal[] }
   learning: { lead: string; points: string[] }
-  leadership: Block[]
+  leadership: { lead: string; items: Block[] }
   contact: { lead: string }
 }
 
