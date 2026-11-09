@@ -20,8 +20,8 @@ export function ListView() {
         const View = SECTION_VIEWS[s.id]
         return (
           <section key={s.id} id={s.id} aria-labelledby={`h-${s.id}`} className="scroll-mt-20 border-t border-line py-14 md:py-20">
-            <h2 id={`h-${s.id}`} tabIndex={-1} className="display m-0 mb-8 text-[clamp(2rem,6vw,4rem)] md:mb-12">
-              <span className="mr-3 align-middle font-mono text-sm font-medium tracking-normal text-muted">
+            <h2 id={`h-${s.id}`} tabIndex={-1} className="m-0 mb-8 text-[clamp(1.6rem,4vw,2.4rem)] font-semibold leading-tight tracking-tight md:mb-12">
+              <span className="eyebrow mr-3 align-middle">
                 {String(i + 2).padStart(2, '0')}
               </span>
               {s.title}

@@ -4,6 +4,10 @@ import { useContent } from '../lib/content'
 import { useFocusTrap } from '../lib/useFocusTrap'
 import { usePresence } from '../lib/usePresence'
 import { Icon } from './ui'
+import { VantaGlobe } from './VantaGlobe'
+
+// Sections without a photo get the live globe behind them.
+const GLOBE_SECTIONS = new Set(['experience', 'skills', 'education', 'projects', 'learning', 'leadership', 'contact'])
 
 interface Props {
   sectionId: string | null
@@ -39,28 +43,36 @@ export function Panel({ sectionId, onClose }: Props) {
         aria-modal="true"
         aria-labelledby="panel-title"
         tabIndex={-1}
-        className={`theme-light relative max-h-full w-full max-w-6xl overflow-y-auto overscroll-contain rounded-[24px] bg-bg text-fg shadow-2xl transition duration-300 ease-out md:rounded-[32px] ${active ? 'dialog-open' : 'dialog-enter'}`}
+        className={`relative flex max-h-full w-full max-w-6xl flex-col overflow-hidden rounded-2xl border border-line bg-black text-fg shadow-2xl transition duration-300 ease-out md:rounded-3xl ${active ? 'dialog-open' : 'dialog-enter'}`}
       >
-        <header className="sticky top-0 z-10 flex items-center justify-between gap-4 bg-bg/95 px-5 py-4 backdrop-blur md:px-10 md:py-5">
-          <h2 id="panel-title" className="display m-0 min-w-0 text-[clamp(1.6rem,4.5vw,3rem)]">
-            <span className="mr-3 align-middle font-mono text-sm font-medium tracking-normal text-muted">
-              {String(index + 1).padStart(2, '0')}
-            </span>
-            {section.title}
-          </h2>
+        {GLOBE_SECTIONS.has(shown) && (
+          <>
+            <VantaGlobe />
+            <div className="pointer-events-none absolute inset-0 z-[1] bg-black/75" aria-hidden="true" />
+          </>
+        )}
+        <header className="relative z-10 flex shrink-0 items-center justify-between gap-4 border-b border-line bg-black/80 px-5 py-4 backdrop-blur md:px-10 md:py-5">
+          <div className="min-w-0">
+            <p className="eyebrow m-0 mb-1">
+              {String(index + 1).padStart(2, '0')} / {String(c.sections.length).padStart(2, '0')}
+            </p>
+            <h2 id="panel-title" className="m-0 text-[clamp(1.6rem,4vw,2.4rem)] font-semibold leading-tight tracking-tight">
+              {section.title}
+            </h2>
+          </div>
           <button
             type="button"
             onClick={onClose}
             aria-label={c.ui.close}
-            className="flex min-h-11 shrink-0 items-center gap-3 rounded-full text-sm font-semibold"
+            className="flex min-h-11 shrink-0 items-center gap-3 rounded-full text-sm font-medium text-fg"
           >
             <span className="hidden sm:inline">{c.ui.close}</span>
-            <span className="flex h-11 w-11 items-center justify-center rounded-full bg-ink text-white">
+            <span className="flex h-11 w-11 items-center justify-center rounded-full border border-line bg-white/5 transition-colors hover:bg-white/10">
               <Icon name="close" />
             </span>
           </button>
         </header>
-        <div className="px-5 pb-10 pt-4 md:px-10 md:pb-14">
+        <div className="relative z-10 min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 pb-10 pt-6 md:px-10 md:pb-14">
           <View />
         </div>
       </div>

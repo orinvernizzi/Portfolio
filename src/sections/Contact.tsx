@@ -5,10 +5,10 @@ export function Contact() {
   const c = useContent()
   return (
     <div className="max-w-3xl">
-      <p className="m-0 text-2xl font-semibold leading-snug tracking-tight md:text-3xl">{c.contact.lead}</p>
+      <p className="m-0 text-xl font-medium leading-snug tracking-tight md:text-2xl">{c.contact.lead}</p>
       <a
         href={`mailto:${c.links.email}`}
-        className="display mt-8 block break-words text-[clamp(1.5rem,5.5vw,3rem)] text-fg underline decoration-accent decoration-4 underline-offset-8"
+        className="mt-8 block break-words text-[clamp(1.25rem,4.5vw,2.25rem)] font-semibold tracking-tight text-fg underline decoration-white/70 decoration-2 underline-offset-8"
       >
         {c.links.email}
       </a>

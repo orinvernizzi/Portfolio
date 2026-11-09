@@ -12,8 +12,8 @@ export function Intro({ hero = false }: { hero?: boolean }) {
         <Name className={`display m-0 ${hero ? 'text-[clamp(3rem,10vw,7.5rem)]' : 'text-[clamp(2.5rem,7vw,5rem)]'}`}>
           {c.meta.name}
         </Name>
-        <p className="m-0 mt-4 text-lg font-semibold text-accent-text md:text-xl">{c.meta.role}</p>
-        <p className="m-0 mt-4 max-w-xl text-lg leading-relaxed text-fg/90 md:text-xl">{c.meta.tagline}</p>
+        <p className="m-0 mt-4 text-lg font-medium text-accent-text md:text-xl">{c.meta.role}</p>
+        <p className="m-0 mt-4 max-w-xl text-lg leading-relaxed text-fg/85 md:text-xl">{c.meta.tagline}</p>
         <p className="m-0 mt-4 flex items-center gap-2 text-sm text-muted">
           <Icon name="pin" />
           {c.meta.location}

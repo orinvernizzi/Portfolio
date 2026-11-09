@@ -31,14 +31,14 @@ export function SpiralHud({ sections, index, hint, menuLabel, onJump, onOpen }: 
       </nav>
 
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex items-end justify-between px-4 pb-6 md:px-8">
-        <p className="m-0 min-w-0 text-sm text-muted">
-          <span className="font-mono text-fg">{String(index + 1).padStart(2, '0')}</span>
-          <span> / {String(n).padStart(2, '0')}</span>
+        <p className="m-0 min-w-0 text-sm">
+          <span className="font-mono text-white">{String(index + 1).padStart(2, '0')}</span>
+          <span className="text-accent-text"> / {String(n).padStart(2, '0')}</span>
           <span className="ml-3 hidden text-fg sm:inline">{sections[index]?.title}</span>
           <span className="sr-only sm:hidden">{sections[index]?.title}</span>
         </p>
         <div
-          className={`flex flex-col items-center gap-2 text-xs uppercase tracking-widest text-muted transition-opacity duration-500 ${index > 0 ? 'opacity-0' : 'opacity-100'}`}
+          className={`flex flex-col items-center gap-2 text-xs uppercase tracking-widest text-accent-text transition-opacity duration-500 ${index > 0 ? 'opacity-0' : 'opacity-100'}`}
         >
           <span>{hint}</span>
           <span className="hint-line block h-8 w-px bg-accent" aria-hidden="true" />

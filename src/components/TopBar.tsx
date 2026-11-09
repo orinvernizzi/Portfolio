@@ -32,7 +32,7 @@ export function TopBar({ view, canSpiral, solid, menuRef, menuOpen, onView, onMe
     <header
       className={`fixed inset-x-0 top-0 z-30 flex items-center justify-between gap-2 px-4 py-3 md:px-8 md:py-5 ${solid ? 'bg-bg/80 backdrop-blur-md' : ''}`}
     >
-      <a href="#intro" onClick={(e) => view === 'spiral' && e.preventDefault()} className="hidden text-sm font-bold tracking-tight text-fg no-underline md:block">
+      <a href="#intro" onClick={(e) => view === 'spiral' && e.preventDefault()} className="hidden text-sm font-semibold tracking-tight text-fg no-underline md:block">
         {c.meta.name}
       </a>
       {canSpiral ? (
@@ -63,7 +63,7 @@ export function TopBar({ view, canSpiral, solid, menuRef, menuOpen, onView, onMe
           aria-haspopup="dialog"
           aria-expanded={menuOpen}
           onClick={onMenu}
-          className="min-h-11 rounded-full bg-white px-5 text-sm font-bold text-ink transition-colors hover:bg-accent"
+          className="min-h-11 rounded-full bg-white px-5 text-sm font-bold text-ink transition-colors hover:bg-white/80"
         >
           {c.ui.menu}
         </button>

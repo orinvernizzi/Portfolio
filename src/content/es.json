@@ -17,12 +17,44 @@
     "hocr": "Una tripulación remando en un bote amarillo en la regata Head of the Charles",
     "paraguay": "La tripulación nacional de remo de Paraguay en plena palada",
     "itti": "ITTI",
-    "marietta": "Marietta College"
+    "marietta": "Marietta College",
+    "cambridge": "Cambridge University Press & Assessment",
+    "cristorey": "Colegio Cristo Rey"
   },
   "art": {
-    "orquestador": { "question": "Pregunta", "planner": "Planificador", "sql": "Agente SQL", "analyst": "Analista", "report": "Reporte" },
-    "forecast": { "forecast": "Pronóstico", "actual": "Real", "anomaly": "Día inusual" },
-    "dashboard": { "transactions": "Transacciones", "active": "Activos", "trend": "Tendencia" }
+    "orquestador": {
+      "label": "Diagrama: una pregunta llega a un enrutador, que la envía a uno de tres agentes (análisis, informes o SQL) para producir la respuesta. Escribir en la base de datos pasa por un paso punteado donde una persona confirma. Ejemplo inventado."
+    },
+    "forecast": {
+      "label": "Diagrama de un gráfico de líneas con números inventados: una línea esperada dentro de una banda tenue, una caída y un pico marcados como días inusuales, y un pronóstico punteado hasta el fin de mes."
+    },
+    "dashboard": {
+      "label": "Diagrama de dos tarjetas de un panel, Transacciones y Clientes. Cada una tiene un punto de estado (lleno significa en camino, vacío significa a vigilar) y dos barras pequeñas que comparan esta semana con la anterior. Números inventados."
+    },
+    "catch": {
+      "label": "Diagrama: cuatro fuentes (Logbook de Concept2, un archivo CSV, una foto del PM5 y Bluetooth en vivo) llegan a un paso de revisión, luego a una base de datos con seguridad por filas, y después a un veredicto como mejoró 2,1 %."
+    },
+    "erg": {
+      "label": "Diagrama: una prueba de 2k dividida en cuatro tramos de 500 m da tiempo y watts. Abajo, la app web y la app de iPhone alimentan un mismo registro compartido."
+    },
+    "pep9": {
+      "label": "Diagrama del simulador Pep/9: la memoria con celdas hexadecimales alimenta una CPU que muestra los registros A, X, SP y HP y las banderas N, Z, V y C, y envía resultados a la salida. Abajo corre el ciclo buscar, decodificar, ejecutar."
+    },
+    "vmm": {
+      "label": "Diagrama de memoria virtual: una dirección se busca en la TLB. Un acierto va directo a la memoria. Un fallo consulta la tabla de páginas, y un fallo de página (punteado) carga la página desde el disco."
+    },
+    "sched": {
+      "label": "Diagrama de dos líneas de tiempo de planificación de CPU para las mismas cuatro tareas: primero en llegar, primero en servirse ejecuta cada tarea en un bloque, y round robin intercala porciones cortas de T1 a T4."
+    },
+    "sudoku": {
+      "label": "Diagrama de un verificador de Sudoku: una cuadrícula de 3 por 3 bloques y tres grupos de hilos (1 para filas, 1 para columnas, 9 para cuadros) que escriben cada uno su propia celda en 11 resultados."
+    },
+    "db": {
+      "label": "Diagrama de la base de datos de una consultora: Región, Cliente, Contrato, Consultor y Clasificación unidos por conectores simples, con disparadores de auditoría sobre Cliente."
+    },
+    "web": {
+      "label": "Diagrama de un sitio de inscripción a cursos dentro de un marco de navegador: un encabezado y una barra lateral (la parte que construí, resaltada) junto a un formulario de inscripción."
+    }
   },
   "meta": {
     "title": "Nicolas Invernizzi | Portafolio",
@@ -39,16 +71,46 @@
     "cv": "/cv/Nicolas_Invernizzi_CV_ES.pdf"
   },
   "sections": [
-    { "id": "intro", "title": "Hola" },
-    { "id": "about", "title": "Sobre mí" },
-    { "id": "experience", "title": "Experiencia" },
-    { "id": "skills", "title": "Con lo que trabajo" },
-    { "id": "education", "title": "Educación" },
-    { "id": "projects", "title": "Proyectos" },
-    { "id": "rowing", "title": "Remo" },
-    { "id": "learning", "title": "Aprendiendo" },
-    { "id": "leadership", "title": "Liderazgo" },
-    { "id": "contact", "title": "Contacto" }
+    {
+      "id": "intro",
+      "title": "Hola"
+    },
+    {
+      "id": "about",
+      "title": "Sobre mí"
+    },
+    {
+      "id": "experience",
+      "title": "Experiencia"
+    },
+    {
+      "id": "skills",
+      "title": "Con lo que trabajo"
+    },
+    {
+      "id": "education",
+      "title": "Educación"
+    },
+    {
+      "id": "projects",
+      "title": "Proyectos"
+    },
+    {
+      "id": "rowing",
+      "title": "Remo"
+    },
+    {
+      "id": "learning",
+      "title": "Aprendiendo"
+    },
+    {
+      "id": "leadership",
+      "title": "Liderazgo"
+    },
+    {
+      "id": "contact",
+      "title": "Contacto"
+    }
   ],
   "about": {
     "lead": "Soy estudiante de Ciencias de la Computación en Marietta College y remero de nivel nacional por Paraguay. Me gusta construir sistemas que combinan datos, algoritmos y una buena experiencia de usuario.",
@@ -67,7 +129,7 @@
       "logo": "itti",
       "bullets": [
         "Miembro del equipo de Performance & Data Analytics, trabajando con áreas de negocio de las empresas de Grupo Vázquez.",
-        "Ayudé a construir un pipeline de pronóstico en Python que predice el volumen diario de 9 productos transaccionales de ueno bank, marca días inusuales y proyecta el cierre del mes.",
+        "Ayudé a construir un pipeline de pronóstico en Python que predice el volumen diario de varios productos transaccionales de ueno bank, marca días inusuales y proyecta el cierre del mes.",
         "Agregué un módulo de feriados paraguayos para que los pronósticos anticipen subas y bajas antes y después de feriados, con el motivo de cada ajuste exportado para la gerencia.",
         "Ayudé a construir un dashboard ejecutivo en vivo de transacciones de tarjetas de crédito y clientes activos.",
         "Co-diseñé el Orquestador, una herramienta interna multiagente de IA que convierte preguntas en lenguaje natural en SQL, análisis y reportes."
@@ -106,11 +168,56 @@
   ],
   "skills": {
     "groups": [
-      { "title": "Datos e IA", "items": ["Python", "pandas", "NumPy", "SciPy", "SQL", "Amazon Athena", "DuckDB", "dbt", "Claude", "Cursor"] },
-      { "title": "Software", "items": ["JavaScript", "TypeScript", "React", "HTML", "PHP", "C", "C++", "Java", "Pep9"] },
-      { "title": "Herramientas", "items": ["Git", "GitHub", "Unity", "Excel", "JSON Schema", "Vercel", "Supabase"] }
+      {
+        "title": "Datos e IA",
+        "items": [
+          "Python",
+          "pandas",
+          "NumPy",
+          "SciPy",
+          "SQL",
+          "Amazon Athena",
+          "DuckDB",
+          "dbt",
+          "Claude",
+          "Cursor"
+        ]
+      },
+      {
+        "title": "Software",
+        "items": [
+          "JavaScript",
+          "TypeScript",
+          "React",
+          "HTML",
+          "PHP",
+          "C",
+          "C++",
+          "Java",
+          "Pep9"
+        ]
+      },
+      {
+        "title": "Herramientas",
+        "items": [
+          "Git",
+          "GitHub",
+          "Unity",
+          "Excel",
+          "JSON Schema",
+          "Vercel",
+          "Supabase"
+        ]
+      }
     ],
-    "other": ["Pronóstico estadístico", "detección de anomalías", "pensamiento sistémico", "comunicación", "trabajo en equipo", "facilitación de capacitaciones"],
+    "other": [
+      "Pronóstico estadístico",
+      "detección de anomalías",
+      "pensamiento sistémico",
+      "comunicación",
+      "trabajo en equipo",
+      "facilitación de capacitaciones"
+    ],
     "languages": "Español (nativo) · Inglés (avanzado, Cambridge C1) · Guaraní (comprensión)"
   },
   "education": [
@@ -131,86 +238,250 @@
       "period": "Ago 2022 — May 2023",
       "title": "Cambridge C1 Advanced",
       "org": "Ned College",
+      "logo": "cambridge",
       "place": "Dublín, Irlanda",
-      "bullets": ["GPA 3.8/4.0"]
+      "bullets": [
+        "GPA 3.8/4.0"
+      ]
     },
     {
       "period": "2018 — 2020",
       "title": "Bachillerato en Ciencias Sociales",
       "org": "Colegio Cristo Rey",
+      "logo": "cristorey",
       "place": "Asunción, Paraguay",
-      "bullets": ["Honores de estudiante-atleta · fútbol, vóley y remo"]
+      "bullets": [
+        "Honores de estudiante-atleta · fútbol, vóley y remo"
+      ]
     }
   ],
-  "projects": [
-    {
-      "id": "orquestador",
-      "title": "Orquestador",
-      "tag": "ITTI · Agentes de IA",
-      "text": "Herramienta interna multiagente de IA, co-diseñada con mi equipo y construida con Cursor. Convierte preguntas en lenguaje natural en SQL, análisis y reportes. La imagen es una ilustración, no datos de la empresa.",
-      "stack": ["Cursor", "SQL", "Amazon Athena", "Agentes de IA"]
-    },
-    {
-      "id": "forecast",
-      "title": "Pronóstico de transacciones",
-      "tag": "ITTI · Datos",
-      "text": "Un pipeline en Python que predice el volumen diario esperado de 9 productos de ueno bank, marca días inusuales, proyecta el cierre del mes y ajusta por feriados paraguayos.",
-      "stack": ["Python", "pandas", "SciPy", "DuckDB", "Athena"]
-    },
-    {
-      "id": "dashboard",
-      "title": "Dashboard ejecutivo",
-      "tag": "ITTI · BI",
-      "text": "Un dashboard en vivo de transacciones de tarjetas de crédito y clientes activos, con tendencias semanales y mensuales medidas con estadística robusta. Solo ilustración.",
-      "stack": ["SQL", "Estadística robusta", "Dashboards"]
-    },
-    {
-      "id": "catch",
-      "title": "Catch Analysis",
-      "tag": "Remo · Full-stack",
-      "text": "Un registro de entrenamiento de remo que importa datos del ergómetro y los convierte en metas y consejos para mejorar. Hecho con React, TypeScript, Tailwind y Supabase, alojado en Vercel.",
-      "stack": ["React", "TypeScript", "Tailwind", "Supabase", "Vercel"],
-      "live": "https://nico-rowing.vercel.app"
-    },
-    {
-      "id": "erg",
-      "title": "Calculadora de ritmo en ergómetro",
-      "tag": "Remo · Herramienta",
-      "text": "Una pequeña herramienta web para el ritmo en el ergómetro: define una meta y obtén los parciales que necesitas mantener.",
-      "stack": ["TypeScript"],
-      "code": "https://github.com/orinvernizzi/erg-pace-calculator"
-    },
-    {
-      "id": "web",
-      "title": "Proyectos de programación web",
-      "tag": "Universidad · Web",
-      "text": "Sitios full-stack hechos en clase con HTML, CSS, JavaScript, PHP y SQL: entrada de usuario, sesiones, procesamiento en servidor y base de datos.",
-      "stack": ["HTML", "CSS", "JavaScript", "PHP", "SQL"],
-      "code": "https://github.com/orinvernizzi/Web-Programming"
-    },
-    {
-      "id": "db",
-      "title": "Diseño de bases de datos",
-      "tag": "Universidad · SQL",
-      "text": "Esquemas relacionales normalizados de 1NF a BCNF, con claves primarias y foráneas y consultas complejas con joins y subconsultas.",
-      "stack": ["SQL", "Microsoft SQL"]
-    },
-    {
-      "id": "csci405",
-      "title": "CSCI-405",
-      "tag": "Universidad · Java",
-      "text": "Trabajo de curso en Java.",
-      "stack": ["Java"],
-      "code": "https://github.com/orinvernizzi/CSCI-405"
-    },
-    {
-      "id": "pep9",
-      "title": "Sistemas operativos con Pep9",
-      "tag": "Universidad · Bajo nivel",
-      "text": "Trabajo a nivel ensamblador en la máquina Pep9 para las clases de Organización de Computadoras y Sistemas Operativos.",
-      "stack": ["Pep9", "C"]
-    }
-  ],
+  "projects": {
+    "groups": [
+      {
+        "id": "itti",
+        "title": "Pasantía en ITTI"
+      },
+      {
+        "id": "rowing",
+        "title": "Remo"
+      },
+      {
+        "id": "systems",
+        "title": "Sistemas y bajo nivel"
+      },
+      {
+        "id": "web",
+        "title": "Web, datos y software"
+      }
+    ],
+    "items": [
+      {
+        "id": "orquestador",
+        "group": "itti",
+        "title": "Orquestador",
+        "tag": "Agentes de IA · proyecto en equipo",
+        "text": "Una herramienta interna donde un compañero hace una pregunta de negocio en lenguaje natural y un equipo de agentes de IA arma la respuesta. La diseñé junto con mi equipo y construí la primera versión. Todavía es un prototipo.",
+        "details": [
+          "Un router elige el siguiente agente, un ejecutor lo corre y cada paso queda registrado. El ciclo se detiene a los 10 pasos.",
+          "Seis agentes: SQL, análisis, oportunidades, modelado, narrativa y reportes.",
+          "Cada agente es una carpeta con un contrato SKILL.md, así que cualquiera puede sumar uno nuevo.",
+          "Todo lo que escribe datos necesita que una persona lo confirme antes."
+        ],
+        "stack": [
+          "Cursor",
+          "SQL",
+          "Amazon Athena",
+          "dbt",
+          "Agentes de IA"
+        ],
+        "note": "La imagen es una ilustración. No muestra datos de la empresa."
+      },
+      {
+        "id": "forecast",
+        "group": "itti",
+        "title": "Pronóstico de transacciones",
+        "tag": "Datos · proyecto individual",
+        "text": "Un motor en Python que aprende cómo es un día normal en varios productos transaccionales de ueno bank, marca los días que no lo son y pronostica el próximo mes y el cierre del mes. Termina en un reporte de Excel para la gerencia.",
+        "details": [
+          "Ajusta dos modelos por producto, OLS y Theil-Sen, y se queda con el mejor. Theil-Sen ignora valores atípicos como los feriados.",
+          "Un z-score marca cada día como normal, alto o bajo.",
+          "Un módulo de feriados paraguayos ajusta el pronóstico y explica cada ajuste con palabras simples.",
+          "Probado con datos reales: detectó los feriados conocidos como caídas y el aguinaldo como un pico."
+        ],
+        "stack": [
+          "Python",
+          "pandas",
+          "SciPy",
+          "Excel"
+        ],
+        "note": "La imagen es una ilustración con números inventados."
+      },
+      {
+        "id": "dashboard",
+        "group": "itti",
+        "title": "Dashboard ejecutivo",
+        "tag": "BI · análisis",
+        "text": "Un análisis y dashboard en vivo de transacciones con tarjeta de crédito. Sigue dos números diarios, transacciones y clientes distintos, y da un veredicto claro para cada uno.",
+        "details": [
+          "Un resumen tipo semáforo con un veredicto por métrica: verde, amarillo o rojo.",
+          "Las semanas se comparan de lunes a domingo, solo semanas completas, para que la comparación sea justa.",
+          "Estadística robusta para que un día raro no distorsione el panorama."
+        ],
+        "stack": [
+          "SQL",
+          "Estadística robusta",
+          "Dashboards"
+        ],
+        "note": "La imagen es una ilustración con números inventados."
+      },
+      {
+        "id": "catch",
+        "group": "rowing",
+        "title": "Catch Analysis",
+        "tag": "Full-stack · proyecto individual",
+        "text": "Un registro de entrenamiento de remo que construí yo solo. Trae datos del erg, los revisa en una pantalla de verificación y me dice después de cada sesión si mejoré. Está detrás de un login y el código es privado.",
+        "details": [
+          "Tres formas de entrada, una sola pantalla de revisión: sincronización con Concept2 Logbook (OAuth), un archivo CSV o XLSX, o una foto de la pantalla del PM5 leída con OCR en el navegador. También hay una página en vivo por Bluetooth.",
+          "Después de cada sesión compara con la última y la mejor sesión comparable, y sugiere motivos si fue más lenta.",
+          "Etiquetas de tendencia con Theil-Sen, zonas de entrenamiento, curvas de estado físico y fatiga, y un predictor de tiempos (Riegel y ley de Paul).",
+          "PWA en inglés y español sobre Supabase con seguridad por fila. Unas 16.000 líneas y 54 archivos de pruebas."
+        ],
+        "stack": [
+          "React",
+          "TypeScript",
+          "Tailwind",
+          "Supabase",
+          "Vercel",
+          "Vitest"
+        ],
+        "live": "https://nico-rowing.vercel.app"
+      },
+      {
+        "id": "erg",
+        "group": "rowing",
+        "title": "ErgCalc",
+        "tag": "Full-stack + app para iPhone",
+        "text": "Un planificador para carreras y piezas por tiempo en el erg Concept2: eliges una distancia, defines un split por tramo y ves el tiempo, el split promedio y los watts, y lo guardas en un logbook. Empezó como prototipo en Flask en febrero de 2026 y lo reconstruí en agosto de 2026. El sitio en vivo pide iniciar sesión.",
+        "details": [
+          "Los watts salen del ritmo con la fórmula de Concept2, W = 2,80 / (split ÷ 500)³, con el split en segundos por 500 m.",
+          "Cuentas con login y un rol de entrenador: invitar atletas, ver la nómina y armar planes de entrenamiento.",
+          "La app web en Next.js y una app de iPhone con Expo comparten el mismo logbook.",
+          "El Bluetooth en vivo con el PM5 está pensado para más adelante y todavía no existe."
+        ],
+        "stack": [
+          "Next.js",
+          "TypeScript",
+          "Prisma",
+          "Postgres (Neon)",
+          "Expo",
+          "Vercel",
+          "Vitest"
+        ],
+        "live": "https://erg-pace-calculator.vercel.app",
+        "code": "https://github.com/orinvernizzi/erg-pace-calculator"
+      },
+      {
+        "id": "pep9",
+        "group": "systems",
+        "title": "Simulador de CPU Pep/9",
+        "tag": "C · Organización de Computadoras · equipo de cuatro",
+        "text": "Un programa en C que simula la computadora didáctica Pep/9. Le das código de máquina como bytes en hexadecimal y ejecuta una instrucción por vez, mostrando los registros y las banderas en cada paso. Proyecto final de CSCI 220, otoño de 2025.",
+        "details": [
+          "64 KiB de memoria, registros A, X, SP y HP, y las banderas N, Z, V y C. El hexadecimal se carga hasta la marca zz.",
+          "El conjunto base de instrucciones de Pep/9: cargas y almacenamientos, suma y resta, desplazamientos, comparaciones, ocho saltos, CALL y RET, heap, y DECO, DECI y STRO.",
+          "Direccionamiento inmediato, directo, indexado y relativo a la pila. La salida está mapeada a la dirección 0xFC16.",
+          "Mi parte: preparé el repositorio de GitHub del equipo y construí parte del conjunto de instrucciones. El direccionamiento indexado fue lo más difícil."
+        ],
+        "stack": [
+          "C",
+          "Pep/9",
+          "Git"
+        ]
+      },
+      {
+        "id": "vmm",
+        "group": "systems",
+        "title": "Administrador de memoria virtual",
+        "tag": "Python · Sistemas Operativos · individual",
+        "text": "Un simulador que convierte direcciones lógicas de 16 bits en direcciones físicas, como lo hace un sistema operativo con paginación. Una página solo se carga desde el archivo de respaldo la primera vez que hace falta.",
+        "details": [
+          "Una dirección de 16 bits es un número de página de 8 bits más un desplazamiento de 8 bits. Hay un TLB de 16 entradas con reemplazo FIFO y una tabla de páginas.",
+          "Ante un fallo de página copia una página de 256 bytes desde BACKING_STORE.bin al siguiente marco libre.",
+          "Con las 1.000 direcciones de prueba: 244 fallos de página y 54 aciertos de TLB.",
+          "Las 1.000 traducciones de direcciones coinciden con la salida de referencia."
+        ],
+        "stack": [
+          "Python"
+        ]
+      },
+      {
+        "id": "sched",
+        "group": "systems",
+        "title": "Simulador de planificación de CPU",
+        "tag": "Python · Sistemas Operativos · individual",
+        "text": "Un simulador de cinco algoritmos de planificación de CPU. Lee las tareas (nombre, prioridad, ráfaga de CPU) desde un archivo e imprime cuándo corre y termina cada una.",
+        "details": [
+          "FCFS, Prioridad, Round Robin (quantum 10), Prioridad con Round Robin y SJF.",
+          "Un ordenamiento estable mantiene el orden de llegada cuando hay empate de prioridad.",
+          "Error corregido: se salteaba la primera tarea porque el archivo empezaba con una marca de orden de bytes. Leerlo como utf-8-sig lo resolvió."
+        ],
+        "stack": [
+          "Python"
+        ]
+      },
+      {
+        "id": "sudoku",
+        "group": "systems",
+        "title": "Validador de Sudoku con hilos",
+        "tag": "Python · Sistemas Operativos · individual",
+        "text": "Un verificador de Sudoku que reparte el trabajo entre hilos. Lee una grilla de 9×9 desde un archivo de texto e imprime Valid Sudoku o Invalid Sudoku.",
+        "details": [
+          "11 hilos: uno revisa todas las filas, uno todas las columnas y nueve revisan los cuadros de 3×3.",
+          "Cada hilo escribe 1 o 0 en su propio casillero de una lista compartida, así que no hacen falta bloqueos.",
+          "Un grupo es válido cuando tiene exactamente los números del 1 al 9."
+        ],
+        "stack": [
+          "Python",
+          "Hilos"
+        ]
+      },
+      {
+        "id": "db",
+        "group": "web",
+        "title": "Diseño de bases de datos",
+        "tag": "SQL · Bases de Datos · individual",
+        "text": "Una base de datos de siete tablas para una consultora, diseñada a partir de un diagrama ER y construida en MariaDB. Registra regiones, clientes, consultores, contratos y clasificaciones de consultores.",
+        "details": [
+          "Las relaciones de muchos a muchos usan tablas de enlace con claves compuestas.",
+          "Dos triggers agregan una fila de auditoría (quién y cuándo) después de cada inserción.",
+          "Un procedimiento almacenado devuelve el contrato más reciente y un procedimiento de reporte recorre región, cliente y consultor con tres cursores anidados.",
+          "También estudié normalización, de 1FN hasta BCNF."
+        ],
+        "stack": [
+          "SQL",
+          "MariaDB",
+          "Visual Paradigm"
+        ]
+      },
+      {
+        "id": "web",
+        "group": "web",
+        "title": "App web de inscripción a cursos",
+        "tag": "HTML · CSS · equipo de cuatro",
+        "text": "Un proyecto de la universidad en equipo de cuatro: el front end de un sitio de inscripción a cursos. Mi parte fue la página de inicio y la hoja de estilos compartida.",
+        "details": [
+          "La página de inicio tiene un menú lateral. La hoja de estilos compartida le da estilo a todas las páginas: encabezado, navegación, pie y formularios.",
+          "Mis compañeros hicieron las páginas de inscripción, instructores y cursos, y escribieron los manuales.",
+          "El repositorio enlazado es mi fork del repositorio del equipo y solo tiene las primeras páginas en HTML y CSS."
+        ],
+        "stack": [
+          "HTML",
+          "CSS"
+        ],
+        "code": "https://github.com/orinvernizzi/Web-Programming"
+      }
+    ]
+  },
   "rowing": {
     "lead": "El remo es el hilo de toda mi vida: equipo universitario en Marietta College y regatas internacionales por Paraguay.",
     "medals": [
@@ -229,9 +500,21 @@
     ]
   },
   "leadership": [
-    { "period": "2018 — 2023", "title": "TECHO Paraguay", "text": "Construí casas de madera accesibles con comunidades, recluté voluntarios y capacité a los nuevos." },
-    { "period": "2020", "title": "Teletón Paraguay", "text": "Recaudé fondos para niños y adolescentes con discapacidad y lideré grupos de voluntarios." },
-    { "period": "2019", "title": "Fundación Koeju", "text": "Servicio comunitario con alimentos y ropa para comunidades con pocos recursos." }
+    {
+      "period": "2018 — 2023",
+      "title": "TECHO Paraguay",
+      "text": "Construí casas de madera accesibles con comunidades, recluté voluntarios y capacité a los nuevos."
+    },
+    {
+      "period": "2020",
+      "title": "Teletón Paraguay",
+      "text": "Recaudé fondos para niños y adolescentes con discapacidad y lideré grupos de voluntarios."
+    },
+    {
+      "period": "2019",
+      "title": "Fundación Koeju",
+      "text": "Servicio comunitario con alimentos y ropa para comunidades con pocos recursos."
+    }
   ],
   "contact": {
     "lead": "¿Quieres trabajar juntos, hablar de IA y datos, o simplemente saludar? Escríbeme."

@@ -1,10 +1,9 @@
 import { useEffect, useMemo, useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { Card3D, RADIUS, RISE, STEP } from './Card3D'
+import { Card3D, RADIUS } from './Card3D'
 import { SpiralHud } from './SpiralHud'
 import { useContent } from '../lib/content'
-import { useScrollProgress, type SpiralProgress } from '../lib/useScrollProgress'
-import type * as THREE from 'three'
+import { mod, ringDelta, useScrollProgress, type SpiralProgress } from '../lib/useScrollProgress'
 
 interface Props {
   enabled: boolean
@@ -13,14 +12,13 @@ interface Props {
   onContextLost: () => void
 }
 
-const BG = '#0a0a0a'
+const BG = '#000000'
 const CAMERA_Z = 14.5
 // Distance needed to fit the front card (plus margin) in a narrow viewport.
 const FIT_WIDTH_FACTOR = 4.77
 
 function Scene({ progress, onOpen }: { progress: SpiralProgress; onOpen: (index: number) => void }) {
   const c = useContent()
-  const group = useRef<THREE.Group>(null)
   const reduced = useMemo(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches, [])
   const chips = useMemo(() => c.skills.groups.flatMap((g) => g.items), [c])
   const total = c.sections.length
@@ -28,11 +26,6 @@ function Scene({ progress, onOpen }: { progress: SpiralProgress; onOpen: (index:
   useFrame((state, dt) => {
     const p = progress
     p.current.current += (p.target.current - p.current.current) * (1 - Math.exp(-6 * dt))
-    const t = p.current.current
-    if (group.current) {
-      group.current.rotation.y = -t * STEP
-      group.current.position.y = t * RISE
-    }
     const cam = state.camera
     const aspect = state.size.width / state.size.height
     cam.position.z = aspect < 0.6 ? Math.max(CAMERA_Z, RADIUS + FIT_WIDTH_FACTOR / aspect) : CAMERA_Z
@@ -45,9 +38,9 @@ function Scene({ progress, onOpen }: { progress: SpiralProgress; onOpen: (index:
     <>
       <color attach="background" args={[BG]} />
       <fog attach="fog" args={[BG, 13, 30]} />
-      <gridHelper args={[80, 80, '#34342f', '#1b1b19']} position={[0, -4.6, 0]} />
+      <gridHelper args={[80, 80, '#262626', '#111111']} position={[0, -4.6, 0]} />
       <group rotation={[0, 0, 0.07]}>
-        <group ref={group}>
+        <group>
           {c.sections.map((s, i) => (
             <Card3D
               key={s.id}
@@ -56,7 +49,7 @@ function Scene({ progress, onOpen }: { progress: SpiralProgress; onOpen: (index:
               title={s.title}
               total={total}
               chips={s.id === 'skills' ? chips : []}
-              near={Math.abs(i - progress.index) <= 4}
+              near={Math.abs(ringDelta(i, progress.index, total)) <= 4}
               progress={progress}
               reducedMotion={reduced}
               onOpen={onOpen}
@@ -97,7 +90,7 @@ export default function Spiral({ enabled, onOpen, jumpTo, onContextLost }: Props
   useEffect(() => {
     if (!enabled) return
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Enter' && document.activeElement === document.body) open(Math.round(progress.target.current))
+      if (e.key === 'Enter' && document.activeElement === document.body) open(mod(Math.round(progress.target.current), c.sections.length))
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
@@ -108,6 +101,7 @@ export default function Spiral({ enabled, onOpen, jumpTo, onContextLost }: Props
       <h1 className="sr-only">{c.meta.name}</h1>
       <Canvas
         flat
+        frameloop={enabled ? 'always' : 'never'} // idle while a panel or the menu covers the spiral
         dpr={[1, 2]}
         camera={{ fov: 36, position: [0, 1.1, CAMERA_Z], near: 0.1, far: 80 }}
         gl={{ antialias: true, powerPreference: 'high-performance' }}

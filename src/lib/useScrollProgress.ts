@@ -1,7 +1,15 @@
 import { useCallback, useEffect, useRef, useState, type RefObject } from 'react'
 
-// Drives the spiral: wheel, touch/mouse drag and arrow keys move a float
-// position (0 .. count-1). `current` is eased toward `target` by the scene.
+// Positive modulo, so -1 mod 10 is 9.
+export const mod = (a: number, n: number) => ((a % n) + n) % n
+
+// Shortest signed distance from `from` to `to` on a ring of n items.
+export const ringDelta = (from: number, to: number, n: number) => mod(to - from + n / 2, n) - n / 2
+
+// Drives the spiral: wheel, touch/mouse drag and arrow keys move an unbounded
+// float position that wraps around the ring (endless loop). `current` is
+// eased toward `target` by the scene; both live in the same unwrapped frame,
+// so easing never takes the long way round.
 export function useScrollProgress(count: number, enabled: boolean, el: RefObject<HTMLElement | null>) {
   const target = useRef(0)
   const current = useRef(0)
@@ -9,11 +17,16 @@ export function useScrollProgress(count: number, enabled: boolean, el: RefObject
 
   const move = useCallback(
     (next: number) => {
-      const v = Math.min(count - 1, Math.max(0, next))
-      target.current = v
-      setIndex(Math.round(v))
+      target.current = next
+      setIndex(mod(Math.round(next), count))
     },
     [count],
+  )
+
+  // Jump to a card by index, taking the shortest way round the ring.
+  const goTo = useCallback(
+    (i: number) => move(target.current + ringDelta(target.current, i, count)),
+    [count, move],
   )
 
   useEffect(() => {
@@ -52,9 +65,9 @@ export function useScrollProgress(count: number, enabled: boolean, el: RefObject
         e.preventDefault()
         move(prev)
       } else if (e.key === 'Home') {
-        move(0)
+        goTo(0)
       } else if (e.key === 'End') {
-        move(count - 1)
+        goTo(count - 1)
       }
     }
 
@@ -72,9 +85,9 @@ export function useScrollProgress(count: number, enabled: boolean, el: RefObject
       window.removeEventListener('pointercancel', onUp)
       window.removeEventListener('keydown', onKey)
     }
-  }, [count, el, enabled, move])
+  }, [count, el, enabled, goTo, move])
 
-  return { target, current, index, goTo: move }
+  return { target, current, index, goTo }
 }
 
 export type SpiralProgress = ReturnType<typeof useScrollProgress>

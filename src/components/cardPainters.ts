@@ -40,6 +40,30 @@ function rings(ctx: Ctx, cx: number, cy: number, color: string, count = 5) {
   }
 }
 
+// Tech logo grid on a flat dark face: 6 columns, centred.
+function skillLogos(ctx: Ctx, s: CardSpec) {
+  const icons = s.icons
+  if (!icons) return // still loading
+  const T = 96
+  const GAP = 14
+  const COLS = 6
+  const x0 = (CARD_W - (COLS * T + (COLS - 1) * GAP)) / 2
+  s.chips
+    .filter((c) => icons.has(c))
+    .slice(0, COLS * 5)
+    .forEach((chip, i) => {
+      const x = x0 + (i % COLS) * (T + GAP)
+      const y = 130 + Math.floor(i / COLS) * (T + GAP)
+      ctx.fillStyle = '#1f1f1d'
+      ctx.strokeStyle = '#34342f'
+      ctx.lineWidth = 2
+      ctx.beginPath()
+      ctx.roundRect(x, y, T, T, 22)
+      ctx.fill()
+      ctx.stroke()
+      ctx.drawImage(icons.get(chip)!, x + 21, y + 21, T - 42, T - 42)
+    })
+}
 
 export const PAINTERS: Record<string, (ctx: Ctx, s: CardSpec, img: HTMLImageElement | null) => boolean> = {
   intro: photo('intro'),
@@ -57,51 +81,35 @@ export const PAINTERS: Record<string, (ctx: Ctx, s: CardSpec, img: HTMLImageElem
     return true
   },
   education(ctx, _s, img) {
-    const g = ctx.createLinearGradient(0, 0, CARD_W, CARD_H)
-    g.addColorStop(0, '#0b1f4a')
-    g.addColorStop(1, '#1d4283')
+    // White centre fading to Marietta blue at the edges; the white title sits on the blue lower part.
+    const g = ctx.createRadialGradient(CARD_W / 2, 380, 0, CARD_W / 2, 380, 560)
+    g.addColorStop(0, '#ffffff')
+    g.addColorStop(0.3, '#ffffff')
+    g.addColorStop(0.8, '#2d6cb3')
+    g.addColorStop(1, '#1f5ea8')
     ctx.fillStyle = g
     ctx.fillRect(0, 0, CARD_W, CARD_H)
-    rings(ctx, 0, CARD_H * 0.5, 'rgba(255,255,255,0.07)', 7)
-    ctx.fillStyle = '#f4f2ec'
-    ctx.beginPath()
-    ctx.roundRect(70, 290, CARD_W - 140, 190, 28)
-    ctx.fill()
+    const shade = ctx.createLinearGradient(0, CARD_H * 0.7, 0, CARD_H)
+    shade.addColorStop(0, 'rgba(8,30,70,0)')
+    shade.addColorStop(1, 'rgba(8,30,70,0.3)')
+    ctx.fillStyle = shade
+    ctx.fillRect(0, CARD_H * 0.7, CARD_W, CARD_H * 0.3)
+    const top = ctx.createLinearGradient(0, 0, 0, 240)
+    top.addColorStop(0, 'rgba(8,30,70,0.7)')
+    top.addColorStop(1, 'rgba(8,30,70,0)')
+    ctx.fillStyle = top
+    ctx.fillRect(0, 0, CARD_W, 240)
     if (img) {
-      const w = CARD_W - 220
-      ctx.drawImage(img, 110, 290 + (190 - w * (img.height / img.width)) / 2, w, w * (img.height / img.width))
+      const w = 520
+      const h = Math.round(w * (img.height / img.width))
+      ctx.drawImage(img, (CARD_W - w) / 2, 380 - h / 2, w, h)
     }
     return false
   },
   skills(ctx, s) {
     ctx.fillStyle = '#101010'
     ctx.fillRect(0, 0, CARD_W, CARD_H)
-    ctx.font = `600 27px ${FONT}`
-    ctx.textBaseline = 'middle'
-    let x = 40
-    let y = 150
-    s.chips.slice(0, 22).forEach((chip, i) => {
-      const w = ctx.measureText(chip).width + 44
-      if (x + w > CARD_W - 40) {
-        x = 40
-        y += 66
-      }
-      if (y > 560) return
-      const hot = i % 5 === 2
-      ctx.fillStyle = hot ? ACCENT : '#1f1f1d'
-      ctx.beginPath()
-      ctx.roundRect(x, y, w, 52, 26)
-      ctx.fill()
-      if (!hot) {
-        ctx.strokeStyle = '#34342f'
-        ctx.lineWidth = 2
-        ctx.stroke()
-      }
-      ctx.fillStyle = hot ? INK : '#e8e6df'
-      ctx.textAlign = 'left'
-      ctx.fillText(chip, x + 22, y + 27)
-      x += w + 12
-    })
+    skillLogos(ctx, s)
     return false
   },
   projects(ctx) {

@@ -3,7 +3,7 @@ import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 import { paintCard } from './cardArt'
 import { CARD_H, CARD_W } from './cardShared'
-import type { SpiralProgress } from '../lib/useScrollProgress'
+import { ringDelta, type SpiralProgress } from '../lib/useScrollProgress'
 
 export const RADIUS = 6.2
 export const STEP = 0.4
@@ -75,25 +75,36 @@ export function Card3D({ index, id, title, total, chips, near, progress, reduced
   const material = useRef<THREE.MeshBasicMaterial>(null)
   const hover = useRef(false)
   const scale = useRef(1)
+  const bob = useRef(0)
 
-  const angle = index * STEP
   const tilt = (index % 2 ? 1 : -1) * 0.06
 
   useEffect(() => () => void (document.body.style.cursor = ''), [])
 
-  useFrame((state, dt) => {
-    const d = Math.abs(index - progress.current.current)
-    if (root.current) root.current.visible = d < 5.2
-    material.current?.color.setScalar(Math.min(1, Math.max(0.16, 1 - d * 0.24)))
+  useFrame((_state, dt) => {
+    // Wrapped offset from the front card, so the spiral reads as a ring.
+    const o = ringDelta(progress.current.current, index, total)
+    const d = Math.abs(o)
+    const edge = Math.min(5.2, total / 2) // cards fade out before the seam
+    if (root.current) {
+      root.current.visible = d < edge
+      root.current.position.set(RADIUS * Math.sin(o * STEP), -o * RISE, RADIUS * Math.cos(o * STEP))
+      root.current.rotation.y = o * STEP
+    }
+    if (material.current) {
+      material.current.color.setScalar(Math.min(1, Math.max(0.16, 1 - d * 0.24)))
+      material.current.opacity = Math.min(1, Math.max(0, (edge - d) / 1.3))
+    }
+    bob.current += dt // own clock: R3F resets its clock when the loop resumes
     scale.current += ((hover.current ? 1.045 : 1) - scale.current) * (1 - Math.exp(-10 * dt))
     if (inner.current) {
       inner.current.scale.setScalar(scale.current)
-      inner.current.position.y = reducedMotion ? 0 : Math.sin(state.clock.elapsedTime * 0.8 + index * 1.7) * 0.07
+      inner.current.position.y = reducedMotion ? 0 : Math.sin(bob.current * 0.8 + index * 1.7) * 0.07
     }
   })
 
   return (
-    <group ref={root} position={[RADIUS * Math.sin(angle), -index * RISE, RADIUS * Math.cos(angle)]} rotation={[0, angle, 0]}>
+    <group ref={root} visible={false}>
       <group ref={inner} rotation={[-0.05, 0, tilt]}>
         <mesh
           geometry={GEOMETRY}
@@ -116,7 +127,7 @@ export function Card3D({ index, id, title, total, chips, near, progress, reduced
             key={texture ? 'tex' : 'blank'}
             ref={material}
             map={texture}
-            color={texture ? '#ffffff' : '#1a1a19'}
+            color={texture ? '#ffffff' : '#000000'}
             transparent
             alphaTest={0.02}
             toneMapped={false}

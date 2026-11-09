@@ -30,16 +30,16 @@ export function MenuDrawer({ open, onClose, onSelect }: Props) {
         aria-modal="true"
         aria-label={c.ui.menu}
         tabIndex={-1}
-        className={`theme-light absolute bottom-0 right-0 top-0 flex w-[min(100%,26rem)] flex-col overflow-y-auto bg-bg px-6 pb-8 pt-4 text-fg shadow-2xl transition-transform duration-300 ease-out ${active ? 'drawer-open' : 'drawer-enter'}`}
+        className={`absolute bottom-0 right-0 top-0 flex w-[min(100%,26rem)] flex-col overflow-y-auto border-l border-line bg-bg px-6 pb-8 pt-4 text-fg shadow-2xl transition-transform duration-300 ease-out ${active ? 'drawer-open' : 'drawer-enter'}`}
       >
         <button
           type="button"
           onClick={onClose}
           aria-label={c.ui.close}
-          className="ml-auto flex min-h-11 items-center gap-3 rounded-full text-sm font-semibold"
+          className="ml-auto flex min-h-11 items-center gap-3 rounded-full text-sm font-medium"
         >
           {c.ui.close}
-          <span className="flex h-11 w-11 items-center justify-center rounded-full bg-ink text-white">
+          <span className="flex h-11 w-11 items-center justify-center rounded-full border border-line bg-white/5 transition-colors hover:bg-white/10">
             <Icon name="close" />
           </span>
         </button>
@@ -53,7 +53,7 @@ export function MenuDrawer({ open, onClose, onSelect }: Props) {
                   className="group flex min-h-14 w-full items-baseline gap-4 py-3 text-left"
                 >
                   <span className="font-mono text-sm text-muted">{String(i + 1).padStart(2, '0')}</span>
-                  <span className="display text-3xl transition-transform group-hover:translate-x-1 sm:text-4xl">{s.title}</span>
+                  <span className="display text-2xl transition-transform group-hover:translate-x-1 sm:text-3xl">{s.title}</span>
                 </button>
               </li>
             ))}

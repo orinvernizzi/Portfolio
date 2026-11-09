@@ -3,7 +3,7 @@ import type { ReactNode } from 'react'
 export function Chip({ children, accent = false }: { children: ReactNode; accent?: boolean }) {
   return (
     <li
-      className={`list-none rounded-full border px-3.5 py-1.5 text-sm font-medium ${accent ? 'border-accent bg-accent text-ink' : 'border-line bg-chip text-fg'}`}
+      className={`list-none rounded-full border px-3.5 py-1.5 text-sm ${accent ? 'border-accent bg-accent text-ink' : 'border-line bg-chip text-fg'}`}
     >
       {children}
     </li>
@@ -35,7 +35,7 @@ export function ButtonLink({ href, children, primary = false, download = false, 
       download={download || undefined}
       target={external ? '_blank' : undefined}
       rel={external ? 'noopener noreferrer' : undefined}
-      className={`inline-flex min-h-11 items-center gap-2 rounded-full px-5 text-sm font-semibold no-underline transition-colors ${primary ? 'bg-accent text-ink hover:bg-white' : 'border border-line text-fg hover:bg-chip'}`}
+      className={`inline-flex min-h-11 items-center gap-2 rounded-full px-5 text-sm font-medium no-underline transition-colors ${primary ? 'bg-accent text-ink hover:bg-white/85' : 'border border-line text-fg hover:bg-white/5'}`}
     >
       {children}
     </a>
@@ -68,7 +68,15 @@ export function Icon({ name }: { name: 'download' | 'arrow' | 'pin' | 'globe' | 
   )
 }
 
+// White logos on transparent backgrounds (made by tools/make-white-logos.py). `h` is the image height.
 export const LOGOS = {
-  itti: { src: '/img/itti-logo.svg', dark: true },
-  marietta: { src: '/img/marietta-logo.png', dark: false },
+  itti: { src: '/img/itti-white.svg', h: 'h-8' },
+  marietta: { src: '/img/logos/marietta-white.svg', h: 'h-10' },
+  cambridge: { src: '/img/logos/cambridge-white.png', h: 'h-8' },
+  cristorey: { src: '/img/logos/cristorey-white.png', h: 'h-10' },
+} as const
+
+export function LogoChip({ logo, alt }: { logo: keyof typeof LOGOS; alt: string }) {
+  const l = LOGOS[logo]
+  return <img src={l.src} alt={alt} className={`block ${l.h} w-auto max-w-[200px] object-contain`} loading="lazy" />
 }
