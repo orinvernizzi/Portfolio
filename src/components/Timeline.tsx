@@ -1,7 +1,7 @@
 import { useContent, type Block } from '../lib/content'
 import { ExtLink, LogoChip } from './ui'
 
-const PHOTOS = { techo1: '/img/techo-1.webp', techo2: '/img/techo-2.webp' } as const
+const PHOTOS = { techo1: '/photos/techo-1.webp', techo2: '/photos/techo-2.webp' } as const
 
 export function Timeline({ items }: { items: Block[] }) {
   const { alt, ui } = useContent()

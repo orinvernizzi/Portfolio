@@ -1,7 +1,6 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
-import en from './content/en.json'
-import es from './content/es.json'
+import { en, es } from './content'
 
 export type Lang = 'en' | 'es'
 const STORAGE_KEY = 'portfolio-lang'

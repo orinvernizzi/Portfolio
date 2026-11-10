@@ -1,0 +1,158 @@
+{
+  "en": {
+    "ui": {
+      "spiral": "spiral",
+      "list": "list",
+      "menu": "menu",
+      "close": "close",
+      "scrollHint": "scroll to explore",
+      "downloadCv": "Download CV",
+      "lang": "ES",
+      "open": "open",
+      "newTab": "opens in a new tab",
+      "viewCode": "View code",
+      "links": "Links",
+      "tech": "Tech",
+      "badgeRing": "nicolas invernizzi • portfolio 2026 • ",
+      "badgeLabel": "Play photo reel",
+      "reelTitle": "Photos of Nico",
+      "reelPrev": "Previous photo",
+      "reelNext": "Next photo",
+      "reelPause": "Pause reel",
+      "reelPlay": "Play reel",
+      "reelCounter": "Photo {n} of {total}"
+    },
+    "alt": {
+      "portrait": "Portrait of Nicolas Invernizzi in a dark suit",
+      "hocr": "A crew rowing a yellow boat at the Head of the Charles regatta",
+      "paraguay": "The Paraguay national rowing crew mid-stroke",
+      "itti": "ITTI",
+      "marietta": "Marietta College",
+      "cambridge": "Cambridge University Press & Assessment",
+      "cristorey": "Colegio Cristo Rey",
+      "techo": "TECHO",
+      "techo1": "TECHO volunteers posing in front of a wooden house on stilts they built",
+      "techo2": "Volunteers nailing the roof frame of a wooden house"
+    },
+    "sections": [
+      {
+        "id": "intro",
+        "title": "Hello"
+      },
+      {
+        "id": "about",
+        "title": "About me"
+      },
+      {
+        "id": "experience",
+        "title": "Experience"
+      },
+      {
+        "id": "skills",
+        "title": "Things I work with"
+      },
+      {
+        "id": "education",
+        "title": "Education"
+      },
+      {
+        "id": "projects",
+        "title": "Projects"
+      },
+      {
+        "id": "rowing",
+        "title": "Rowing"
+      },
+      {
+        "id": "learning",
+        "title": "Learning"
+      },
+      {
+        "id": "leadership",
+        "title": "Leadership"
+      },
+      {
+        "id": "contact",
+        "title": "Contact"
+      }
+    ]
+  },
+  "es": {
+    "ui": {
+      "spiral": "espiral",
+      "list": "lista",
+      "menu": "menú",
+      "close": "cerrar",
+      "scrollHint": "desliza para explorar",
+      "downloadCv": "Descargar CV",
+      "lang": "EN",
+      "open": "abrir",
+      "newTab": "se abre en una pestaña nueva",
+      "viewCode": "Ver código",
+      "links": "Enlaces",
+      "tech": "Tecnología",
+      "badgeRing": "nicolas invernizzi • portafolio 2026 • ",
+      "badgeLabel": "Reproducir fotos",
+      "reelTitle": "Fotos de Nico",
+      "reelPrev": "Foto anterior",
+      "reelNext": "Foto siguiente",
+      "reelPause": "Pausar",
+      "reelPlay": "Reproducir",
+      "reelCounter": "Foto {n} de {total}"
+    },
+    "alt": {
+      "portrait": "Retrato de Nicolas Invernizzi con traje oscuro",
+      "hocr": "Una tripulación remando en un bote amarillo en la regata Head of the Charles",
+      "paraguay": "La tripulación nacional de remo de Paraguay en plena palada",
+      "itti": "ITTI",
+      "marietta": "Marietta College",
+      "cambridge": "Cambridge University Press & Assessment",
+      "cristorey": "Colegio Cristo Rey",
+      "techo": "TECHO",
+      "techo1": "Voluntarios de TECHO posando frente a una casa de madera sobre pilotes que construyeron",
+      "techo2": "Voluntarios clavando la estructura del techo de una casa de madera"
+    },
+    "sections": [
+      {
+        "id": "intro",
+        "title": "Hola"
+      },
+      {
+        "id": "about",
+        "title": "Sobre mí"
+      },
+      {
+        "id": "experience",
+        "title": "Experiencia"
+      },
+      {
+        "id": "skills",
+        "title": "Con lo que trabajo"
+      },
+      {
+        "id": "education",
+        "title": "Educación"
+      },
+      {
+        "id": "projects",
+        "title": "Proyectos"
+      },
+      {
+        "id": "rowing",
+        "title": "Remo"
+      },
+      {
+        "id": "learning",
+        "title": "Aprendiendo"
+      },
+      {
+        "id": "leadership",
+        "title": "Liderazgo"
+      },
+      {
+        "id": "contact",
+        "title": "Contacto"
+      }
+    ]
+  }
+}

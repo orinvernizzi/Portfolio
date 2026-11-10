@@ -1,0 +1,94 @@
+{
+  "en": [
+    {
+      "period": "Jun 2026 — Aug 2026",
+      "role": "AI & Data Trainee",
+      "org": "ITTI S.A.E. (Grupo Vázquez)",
+      "place": "Asunción, Paraguay",
+      "logo": "itti",
+      "bullets": [
+        "Member of the Performance & Data Analytics team, working with business areas across Grupo Vázquez companies.",
+        "Helped build Incrementales, a Python forecasting engine that predicts daily volume for several ueno bank transaction products, such as credit cards and debit cards, flags unusual days and projects the month-end close.",
+        "Added a Paraguayan holiday module so forecasts anticipate pre- and post-holiday spikes and drops, with the reason for each adjustment exported for management.",
+        "Helped build a live executive dashboard for credit card transactions and active customers.",
+        "Co-designed the Orquestador, an internal multi-agent AI tool that turns plain-language questions into SQL, analysis and reports."
+      ]
+    },
+    {
+      "period": "Aug 2023 — May 2024",
+      "role": "Lab Assistant",
+      "org": "Greenhouse Lab, Marietta College",
+      "place": "Marietta, Ohio",
+      "bullets": [
+        "Cared for plants, animals and tools in the lab.",
+        "Implemented and worked on an automatic watering system for 3 months."
+      ]
+    },
+    {
+      "period": "Mar 2023 — Aug 2023",
+      "role": "Delivery and Bakery Helper",
+      "org": "La Tata",
+      "place": "Asunción, Paraguay",
+      "bullets": [
+        "Prepared special orders, handled money and customer communication.",
+        "Planned and navigated delivery routes efficiently."
+      ]
+    },
+    {
+      "period": "Aug 2022 — Feb 2023",
+      "role": "Fast Food Worker",
+      "org": "McDonald's",
+      "place": "Mullingar, Ireland",
+      "bullets": [
+        "Cashier, stock control, store opening and closing.",
+        "Trained new employees."
+      ]
+    }
+  ],
+  "es": [
+    {
+      "period": "Jun 2026 — Ago 2026",
+      "role": "Practicante de IA y Datos",
+      "org": "ITTI S.A.E. (Grupo Vázquez)",
+      "place": "Asunción, Paraguay",
+      "logo": "itti",
+      "bullets": [
+        "Miembro del equipo de Performance & Data Analytics, trabajando con áreas de negocio de las empresas de Grupo Vázquez.",
+        "Ayudé a construir Incrementales, un motor de pronóstico en Python que predice el volumen diario de varios productos transaccionales de ueno bank, como tarjetas de crédito y de débito, marca días inusuales y proyecta el cierre del mes.",
+        "Agregué un módulo de feriados paraguayos para que los pronósticos anticipen subas y bajas antes y después de feriados, con el motivo de cada ajuste exportado para la gerencia.",
+        "Ayudé a construir un dashboard ejecutivo en vivo de transacciones de tarjetas de crédito y clientes activos.",
+        "Co-diseñé el Orquestador, una herramienta interna multiagente de IA que convierte preguntas en lenguaje natural en SQL, análisis y reportes."
+      ]
+    },
+    {
+      "period": "Ago 2023 — May 2024",
+      "role": "Asistente de laboratorio",
+      "org": "Greenhouse Lab, Marietta College",
+      "place": "Marietta, Ohio",
+      "bullets": [
+        "Cuidado de plantas, animales y herramientas del laboratorio.",
+        "Implementé y trabajé en un sistema de riego automático durante 3 meses."
+      ]
+    },
+    {
+      "period": "Mar 2023 — Ago 2023",
+      "role": "Ayudante de delivery y panadería",
+      "org": "La Tata",
+      "place": "Asunción, Paraguay",
+      "bullets": [
+        "Preparé pedidos especiales, manejé dinero y comunicación con clientes.",
+        "Planifiqué y recorrí rutas de entrega de forma eficiente."
+      ]
+    },
+    {
+      "period": "Ago 2022 — Feb 2023",
+      "role": "Empleado de comida rápida",
+      "org": "McDonald's",
+      "place": "Mullingar, Irlanda",
+      "bullets": [
+        "Caja, control de inventario, apertura y cierre del local.",
+        "Capacité a empleados nuevos."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "en": {
+    "meta": {
+      "title": "Nicolas Invernizzi | Portfolio",
+      "description": "Computer Science student, AI and data, and national-level rower. Portfolio of Nicolas Invernizzi.",
+      "name": "Nicolas Invernizzi",
+      "role": "Computer Science student · AI & Data",
+      "tagline": "I turn data into decisions and code into tools people actually use.",
+      "location": "Marietta, Ohio · Asunción, Paraguay"
+    },
+    "links": {
+      "email": "nico20.invernizzi@gmail.com",
+      "linkedin": "https://www.linkedin.com/in/nicolas-invernizzi-822a84349",
+      "github": "https://github.com/orinvernizzi",
+      "cv": "/cv/Nicolas_Invernizzi_CV_EN.pdf"
+    }
+  },
+  "es": {
+    "meta": {
+      "title": "Nicolas Invernizzi | Portafolio",
+      "description": "Estudiante de Ciencias de la Computación, IA y datos, y remero de nivel nacional. Portafolio de Nicolas Invernizzi.",
+      "name": "Nicolas Invernizzi",
+      "role": "Estudiante de Ciencias de la Computación · IA y Datos",
+      "tagline": "Convierto datos en decisiones y código en herramientas que la gente realmente usa.",
+      "location": "Marietta, Ohio · Asunción, Paraguay"
+    },
+    "links": {
+      "email": "nico20.invernizzi@gmail.com",
+      "linkedin": "https://www.linkedin.com/in/nicolas-invernizzi-822a84349",
+      "github": "https://github.com/orinvernizzi",
+      "cv": "/cv/Nicolas_Invernizzi_CV_ES.pdf"
+    }
+  }
+}

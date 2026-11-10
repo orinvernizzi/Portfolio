@@ -1,0 +1,91 @@
+/*
+  Motion and effects: how the panel and menu slide in, the soft fade under photos, the corner badge
+  tilt, and the animations in the photo reel. Colours and fonts are in theme.css, not here.
+  The reel's timing (seconds per photo, fade) is set in src/spiral/PhotoReel.tsx and wins over the
+  durations written here. The badge's seconds per photo and ring speed are in src/spiral/CornerBadge.tsx.
+  The block at the very bottom turns animations off for people who set "reduce motion" on their device. Leave it.
+*/
+.dialog-enter {
+  opacity: 0;
+  transform: translateY(24px) scale(0.98);
+}
+.dialog-open {
+  opacity: 1;
+  transform: none;
+}
+.drawer-enter {
+  transform: translateX(100%);
+}
+.drawer-open {
+  transform: none;
+}
+
+@keyframes hint-line {
+  0% { transform: scaleY(0); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: top; }
+  51% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+.hint-line {
+  animation: hint-line 2s ease-in-out infinite;
+}
+
+/* Photos melt into the black panel below them. */
+.fade-bottom {
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 60%, rgba(0, 0, 0, 0.7) 76%, rgba(0, 0, 0, 0.25) 90%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 60%, rgba(0, 0, 0, 0.7) 76%, rgba(0, 0, 0, 0.25) 90%, transparent 100%);
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+.rise {
+  animation: rise 0.5s ease-out both;
+}
+
+/* Corner badge: tile hangs off the bottom-left corner, tilted, and nudges on hover. */
+.badge-tile {
+  transform: rotate(-15deg);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.badge-tile:hover,
+.badge-tile:focus-visible {
+  transform: rotate(-13deg) scale(1.05);
+}
+
+/* Photo reel: story-style progress, soft crossfade and a slow Ken Burns zoom. */
+@keyframes reel-fill {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes reel-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes reel-zoom-in {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+@keyframes reel-zoom-out {
+  from { transform: scale(1.08); }
+  to { transform: scale(1); }
+}
+.reel-fill { transform-origin: left; animation: reel-fill 1.7s linear both; }
+.reel-in { animation: reel-in 0.5s ease-out both; }
+.reel-zoom-in { animation: reel-zoom-in 2.2s linear both; }
+.reel-zoom-out { animation: reel-zoom-out 2.2s linear both; }
+.reel-btn:focus-visible { border-radius: 9999px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

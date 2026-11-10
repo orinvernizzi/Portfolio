@@ -1,0 +1,488 @@
+{
+  "en": {
+    "groups": [
+      {
+        "id": "itti",
+        "title": "ITTI internship"
+      },
+      {
+        "id": "rowing",
+        "title": "Rowing"
+      },
+      {
+        "id": "systems",
+        "title": "Systems and low-level"
+      },
+      {
+        "id": "web",
+        "title": "Web, data and software"
+      }
+    ],
+    "items": [
+      {
+        "id": "orquestador",
+        "group": "itti",
+        "title": "Orquestador",
+        "tag": "AI agents · team project",
+        "text": "An internal tool where a coworker asks a business question in plain Spanish and gets a worked answer. A Tier 0 orchestrator coordinates six specialist agents, and context files for the group's companies keep each answer tied to the right business. I co-designed it with a team and built the first version, using Cursor. It is still a prototype.",
+        "details": [
+          "Before it starts, the system can ask up to 5 clarifying questions and adds the right company's context.",
+          "A router picks the next agent, an executor runs it, and every step is logged. The loop stops after 10 steps.",
+          "Six agents (SQL, analysis, opportunities, modeling, storytelling, reports) with about 20 subagents between them. SQL questions go to an Athena tool, analysis to the Incrementales forecasting engine (my own project) and modeling to a dbt pipeline.",
+          "Each agent is a folder with a SKILL.md contract that is discovered automatically, so anyone can add a new one.",
+          "Read-only by default: anything that writes needs a person to confirm. Missing credentials give a clear error instead of a crash.",
+          "Added later: a one-line usage summary per session (never the full conversation), memory notes, and an answer validator that retries up to 2 times, piloted on one agent. Limit: the live Athena connection was not run end to end before I left."
+        ],
+        "stack": [
+          "Cursor",
+          "SQL",
+          "Amazon Athena",
+          "dbt",
+          "AI agents"
+        ],
+        "legal": "I can't share the code or real screenshots: it was a company project and sharing it would be a legal problem, so it stays private. The graphic is an illustration."
+      },
+      {
+        "id": "forecast",
+        "group": "itti",
+        "title": "Incrementales: transaction forecasting",
+        "tag": "Data · individual project",
+        "text": "A Python engine that learns what a normal day looks like for several ueno bank transaction products, such as credit cards and debit cards, flags the days that are not, and forecasts the next month and the month-end close. It ends in an Excel report for management.",
+        "details": [
+          "Fits two models per product, OLS and Theil-Sen, and keeps the better one. Theil-Sen ignores outliers such as holidays.",
+          "A z-score marks every day as normal, high or low.",
+          "A Paraguayan holiday module adjusts the forecast and explains each adjustment in plain words.",
+          "Checked on real data: it caught known holidays as drops and the 13th-month pay as a spike."
+        ],
+        "stack": [
+          "Python",
+          "pandas",
+          "SciPy",
+          "Excel"
+        ],
+        "note": "The graphic is an illustration with invented numbers.",
+        "image": "webp"
+      },
+      {
+        "id": "dashboard",
+        "group": "itti",
+        "title": "Executive dashboard",
+        "tag": "BI · analysis",
+        "text": "An analysis and live dashboard of credit card transactions. It follows two daily numbers, transactions and distinct customers, and gives each one a clear verdict.",
+        "details": [
+          "A traffic-light summary with a verdict per metric: green, amber or red.",
+          "Weeks are compared Monday to Sunday, full weeks only, so the comparison is fair.",
+          "Robust statistics keep one odd day from skewing the picture."
+        ],
+        "stack": [
+          "SQL",
+          "Robust statistics",
+          "Dashboards"
+        ],
+        "note": "The picture is an illustration of how it looks, with invented numbers.",
+        "image": "webp"
+      },
+      {
+        "id": "catch",
+        "group": "rowing",
+        "title": "Catch Analysis",
+        "tag": "Full-stack · solo project",
+        "text": "A rowing training log I built on my own. It brings in erg data, checks it on a review screen and tells me after each session whether I improved. It sits behind a login and the code is private. Before it, I built ErgCalc, a Concept2 pace and watts planner with a logbook.",
+        "details": [
+          "Three ways in, one review screen: Concept2 Logbook sync (OAuth), a CSV or XLSX file, or a photo of the PM5 screen read by OCR in the browser. A live Bluetooth page exists too.",
+          "After each session it compares with the last and the best comparable session, and suggests reasons if it was slower.",
+          "Theil-Sen trend labels, training zones, fitness and fatigue curves, and a race-time predictor (Riegel and Paul’s law).",
+          "English and Spanish PWA on Supabase with row-level security. About 16,000 lines and 54 test files.",
+          "ErgCalc came first: a pace and watts planner with a logbook, as a web app and an iPhone app (Next.js and Expo). Its code is public; the link below is the ErgCalc repo. Catch Analysis itself is private. Watts come from pace with the Concept2 formula, W = 2.80 / (split ÷ 500)³, with the split in seconds per 500 m."
+        ],
+        "stack": [
+          "React",
+          "TypeScript",
+          "Tailwind",
+          "Supabase",
+          "Vercel",
+          "Vitest",
+          "Next.js",
+          "Expo"
+        ],
+        "live": "https://nico-rowing.vercel.app",
+        "code": "https://github.com/orinvernizzi/erg-pace-calculator",
+        "codeLabel": "View ErgCalc code",
+        "image": "webp"
+      },
+      {
+        "id": "pep9",
+        "group": "systems",
+        "title": "Pep/9 CPU simulator",
+        "tag": "C · Computer Organization · team of four",
+        "text": "A C program that simulates the Pep/9 teaching computer. You feed it machine code as hex bytes and it runs one instruction at a time, printing the registers and flags after each step. Final project of CSCI 220, Fall 2025.",
+        "details": [
+          "64 KiB of memory, registers A, X, SP and HP, and the N, Z, V and C flags. Hex is loaded until the marker zz.",
+          "The core Pep/9 instruction set: loads and stores, add and subtract, shifts, compares, eight branches, CALL and RET, heap, and DECO, DECI and STRO.",
+          "Immediate, direct, indexed and stack-relative addressing. Output is mapped to address 0xFC16.",
+          "My part: I set up the team’s GitHub repo and built part of the instruction set. Indexed addressing was the hardest piece."
+        ],
+        "stack": [
+          "C",
+          "Pep/9",
+          "Git"
+        ]
+      },
+      {
+        "id": "vmm",
+        "group": "systems",
+        "title": "Virtual memory manager",
+        "tag": "Python · Operating Systems · individual",
+        "text": "A simulator that turns 16-bit logical addresses into physical ones, the way an operating system does with paging. A page is only loaded from the backing file the first time it is needed.",
+        "details": [
+          "A 16-bit address is an 8-bit page number plus an 8-bit offset. There is a 16-entry TLB with FIFO replacement and a page table.",
+          "On a page fault it copies a 256-byte page from BACKING_STORE.bin into the next free frame.",
+          "On the 1,000 test addresses: 244 page faults and 54 TLB hits.",
+          "All 1,000 address translations match the reference output."
+        ],
+        "stack": [
+          "Python"
+        ]
+      },
+      {
+        "id": "sched",
+        "group": "systems",
+        "title": "CPU scheduling simulator",
+        "tag": "Python · Operating Systems · individual",
+        "text": "A simulator for five CPU scheduling algorithms. It reads tasks (name, priority, CPU burst) from a file and prints when each task runs and finishes.",
+        "details": [
+          "FCFS, Priority, Round Robin (quantum 10), Priority with Round Robin, and SJF.",
+          "A stable sort keeps arrival order when priorities tie.",
+          "Bug fixed: the first task was skipped because the file started with a byte order mark. Reading it as utf-8-sig solved it."
+        ],
+        "stack": [
+          "Python"
+        ]
+      },
+      {
+        "id": "sudoku",
+        "group": "systems",
+        "title": "Multithreaded Sudoku validator",
+        "tag": "Python · Operating Systems · individual",
+        "text": "A Sudoku checker that splits the work across threads. It reads a 9×9 grid from a text file and prints Valid Sudoku or Invalid Sudoku.",
+        "details": [
+          "11 threads: one checks all rows, one checks all columns, and nine check the 3×3 boxes.",
+          "Each thread writes 1 or 0 into its own slot of a shared list, so no locks are needed.",
+          "A group is valid when it holds exactly the numbers 1 to 9."
+        ],
+        "stack": [
+          "Python",
+          "Threads"
+        ]
+      },
+      {
+        "id": "db",
+        "group": "web",
+        "title": "Database design",
+        "tag": "SQL · Databases · individual",
+        "text": "A seven-table database for a consulting firm, designed from an ER diagram and built in MariaDB. It tracks regions, clients, consultants, contracts and consultant classifications.",
+        "details": [
+          "Many-to-many relationships use link tables with composite keys.",
+          "Two triggers add an audit row (who and when) after an insert.",
+          "A stored procedure returns the most recent contract, and a report procedure walks region, client and consultant with three nested cursors.",
+          "I also studied normalization from 1NF through BCNF."
+        ],
+        "stack": [
+          "SQL",
+          "MariaDB",
+          "Visual Paradigm"
+        ]
+      },
+      {
+        "id": "web",
+        "group": "web",
+        "title": "Course registration web app",
+        "tag": "HTML · CSS · team of four",
+        "text": "A four-person school project: the front end of a course registration site. My part was the home page and the shared stylesheet.",
+        "details": [
+          "The home page has a sidebar menu. The shared stylesheet styles every page: header, navigation, footer and forms.",
+          "Teammates built the enrollment, instructor and course pages and wrote the manuals.",
+          "The linked repo is my fork of the team repo and holds only the early HTML and CSS pages."
+        ],
+        "stack": [
+          "HTML",
+          "CSS"
+        ],
+        "code": "https://github.com/orinvernizzi/Web-Programming"
+      }
+    ],
+    "art": {
+      "orquestador": {
+        "label": "Illustration: a tree. At the top, Orchestrator · Tier 0 (highlighted). Below it, two boxes: agents and companies. Under agents: analysis, opportunities, SQL, modeling, storytelling and reports. Under companies: ueno-bank, upay and monchis. Simplified illustration."
+      },
+      "forecast": {
+        "label": "Picture of how the forecasting engine’s output looks, with invented numbers: a daily line chart of actual against expected inside a light normal-range band, a pay-day spike and two holiday dips marked, and a dotted forecast to the month end with a month-end close estimate. Below, a small table of the flagged days with the reason for each."
+      },
+      "dashboard": { "label": "Picture of a web dashboard on a dark background, with invented numbers: two tiles, Transactions with a green Normal verdict and Active customers with an amber Watch verdict, a Monday to Sunday bar chart of this week against last week with a normal-range band and one unusual Friday marked, and a small trend line of the last 8 weeks." },
+      "catch": {
+        "label": "Picture of the Catch Analysis web app on a dark background, with invented demo data: the top menu with the Stats menu open (Progress, Analytics, Effort, PRs), and the Week screen below it with total distance by sport and seven day cards of logged sessions, fading away into the card title."
+      },
+      "pep9": {
+        "label": "Diagram of the Pep/9 simulator: memory with hex cells feeds a CPU showing the registers A, X, SP and HP and the flags N, Z, V and C, which sends results to output. A fetch, decode, execute loop runs below."
+      },
+      "vmm": {
+        "label": "Diagram of virtual memory: an address is looked up in the TLB. A hit goes straight to memory. A miss checks the page table, and a page fault (dashed) loads the page from disk."
+      },
+      "sched": {
+        "label": "Diagram of two CPU scheduling timelines for the same four tasks: first come, first served runs each task as one block, while round robin interleaves short slices of T1 to T4."
+      },
+      "sudoku": {
+        "label": "Diagram of a Sudoku checker: a 3 by 3 grid of blocks, and three groups of threads (1 for rows, 1 for columns, 9 for boxes) that each write their own cell into 11 results."
+      },
+      "db": {
+        "label": "Diagram of a consulting firm database: Region, Client, Contract, Consultant and Classification linked by simple connectors, with audit triggers attached to Client."
+      },
+      "web": {
+        "label": "Diagram of a course registration site in a browser frame: a header and sidebar (the part I built, highlighted) next to a registration form."
+      }
+    }
+  },
+  "es": {
+    "groups": [
+      {
+        "id": "itti",
+        "title": "Pasantía en ITTI"
+      },
+      {
+        "id": "rowing",
+        "title": "Remo"
+      },
+      {
+        "id": "systems",
+        "title": "Sistemas y bajo nivel"
+      },
+      {
+        "id": "web",
+        "title": "Web, datos y software"
+      }
+    ],
+    "items": [
+      {
+        "id": "orquestador",
+        "group": "itti",
+        "title": "Orquestador",
+        "tag": "Agentes de IA · proyecto en equipo",
+        "text": "Una herramienta interna donde un compañero hace una pregunta de negocio en español natural y recibe una respuesta elaborada. Un orquestador Tier 0 coordina seis agentes especialistas, y archivos de contexto de las empresas del grupo mantienen cada respuesta ligada al negocio correcto. La diseñé junto con un equipo y construí la primera versión, usando Cursor. Todavía es un prototipo.",
+        "details": [
+          "Antes de empezar, el sistema puede hacer hasta 5 preguntas de aclaración y agrega el contexto de la empresa que corresponde.",
+          "Un enrutador elige el siguiente agente, un ejecutor lo corre y cada paso queda registrado. El ciclo se detiene a los 10 pasos.",
+          "Seis agentes (SQL, análisis, oportunidades, modelado, storytelling, reportes) con unos 20 subagentes entre todos. Las preguntas SQL van a una herramienta de Athena, el análisis al motor de pronóstico Incrementales (un proyecto mío) y el modelado a un pipeline de dbt.",
+          "Cada agente es una carpeta con un contrato SKILL.md que se descubre solo, así que cualquiera puede sumar uno nuevo.",
+          "Solo lectura por defecto: todo lo que escribe necesita que una persona lo confirme. Si faltan credenciales, da un error claro en vez de caerse.",
+          "Se agregó después: un resumen de una línea por sesión (nunca la conversación completa), notas de memoria y un validador de respuestas que reintenta hasta 2 veces, probado en un agente. Límite: la conexión real a Athena no se corrió de punta a punta antes de que me fuera."
+        ],
+        "stack": [
+          "Cursor",
+          "SQL",
+          "Amazon Athena",
+          "dbt",
+          "Agentes de IA"
+        ],
+        "legal": "No puedo compartir el código ni capturas reales: era un proyecto de la empresa y compartirlo sería un problema legal, así que se queda privado. El gráfico es una ilustración."
+      },
+      {
+        "id": "forecast",
+        "group": "itti",
+        "title": "Incrementales: pronóstico de transacciones",
+        "tag": "Datos · proyecto individual",
+        "text": "Un motor en Python que aprende cómo es un día normal en varios productos transaccionales de ueno bank, como tarjetas de crédito y de débito, marca los días que no lo son y pronostica el próximo mes y el cierre del mes. Termina en un reporte de Excel para la gerencia.",
+        "details": [
+          "Ajusta dos modelos por producto, OLS y Theil-Sen, y se queda con el mejor. Theil-Sen ignora valores atípicos como los feriados.",
+          "Un z-score marca cada día como normal, alto o bajo.",
+          "Un módulo de feriados paraguayos ajusta el pronóstico y explica cada ajuste con palabras simples.",
+          "Probado con datos reales: detectó los feriados conocidos como caídas y el aguinaldo como un pico."
+        ],
+        "stack": [
+          "Python",
+          "pandas",
+          "SciPy",
+          "Excel"
+        ],
+        "note": "La imagen es una ilustración con números inventados.",
+        "image": "webp"
+      },
+      {
+        "id": "dashboard",
+        "group": "itti",
+        "title": "Dashboard ejecutivo",
+        "tag": "BI · análisis",
+        "text": "Un análisis y dashboard en vivo de transacciones con tarjeta de crédito. Sigue dos números diarios, transacciones y clientes distintos, y da un veredicto claro para cada uno.",
+        "details": [
+          "Un resumen tipo semáforo con un veredicto por métrica: verde, amarillo o rojo.",
+          "Las semanas se comparan de lunes a domingo, solo semanas completas, para que la comparación sea justa.",
+          "Estadística robusta para que un día raro no distorsione el panorama."
+        ],
+        "stack": [
+          "SQL",
+          "Estadística robusta",
+          "Dashboards"
+        ],
+        "note": "La imagen es una ilustración de cómo se ve, con números inventados.",
+        "image": "webp"
+      },
+      {
+        "id": "catch",
+        "group": "rowing",
+        "title": "Catch Analysis",
+        "tag": "Full-stack · proyecto individual",
+        "text": "Un registro de entrenamiento de remo que construí yo solo. Trae datos del erg, los revisa en una pantalla de verificación y me dice después de cada sesión si mejoré. Está detrás de un login y el código es privado. Antes construí ErgCalc, un planificador de ritmo y watts de Concept2 con logbook.",
+        "details": [
+          "Tres formas de entrada, una sola pantalla de revisión: sincronización con Concept2 Logbook (OAuth), un archivo CSV o XLSX, o una foto de la pantalla del PM5 leída con OCR en el navegador. También hay una página en vivo por Bluetooth.",
+          "Después de cada sesión compara con la última y la mejor sesión comparable, y sugiere motivos si fue más lenta.",
+          "Etiquetas de tendencia con Theil-Sen, zonas de entrenamiento, curvas de estado físico y fatiga, y un predictor de tiempos (Riegel y ley de Paul).",
+          "PWA en inglés y español sobre Supabase con seguridad por fila. Unas 16.000 líneas y 54 archivos de pruebas.",
+          "Primero fue ErgCalc: un planificador de ritmo y watts con logbook, como app web y app para iPhone (Next.js y Expo). Su código es público; el enlace de abajo es el repositorio de ErgCalc. Catch Analysis en sí es privado. Los watts salen del ritmo con la fórmula de Concept2, W = 2,80 / (split ÷ 500)³, con el split en segundos por 500 m."
+        ],
+        "stack": [
+          "React",
+          "TypeScript",
+          "Tailwind",
+          "Supabase",
+          "Vercel",
+          "Vitest",
+          "Next.js",
+          "Expo"
+        ],
+        "live": "https://nico-rowing.vercel.app",
+        "code": "https://github.com/orinvernizzi/erg-pace-calculator",
+        "codeLabel": "Ver código de ErgCalc",
+        "image": "webp"
+      },
+      {
+        "id": "pep9",
+        "group": "systems",
+        "title": "Simulador de CPU Pep/9",
+        "tag": "C · Organización de Computadoras · equipo de cuatro",
+        "text": "Un programa en C que simula la computadora didáctica Pep/9. Le das código de máquina como bytes en hexadecimal y ejecuta una instrucción por vez, mostrando los registros y las banderas en cada paso. Proyecto final de CSCI 220, otoño de 2025.",
+        "details": [
+          "64 KiB de memoria, registros A, X, SP y HP, y las banderas N, Z, V y C. El hexadecimal se carga hasta la marca zz.",
+          "El conjunto base de instrucciones de Pep/9: cargas y almacenamientos, suma y resta, desplazamientos, comparaciones, ocho saltos, CALL y RET, heap, y DECO, DECI y STRO.",
+          "Direccionamiento inmediato, directo, indexado y relativo a la pila. La salida está mapeada a la dirección 0xFC16.",
+          "Mi parte: preparé el repositorio de GitHub del equipo y construí parte del conjunto de instrucciones. El direccionamiento indexado fue lo más difícil."
+        ],
+        "stack": [
+          "C",
+          "Pep/9",
+          "Git"
+        ]
+      },
+      {
+        "id": "vmm",
+        "group": "systems",
+        "title": "Administrador de memoria virtual",
+        "tag": "Python · Sistemas Operativos · individual",
+        "text": "Un simulador que convierte direcciones lógicas de 16 bits en direcciones físicas, como lo hace un sistema operativo con paginación. Una página solo se carga desde el archivo de respaldo la primera vez que hace falta.",
+        "details": [
+          "Una dirección de 16 bits es un número de página de 8 bits más un desplazamiento de 8 bits. Hay un TLB de 16 entradas con reemplazo FIFO y una tabla de páginas.",
+          "Ante un fallo de página copia una página de 256 bytes desde BACKING_STORE.bin al siguiente marco libre.",
+          "Con las 1.000 direcciones de prueba: 244 fallos de página y 54 aciertos de TLB.",
+          "Las 1.000 traducciones de direcciones coinciden con la salida de referencia."
+        ],
+        "stack": [
+          "Python"
+        ]
+      },
+      {
+        "id": "sched",
+        "group": "systems",
+        "title": "Simulador de planificación de CPU",
+        "tag": "Python · Sistemas Operativos · individual",
+        "text": "Un simulador de cinco algoritmos de planificación de CPU. Lee las tareas (nombre, prioridad, ráfaga de CPU) desde un archivo e imprime cuándo corre y termina cada una.",
+        "details": [
+          "FCFS, Prioridad, Round Robin (quantum 10), Prioridad con Round Robin y SJF.",
+          "Un ordenamiento estable mantiene el orden de llegada cuando hay empate de prioridad.",
+          "Error corregido: se salteaba la primera tarea porque el archivo empezaba con una marca de orden de bytes. Leerlo como utf-8-sig lo resolvió."
+        ],
+        "stack": [
+          "Python"
+        ]
+      },
+      {
+        "id": "sudoku",
+        "group": "systems",
+        "title": "Validador de Sudoku con hilos",
+        "tag": "Python · Sistemas Operativos · individual",
+        "text": "Un verificador de Sudoku que reparte el trabajo entre hilos. Lee una grilla de 9×9 desde un archivo de texto e imprime Valid Sudoku o Invalid Sudoku.",
+        "details": [
+          "11 hilos: uno revisa todas las filas, uno todas las columnas y nueve revisan los cuadros de 3×3.",
+          "Cada hilo escribe 1 o 0 en su propio casillero de una lista compartida, así que no hacen falta bloqueos.",
+          "Un grupo es válido cuando tiene exactamente los números del 1 al 9."
+        ],
+        "stack": [
+          "Python",
+          "Hilos"
+        ]
+      },
+      {
+        "id": "db",
+        "group": "web",
+        "title": "Diseño de bases de datos",
+        "tag": "SQL · Bases de Datos · individual",
+        "text": "Una base de datos de siete tablas para una consultora, diseñada a partir de un diagrama ER y construida en MariaDB. Registra regiones, clientes, consultores, contratos y clasificaciones de consultores.",
+        "details": [
+          "Las relaciones de muchos a muchos usan tablas de enlace con claves compuestas.",
+          "Dos triggers agregan una fila de auditoría (quién y cuándo) después de cada inserción.",
+          "Un procedimiento almacenado devuelve el contrato más reciente y un procedimiento de reporte recorre región, cliente y consultor con tres cursores anidados.",
+          "También estudié normalización, de 1FN hasta BCNF."
+        ],
+        "stack": [
+          "SQL",
+          "MariaDB",
+          "Visual Paradigm"
+        ]
+      },
+      {
+        "id": "web",
+        "group": "web",
+        "title": "App web de inscripción a cursos",
+        "tag": "HTML · CSS · equipo de cuatro",
+        "text": "Un proyecto de la universidad en equipo de cuatro: el front end de un sitio de inscripción a cursos. Mi parte fue la página de inicio y la hoja de estilos compartida.",
+        "details": [
+          "La página de inicio tiene un menú lateral. La hoja de estilos compartida le da estilo a todas las páginas: encabezado, navegación, pie y formularios.",
+          "Mis compañeros hicieron las páginas de inscripción, instructores y cursos, y escribieron los manuales.",
+          "El repositorio enlazado es mi fork del repositorio del equipo y solo tiene las primeras páginas en HTML y CSS."
+        ],
+        "stack": [
+          "HTML",
+          "CSS"
+        ],
+        "code": "https://github.com/orinvernizzi/Web-Programming"
+      }
+    ],
+    "art": {
+      "orquestador": {
+        "label": "Ilustración: un árbol. Arriba, Orquestador · Tier 0 (resaltado). Debajo, dos cajas: agentes y empresas. Bajo agentes: análisis, oportunidades, SQL, modelado, storytelling y reportes. Bajo empresas: ueno-bank, upay y monchis. Ilustración simplificada."
+      },
+      "forecast": {
+        "label": "Imagen de cómo se ve la salida del motor de pronóstico, con números inventados: un gráfico diario de real contra esperado dentro de una banda tenue de rango normal, un pico por día de cobro y dos caídas por feriado marcados, y una proyección punteada hasta fin de mes con el cierre estimado. Debajo, una pequeña tabla de los días marcados con el motivo de cada uno."
+      },
+      "dashboard": { "label": "Imagen de un panel web con fondo oscuro y números inventados: dos tarjetas, Transacciones con veredicto verde Normal y Clientes activos con veredicto ámbar Vigilar, un gráfico de barras de lunes a domingo de esta semana contra la pasada con una banda de rango normal y un viernes inusual marcado, y una pequeña línea de tendencia de las últimas 8 semanas." },
+      "catch": {
+        "label": "Imagen de la app web de Catch Analysis sobre fondo oscuro, con datos de demostración inventados: el menú superior con el menú Datos abierto (Progreso, Análisis, Esfuerzo, Marcas) y debajo la pantalla de la semana con la distancia total por deporte y siete tarjetas de días con sesiones registradas, que se desvanece hacia el título de la tarjeta."
+      },
+      "pep9": {
+        "label": "Diagrama del simulador Pep/9: la memoria con celdas hexadecimales alimenta una CPU que muestra los registros A, X, SP y HP y las banderas N, Z, V y C, y envía resultados a la salida. Abajo corre el ciclo buscar, decodificar, ejecutar."
+      },
+      "vmm": {
+        "label": "Diagrama de memoria virtual: una dirección se busca en la TLB. Un acierto va directo a la memoria. Un fallo consulta la tabla de páginas, y un fallo de página (punteado) carga la página desde el disco."
+      },
+      "sched": {
+        "label": "Diagrama de dos líneas de tiempo de planificación de CPU para las mismas cuatro tareas: primero en llegar, primero en servirse ejecuta cada tarea en un bloque, y round robin intercala porciones cortas de T1 a T4."
+      },
+      "sudoku": {
+        "label": "Diagrama de un verificador de Sudoku: una cuadrícula de 3 por 3 bloques y tres grupos de hilos (1 para filas, 1 para columnas, 9 para cuadros) que escriben cada uno su propia celda en 11 resultados."
+      },
+      "db": {
+        "label": "Diagrama de la base de datos de una consultora: Región, Cliente, Contrato, Consultor y Clasificación unidos por conectores simples, con disparadores de auditoría sobre Cliente."
+      },
+      "web": {
+        "label": "Diagrama de un sitio de inscripción a cursos dentro de un marco de navegador: un encabezado y una barra lateral (la parte que construí, resaltada) junto a un formulario de inscripción."
+      }
+    }
+  }
+}

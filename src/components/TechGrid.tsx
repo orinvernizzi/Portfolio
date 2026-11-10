@@ -55,7 +55,7 @@ function TechTile({ name }: { name: string }) {
         }}
         className="flex h-12 w-12 items-center justify-center rounded-xl border border-line bg-black/70 transition duration-200 hover:-translate-y-0.5 hover:border-[#3d3d3d] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
       >
-        <img src={`/icons/${icon.slug}.svg`} alt="" width={26} height={26} loading="lazy" className="h-[26px] w-[26px]" />
+        <img src={`/tech-icons/${icon.slug}.svg`} alt="" width={26} height={26} loading="lazy" className="h-[26px] w-[26px]" />
       </button>
       {open && (
         <span

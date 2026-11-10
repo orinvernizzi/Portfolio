@@ -1,3 +1,5 @@
+// The "Contact" panel: a lead sentence, the email, and the LinkedIn, GitHub and CV buttons.
+// Lead text: src/content/contact.json. Email and links: src/content/site.json (links).
 import { useContent } from '../lib/content'
 import { ButtonLink, Icon } from '../components/ui'
 

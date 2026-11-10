@@ -1,0 +1,80 @@
+{
+  "en": [
+    {
+      "period": "Aug 2023 — May 2027",
+      "title": "B.S. in Computer Science",
+      "org": "Marietta College",
+      "place": "Marietta, Ohio",
+      "logo": "marietta",
+      "url": "https://www.marietta.edu/",
+      "bullets": [
+        "Minors in Math and Leadership · GPA 3.5/4.0",
+        "Dean's List: Spring and Fall 2024",
+        "Charles Sumner Harrison Scholarship (full tuition) and Leadership Scholarship",
+        "Varsity Rowing Team"
+      ]
+    },
+    {
+      "period": "Aug 2022 — May 2023",
+      "title": "Cambridge C1 Advanced",
+      "org": "Ned College",
+      "logo": "cambridge",
+      "url": "https://www.cambridgeenglish.org/exams-and-tests/",
+      "urlOn": "title",
+      "place": "Dublin, Ireland",
+      "bullets": [
+        "GPA 3.8/4.0"
+      ]
+    },
+    {
+      "period": "2018 — 2020",
+      "title": "High School Diploma, Social Sciences",
+      "org": "Colegio Cristo Rey",
+      "logo": "cristorey",
+      "url": "https://xtorey.edu.py/",
+      "place": "Asunción, Paraguay",
+      "bullets": [
+        "Student-Athlete honors · soccer, volleyball and rowing"
+      ]
+    }
+  ],
+  "es": [
+    {
+      "period": "Ago 2023 — May 2027",
+      "title": "Licenciatura en Ciencias de la Computación",
+      "org": "Marietta College",
+      "place": "Marietta, Ohio",
+      "logo": "marietta",
+      "url": "https://www.marietta.edu/",
+      "bullets": [
+        "Subespecializaciones en Matemáticas y Liderazgo · GPA 3.5/4.0",
+        "Dean's List: Primavera y Otoño 2024",
+        "Beca Charles Sumner Harrison (matrícula completa) y Beca de Liderazgo",
+        "Equipo universitario de remo"
+      ]
+    },
+    {
+      "period": "Ago 2022 — May 2023",
+      "title": "Cambridge C1 Advanced",
+      "org": "Ned College",
+      "logo": "cambridge",
+      "url": "https://www.cambridgeenglish.org/exams-and-tests/",
+      "urlOn": "title",
+      "place": "Dublín, Irlanda",
+      "bullets": [
+        "GPA 3.8/4.0"
+      ]
+    },
+    {
+      "period": "2018 — 2020",
+      "title": "Bachillerato en Ciencias Sociales",
+      "org": "Colegio Cristo Rey",
+      "logo": "cristorey",
+      "url": "https://xtorey.edu.py/",
+      "place": "Asunción, Paraguay",
+      "bullets": [
+        "Honores de estudiante-atleta · fútbol, vóley y remo"
+      ]
+    }
+  ]
+}

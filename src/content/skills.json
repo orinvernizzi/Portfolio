@@ -1,0 +1,110 @@
+{
+  "en": {
+    "groups": [
+      {
+        "title": "Data & AI",
+        "items": [
+          "Python",
+          "pandas",
+          "NumPy",
+          "SciPy",
+          "SQL",
+          "Amazon Athena",
+          "DuckDB",
+          "dbt",
+          "Claude",
+          "Cursor"
+        ]
+      },
+      {
+        "title": "Software",
+        "items": [
+          "JavaScript",
+          "TypeScript",
+          "React",
+          "HTML",
+          "PHP",
+          "C",
+          "C++",
+          "Java",
+          "Pep9"
+        ]
+      },
+      {
+        "title": "Tools",
+        "items": [
+          "Git",
+          "GitHub",
+          "Unity",
+          "Excel",
+          "JSON Schema",
+          "Vercel",
+          "Supabase"
+        ]
+      }
+    ],
+    "other": [
+      "Statistical forecasting",
+      "anomaly detection",
+      "system thinking",
+      "communication",
+      "teamwork",
+      "training facilitation"
+    ],
+    "languages": "Spanish (native) · English (advanced, Cambridge C1) · Guaraní (understanding)"
+  },
+  "es": {
+    "groups": [
+      {
+        "title": "Datos e IA",
+        "items": [
+          "Python",
+          "pandas",
+          "NumPy",
+          "SciPy",
+          "SQL",
+          "Amazon Athena",
+          "DuckDB",
+          "dbt",
+          "Claude",
+          "Cursor"
+        ]
+      },
+      {
+        "title": "Software",
+        "items": [
+          "JavaScript",
+          "TypeScript",
+          "React",
+          "HTML",
+          "PHP",
+          "C",
+          "C++",
+          "Java",
+          "Pep9"
+        ]
+      },
+      {
+        "title": "Herramientas",
+        "items": [
+          "Git",
+          "GitHub",
+          "Unity",
+          "Excel",
+          "JSON Schema",
+          "Vercel",
+          "Supabase"
+        ]
+      }
+    ],
+    "other": [
+      "Pronóstico estadístico",
+      "detección de anomalías",
+      "pensamiento sistémico",
+      "comunicación",
+      "trabajo en equipo",
+      "facilitación de capacitaciones"
+    ],
+    "languages": "Español (nativo) · Inglés (avanzado, Cambridge C1) · Guaraní (comprensión)"
+  }
+}

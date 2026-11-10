@@ -1,0 +1,88 @@
+/*
+  This is the file for the site's colours and font. Change a value, save, and the whole site follows.
+
+  There are two blocks. :root holds the plain colour values. @theme links them to the names the
+  components use (bg-bg, text-fg, border-line and so on), so you normally only edit :root.
+  The two exceptions are --color-accent and --color-ink in @theme, and --font-sans.
+
+  Colours that are NOT here: the menu card faces (src/spiral/cardFaces.ts, cardStyle.ts, cardDrawing.ts),
+  the globe (src/lib/vanta.ts), the spiral background (BG in src/spiral/Spiral.tsx), the medal metals
+  (src/components/Medal.tsx) and the diagram pictures (tools/project-diagrams/lib.mjs).
+  Keep text at 4.5:1 contrast or better against its background so it stays readable.
+*/
+@import "tailwindcss";
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-surface: var(--surface);
+  --color-line: var(--line);
+  --color-chip: var(--chip);
+  --color-accent-text: var(--accent-text);
+  /* Accent is white. Change it here and buttons, timeline dots, bullets and the progress bar follow. */
+  --color-accent: #ffffff;
+  /* Text colour that sits on top of the accent (button labels). Keep it dark while accent is light. */
+  --color-ink: #0a0a0a;
+  /* The font. To use another one: npm install @fontsource-variable/<name>, import it in src/main.tsx, then put its name here.
+     The titles on the spiral cards use their own copy of the font name: FONT in src/spiral/cardStyle.ts (and the two document.fonts.load lines in cardDrawing.ts). */
+  --font-sans: "Inter Variable", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+:root {
+  --bg: #000; /* page background (body below also has #000, change both) */
+  --fg: #ededed; /* main text colour */
+  --muted: #b3b3b3; /* quieter text: places, small labels */
+  --surface: #0a0a0a; /* cards and panels that sit on the page background */
+  --line: #1f1f1f; /* thin borders and dividers */
+  --chip: #111; /* background of the small tag pills */
+  --accent-text: #e5e5e5; /* light grey, 4.5:1+ over the brightest globe line */
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+html {
+  scrollbar-color: #3a3a3a #000;
+}
+
+body {
+  margin: 0;
+  background: #000;
+  color: var(--fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+html.no-scroll,
+html.no-scroll body {
+  height: 100%;
+  overflow: hidden;
+}
+
+:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.display {
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+@layer components {
+  .eyebrow {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+}

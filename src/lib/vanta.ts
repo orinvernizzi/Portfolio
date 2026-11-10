@@ -1,4 +1,7 @@
-// Lazy Vanta globe: both libraries load only when a panel needs the background.
+// The slowly turning globe behind the panels. It loads only when a panel opens.
+// Colours: `color` and `color2` are the two globe colours and `backgroundColor` is the background, as 0xRRGGBB numbers
+// (0xffffff is white, 0x000000 is black). Sharpness: SCALE below (lower is lighter on the computer but blurrier).
+// The globe is switched off for people who asked their device to reduce motion (see src/components/VantaGlobe.tsx).
 export interface Globe {
   destroy(): void
 }

@@ -1,3 +1,6 @@
+// The "Hello" panel, and also the top of the list view on phones: name, role, tagline, location, buttons, portrait.
+// Text and links: src/content/site.json (meta, links). In the list view, the tag chips under the buttons are the first 4 items of each group in skills.json.
+// The portrait is /photos/portrait.webp, written in the img tag near the bottom of this file.
 import { useContent } from '../lib/content'
 import { ButtonLink, ChipList, Icon } from '../components/ui'
 
@@ -37,7 +40,7 @@ export function Intro({ hero = false }: { hero?: boolean }) {
         )}
       </div>
       <img
-        src="/img/portrait.webp"
+        src="/photos/portrait.webp"
         alt={c.alt.portrait}
         width={683}
         height={1024}

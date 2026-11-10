@@ -1,3 +1,6 @@
+// The "Rowing" panel: lead sentence, roster button, two photos and the medal cards.
+// Text and medals: src/content/rowing.json. The two photos are written in the img tags below (public/photos/rowing-paraguay.webp and rowing-hocr.webp).
+// Medal drawing: src/components/Medal.tsx.
 import { useContent } from '../lib/content'
 import { Medal } from '../components/Medal'
 import { ButtonLink, Icon } from '../components/ui'
@@ -15,8 +18,8 @@ export function Rowing() {
         </ButtonLink>
       </div>
       <div className="-mb-3 grid gap-4 md:grid-cols-2">
-        <img src="/img/rowing-paraguay.webp" alt={alt.paraguay} width={1600} height={900} loading="lazy" className="fade-bottom aspect-[4/3] w-full rounded-2xl object-cover" />
-        <img src="/img/rowing-hocr.webp" alt={alt.hocr} width={1600} height={1067} loading="lazy" className="fade-bottom aspect-[4/3] w-full rounded-2xl object-cover object-[20%_60%]" />
+        <img src="/photos/rowing-paraguay.webp" alt={alt.paraguay} width={1600} height={900} loading="lazy" className="fade-bottom aspect-[4/3] w-full rounded-2xl object-cover" />
+        <img src="/photos/rowing-hocr.webp" alt={alt.hocr} width={1600} height={1067} loading="lazy" className="fade-bottom aspect-[4/3] w-full rounded-2xl object-cover object-[20%_60%]" />
       </div>
       <ul className="relative m-0 grid list-none gap-4 p-0 md:grid-cols-2">
         {rowing.medals.map((m, i) => (

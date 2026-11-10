@@ -3,9 +3,9 @@ import { TopBar, type View } from './components/TopBar'
 import { MenuDrawer } from './components/MenuDrawer'
 import { Panel } from './components/Panel'
 import { ListView } from './components/ListView'
-import { SpiralBoundary } from './components/SpiralBoundary'
+import { SpiralBoundary } from './spiral/SpiralBoundary'
 
-const Spiral = lazy(() => import('./components/Spiral'))
+const Spiral = lazy(() => import('./spiral/Spiral'))
 
 let webglSupport: boolean | undefined
 

@@ -1,0 +1,18 @@
+{
+  "en": {
+    "lead": "I want to understand how AI models learn from data, how decisions are made, and how to measure and improve them.",
+    "points": [
+      "AI and data in sport: models over ergometer metrics and training loads to give personal feedback, pacing strategies and smarter training.",
+      "Applied AI that serves communities: understandable, accessible, useful tools.",
+      "After ITTI, I want to keep building tools that make a whole team's work easier."
+    ]
+  },
+  "es": {
+    "lead": "Quiero entender cómo los modelos de IA aprenden de los datos, cómo toman decisiones y cómo medirlos y mejorarlos.",
+    "points": [
+      "IA y datos en el deporte: modelos sobre métricas del ergómetro y cargas de entrenamiento para dar feedback personal, estrategias de ritmo y entrenamientos más inteligentes.",
+      "IA aplicada que sirva a las comunidades: herramientas comprensibles, accesibles y útiles.",
+      "Después de ITTI, quiero seguir construyendo herramientas que faciliten el trabajo de todo un equipo."
+    ]
+  }
+}

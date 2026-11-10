@@ -1,0 +1,90 @@
+{
+  "en": {
+    "lead": "Rowing is the thread through my whole life: varsity at Marietta College and international regattas for Paraguay.",
+    "rosterUrl": "https://pioneers.marietta.edu/sports/mens-crew/roster/nicolas-invernizzi/10704",
+    "rosterLabel": "Marietta varsity crew profile",
+    "medals": [
+      {
+        "medals": [
+          "silver"
+        ],
+        "label": "Silver",
+        "event": "U23 & Junior PanAmerican Games",
+        "place": "Asunción, Paraguay",
+        "year": 2025
+      },
+      {
+        "medals": [
+          "silver",
+          "bronze"
+        ],
+        "label": "Silver and Bronze",
+        "event": "Coastal Rowing Cup",
+        "place": "Lima, Peru",
+        "year": 2022
+      },
+      {
+        "medals": [
+          "silver"
+        ],
+        "label": "Silver",
+        "event": "South American Rowing Championships",
+        "place": "Asunción, Paraguay",
+        "year": 2021
+      },
+      {
+        "medals": [
+          "bronze"
+        ],
+        "label": "Bronze",
+        "event": "PanAmerican Games Qualifier",
+        "place": "Yucatán, Mexico",
+        "year": 2021
+      }
+    ]
+  },
+  "es": {
+    "lead": "El remo es el hilo de toda mi vida: equipo universitario en Marietta College y regatas internacionales por Paraguay.",
+    "rosterUrl": "https://pioneers.marietta.edu/sports/mens-crew/roster/nicolas-invernizzi/10704",
+    "rosterLabel": "Perfil en el equipo de remo de Marietta",
+    "medals": [
+      {
+        "medals": [
+          "silver"
+        ],
+        "label": "Plata",
+        "event": "Juegos Panamericanos Junior y U23",
+        "place": "Asunción, Paraguay",
+        "year": 2025
+      },
+      {
+        "medals": [
+          "silver",
+          "bronze"
+        ],
+        "label": "Plata y Bronce",
+        "event": "Copa de Remo Costero",
+        "place": "Lima, Perú",
+        "year": 2022
+      },
+      {
+        "medals": [
+          "silver"
+        ],
+        "label": "Plata",
+        "event": "Campeonato Sudamericano de Remo",
+        "place": "Asunción, Paraguay",
+        "year": 2021
+      },
+      {
+        "medals": [
+          "bronze"
+        ],
+        "label": "Bronce",
+        "event": "Clasificatorio a los Juegos Panamericanos",
+        "place": "Yucatán, México",
+        "year": 2021
+      }
+    ]
+  }
+}

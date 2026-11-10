@@ -1,0 +1,18 @@
+{
+  "en": {
+    "lead": "I'm a Computer Science student at Marietta College and a national-level rower for Paraguay. I like building systems that mix data, algorithms and a good user experience.",
+    "points": [
+      "Applied AI and data: forecasting, dashboards and AI agents that save teams time.",
+      "Full-stack projects from database to interface, built to be simple to use.",
+      "Elite-sport discipline: teamwork, endurance and leadership under pressure."
+    ]
+  },
+  "es": {
+    "lead": "Soy estudiante de Ciencias de la Computación en Marietta College y remero de nivel nacional por Paraguay. Me gusta construir sistemas que combinan datos, algoritmos y una buena experiencia de usuario.",
+    "points": [
+      "IA y datos aplicados: pronósticos, dashboards y agentes de IA que le ahorran tiempo a los equipos.",
+      "Proyectos full-stack desde la base de datos hasta la interfaz, hechos para ser simples de usar.",
+      "Disciplina de deporte de élite: trabajo en equipo, resistencia y liderazgo bajo presión."
+    ]
+  }
+}

@@ -1,3 +1,6 @@
+// The "Projects" panel: project cards grouped by the groups in projects.json.
+// Text, links and stack: src/content/projects.json. The picture of each card is public/project-pictures/<id>.<en|es>.<svg|webp>
+// (webp when the project has "image": "webp"). Picture descriptions for screen readers: "art" in projects.json.
 import { useContent, useLang, type Project } from '../lib/content'
 import { ButtonLink, ChipList, Icon } from '../components/ui'
 
@@ -10,7 +13,7 @@ function ProjectCard({ p, lang, alt, open, viewCode }: { p: Project; lang: strin
       {/* The picture fades into the card colour; the extra bottom padding gives the fade room. */}
       <div className={fadeAway ? 'pb-10 [mask-image:linear-gradient(to_bottom,#000_55%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,#000_55%,transparent_100%)]' : 'pb-10 [mask-image:linear-gradient(to_bottom,#000_78%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,#000_78%,transparent_100%)]'}>
         <img
-          src={`/diagrams/${p.id}.${lang}.${ext}`}
+          src={`/project-pictures/${p.id}.${lang}.${ext}`}
           width={photo ? 1500 : 720}
           height={photo ? 900 : p.id === 'orquestador' ? 600 : 432}
           loading="lazy"

@@ -2,23 +2,31 @@
 
 Bilingual (EN/ES) personal portfolio with two views: a 3D spiral of cards (React Three Fiber) and a classic single-page list. Built with Vite, React 19, TypeScript and Tailwind 4.
 
+**Want to change something? Read [START-HERE.md](START-HERE.md).**
+
 ## Run it
 
 ```powershell
 npm install
-npm run dev      # http://localhost:5173
-npm run build    # type-check + production build into dist/
-npm run preview  # serve the production build
+npm run dev       # http://localhost:5173
+npm run build     # type-check + production build into dist/
+npm run preview   # serve the production build
+npm run pictures    # redraw the project diagrams (tools/project-diagrams)
+npm run folder-map  # redraw docs/folder-map.svg
 ```
 
-## Edit the content
+## Where things live
 
-All text lives in two files with the same shape:
-
-- `src/content/en.json`
-- `src/content/es.json`
-
-Change text there; both languages update together. Images are in `public/img`, CVs in `public/cv` (the path comes from `links.cv`). To add a section, add it to `sections` in both JSON files and register a component in `src/sections/registry.tsx` (and a card painter in `src/components/cardArt.ts` for the spiral).
+| What | Where |
+| --- | --- |
+| All text, EN and ES side by side | `src/content/*.json` (one file per section) |
+| Colours, fonts, sizes | `src/styles/theme.css` |
+| Animations and effects | `src/styles/effects.css` |
+| Menu cards: photo, logo, colours | `src/spiral/cardFaces.ts` |
+| Corner badge and photo reel photos | `src/spiral/reel-photos/` |
+| Photos, logos, tech icons, project pictures, CVs | `public/photos`, `public/logos`, `public/tech-icons`, `public/project-pictures`, `public/cv` |
+| What each opened card looks like | `src/sections/` |
+| Scripts that regenerate pictures (optional) | `tools/` |
 
 ## Behavior notes
 

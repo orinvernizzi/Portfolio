@@ -1,3 +1,5 @@
+// The "Learning" panel: one lead sentence and a bulleted list.
+// Text: src/content/learning.json (lead, points).
 import { useContent } from '../lib/content'
 
 export function Learning() {

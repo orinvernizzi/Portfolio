@@ -1,5 +1,10 @@
 import { useCallback, useEffect, useRef, useState, type RefObject } from 'react'
 
+// How fast the spiral turns. Bigger number = faster. You can change these two safely.
+const WHEEL_SPEED = 0.0035 // cards moved per pixel of mouse wheel or trackpad scroll
+const DRAG_SPEED = 0.006 // cards moved per pixel of mouse or finger drag
+// How smoothly the cards glide to a stop is the `6` in the useFrame line of src/spiral/Spiral.tsx.
+
 // Positive modulo, so -1 mod 10 is 9.
 export const mod = (a: number, n: number) => ((a % n) + n) % n
 
@@ -37,7 +42,7 @@ export function useScrollProgress(count: number, enabled: boolean, el: RefObject
     const onWheel = (e: WheelEvent) => {
       e.preventDefault()
       const unit = e.deltaMode === 1 ? 16 : 1
-      move(target.current + (e.deltaY + e.deltaX) * unit * 0.0035)
+      move(target.current + (e.deltaY + e.deltaX) * unit * WHEEL_SPEED)
     }
     const onDown = (e: PointerEvent) => {
       last = { x: e.clientX, y: e.clientY }
@@ -47,7 +52,7 @@ export function useScrollProgress(count: number, enabled: boolean, el: RefObject
       const dx = e.clientX - last.x
       const dy = e.clientY - last.y
       last = { x: e.clientX, y: e.clientY }
-      move(target.current - (dx + dy) * 0.006)
+      move(target.current - (dx + dy) * DRAG_SPEED)
     }
     const onUp = () => {
       last = null

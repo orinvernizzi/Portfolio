@@ -86,13 +86,16 @@ export function ExtLink({ href, newTab, children }: { href: string; newTab: stri
   )
 }
 
-// Original-colour logos on transparent backgrounds. `h` is the image height.
+// The logos shown in the Experience, Education and Leadership timelines.
+// The key (itti, marietta...) is what you write as "logo" in the content JSON. `src` is the file in public/logos/,
+// `h` is the height as a Tailwind class (h-8 is 2rem). To change a logo: replace the file keeping its name,
+// or point `src` at a new file. The logos on the spiral menu cards are separate: see src/spiral/cardFaces.ts.
 export const LOGOS = {
-  itti: { src: '/img/logos/itti.svg', h: 'h-8' },
-  marietta: { src: '/img/logos/marietta-dark.svg', h: 'h-10' },
-  cambridge: { src: '/img/logos/cambridge-dark.png', h: 'h-8' },
-  cristorey: { src: '/img/logos/cristorey.png', h: 'h-11' },
-  techo: { src: '/img/logos/techo.png', h: 'h-8' },
+  itti: { src: '/logos/itti.svg', h: 'h-8' },
+  marietta: { src: '/logos/marietta-dark.svg', h: 'h-10' },
+  cambridge: { src: '/logos/cambridge-dark.png', h: 'h-8' },
+  cristorey: { src: '/logos/cristorey.png', h: 'h-11' },
+  techo: { src: '/logos/techo.png', h: 'h-8' },
 } as const
 
 export function LogoChip({ logo, alt }: { logo: keyof typeof LOGOS; alt: string }) {

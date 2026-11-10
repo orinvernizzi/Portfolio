@@ -1,3 +1,5 @@
+// Connects each section id (from src/content/interface.json) to the component that draws its panel.
+// When you add a section, add one line to the table at the bottom.
 import type { ComponentType } from 'react'
 import { Intro } from './Intro'
 import { About } from './About'

@@ -1,3 +1,5 @@
+// The "About me" panel: one lead sentence and a numbered list.
+// Text: src/content/about.json (lead, points).
 import { useContent } from '../lib/content'
 
 export function About() {

@@ -1,3 +1,5 @@
+// The "Things I work with" panel: logo grids per group, soft skills, languages.
+// Text: src/content/skills.json. A name only gets a logo if it is in src/lib/techIcons.ts, otherwise it shows as a text tag.
 import { useContent } from '../lib/content'
 import { Icon } from '../components/ui'
 import { TechGrid } from '../components/TechGrid'
