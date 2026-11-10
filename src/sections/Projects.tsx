@@ -4,14 +4,15 @@ import { ButtonLink, ChipList, Icon } from '../components/ui'
 function ProjectCard({ p, lang, alt, open, viewCode }: { p: Project; lang: string; alt?: string; open: string; viewCode: string }) {
   const photo = p.image === 'webp'
   const ext = photo ? 'webp' : 'svg'
+  const fadeAway = p.id === 'catch' // the app screen melts into the title
   return (
     <article aria-labelledby={`project-${p.id}`} className="flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface">
       {/* The picture fades into the card colour; the extra bottom padding gives the fade room. */}
-      <div className="pb-10 [mask-image:linear-gradient(to_bottom,#000_78%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,#000_78%,transparent_100%)]">
+      <div className={fadeAway ? 'pb-10 [mask-image:linear-gradient(to_bottom,#000_55%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,#000_55%,transparent_100%)]' : 'pb-10 [mask-image:linear-gradient(to_bottom,#000_78%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,#000_78%,transparent_100%)]'}>
         <img
           src={`/diagrams/${p.id}.${lang}.${ext}`}
           width={photo ? 1500 : 720}
-          height={photo ? 900 : 432}
+          height={photo ? 900 : p.id === 'orquestador' ? 600 : 432}
           loading="lazy"
           decoding="async"
           alt={alt ?? ''}

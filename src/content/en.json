@@ -25,13 +25,15 @@
     "techo2": "Volunteers nailing the roof frame of a wooden house"
   },
   "art": {
-    "orquestador": "Illustration: a question goes to a planner (highlighted), which hands the work to three agents: SQL agent, analyst and report. A small SELECT ... FROM ... snippet sits under the SQL agent. Simplified, invented example.",
+    "orquestador": {
+      "label": "Illustration: a tree. At the top, Orchestrator · Tier 0 (highlighted). Below it, two boxes: agents and companies. Under agents: analysis, opportunities, SQL, modeling, storytelling and reports. Under companies: ueno-bank, upay and monchis. Simplified illustration."
+    },
     "forecast": {
-      "label": "Diagram of a line chart with invented numbers: an expected line inside a light band, one dip and one spike marked as unusual days, and a dotted forecast continuing to the month end."
+      "label": "Picture of how the forecasting engine’s output looks, with invented numbers: a daily line chart of actual against expected inside a light normal-range band, a pay-day spike and two holiday dips marked, and a dotted forecast to the month end with a month-end close estimate. Below, a small table of the flagged days with the reason for each."
     },
     "dashboard": "Picture of a web dashboard on a dark background, with invented numbers: two tiles, Transactions with a green Normal verdict and Active customers with an amber Watch verdict, a Monday to Sunday bar chart of this week against last week with a normal-range band and one unusual Friday marked, and a small trend line of the last 8 weeks.",
     "catch": {
-      "label": "Diagram: four sources (Concept2 Logbook, a CSV file, a PM5 photo and live Bluetooth) feed one review step, then a database protected by row-level security, then a verdict such as improved by 2.1%."
+      "label": "Picture of the Catch Analysis web app on a dark background, with invented demo data: the top menu with the Stats menu open (Progress, Analytics, Effort, PRs), and the Week screen below it with total distance by sport and seven day cards of logged sessions, fading away into the card title."
     },
     "pep9": {
       "label": "Diagram of the Pep/9 simulator: memory with hex cells feeds a CPU showing the registers A, X, SP and HP and the flags N, Z, V and C, which sends results to output. A fetch, decode, execute loop runs below."
@@ -276,12 +278,14 @@
         "group": "itti",
         "title": "Orquestador",
         "tag": "AI agents · team project",
-        "text": "An internal tool where a coworker asks a business question in plain language and a team of AI agents works out the answer. I co-designed it with my team and built the first version. It is still a prototype.",
+        "text": "An internal tool where a coworker asks a business question in plain Spanish and gets a worked answer. A Tier 0 orchestrator coordinates six specialist agents, and context files for the group's companies keep each answer tied to the right business. I co-designed it with a team and built the first version, using Cursor. It is still a prototype.",
         "details": [
-          "A planner picks the next agent, an executor runs it, and every step is logged. The loop stops after 10 steps.",
-          "Six agents: SQL, analysis, opportunities, modeling, storytelling and reports. The graphic shows three of them.",
-          "Each agent is a folder with a SKILL.md contract, so anyone can add a new one.",
-          "Anything that writes needs a person to confirm it first."
+          "Before it starts, the system can ask up to 5 clarifying questions and adds the right company's context.",
+          "A router picks the next agent, an executor runs it, and every step is logged. The loop stops after 10 steps.",
+          "Six agents (SQL, analysis, opportunities, modeling, storytelling, reports) with about 20 subagents between them. SQL questions go to an Athena tool, analysis to the Incrementales forecasting engine (my own project) and modeling to a dbt pipeline.",
+          "Each agent is a folder with a SKILL.md contract that is discovered automatically, so anyone can add a new one.",
+          "Read-only by default: anything that writes needs a person to confirm. Missing credentials give a clear error instead of a crash.",
+          "Added later: a one-line usage summary per session (never the full conversation), memory notes, and an answer validator that retries up to 2 times, piloted on one agent. Limit: the live Athena connection was not run end to end before I left."
         ],
         "stack": [
           "Cursor",
@@ -310,7 +314,8 @@
           "SciPy",
           "Excel"
         ],
-        "note": "The graphic is an illustration with invented numbers."
+        "note": "The graphic is an illustration with invented numbers.",
+        "image": "webp"
       },
       {
         "id": "dashboard",
@@ -356,7 +361,8 @@
         ],
         "live": "https://nico-rowing.vercel.app",
         "code": "https://github.com/orinvernizzi/erg-pace-calculator",
-        "codeLabel": "View ErgCalc code"
+        "codeLabel": "View ErgCalc code",
+        "image": "webp"
       },
       {
         "id": "pep9",

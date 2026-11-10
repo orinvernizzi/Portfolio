@@ -71,18 +71,15 @@ export function Icon({ name }: { name: 'download' | 'arrow' | 'pin' | 'globe' | 
 // Original-colour logos on transparent backgrounds. `h` is the image height.
 export const LOGOS = {
   itti: { src: '/img/logos/itti.svg', h: 'h-8' },
-  marietta: { src: '/img/logos/marietta.svg', h: 'h-10' },
-  cambridge: { src: '/img/logos/cambridge.png', h: 'h-8' },
-  cristorey: { src: '/img/logos/cristorey.png', h: 'h-10' },
+  marietta: { src: '/img/logos/marietta-dark.svg', h: 'h-10' },
+  cambridge: { src: '/img/logos/cambridge-dark.png', h: 'h-8' },
+  cristorey: { src: '/img/logos/cristorey.png', h: 'h-11' },
   techo: { src: '/img/logos/techo.png', h: 'h-8' },
 } as const
 
 export function LogoChip({ logo, alt }: { logo: keyof typeof LOGOS; alt: string }) {
   const l = LOGOS[logo]
-  // Soft light plate so dark and blue logos stay readable on the black site.
   return (
-    <span className="inline-flex rounded-[10px] bg-[#f4f4f5] p-1.5">
-      <img src={l.src} alt={alt} className={`block ${l.h} w-auto max-w-[200px] object-contain`} loading="lazy" />
-    </span>
+    <img src={l.src} alt={alt} className={`block ${l.h} w-auto max-w-[200px] object-contain`} loading="lazy" />
   )
 }

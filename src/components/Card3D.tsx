@@ -6,8 +6,8 @@ import { CARD_H, CARD_W } from './cardShared'
 import { ringDelta, type SpiralProgress } from '../lib/useScrollProgress'
 
 export const RADIUS = 6.2
-export const STEP = 0.4
-export const RISE = 1.05
+const STEP = 0.4
+const RISE = 1.05
 const WIDTH = 2.55
 const HEIGHT = (WIDTH * CARD_H) / CARD_W
 

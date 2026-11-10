@@ -37,7 +37,7 @@ export interface Project {
   image?: 'svg' | 'webp'
 }
 
-export interface Content {
+interface Content {
   ui: Record<
     'spiral' | 'list' | 'menu' | 'close' | 'scrollHint' | 'downloadCv' | 'lang' | 'open' | 'viewCode' | 'links' | 'tech',
     string

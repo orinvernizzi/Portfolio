@@ -51,12 +51,12 @@ export function Panel({ sectionId, onClose }: Props) {
             <div className="pointer-events-none absolute inset-0 z-[1] bg-black/75" aria-hidden="true" />
           </>
         )}
-        <header className="relative z-10 flex shrink-0 items-center justify-between gap-4 border-b border-line bg-black/80 px-5 py-4 backdrop-blur md:px-10 md:py-5">
+        <header className="relative z-10 flex shrink-0 items-center justify-between gap-3 border-b border-line bg-black/80 px-4 py-2 backdrop-blur md:px-10 md:py-2">
           <div className="min-w-0">
-            <p className="eyebrow m-0 mb-1">
+            <p className="eyebrow m-0 !text-[11px] leading-none">
               {String(index + 1).padStart(2, '0')} / {String(c.sections.length).padStart(2, '0')}
             </p>
-            <h2 id="panel-title" className="m-0 text-[clamp(1.6rem,4vw,2.4rem)] font-semibold leading-tight tracking-tight">
+            <h2 id="panel-title" className="m-0 mt-0.5 text-[clamp(1.15rem,2.6vw,1.6rem)] font-semibold leading-tight tracking-tight">
               {section.title}
             </h2>
           </div>
@@ -64,10 +64,10 @@ export function Panel({ sectionId, onClose }: Props) {
             type="button"
             onClick={onClose}
             aria-label={c.ui.close}
-            className="flex min-h-11 shrink-0 items-center gap-3 rounded-full text-sm font-medium text-fg"
+            className="-my-1 flex min-h-10 shrink-0 items-center gap-2.5 rounded-full text-sm font-medium text-fg"
           >
             <span className="hidden sm:inline">{c.ui.close}</span>
-            <span className="flex h-11 w-11 items-center justify-center rounded-full border border-line bg-white/5 transition-colors hover:bg-white/10">
+            <span className="flex h-9 w-9 items-center justify-center rounded-full border border-line bg-white/5 transition-colors hover:bg-white/10">
               <Icon name="close" />
             </span>
           </button>

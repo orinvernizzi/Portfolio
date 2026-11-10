@@ -25,13 +25,15 @@
     "techo2": "Voluntarios clavando la estructura del techo de una casa de madera"
   },
   "art": {
-    "orquestador": "Ilustración: una pregunta llega a un planificador (resaltado), que reparte el trabajo entre tres agentes: agente SQL, analista y reporte. Debajo del agente SQL hay un pequeño fragmento SELECT ... FROM .... Ejemplo simplificado e inventado.",
+    "orquestador": {
+      "label": "Ilustración: un árbol. Arriba, Orquestador · Tier 0 (resaltado). Debajo, dos cajas: agentes y empresas. Bajo agentes: análisis, oportunidades, SQL, modelado, storytelling y reportes. Bajo empresas: ueno-bank, upay y monchis. Ilustración simplificada."
+    },
     "forecast": {
-      "label": "Diagrama de un gráfico de líneas con números inventados: una línea esperada dentro de una banda tenue, una caída y un pico marcados como días inusuales, y un pronóstico punteado hasta el fin de mes."
+      "label": "Imagen de cómo se ve la salida del motor de pronóstico, con números inventados: un gráfico diario de real contra esperado dentro de una banda tenue de rango normal, un pico por día de cobro y dos caídas por feriado marcados, y una proyección punteada hasta fin de mes con el cierre estimado. Debajo, una pequeña tabla de los días marcados con el motivo de cada uno."
     },
     "dashboard": "Imagen de un panel web con fondo oscuro y números inventados: dos tarjetas, Transacciones con veredicto verde Normal y Clientes activos con veredicto ámbar Vigilar, un gráfico de barras de lunes a domingo de esta semana contra la pasada con una banda de rango normal y un viernes inusual marcado, y una pequeña línea de tendencia de las últimas 8 semanas.",
     "catch": {
-      "label": "Diagrama: cuatro fuentes (Logbook de Concept2, un archivo CSV, una foto del PM5 y Bluetooth en vivo) llegan a un paso de revisión, luego a una base de datos con seguridad por filas, y después a un veredicto como mejoró 2,1 %."
+      "label": "Imagen de la app web de Catch Analysis sobre fondo oscuro, con datos de demostración inventados: el menú superior con el menú Datos abierto (Progreso, Análisis, Esfuerzo, Marcas) y debajo la pantalla de la semana con la distancia total por deporte y siete tarjetas de días con sesiones registradas, que se desvanece hacia el título de la tarjeta."
     },
     "pep9": {
       "label": "Diagrama del simulador Pep/9: la memoria con celdas hexadecimales alimenta una CPU que muestra los registros A, X, SP y HP y las banderas N, Z, V y C, y envía resultados a la salida. Abajo corre el ciclo buscar, decodificar, ejecutar."
@@ -276,12 +278,14 @@
         "group": "itti",
         "title": "Orquestador",
         "tag": "Agentes de IA · proyecto en equipo",
-        "text": "Una herramienta interna donde un compañero hace una pregunta de negocio en lenguaje natural y un equipo de agentes de IA arma la respuesta. La diseñé junto con mi equipo y construí la primera versión. Todavía es un prototipo.",
+        "text": "Una herramienta interna donde un compañero hace una pregunta de negocio en español natural y recibe una respuesta elaborada. Un orquestador Tier 0 coordina seis agentes especialistas, y archivos de contexto de las empresas del grupo mantienen cada respuesta ligada al negocio correcto. La diseñé junto con un equipo y construí la primera versión, usando Cursor. Todavía es un prototipo.",
         "details": [
-          "Un planificador elige el siguiente agente, un ejecutor lo corre y cada paso queda registrado. El ciclo se detiene a los 10 pasos.",
-          "Seis agentes: SQL, análisis, oportunidades, modelado, narrativa y reportes. El gráfico muestra tres.",
-          "Cada agente es una carpeta con un contrato SKILL.md, así que cualquiera puede sumar uno nuevo.",
-          "Todo lo que escribe datos necesita que una persona lo confirme antes."
+          "Antes de empezar, el sistema puede hacer hasta 5 preguntas de aclaración y agrega el contexto de la empresa que corresponde.",
+          "Un enrutador elige el siguiente agente, un ejecutor lo corre y cada paso queda registrado. El ciclo se detiene a los 10 pasos.",
+          "Seis agentes (SQL, análisis, oportunidades, modelado, storytelling, reportes) con unos 20 subagentes entre todos. Las preguntas SQL van a una herramienta de Athena, el análisis al motor de pronóstico Incrementales (un proyecto mío) y el modelado a un pipeline de dbt.",
+          "Cada agente es una carpeta con un contrato SKILL.md que se descubre solo, así que cualquiera puede sumar uno nuevo.",
+          "Solo lectura por defecto: todo lo que escribe necesita que una persona lo confirme. Si faltan credenciales, da un error claro en vez de caerse.",
+          "Se agregó después: un resumen de una línea por sesión (nunca la conversación completa), notas de memoria y un validador de respuestas que reintenta hasta 2 veces, probado en un agente. Límite: la conexión real a Athena no se corrió de punta a punta antes de que me fuera."
         ],
         "stack": [
           "Cursor",
@@ -310,7 +314,8 @@
           "SciPy",
           "Excel"
         ],
-        "note": "La imagen es una ilustración con números inventados."
+        "note": "La imagen es una ilustración con números inventados.",
+        "image": "webp"
       },
       {
         "id": "dashboard",
@@ -356,7 +361,8 @@
         ],
         "live": "https://nico-rowing.vercel.app",
         "code": "https://github.com/orinvernizzi/erg-pace-calculator",
-        "codeLabel": "Ver código de ErgCalc"
+        "codeLabel": "Ver código de ErgCalc",
+        "image": "webp"
       },
       {
         "id": "pep9",
