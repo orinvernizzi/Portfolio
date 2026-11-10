@@ -3,6 +3,12 @@
     "lead": "I'm also pursuing a Minor in Leadership at Marietta College, after years of leading through community service.",
     "items": [
       {
+        "period": "2023 — 2024",
+        "title": "Pioneer Pipeline Leadership Program",
+        "text": "Pursuing a Minor in Leadership at Marietta College, with courses in leadership theory, ethics, and practice. Mentoring and coaching from faculty and industry leaders.",
+        "logo": "marietta"
+      },
+      {
         "period": "2018 — 2023",
         "title": "TECHO Paraguay",
         "text": "Built affordable wooden houses with communities, recruited volunteers and trained new ones.",
@@ -27,6 +33,12 @@
   "es": {
     "lead": "También estoy cursando una subespecialización en Liderazgo en Marietta College, tras años liderando a través del servicio comunitario.",
     "items": [
+      {
+        "period": "2023 — 2024",
+        "title": "Pioneer Pipeline Progama de Liderazgo",
+        "text": "El programa Pioneer Pipeline de Marietta College es una iniciativa de transición y apoyo en el sureste de Ohio que ayuda a estudiantes de secundaria y adultos jóvenes con discapacidades intelectuales a desarrollar habilidades académicas, sociales, de comunicación, de vida funcional y de empleo.",
+        "logo": "marietta"
+      },
       {
         "period": "2018 — 2023",
         "title": "TECHO Paraguay",
