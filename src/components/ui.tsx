@@ -42,7 +42,7 @@ export function ButtonLink({ href, children, primary = false, download = false, 
   )
 }
 
-export function Icon({ name }: { name: 'download' | 'arrow' | 'pin' | 'globe' | 'close' }) {
+export function Icon({ name, size = 18 }: { name: 'download' | 'arrow' | 'pin' | 'globe' | 'close'; size?: number }) {
   const paths: Record<string, string> = {
     download: 'M12 3v12m0 0-4-4m4 4 4-4M5 20h14',
     arrow: 'M7 17 17 7M9 7h8v8',
@@ -52,8 +52,8 @@ export function Icon({ name }: { name: 'download' | 'arrow' | 'pin' | 'globe' | 
   }
   return (
     <svg
-      width="18"
-      height="18"
+      width={size}
+      height={size}
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -65,6 +65,24 @@ export function Icon({ name }: { name: 'download' | 'arrow' | 'pin' | 'globe' | 
     >
       <path d={paths[name]} />
     </svg>
+  )
+}
+
+// Text link to an external site: arrow icon, new tab, and a screen-reader hint.
+export function ExtLink({ href, newTab, children }: { href: string; newTab: string; children: ReactNode }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-baseline gap-1 text-inherit underline decoration-transparent decoration-1 underline-offset-4 transition-colors hover:decoration-current focus-visible:decoration-current"
+    >
+      <span>{children}</span>
+      <span className="self-center" aria-hidden="true">
+        <Icon name="arrow" size={14} />
+      </span>
+      <span className="sr-only">({newTab})</span>
+    </a>
   )
 }
 

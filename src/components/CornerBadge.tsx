@@ -1,11 +1,7 @@
-import { useEffect, useState } from 'react'
-
-// Every image dropped in src/assets/badge/ shows up here, sorted by file name.
-const PHOTOS = Object.entries(
-  import.meta.glob<string>('../assets/badge/*.{jpg,jpeg,png,webp}', { eager: true, query: '?url', import: 'default' }),
-)
-  .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
-  .map(([, url]) => url)
+import { useEffect, useRef, useState } from 'react'
+import { useReducedMotion } from '../lib/useReducedMotion'
+import { PHOTOS, preloadPhotos } from './badgePhotos'
+import { PhotoReel } from './PhotoReel'
 
 const CYCLE_MS = 3200
 const LOOP_S = 12
@@ -27,30 +23,33 @@ interface Props {
   ringText: string
   label: string
   active: boolean
+  onReel?: (open: boolean) => void
 }
 
-function useReducedMotion() {
-  const [reduced, setReduced] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches)
-  useEffect(() => {
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
-    const on = () => setReduced(mq.matches)
-    mq.addEventListener('change', on)
-    return () => mq.removeEventListener('change', on)
-  }, [])
-  return reduced
-}
-
-export function CornerBadge({ ringText, label, active }: Props) {
+export function CornerBadge({ ringText, label, active, onReel }: Props) {
   const [index, setIndex] = useState(0)
+  const [reach, setReach] = useState(0) // photos past this point are not fetched until the tile shows them
+  const [reelOpen, setReelOpen] = useState(false)
+  const trigger = useRef<HTMLButtonElement>(null)
   const reduced = useReducedMotion()
   const count = PHOTOS.length
-  const interactive = count > 1
+  const cycling = count > 1 && active && !reelOpen && !reduced
+  if (index > reach) setReach(index)
 
   useEffect(() => {
-    if (!active || !interactive || reduced) return
+    if (!cycling) return
     const id = window.setTimeout(() => setIndex((i) => (i + 1) % count), CYCLE_MS)
     return () => window.clearTimeout(id)
-  }, [index, active, interactive, reduced, count])
+  }, [index, cycling, count])
+
+  useEffect(() => {
+    onReel?.(reelOpen)
+  }, [reelOpen, onReel])
+
+  const closeReel = () => {
+    setReelOpen(false)
+    trigger.current?.focus()
+  }
 
   const face = (
     <>
@@ -74,16 +73,18 @@ export function CornerBadge({ ringText, label, active }: Props) {
         </text>
       </svg>
       <span className="absolute inset-0 block overflow-hidden rounded-[20px] bg-neutral-800">
-        {PHOTOS.map((src, i) => (
+        {PHOTOS.map((src, i) =>
+          i > reach ? null : (
           <img
             key={src}
             src={src}
             alt=""
             draggable={false}
             decoding="async"
-            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${i === index ? 'opacity-100' : 'opacity-0'}`}
+            className={`absolute inset-0 h-full w-full object-cover object-right-top transition-opacity duration-700 ${i === index ? 'opacity-100' : 'opacity-0'}`}
           />
-        ))}
+          ),
+        )}
       </span>
     </>
   )
@@ -94,8 +95,20 @@ export function CornerBadge({ ringText, label, active }: Props) {
 
   return (
     <div className={wrap}>
-      {interactive ? (
-        <button type="button" aria-label={label} onClick={() => setIndex((i) => (i + 1) % count)} className={tile}>
+      {count > 0 ? (
+        <button
+          ref={trigger}
+          type="button"
+          aria-label={label}
+          aria-haspopup="dialog"
+          onPointerEnter={preloadPhotos}
+          onFocus={preloadPhotos}
+          onClick={() => {
+            preloadPhotos()
+            setReelOpen(true)
+          }}
+          className={tile}
+        >
           {face}
         </button>
       ) : (
@@ -103,6 +116,7 @@ export function CornerBadge({ ringText, label, active }: Props) {
           {face}
         </div>
       )}
+      <PhotoReel open={reelOpen} onClose={closeReel} />
     </div>
   )
 }

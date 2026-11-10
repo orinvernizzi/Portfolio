@@ -8,11 +8,18 @@
     "downloadCv": "Descargar CV",
     "lang": "EN",
     "open": "abrir",
+    "newTab": "se abre en una pestaña nueva",
     "viewCode": "Ver código",
     "links": "Enlaces",
     "tech": "Tecnología",
     "badgeRing": "nicolas invernizzi • portafolio 2026 • ",
-    "badgeLabel": "Siguiente foto"
+    "badgeLabel": "Reproducir fotos",
+    "reelTitle": "Fotos de Nico",
+    "reelPrev": "Foto anterior",
+    "reelNext": "Foto siguiente",
+    "reelPause": "Pausar",
+    "reelPlay": "Reproducir",
+    "reelCounter": "Foto {n} de {total}"
   },
   "alt": {
     "portrait": "Retrato de Nicolas Invernizzi con traje oscuro",
@@ -129,7 +136,7 @@
       "logo": "itti",
       "bullets": [
         "Miembro del equipo de Performance & Data Analytics, trabajando con áreas de negocio de las empresas de Grupo Vázquez.",
-        "Ayudé a construir Incrementales, un motor de pronóstico en Python que predice el volumen diario de varios productos transaccionales de ueno bank, marca días inusuales y proyecta el cierre del mes.",
+        "Ayudé a construir Incrementales, un motor de pronóstico en Python que predice el volumen diario de varios productos transaccionales de ueno bank, como tarjetas de crédito y de débito, marca días inusuales y proyecta el cierre del mes.",
         "Agregué un módulo de feriados paraguayos para que los pronósticos anticipen subas y bajas antes y después de feriados, con el motivo de cada ajuste exportado para la gerencia.",
         "Ayudé a construir un dashboard ejecutivo en vivo de transacciones de tarjetas de crédito y clientes activos.",
         "Co-diseñé el Orquestador, una herramienta interna multiagente de IA que convierte preguntas en lenguaje natural en SQL, análisis y reportes."
@@ -227,6 +234,7 @@
       "org": "Marietta College",
       "place": "Marietta, Ohio",
       "logo": "marietta",
+      "url": "https://www.marietta.edu/",
       "bullets": [
         "Subespecializaciones en Matemáticas y Liderazgo · GPA 3.5/4.0",
         "Dean's List: Primavera y Otoño 2024",
@@ -239,6 +247,8 @@
       "title": "Cambridge C1 Advanced",
       "org": "Ned College",
       "logo": "cambridge",
+      "url": "https://www.cambridgeenglish.org/exams-and-tests/",
+      "urlOn": "title",
       "place": "Dublín, Irlanda",
       "bullets": [
         "GPA 3.8/4.0"
@@ -249,6 +259,7 @@
       "title": "Bachillerato en Ciencias Sociales",
       "org": "Colegio Cristo Rey",
       "logo": "cristorey",
+      "url": "https://xtorey.edu.py/",
       "place": "Asunción, Paraguay",
       "bullets": [
         "Honores de estudiante-atleta · fútbol, vóley y remo"
@@ -303,7 +314,7 @@
         "group": "itti",
         "title": "Incrementales: pronóstico de transacciones",
         "tag": "Datos · proyecto individual",
-        "text": "Un motor en Python que aprende cómo es un día normal en varios productos transaccionales de ueno bank, marca los días que no lo son y pronostica el próximo mes y el cierre del mes. Termina en un reporte de Excel para la gerencia.",
+        "text": "Un motor en Python que aprende cómo es un día normal en varios productos transaccionales de ueno bank, como tarjetas de crédito y de débito, marca los días que no lo son y pronostica el próximo mes y el cierre del mes. Termina en un reporte de Excel para la gerencia.",
         "details": [
           "Ajusta dos modelos por producto, OLS y Theil-Sen, y se queda con el mejor. Theil-Sen ignora valores atípicos como los feriados.",
           "Un z-score marca cada día como normal, alto o bajo.",
@@ -470,6 +481,8 @@
   },
   "rowing": {
     "lead": "El remo es el hilo de toda mi vida: equipo universitario en Marietta College y regatas internacionales por Paraguay.",
+    "rosterUrl": "https://pioneers.marietta.edu/sports/mens-crew/roster/nicolas-invernizzi/10704",
+    "rosterLabel": "Perfil en el equipo de remo de Marietta",
     "medals": [
       {
         "medals": [

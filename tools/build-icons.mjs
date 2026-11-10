@@ -1,5 +1,6 @@
 // Builds public/icons/*.svg (local, no CDN) from simple-icons + devicon, plus hand-made badges.
 // public/icons/athena.svg is the AWS logo (devicon amazonwebservices-original, navy text recoloured to white), copied by hand; this script never touches it.
+// Same for dbt.svg (dbt Labs mark, cropped from getdbt.com/img/logos/dbt-labs-logo-light.svg), excel.svg (Wikimedia Commons Microsoft Office Excel 2019-2025, cleaned) and jsonschema.svg (white mark from json-schema.org/img/logos/logo-white.svg).
 // Run: node tools/build-icons.mjs
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import * as si from 'simple-icons'
@@ -70,9 +71,7 @@ const stroke = (d, color = '#fff') =>
 
 write('pep9', badge('#2f3b52', text('Pep9', 15)))
 write('sql', badge('#336791', text('SQL', 16)))
-write('dbt', badge('#ff694b', text('dbt', 17)))
-write('excel', badge('#217346', stroke('M16 15l16 18M32 15L16 33')))
-write('jsonschema', badge('#3a3f4b', stroke('M20 14c-3 0-4 1-4 4v3c0 2-1 3-3 3 2 0 3 1 3 3v3c0 3 1 4 4 4M28 14c3 0 4 1 4 4v3c0 2 1 3 3 3-2 0-3 1-3 3v3c0 3-1 4-4 4')))
+// dbt.svg, excel.svg and jsonschema.svg are NOT generated: they are the official marks (see header), downloaded by hand.
 // athena.svg is NOT generated: it is the AWS logo from devicon, recoloured by hand.
 
 console.log(missing.length ? `Missing: ${missing.join(', ')}` : 'All icons written to ' + OUT)

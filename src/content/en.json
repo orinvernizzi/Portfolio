@@ -8,11 +8,18 @@
     "downloadCv": "Download CV",
     "lang": "ES",
     "open": "open",
+    "newTab": "opens in a new tab",
     "viewCode": "View code",
     "links": "Links",
     "tech": "Tech",
     "badgeRing": "nicolas invernizzi • portfolio 2026 • ",
-    "badgeLabel": "Next photo"
+    "badgeLabel": "Play photo reel",
+    "reelTitle": "Photos of Nico",
+    "reelPrev": "Previous photo",
+    "reelNext": "Next photo",
+    "reelPause": "Pause reel",
+    "reelPlay": "Play reel",
+    "reelCounter": "Photo {n} of {total}"
   },
   "alt": {
     "portrait": "Portrait of Nicolas Invernizzi in a dark suit",
@@ -129,7 +136,7 @@
       "logo": "itti",
       "bullets": [
         "Member of the Performance & Data Analytics team, working with business areas across Grupo Vázquez companies.",
-        "Helped build Incrementales, a Python forecasting engine that predicts daily volume for several ueno bank transaction products, flags unusual days and projects the month-end close.",
+        "Helped build Incrementales, a Python forecasting engine that predicts daily volume for several ueno bank transaction products, such as credit cards and debit cards, flags unusual days and projects the month-end close.",
         "Added a Paraguayan holiday module so forecasts anticipate pre- and post-holiday spikes and drops, with the reason for each adjustment exported for management.",
         "Helped build a live executive dashboard for credit card transactions and active customers.",
         "Co-designed the Orquestador, an internal multi-agent AI tool that turns plain-language questions into SQL, analysis and reports."
@@ -227,6 +234,7 @@
       "org": "Marietta College",
       "place": "Marietta, Ohio",
       "logo": "marietta",
+      "url": "https://www.marietta.edu/",
       "bullets": [
         "Minors in Math and Leadership · GPA 3.5/4.0",
         "Dean's List: Spring and Fall 2024",
@@ -239,6 +247,8 @@
       "title": "Cambridge C1 Advanced",
       "org": "Ned College",
       "logo": "cambridge",
+      "url": "https://www.cambridgeenglish.org/exams-and-tests/",
+      "urlOn": "title",
       "place": "Dublin, Ireland",
       "bullets": [
         "GPA 3.8/4.0"
@@ -249,6 +259,7 @@
       "title": "High School Diploma, Social Sciences",
       "org": "Colegio Cristo Rey",
       "logo": "cristorey",
+      "url": "https://xtorey.edu.py/",
       "place": "Asunción, Paraguay",
       "bullets": [
         "Student-Athlete honors · soccer, volleyball and rowing"
@@ -303,7 +314,7 @@
         "group": "itti",
         "title": "Incrementales: transaction forecasting",
         "tag": "Data · individual project",
-        "text": "A Python engine that learns what a normal day looks like for several ueno bank transaction products, flags the days that are not, and forecasts the next month and the month-end close. It ends in an Excel report for management.",
+        "text": "A Python engine that learns what a normal day looks like for several ueno bank transaction products, such as credit cards and debit cards, flags the days that are not, and forecasts the next month and the month-end close. It ends in an Excel report for management.",
         "details": [
           "Fits two models per product, OLS and Theil-Sen, and keeps the better one. Theil-Sen ignores outliers such as holidays.",
           "A z-score marks every day as normal, high or low.",
@@ -470,6 +481,8 @@
   },
   "rowing": {
     "lead": "Rowing is the thread through my whole life: varsity at Marietta College and international regattas for Paraguay.",
+    "rosterUrl": "https://pioneers.marietta.edu/sports/mens-crew/roster/nicolas-invernizzi/10704",
+    "rosterLabel": "Marietta varsity crew profile",
     "medals": [
       {
         "medals": [

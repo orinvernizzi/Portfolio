@@ -8,6 +8,8 @@ export interface Block {
   org?: string
   place?: string
   logo?: 'itti' | 'marietta' | 'cambridge' | 'cristorey' | 'techo'
+  url?: string
+  urlOn?: 'title'
   photos?: ('techo1' | 'techo2')[]
   bullets?: string[]
   text?: string
@@ -39,7 +41,7 @@ export interface Project {
 
 interface Content {
   ui: Record<
-    'spiral' | 'list' | 'menu' | 'close' | 'scrollHint' | 'downloadCv' | 'lang' | 'open' | 'viewCode' | 'links' | 'tech' | 'badgeRing' | 'badgeLabel',
+    'spiral' | 'list' | 'menu' | 'close' | 'scrollHint' | 'downloadCv' | 'lang' | 'open' | 'viewCode' | 'newTab' | 'links' | 'tech' | 'badgeRing' | 'badgeLabel' | 'reelTitle' | 'reelPrev' | 'reelNext' | 'reelPause' | 'reelPlay' | 'reelCounter',
     string
   >
   alt: Record<'portrait' | 'hocr' | 'paraguay' | 'itti' | 'marietta' | 'cambridge' | 'cristorey' | 'techo' | 'techo1' | 'techo2', string>
@@ -52,7 +54,7 @@ interface Content {
   skills: { groups: { title: string; items: string[] }[]; other: string[]; languages: string }
   education: Block[]
   projects: { groups: { id: string; title: string }[]; items: Project[] }
-  rowing: { lead: string; medals: Medal[] }
+  rowing: { lead: string; rosterUrl: string; rosterLabel: string; medals: Medal[] }
   learning: { lead: string; points: string[] }
   leadership: { lead: string; items: Block[] }
   contact: { lead: string }

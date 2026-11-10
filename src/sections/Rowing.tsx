@@ -1,11 +1,19 @@
 import { useContent } from '../lib/content'
 import { Medal } from '../components/Medal'
+import { ButtonLink, Icon } from '../components/ui'
 
 export function Rowing() {
-  const { rowing, alt } = useContent()
+  const { rowing, alt, ui } = useContent()
   return (
     <div className="grid gap-6">
       <p className="m-0 max-w-3xl text-xl font-medium leading-snug tracking-tight md:text-2xl">{rowing.lead}</p>
+      <div>
+        <ButtonLink href={rowing.rosterUrl} external>
+          {rowing.rosterLabel}
+          <Icon name="arrow" />
+          <span className="sr-only">({ui.newTab})</span>
+        </ButtonLink>
+      </div>
       <div className="-mb-3 grid gap-4 md:grid-cols-2">
         <img src="/img/rowing-paraguay.webp" alt={alt.paraguay} width={1600} height={900} loading="lazy" className="fade-bottom aspect-[4/3] w-full rounded-2xl object-cover" />
         <img src="/img/rowing-hocr.webp" alt={alt.hocr} width={1600} height={1067} loading="lazy" className="fade-bottom aspect-[4/3] w-full rounded-2xl object-cover object-[20%_60%]" />

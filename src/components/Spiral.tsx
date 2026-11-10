@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Card3D, RADIUS } from './Card3D'
 import { SpiralHud } from './SpiralHud'
@@ -64,7 +64,9 @@ function Scene({ progress, onOpen }: { progress: SpiralProgress; onOpen: (index:
 export default function Spiral({ enabled, onOpen, jumpTo, onContextLost }: Props) {
   const c = useContent()
   const root = useRef<HTMLElement>(null)
-  const progress = useScrollProgress(c.sections.length, enabled, root)
+  const [reelOpen, setReelOpen] = useState(false)
+  const live = enabled && !reelOpen // the photo reel locks the spiral like a panel does
+  const progress = useScrollProgress(c.sections.length, live, root)
   const { goTo, index } = progress
 
   // Unmounting the canvas also fires webglcontextlost; only a loss while mounted is a failure.
@@ -88,20 +90,20 @@ export default function Spiral({ enabled, onOpen, jumpTo, onContextLost }: Props
   }
 
   useEffect(() => {
-    if (!enabled) return
+    if (!live) return
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Enter' && document.activeElement === document.body) open(mod(Math.round(progress.target.current), c.sections.length))
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [enabled, c])
+  }, [live, c])
 
   return (
     <main ref={root} className="absolute inset-0 touch-none select-none">
       <h1 className="sr-only">{c.meta.name}</h1>
       <Canvas
         flat
-        frameloop={enabled ? 'always' : 'never'} // idle while a panel or the menu covers the spiral
+        frameloop={live ? 'always' : 'never'} // idle while a panel, the menu or the reel covers the spiral
         dpr={[1, 2]}
         camera={{ fov: 36, position: [0, 1.1, CAMERA_Z], near: 0.1, far: 80 }}
         gl={{ antialias: true, powerPreference: 'high-performance' }}
@@ -113,7 +115,7 @@ export default function Spiral({ enabled, onOpen, jumpTo, onContextLost }: Props
         <Scene progress={progress} onOpen={open} />
       </Canvas>
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_55%,rgba(0,0,0,0.55))]" />
-      <SpiralHud sections={c.sections} index={index} hint={c.ui.scrollHint} menuLabel={c.ui.menu} badgeRing={c.ui.badgeRing} badgeLabel={c.ui.badgeLabel} active={enabled} onJump={goTo} onOpen={open} />
+      <SpiralHud sections={c.sections} index={index} hint={c.ui.scrollHint} menuLabel={c.ui.menu} badgeRing={c.ui.badgeRing} badgeLabel={c.ui.badgeLabel} active={enabled} onReel={setReelOpen} onJump={goTo} onOpen={open} />
     </main>
   )
 }

@@ -8,11 +8,12 @@ interface Props {
   badgeRing: string
   badgeLabel: string
   active: boolean
+  onReel: (open: boolean) => void
   onJump: (i: number) => void
   onOpen: (i: number) => void
 }
 
-export function SpiralHud({ sections, index, hint, menuLabel, badgeRing, badgeLabel, active, onJump, onOpen }: Props) {
+export function SpiralHud({ sections, index, hint, menuLabel, badgeRing, badgeLabel, active, onReel, onJump, onOpen }: Props) {
   const n = sections.length
   const pct = n > 1 ? (index / (n - 1)) * 100 : 0
 
@@ -51,7 +52,7 @@ export function SpiralHud({ sections, index, hint, menuLabel, badgeRing, badgeLa
         <div className="w-[88px] sm:w-[120px] md:w-[352px]" aria-hidden="true" />
       </div>
 
-      <CornerBadge ringText={badgeRing} label={badgeLabel} active={active} />
+      <CornerBadge ringText={badgeRing} label={badgeLabel} active={active} onReel={onReel} />
 
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-0.5 bg-white/10 md:hidden" aria-hidden="true">
         <div className="h-full bg-accent transition-[width] duration-300" style={{ width: `${pct}%` }} />
