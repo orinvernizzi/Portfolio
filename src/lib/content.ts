@@ -39,7 +39,7 @@ export interface Project {
 
 interface Content {
   ui: Record<
-    'spiral' | 'list' | 'menu' | 'close' | 'scrollHint' | 'downloadCv' | 'lang' | 'open' | 'viewCode' | 'links' | 'tech',
+    'spiral' | 'list' | 'menu' | 'close' | 'scrollHint' | 'downloadCv' | 'lang' | 'open' | 'viewCode' | 'links' | 'tech' | 'badgeRing' | 'badgeLabel',
     string
   >
   alt: Record<'portrait' | 'hocr' | 'paraguay' | 'itti' | 'marietta' | 'cambridge' | 'cristorey' | 'techo' | 'techo1' | 'techo2', string>

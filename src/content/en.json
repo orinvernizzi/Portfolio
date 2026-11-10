@@ -10,7 +10,9 @@
     "open": "open",
     "viewCode": "View code",
     "links": "Links",
-    "tech": "Tech"
+    "tech": "Tech",
+    "badgeRing": "nicolas invernizzi • portfolio 2026 • ",
+    "badgeLabel": "Next photo"
   },
   "alt": {
     "portrait": "Portrait of Nicolas Invernizzi in a dark suit",
@@ -127,7 +129,7 @@
       "logo": "itti",
       "bullets": [
         "Member of the Performance & Data Analytics team, working with business areas across Grupo Vázquez companies.",
-        "Helped build a Python forecasting pipeline that predicts daily volume for several ueno bank transaction products, flags unusual days and projects the month-end close.",
+        "Helped build Incrementales, a Python forecasting engine that predicts daily volume for several ueno bank transaction products, flags unusual days and projects the month-end close.",
         "Added a Paraguayan holiday module so forecasts anticipate pre- and post-holiday spikes and drops, with the reason for each adjustment exported for management.",
         "Helped build a live executive dashboard for credit card transactions and active customers.",
         "Co-designed the Orquestador, an internal multi-agent AI tool that turns plain-language questions into SQL, analysis and reports."
@@ -299,7 +301,7 @@
       {
         "id": "forecast",
         "group": "itti",
-        "title": "Transaction forecasting",
+        "title": "Incrementales: transaction forecasting",
         "tag": "Data · individual project",
         "text": "A Python engine that learns what a normal day looks like for several ueno bank transaction products, flags the days that are not, and forecasts the next month and the month-end close. It ends in an Excel report for management.",
         "details": [

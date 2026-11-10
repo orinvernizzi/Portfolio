@@ -10,7 +10,9 @@
     "open": "abrir",
     "viewCode": "Ver código",
     "links": "Enlaces",
-    "tech": "Tecnología"
+    "tech": "Tecnología",
+    "badgeRing": "nicolas invernizzi • portafolio 2026 • ",
+    "badgeLabel": "Siguiente foto"
   },
   "alt": {
     "portrait": "Retrato de Nicolas Invernizzi con traje oscuro",
@@ -127,7 +129,7 @@
       "logo": "itti",
       "bullets": [
         "Miembro del equipo de Performance & Data Analytics, trabajando con áreas de negocio de las empresas de Grupo Vázquez.",
-        "Ayudé a construir un pipeline de pronóstico en Python que predice el volumen diario de varios productos transaccionales de ueno bank, marca días inusuales y proyecta el cierre del mes.",
+        "Ayudé a construir Incrementales, un motor de pronóstico en Python que predice el volumen diario de varios productos transaccionales de ueno bank, marca días inusuales y proyecta el cierre del mes.",
         "Agregué un módulo de feriados paraguayos para que los pronósticos anticipen subas y bajas antes y después de feriados, con el motivo de cada ajuste exportado para la gerencia.",
         "Ayudé a construir un dashboard ejecutivo en vivo de transacciones de tarjetas de crédito y clientes activos.",
         "Co-diseñé el Orquestador, una herramienta interna multiagente de IA que convierte preguntas en lenguaje natural en SQL, análisis y reportes."
@@ -299,7 +301,7 @@
       {
         "id": "forecast",
         "group": "itti",
-        "title": "Pronóstico de transacciones",
+        "title": "Incrementales: pronóstico de transacciones",
         "tag": "Datos · proyecto individual",
         "text": "Un motor en Python que aprende cómo es un día normal en varios productos transaccionales de ueno bank, marca los días que no lo son y pronostica el próximo mes y el cierre del mes. Termina en un reporte de Excel para la gerencia.",
         "details": [

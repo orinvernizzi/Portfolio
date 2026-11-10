@@ -1,5 +1,5 @@
 // Builds public/icons/*.svg (local, no CDN) from simple-icons + devicon, plus hand-made badges.
-// public/icons/athena.svg is the official AWS icon, copied by hand; this script never touches it.
+// public/icons/athena.svg is the AWS logo (devicon amazonwebservices-original, navy text recoloured to white), copied by hand; this script never touches it.
 // Run: node tools/build-icons.mjs
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import * as si from 'simple-icons'
@@ -73,6 +73,6 @@ write('sql', badge('#336791', text('SQL', 16)))
 write('dbt', badge('#ff694b', text('dbt', 17)))
 write('excel', badge('#217346', stroke('M16 15l16 18M32 15L16 33')))
 write('jsonschema', badge('#3a3f4b', stroke('M20 14c-3 0-4 1-4 4v3c0 2-1 3-3 3 2 0 3 1 3 3v3c0 3 1 4 4 4M28 14c3 0 4 1 4 4v3c0 2 1 3 3 3-2 0-3 1-3 3v3c0 3-1 4-4 4')))
-// athena.svg is NOT generated: it is the official AWS Architecture icon (Arch_Amazon-Athena_64.svg), kept as downloaded.
+// athena.svg is NOT generated: it is the AWS logo from devicon, recoloured by hand.
 
 console.log(missing.length ? `Missing: ${missing.join(', ')}` : 'All icons written to ' + OUT)

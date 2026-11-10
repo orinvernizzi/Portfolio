@@ -113,7 +113,7 @@ export default function Spiral({ enabled, onOpen, jumpTo, onContextLost }: Props
         <Scene progress={progress} onOpen={open} />
       </Canvas>
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_55%,rgba(0,0,0,0.55))]" />
-      <SpiralHud sections={c.sections} index={index} hint={c.ui.scrollHint} menuLabel={c.ui.menu} onJump={goTo} onOpen={open} />
+      <SpiralHud sections={c.sections} index={index} hint={c.ui.scrollHint} menuLabel={c.ui.menu} badgeRing={c.ui.badgeRing} badgeLabel={c.ui.badgeLabel} active={enabled} onJump={goTo} onOpen={open} />
     </main>
   )
 }
