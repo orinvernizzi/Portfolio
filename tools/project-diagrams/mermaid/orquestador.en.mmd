@@ -1,0 +1,28 @@
+%% Orchestrator tree, drawn left to right so it stays narrow (9 leaves cannot sit in one row).
+%%{init: {"flowchart": {"rankSpacing": 6}}}%%
+flowchart LR
+  O["Orchestrator<br/>Tier 0"]
+  A["agents"]
+  E["companies"]
+  AN["analysis"]
+  OP["opportunities"]
+  SQL["sql"]
+  MO["modeling"]
+  ST["storytelling"]
+  RE["reports"]
+  U["ueno-bank"]
+  P["upay"]
+  C["monchis"]
+  O --> A
+  O --> E
+  A --> AN
+  A --> OP
+  A --> SQL
+  A --> MO
+  A --> ST
+  A --> RE
+  E --> U
+  E --> P
+  E --> C
+  classDef top stroke:#ededed,stroke-width:2px
+  class O top

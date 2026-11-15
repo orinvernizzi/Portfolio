@@ -1,0 +1,15 @@
+%% Sudoku validator: 11 threads each write one slot of a shared list, then main decides.
+flowchart TD
+  G["9x9 grid file"]
+  M["main thread"]
+  R["row<br/>thread<br/>(1)"]
+  C["column<br/>thread<br/>(1)"]
+  B["box<br/>threads<br/>(9)"]
+  RS["results list<br/>11 slots, one per thread<br/>no locks"]
+  V["Valid / Invalid<br/>Sudoku"]
+  G --> M
+  M --> R & C & B
+  R & C & B --> RS
+  RS --> V
+  classDef top stroke:#ededed,stroke-width:2px
+  class RS top

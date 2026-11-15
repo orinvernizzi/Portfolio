@@ -41,8 +41,9 @@ JSON cannot hold comments, so this page explains what the keys mean.
 - `stack`: names of the tech tags. They show as plain text tags on the card.
 - `legal` (highlighted box) and `note` (small grey text) are optional.
 - `live` and `code`: optional buttons. `codeLabel` replaces the words "View code".
-- `image`: `"webp"` for the screenshot projects (catch, forecast, dashboard). Leave it out for diagrams, which are SVG.
+- `image`: `"webp"` for the screenshot projects (catch, forecast, dashboard). Leave it out for diagrams, which are SVG. The `portfolio` item, the last card in the Web group, is about this site and is a diagram.
 - `art` at the end of the file describes each picture for screen readers: `"art": { "<id>": { "label": "..." } }`.
+- `pictureSizes.json` (this folder) is not text. `npm run pictures` writes it: the size of each diagram, so the page can keep room for it. Do not edit it by hand.
 
 ## Keys inside a medal (`rowing.json`)
 

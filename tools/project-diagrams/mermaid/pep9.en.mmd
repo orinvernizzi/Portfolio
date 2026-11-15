@@ -1,0 +1,18 @@
+%% Pep/9 simulator: load a hex program, then loop fetch, decode, execute.
+flowchart TD
+  H["hex program<br/>ends with zz"]
+  L["loader"]
+  M["memory<br/>64 KiB"]
+  F["fetch"]
+  D["decode"]
+  X["execute"]
+  R["registers<br/>A, X, SP, HP"]
+  FL["flags<br/>N, Z, V, C"]
+  O["output<br/>0xFC16"]
+  H --> L --> M --> F --> D --> X
+  X -.->|next instruction| F
+  X --> R
+  X --> FL
+  X --> O
+  classDef top stroke:#ededed,stroke-width:2px
+  class X top

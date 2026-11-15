@@ -1,0 +1,19 @@
+%% Consulting firm database (MariaDB): five tables, two link tables (many-to-many, composite keys), one audit trigger.
+flowchart TD
+  RG["Region"]
+  CL["Client"]
+  CT["Contract"]
+  CO["Consultant"]
+  CF["Classification"]
+  L1["Client_<br/>Consultant<br/>link table"]
+  L2["Consultant_<br/>Classification<br/>link table"]
+  TR["audit<br/>trigger"]
+  LG["ClientLog"]
+  RG --> CL --> CT
+  CO --> CT
+  CT ~~~ CO
+  CL --- L1 --- CO
+  CO --- L2 --- CF
+  CL -.-> TR -.-> LG
+  classDef top stroke:#ededed,stroke-width:2px
+  class CL top

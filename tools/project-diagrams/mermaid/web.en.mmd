@@ -1,0 +1,20 @@
+%% Course registration site (team of four): Nico built the home page and the shared stylesheet only.
+%%{init: {"flowchart": {"rankSpacing": 6}}}%%
+flowchart LR
+  H["home page<br/>(my part)"]
+  CS["shared<br/>stylesheet<br/>(my part)"]
+  subgraph TM[" "]
+    direction TB
+    T0["teammates' pages"]:::hdr
+    P1["enroll student"]
+    P2["add instructor"]
+    P3["add course"]
+    P4["register"]
+    P5["drop course"]
+    T0 ~~~ P1 ~~~ P2 ~~~ P3 ~~~ P4 ~~~ P5
+  end
+  H -->|menu| TM
+  CS -.->|styles| TM
+  classDef top stroke:#ededed,stroke-width:2px
+  classDef hdr fill:none,stroke:none,color:#b4b4b4
+  class H,CS top

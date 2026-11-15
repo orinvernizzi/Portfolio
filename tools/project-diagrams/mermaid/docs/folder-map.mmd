@@ -1,0 +1,41 @@
+%% Folder map for START-HERE.md. Right: things you might want to change. Left: the folder that controls each one.
+flowchart RL
+  subgraph WANT[" "]
+    direction TB
+    HW["I want to change..."]
+    W1["Project pictures"]
+    W2["Links, email and CV"]
+    W3["Text of every card"]
+    W4["Layout of an opened card"]
+    W5["Picture on a menu card"]
+    W6["Photos in the reel"]
+    W7["Colours and fonts"]
+  end
+  subgraph FOLD[" "]
+    direction TB
+    HF["Folders"]
+    F1["`**public**
+Pictures, logos and the CV files`"]
+    F2["`**src/content**
+All the text, English and Spanish`"]
+    F3["`**src/sections**
+Layout of each opened card`"]
+    F4["`**src/spiral**
+Menu cards and the photo reel`"]
+    F5["`**src/styles**
+Colours, fonts and animations`"]
+    F6["`**tools**
+Optional: redraws pictures`"]
+  end
+  W1 --> F1
+  W2 --> F1
+  W2 --> F2
+  W3 --> F2
+  W4 --> F3
+  W5 --> F4
+  W6 --> F4
+  W7 --> F5
+  classDef head fill:none,stroke:none,color:#b4b4b4
+  class HW,HF head
+  classDef folder stroke:#ededed,stroke-width:2px
+  class F1,F2,F3,F4,F5,F6 folder

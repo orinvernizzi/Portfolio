@@ -1,0 +1,23 @@
+%% Virtual memory manager: TLB hit is the fast path, a miss walks the page table, a page fault loads from disk.
+flowchart TD
+  A["logical address<br/>16 bits"]
+  P["page number<br/>8 bits"]
+  OF["offset<br/>8 bits"]
+  T["TLB<br/>16 entries<br/>FIFO"]
+  FR["frame"]
+  PT["page table"]
+  BS["backing store"]
+  PA["physical address"]
+  A --> P
+  A --> OF
+  P ~~~ OF
+  P --> T
+  T -->|hit| FR
+  T -->|miss| PT
+  PT --> FR
+  PT -.->|page<br/>fault| BS
+  BS -->|load<br/>page| PT
+  FR --> PA
+  OF --> PA
+  classDef top stroke:#ededed,stroke-width:2px
+  class T top

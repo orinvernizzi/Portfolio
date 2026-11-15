@@ -26,7 +26,7 @@
       "portrait": "Portrait of Nicolas Invernizzi in a dark suit",
       "hocr": "A crew rowing a yellow boat at the Head of the Charles regatta",
       "paraguay": "The Paraguay national rowing crew mid-stroke",
-      "itti": "ITTI",
+      "itti": "ITTI", 
       "marietta": "Marietta College",
       "cambridge": "Cambridge University Press & Assessment",
       "cristorey": "Colegio Cristo Rey",
@@ -143,7 +143,7 @@
       },
       {
         "id": "learning",
-        "title": "Aprendiendo"
+        "title": "Intereses"
       },
       {
         "id": "leadership",

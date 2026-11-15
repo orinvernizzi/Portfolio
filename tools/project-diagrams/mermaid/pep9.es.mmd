@@ -1,0 +1,18 @@
+%% Simulador Pep/9: se carga un programa hex y se repite buscar, decodificar, ejecutar.
+flowchart TD
+  H["programa hex<br/>termina con zz"]
+  L["cargador"]
+  M["memoria<br/>64 KiB"]
+  F["buscar"]
+  D["decodificar"]
+  X["ejecutar"]
+  R["registros<br/>A, X, SP, HP"]
+  FL["banderas<br/>N, Z, V, C"]
+  O["salida<br/>0xFC16"]
+  H --> L --> M --> F --> D --> X
+  X -.->|siguiente instrucción| F
+  X --> R
+  X --> FL
+  X --> O
+  classDef top stroke:#ededed,stroke-width:2px
+  class X top

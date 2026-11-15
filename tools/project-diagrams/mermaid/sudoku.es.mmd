@@ -1,0 +1,15 @@
+%% Validador de Sudoku: 11 hilos escriben cada uno un casillero de una lista compartida y el principal decide.
+flowchart TD
+  G["archivo de grilla<br/>9x9"]
+  M["hilo principal"]
+  R["hilo de<br/>filas<br/>(1)"]
+  C["hilo de<br/>columnas<br/>(1)"]
+  B["hilos de<br/>cuadros<br/>(9)"]
+  RS["lista de resultados<br/>11 casilleros, uno por hilo<br/>sin bloqueos"]
+  V["Sudoku válido /<br/>inválido"]
+  G --> M
+  M --> R & C & B
+  R & C & B --> RS
+  RS --> V
+  classDef top stroke:#ededed,stroke-width:2px
+  class RS top

@@ -11,7 +11,7 @@ npm install
 npm run dev       # http://localhost:5173
 npm run build     # type-check + production build into dist/
 npm run preview   # serve the production build
-npm run pictures    # redraw the project diagrams (tools/project-diagrams)
+npm run pictures    # redraw the project diagrams from tools/project-diagrams/mermaid (needs internet and Edge or Chrome)
 npm run folder-map  # redraw docs/folder-map.svg
 ```
 
@@ -26,7 +26,8 @@ npm run folder-map  # redraw docs/folder-map.svg
 | Corner badge and photo reel photos | `src/spiral/reel-photos/` |
 | Photos, logos, tech icons, project pictures, CVs | `public/photos`, `public/logos`, `public/tech-icons`, `public/project-pictures`, `public/cv` |
 | What each opened card looks like | `src/sections/` |
-| Scripts that regenerate pictures (optional) | `tools/` |
+| Project diagrams: Mermaid text files and the script that draws them (optional) | `tools/project-diagrams/mermaid/` |
+| Other scripts that regenerate pictures (optional) | `tools/` |
 
 ## Behavior notes
 

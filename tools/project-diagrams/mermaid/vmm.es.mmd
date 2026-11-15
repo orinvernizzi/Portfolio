@@ -1,0 +1,23 @@
+%% Administrador de memoria virtual: acierto de TLB es el camino rapido, un fallo recorre la tabla de paginas, un fallo de pagina carga del disco.
+flowchart TD
+  A["dirección lógica<br/>16 bits"]
+  P["número de página<br/>8 bits"]
+  OF["desplazamiento<br/>8 bits"]
+  T["TLB<br/>16 entradas<br/>FIFO"]
+  FR["marco"]
+  PT["tabla de páginas"]
+  BS["almacén de<br/>respaldo"]
+  PA["dirección física"]
+  A --> P
+  A --> OF
+  P ~~~ OF
+  P --> T
+  T -->|acierto| FR
+  T -->|fallo| PT
+  PT --> FR
+  PT -.->|fallo de<br/>página| BS
+  BS -->|cargar<br/>página| PT
+  FR --> PA
+  OF --> PA
+  classDef top stroke:#ededed,stroke-width:2px
+  class T top

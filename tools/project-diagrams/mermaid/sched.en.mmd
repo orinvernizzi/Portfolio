@@ -1,0 +1,19 @@
+%% CPU scheduler: one task file in, five algorithms (boxed list), one printed run order out.
+flowchart TD
+  F["schedule.txt<br/>name, priority, burst"]
+  S["scheduler"]
+  subgraph ALG["5 algorithms"]
+    direction TB
+    A1["FCFS"]
+    A2["priority"]
+    A5["SJF"]
+    A3["round robin<br/>quantum 10"]
+    A4["priority<br/>with rr"]
+    A1 ~~~ A3
+    A2 ~~~ A4
+    A5 ~~~ A4
+  end
+  O["printed run order"]
+  F --> S --> ALG --> O
+  classDef top stroke:#ededed,stroke-width:2px
+  class S top

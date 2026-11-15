@@ -1,0 +1,20 @@
+%% Sitio de inscripcion a cursos (equipo de cuatro): Nico hizo solo la pagina de inicio y la hoja de estilos compartida.
+%%{init: {"flowchart": {"rankSpacing": 6}}}%%
+flowchart LR
+  H["página de<br/>inicio<br/>(mi parte)"]
+  CS["hoja de<br/>estilos<br/>(mi parte)"]
+  subgraph TM[" "]
+    direction TB
+    T0["páginas de<br/>mis compañeros"]:::hdr
+    P1["inscribir alumno"]
+    P2["nuevo instructor"]
+    P3["nuevo curso"]
+    P4["registrarse"]
+    P5["baja de curso"]
+    T0 ~~~ P1 ~~~ P2 ~~~ P3 ~~~ P4 ~~~ P5
+  end
+  H -->|menú| TM
+  CS -.->|estilos| TM
+  classDef top stroke:#ededed,stroke-width:2px
+  classDef hdr fill:none,stroke:none,color:#b4b4b4
+  class H,CS top

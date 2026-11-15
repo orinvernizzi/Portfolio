@@ -31,6 +31,9 @@ portfolio/
     components/          pieces shared by the panels: timeline, tech grid, menu drawer
     lib/                 small helpers and the list of skill logos
   tools/                 optional scripts that redraw pictures. The site never runs them
+    project-diagrams/    how the project diagrams and the folder map are drawn
+      mermaid/           one text file per diagram and language (.mmd), and the script that draws them
+        docs/            the text file for the folder map picture above
 ```
 
 Two folders you never open: `node_modules/` (downloaded packages) and `dist/` (the built site, rebuilt every time).
@@ -83,13 +86,32 @@ Easiest way: replace the file and keep the same name. If you give it a new name,
 
 Project pictures live in `public/project-pictures/` and are named `<project-id>.<en|es>.<svg|webp>`. For example `sudoku.en.svg` and `sudoku.es.svg`. The id is the `id` of the project in `projects.json`. A project with `"image": "webp"` uses a `.webp` file, every other project uses `.svg`. The site picks the file from the language, so you need one picture per language.
 
-Seven projects are diagrams (orquestador, pep9, vmm, sched, sudoku, db, web). They are drawn by a script, not by hand. To change the words in one, open `tools/project-diagrams/<id>.mjs`, edit the English and Spanish text in `strings` at the top, then run:
+Eight projects are diagrams (orquestador, pep9, vmm, sched, sudoku, db, web, portfolio). They are drawn by a script from small text files, not by hand. Each diagram has two of them, one per language: `tools/project-diagrams/mermaid/<id>.en.mmd` and `tools/project-diagrams/mermaid/<id>.es.mmd`. They are written in Mermaid, a way of describing a diagram in words.
+
+To change a label, open the file and edit the text inside the quotes. Do it in both languages. To break a long label into two lines, write `<br/>` where the break goes. Then run:
 
 ```
 npm run pictures
 ```
 
-That redraws all of them. For one only, run `node tools/project-diagrams/build.mjs sudoku`. It needs internet and Edge or Chrome. Do not edit the SVG files by hand. The next `npm run pictures` would overwrite your edit.
+That redraws every diagram, writes the SVG files in `public/project-pictures/` and updates `src/content/pictureSizes.json` by itself. That file holds the size of each picture, so the page can keep the right space for it while it loads. For one diagram only, run `node tools/project-diagrams/mermaid/build-mermaid.mjs sudoku`. The script needs internet (it loads Mermaid from the web) and Edge or Chrome. Without them it prints a message and changes nothing. Do not edit the SVG files by hand. The next run would overwrite your edit.
+
+Keep diagrams narrow. On a phone the picture is about 320 px wide, so a wide diagram makes its text tiny. If one is too wide, the script stops with a message that names the file. Fix it by putting at most two boxes in a row, shortening the labels, or splitting a long chain into two rows. Nothing is written until every diagram fits.
+
+A small diagram looks like this:
+
+```
+flowchart TD
+  A["Input file"] --> B["Main step"]
+  B --> C["Result"]
+  B -.-> D["Optional step"]
+  classDef top stroke:#ededed,stroke-width:2px
+  class B top
+```
+
+`-->` is a solid arrow and `-.->` a dotted one. The last two lines give box B a brighter outline. Copy an existing file to see more, for example `sudoku.en.mmd`.
+
+To add a diagram for a new project, copy an existing pair to `<id>.en.mmd` and `<id>.es.mmd`, edit both, and run `npm run pictures`. The picture and its size appear by themselves. The folder map picture at the top of this guide is made the same way: edit `tools/project-diagrams/mermaid/docs/folder-map.mmd` and run `npm run folder-map`.
 
 Three projects are screenshots (catch, dashboard, forecast), as `.webp`. They are made by the scripts in `tools/project-screenshots/`, and `tools/project-screenshots/README.md` has the steps for each. You can also just put any 1500 x 900 `.webp` in `public/project-pictures/` with the same file name.
 
@@ -138,7 +160,7 @@ Colours that are not in `theme.css`:
 - The globe behind the panels: `src/lib/vanta.ts` (`color`, `color2`, `backgroundColor`, written like `0xffffff`).
 - The black behind the spiral and the floor grid: `BG` and `gridHelper` in `src/spiral/Spiral.tsx`.
 - The medal metals: `TONES` at the top of `src/components/Medal.tsx`.
-- Diagram pictures: `C` in `tools/project-diagrams/lib.mjs`, then `npm run pictures`.
+- Diagram pictures: `themeVariables` near the top of `tools/project-diagrams/mermaid/build-mermaid.mjs`, then `npm run pictures`.
 - Phone browser bar colour: `theme-color` in `index.html`.
 - A few colours written straight into components, such as `bg-black/50` or `border-white/20`. Search the file for the class if you want to change one.
 
@@ -155,7 +177,7 @@ In `site.json`, under `meta`: `name`, `role`, `tagline`, `location`, plus `title
 ### Add a new project
 
 1. In `src/content/projects.json`, copy an entry in `items` (in `en` and in `es`) and edit it. Fields: `id`, `group` (one of the `groups` ids: itti, rowing, systems, web), `title`, `tag`, `text`, `details` (bullets), `stack` (tech names), and optionally `legal`, `note`, `live`, `code`, `codeLabel`, `image`.
-2. Add its picture to `public/project-pictures/`: `<id>.en.svg` and `<id>.es.svg`, or `.webp` files with `"image": "webp"` on the project.
+2. Add its picture. For a diagram, write `tools/project-diagrams/mermaid/<id>.en.mmd` and `<id>.es.mmd` and run `npm run pictures` (see "Change a project card's picture" above). It creates `public/project-pictures/<id>.en.svg` and `<id>.es.svg` and adds the size to `src/content/pictureSizes.json`. For a screenshot, put `<id>.en.webp` and `<id>.es.webp` in `public/project-pictures/` and add `"image": "webp"` to the project.
 3. Add a description for the picture under `art` at the bottom of the file, as `"<id>": { "label": "..." }`, in both languages.
 4. `stack` names show as plain text tags on the project card. No logo is needed.
 

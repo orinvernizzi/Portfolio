@@ -3,10 +3,15 @@
 // (webp when the project has "image": "webp"). Picture descriptions for screen readers: "art" in projects.json.
 import { useContent, useLang, type Project } from '../lib/content'
 import { ButtonLink, ChipList, Icon } from '../components/ui'
+import pictureSizes from '../content/pictureSizes.json'
+
+// [width, height] of each diagram, written by `npm run pictures` (tools/project-diagrams/mermaid).
+const DIAGRAM_SIZES: Record<string, number[] | undefined> = pictureSizes
 
 function ProjectCard({ p, lang, alt, open, viewCode }: { p: Project; lang: string; alt?: string; open: string; viewCode: string }) {
   const photo = p.image === 'webp'
   const ext = photo ? 'webp' : 'svg'
+  const [width, height] = photo ? [1500, 900] : (DIAGRAM_SIZES[p.id] ?? [720, 432])
   const fadeAway = p.id === 'catch' // the app screen melts into the title
   return (
     <article aria-labelledby={`project-${p.id}`} className="flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface">
@@ -14,8 +19,8 @@ function ProjectCard({ p, lang, alt, open, viewCode }: { p: Project; lang: strin
       <div className={fadeAway ? 'pb-10 [mask-image:linear-gradient(to_bottom,#000_55%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,#000_55%,transparent_100%)]' : 'pb-10 [mask-image:linear-gradient(to_bottom,#000_78%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,#000_78%,transparent_100%)]'}>
         <img
           src={`/project-pictures/${p.id}.${lang}.${ext}`}
-          width={photo ? 1500 : 720}
-          height={photo ? 900 : p.id === 'orquestador' ? 600 : 432}
+          width={width}
+          height={height}
           loading="lazy"
           decoding="async"
           alt={alt ?? ''}

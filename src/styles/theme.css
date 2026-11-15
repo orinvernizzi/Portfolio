@@ -7,7 +7,7 @@
 
   Colours that are NOT here: the menu card faces (src/spiral/cardFaces.ts, cardStyle.ts, cardDrawing.ts),
   the globe (src/lib/vanta.ts), the spiral background (BG in src/spiral/Spiral.tsx), the medal metals
-  (src/components/Medal.tsx) and the diagram pictures (tools/project-diagrams/lib.mjs).
+  (src/components/Medal.tsx) and the diagram pictures (tools/project-diagrams/mermaid/build-mermaid.mjs).
   Keep text at 4.5:1 contrast or better against its background so it stays readable.
 */
 @import "tailwindcss";

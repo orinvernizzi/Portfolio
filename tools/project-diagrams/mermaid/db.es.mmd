@@ -1,0 +1,19 @@
+%% Base de datos de una consultora (MariaDB): cinco tablas, dos tablas de enlace, un trigger de auditoria.
+flowchart TD
+  RG["Región"]
+  CL["Cliente"]
+  CT["Contrato"]
+  CO["Consultor"]
+  CF["Clasificación"]
+  L1["Client_<br/>Consultant<br/>tabla de<br/>enlace"]
+  L2["Consultant_<br/>Classification<br/>tabla de<br/>enlace"]
+  TR["trigger de<br/>auditoría"]
+  LG["ClientLog"]
+  RG --> CL --> CT
+  CO --> CT
+  CT ~~~ CO
+  CL --- L1 --- CO
+  CO --- L2 --- CF
+  CL -.-> TR -.-> LG
+  classDef top stroke:#ededed,stroke-width:2px
+  class CL top

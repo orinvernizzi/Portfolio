@@ -209,11 +209,36 @@
           "CSS"
         ],
         "code": "https://github.com/orinvernizzi/Web-Programming"
+      },
+      {
+        "id": "portfolio",
+        "group": "web",
+        "title": "This portfolio",
+        "tag": "Web · personal project",
+        "text": "A bilingual (English and Spanish) portfolio, and the site you are on. Its menu is a 3D spiral of cards that you scroll through in an endless loop, and each card opens a panel. On phones, and for anyone who asked their device to reduce motion, it is a plain list instead.",
+        "details": [
+          "Black and white on purpose, with photos and brand-coloured logos. A white wireframe globe sits behind most panels, and a corner badge with orbiting text opens a photo reel. I kept it simple.",
+          "React, TypeScript, Vite and Tailwind. The spiral is three.js through React Three Fiber, with the card faces painted on a canvas.",
+          "All the text lives in JSON files, English and Spanish side by side. The project diagrams are written as Mermaid text and rendered to SVG by a script.",
+          "A static site with no backend and no tracking. It is hosted on Vercel, which rebuilds it on every push to GitHub.",
+          "Keyboard navigation, focus kept inside open panels, and support for reduced motion.",
+          "I designed and directed it and built it together with an AI coding assistant (Claude Code)."
+        ],
+        "stack": [
+          "React",
+          "TypeScript",
+          "Vite",
+          "Tailwind",
+          "three.js",
+          "Vercel"
+        ],
+        "live": "https://nicolas-invernizzi-portfolio.vercel.app",
+        "code": "https://github.com/orinvernizzi/Portfolio"
       }
     ],
     "art": {
       "orquestador": {
-        "label": "Illustration: a tree. At the top, Orchestrator · Tier 0 (highlighted). Below it, two boxes: agents and companies. Under agents: analysis, opportunities, SQL, modeling, storytelling and reports. Under companies: ueno-bank, upay and monchis. Simplified illustration."
+        "label": "Illustration: a tree drawn left to right. On the left, Orchestrator · Tier 0 (highlighted), connected to two boxes: agents and companies. Agents connects to analysis, opportunities, SQL, modeling, storytelling and reports. Companies connects to ueno-bank, upay and monchis. Simplified illustration."
       },
       "forecast": {
         "label": "Picture of how the forecasting engine’s output looks, with invented numbers: a daily line chart of actual against expected inside a light normal-range band, a pay-day spike and two holiday dips marked, and a dotted forecast to the month end with a month-end close estimate. Below, a small table of the flagged days with the reason for each."
@@ -223,22 +248,25 @@
         "label": "Picture of the Catch Analysis web app on a dark background, with invented demo data: the top menu with the Stats menu open (Progress, Analytics, Effort, PRs), and the Week screen below it with total distance by sport and seven day cards of logged sessions, fading away into the card title."
       },
       "pep9": {
-        "label": "Diagram of the Pep/9 simulator: memory with hex cells feeds a CPU showing the registers A, X, SP and HP and the flags N, Z, V and C, which sends results to output. A fetch, decode, execute loop runs below."
+        "label": "Illustration: a flow chart. A hex program that ends with zz goes through the loader into 64 KiB of memory. Then a loop of fetch, decode and execute, where a dotted arrow labeled next instruction returns from execute to fetch. Execute (highlighted) feeds three boxes: registers A, X, SP and HP, flags N, Z, V and C, and the output at address 0xFC16. Simplified illustration."
       },
       "vmm": {
-        "label": "Diagram of virtual memory: an address is looked up in the TLB. A hit goes straight to memory. A miss checks the page table, and a page fault (dashed) loads the page from disk."
+        "label": "Illustration: a flow chart. A 16-bit logical address splits into an 8-bit page number and an 8-bit offset. The page number goes to the TLB (16 entries, FIFO; highlighted). On a hit the TLB gives the frame; on a miss it goes to the page table, which also gives the frame. A dotted arrow from the page table to the backing store marks a page fault, and an arrow labeled load page returns to the page table. The frame and the offset together make the physical address. Simplified illustration."
       },
       "sched": {
-        "label": "Diagram of two CPU scheduling timelines for the same four tasks: first come, first served runs each task as one block, while round robin interleaves short slices of T1 to T4."
+        "label": "Illustration: a flow chart. A file, schedule.txt, with a name, priority and burst for each task goes to the scheduler (highlighted). The scheduler feeds a box with five algorithms: FCFS, priority, SJF, round robin with quantum 10, and priority with round robin. The result is a printed run order. Simplified illustration."
       },
       "sudoku": {
-        "label": "Diagram of a Sudoku checker: a 3 by 3 grid of blocks, and three groups of threads (1 for rows, 1 for columns, 9 for boxes) that each write their own cell into 11 results."
+        "label": "Illustration: a flow chart. A 9x9 grid file goes to the main thread, which starts 11 threads: one for rows, one for columns and nine for the 3×3 boxes. Each one writes into its own slot of a shared results list (11 slots, no locks; highlighted). The list gives the verdict: Valid or Invalid Sudoku. Simplified illustration."
       },
       "db": {
-        "label": "Diagram of a consulting firm database: Region, Client, Contract, Consultant and Classification linked by simple connectors, with audit triggers attached to Client."
+        "label": "Illustration: a database diagram. Region connects to Client (highlighted), which connects to Contract; Consultant also connects to Contract. Client and Consultant are joined through a link table, Client_Consultant, and Consultant and Classification through another, Consultant_Classification. A dotted line runs from Client through an audit trigger to ClientLog. Simplified illustration."
       },
       "web": {
-        "label": "Diagram of a course registration site in a browser frame: a header and sidebar (the part I built, highlighted) next to a registration form."
+        "label": "Illustration: a diagram of the course registration site. On the left, two boxes marked as my part: the home page and the shared stylesheet. They connect to a box of teammates’ pages: enroll student, add instructor, add course, register and drop course. The home page connects through its menu, and the stylesheet with a dotted arrow, because it styles every page. Simplified illustration."
+      },
+      "portfolio": {
+        "label": "Illustration: a diagram of how this site works. The content JSON files (English and Spanish) feed the React app (Vite, TypeScript, Tailwind; highlighted). The app shows a spiral menu made with three.js, and a list view on phones. The spiral menu opens a panel, with a white wireframe globe behind it, and has a corner badge that leads to a photo reel. Separately, a push to GitHub makes Vercel build the live site. Simplified illustration."
       }
     }
   },
@@ -452,11 +480,36 @@
           "CSS"
         ],
         "code": "https://github.com/orinvernizzi/Web-Programming"
+      },
+      {
+        "id": "portfolio",
+        "group": "web",
+        "title": "Este portafolio",
+        "tag": "Web · proyecto personal",
+        "text": "Un portafolio bilingüe (inglés y español), y el sitio en el que estás. Su menú es una espiral 3D de tarjetas por la que te desplazas en un ciclo sin fin, y cada tarjeta abre un panel. En celulares, y para quien pidió a su dispositivo reducir el movimiento, es una lista simple.",
+        "details": [
+          "En blanco y negro a propósito, con fotos y logos con los colores de cada marca. Un globo de alambre blanco queda detrás de la mayoría de los paneles, y una insignia en la esquina con texto en órbita abre un carrete de fotos. Lo mantuve simple.",
+          "React, TypeScript, Vite y Tailwind. La espiral es three.js a través de React Three Fiber, con las caras de las tarjetas pintadas en un canvas.",
+          "Todo el texto vive en archivos JSON, con inglés y español lado a lado. Los diagramas de los proyectos están escritos como texto Mermaid y un script los convierte en SVG.",
+          "Un sitio estático, sin backend y sin seguimiento. Está alojado en Vercel, que lo reconstruye con cada push a GitHub.",
+          "Navegación con teclado, foco que se queda dentro de los paneles abiertos y soporte para reducir el movimiento.",
+          "Lo diseñé y dirigí, y lo construí junto con un asistente de programación con IA (Claude Code)."
+        ],
+        "stack": [
+          "React",
+          "TypeScript",
+          "Vite",
+          "Tailwind",
+          "three.js",
+          "Vercel"
+        ],
+        "live": "https://nicolas-invernizzi-portfolio.vercel.app",
+        "code": "https://github.com/orinvernizzi/Portfolio"
       }
     ],
     "art": {
       "orquestador": {
-        "label": "Ilustración: un árbol. Arriba, Orquestador · Tier 0 (resaltado). Debajo, dos cajas: agentes y empresas. Bajo agentes: análisis, oportunidades, SQL, modelado, storytelling y reportes. Bajo empresas: ueno-bank, upay y monchis. Ilustración simplificada."
+        "label": "Ilustración: un árbol dibujado de izquierda a derecha. A la izquierda, Orquestador · Tier 0 (resaltado), conectado con dos cajas: agentes y empresas. Agentes se conecta con análisis, oportunidades, SQL, modelado, storytelling y reportes. Empresas se conecta con ueno-bank, upay y monchis. Ilustración simplificada."
       },
       "forecast": {
         "label": "Imagen de cómo se ve la salida del motor de pronóstico, con números inventados: un gráfico diario de real contra esperado dentro de una banda tenue de rango normal, un pico por día de cobro y dos caídas por feriado marcados, y una proyección punteada hasta fin de mes con el cierre estimado. Debajo, una pequeña tabla de los días marcados con el motivo de cada uno."
@@ -466,22 +519,25 @@
         "label": "Imagen de la app web de Catch Analysis sobre fondo oscuro, con datos de demostración inventados: el menú superior con el menú Datos abierto (Progreso, Análisis, Esfuerzo, Marcas) y debajo la pantalla de la semana con la distancia total por deporte y siete tarjetas de días con sesiones registradas, que se desvanece hacia el título de la tarjeta."
       },
       "pep9": {
-        "label": "Diagrama del simulador Pep/9: la memoria con celdas hexadecimales alimenta una CPU que muestra los registros A, X, SP y HP y las banderas N, Z, V y C, y envía resultados a la salida. Abajo corre el ciclo buscar, decodificar, ejecutar."
+        "label": "Ilustración: un diagrama de flujo. Un programa en hexadecimal que termina con zz pasa por el cargador a 64 KiB de memoria. Luego hay un ciclo de buscar, decodificar y ejecutar; una flecha punteada, siguiente instrucción, vuelve de ejecutar a buscar. Ejecutar (resaltado) alimenta tres cajas: registros A, X, SP y HP, banderas N, Z, V y C, y la salida en la dirección 0xFC16. Ilustración simplificada."
       },
       "vmm": {
-        "label": "Diagrama de memoria virtual: una dirección se busca en la TLB. Un acierto va directo a la memoria. Un fallo consulta la tabla de páginas, y un fallo de página (punteado) carga la página desde el disco."
+        "label": "Ilustración: un diagrama de flujo. Una dirección lógica de 16 bits se separa en un número de página de 8 bits y un desplazamiento de 8 bits. El número de página va al TLB (16 entradas, FIFO; resaltado). Si hay acierto, el TLB da el marco; si hay fallo, va a la tabla de páginas, que también da el marco. Una flecha punteada de la tabla de páginas al almacén de respaldo marca un fallo de página, y una flecha cargar página vuelve a la tabla. El marco y el desplazamiento forman la dirección física. Ilustración simplificada."
       },
       "sched": {
-        "label": "Diagrama de dos líneas de tiempo de planificación de CPU para las mismas cuatro tareas: primero en llegar, primero en servirse ejecuta cada tarea en un bloque, y round robin intercala porciones cortas de T1 a T4."
+        "label": "Ilustración: un diagrama de flujo. Un archivo, schedule.txt, con nombre, prioridad y ráfaga de cada tarea va al planificador (resaltado). El planificador alimenta una caja con cinco algoritmos: FCFS, prioridad, SJF, round robin con quantum 10 y prioridad con round robin. El resultado es un orden de ejecución impreso. Ilustración simplificada."
       },
       "sudoku": {
-        "label": "Diagrama de un verificador de Sudoku: una cuadrícula de 3 por 3 bloques y tres grupos de hilos (1 para filas, 1 para columnas, 9 para cuadros) que escriben cada uno su propia celda en 11 resultados."
+        "label": "Ilustración: un diagrama de flujo. Un archivo con una grilla de 9x9 va al hilo principal, que lanza 11 hilos: uno de filas, uno de columnas y nueve de cuadros de 3×3. Cada uno escribe en su propio casillero de una lista de resultados compartida (11 casilleros, sin bloqueos; resaltada). De la lista sale el veredicto: Sudoku válido o inválido. Ilustración simplificada."
       },
       "db": {
-        "label": "Diagrama de la base de datos de una consultora: Región, Cliente, Contrato, Consultor y Clasificación unidos por conectores simples, con disparadores de auditoría sobre Cliente."
+        "label": "Ilustración: un diagrama de base de datos. Región se conecta con Cliente (resaltado), que se conecta con Contrato; Consultor también se conecta con Contrato. Cliente y Consultor se unen mediante una tabla de enlace, Client_Consultant, y Consultor y Clasificación mediante otra, Consultant_Classification. Una línea punteada va de Cliente, pasando por un trigger de auditoría, hasta ClientLog. Ilustración simplificada."
       },
       "web": {
-        "label": "Diagrama de un sitio de inscripción a cursos dentro de un marco de navegador: un encabezado y una barra lateral (la parte que construí, resaltada) junto a un formulario de inscripción."
+        "label": "Ilustración: un diagrama del sitio de inscripción a cursos. A la izquierda, dos cajas marcadas como mi parte: la página de inicio y la hoja de estilos compartida. Se conectan con una caja de páginas de compañeros: inscribir alumno, agregar instructor, agregar curso, registrarse y baja de curso. La página de inicio se conecta por su menú y la hoja de estilos con una flecha punteada, porque da estilo a todas las páginas. Ilustración simplificada."
+      },
+      "portfolio": {
+        "label": "Ilustración: un diagrama de cómo funciona este sitio. Los archivos JSON de contenido (en inglés y español) alimentan la app React (Vite, TypeScript, Tailwind; resaltada). La app muestra un menú espiral hecho con three.js y, en celulares, una vista de lista. El menú espiral abre un panel, con un globo de alambre blanco detrás, y tiene una insignia en la esquina que lleva a un carrete de fotos. Aparte, un push a GitHub hace que Vercel construya el sitio en vivo. Ilustración simplificada."
       }
     }
   }

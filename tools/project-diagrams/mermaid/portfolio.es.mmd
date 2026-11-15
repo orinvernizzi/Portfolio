@@ -1,0 +1,24 @@
+%% Como funciona este sitio: los archivos de contenido alimentan una app React; un push a GitHub hace que Vercel construya el sitio en vivo.
+flowchart TD
+  J["content/*.json<br/>EN + ES"]
+  R["app React<br/>Vite, TypeScript<br/>Tailwind"]
+  SP["menú espiral<br/>three.js"]
+  LV["vista de<br/>lista<br/>(celulares)"]
+  P["panel abierto"]
+  GL["globo de<br/>alambre<br/>blanco"]
+  B["insignia de<br/>la esquina"]
+  PR["carrete de<br/>fotos"]
+  subgraph DEP[" "]
+    direction LR
+    GH["GitHub<br/>(push)"] --> V["Vercel<br/>(build)"] --> L["sitio<br/>en vivo"]
+  end
+  J --> R
+  R --> SP
+  R --> LV
+  SP --> P
+  P -.->|detrás| GL
+  SP --> B --> PR
+  GL ~~~ DEP
+  PR ~~~ DEP
+  classDef top stroke:#ededed,stroke-width:2px
+  class R top
