@@ -268,6 +268,96 @@
       "portfolio": {
         "label": "Illustration: a diagram of how this site works. The content JSON files (English and Spanish) feed the React app (Vite, TypeScript, Tailwind; highlighted). The app shows a spiral menu made with three.js, and a list view on phones. The spiral menu opens a panel, with a white wireframe globe behind it, and has a corner badge that leads to a photo reel. Separately, a push to GitHub makes Vercel build the live site. Simplified illustration."
       }
+    },
+    "diagramNotes": {
+      "orquestador": {
+        "O": "Tier 0: a router picks the next agent, an executor runs it, every step is logged, and it stops after 10 steps.",
+        "A": "The six specialist agents, about 20 subagents between them. Each is a folder with a SKILL.md contract.",
+        "E": "Context files for the group's companies, so each answer stays tied to the right business.",
+        "AN": "Analysis agent: hands the work to the Incrementales forecasting engine, another project of mine.",
+        "OP": "Opportunities agent: one of the six specialists the router can pick as the next step.",
+        "SQL": "SQL agent: its questions go to an Amazon Athena tool. Read-only by default, like the whole system.",
+        "MO": "Modeling agent: its work goes to a dbt pipeline.",
+        "ST": "Storytelling agent: one of the six specialists the router can pick as the next step.",
+        "RE": "Reports agent: one of the six specialists. Anything that writes needs a person to confirm.",
+        "U": "Context file for ueno bank, one of the group's companies.",
+        "P": "Context file for upay, one of the group's companies.",
+        "C": "Context file for monchis, one of the group's companies."
+      },
+      "pep9": {
+        "H": "The input: machine code written as hex bytes. The marker zz tells the loader where it ends.",
+        "L": "Reads the hex bytes into memory until it reaches zz.",
+        "M": "64 KiB of memory. The loaded program sits here before it runs.",
+        "F": "Fetch: takes the next instruction from memory. It runs one instruction at a time.",
+        "D": "Decode: works out which instruction was fetched, then hands it to execute.",
+        "X": "Execute: runs the instruction, updates registers and flags, then loops back to fetch the next one.",
+        "R": "Registers A, X, SP and HP. They are printed after every step.",
+        "FL": "Flags N, Z, V and C, printed with the registers after every step.",
+        "O": "Output is mapped to memory address 0xFC16."
+      },
+      "vmm": {
+        "A": "A 16-bit logical address to translate. The test run uses 1,000 of them.",
+        "P": "8 bits of the address: the page number. It is looked up in the TLB first.",
+        "OF": "The other 8 bits: where the byte sits inside the page. It goes straight into the physical address.",
+        "T": "TLB: 16 entries, FIFO replacement. A hit gives the frame right away; the test run had 54 hits.",
+        "FR": "The frame in physical memory that holds the page.",
+        "PT": "Page table: used on a TLB miss. A page that isn't loaded yet is a page fault (244 on the test run).",
+        "BS": "BACKING_STORE.bin: on a page fault, its 256-byte page is copied into the next free frame.",
+        "PA": "Frame plus offset make the physical address. All 1,000 match the reference output."
+      },
+      "sched": {
+        "F": "Each task's name, priority and CPU burst. Read as utf-8-sig, since the file starts with a byte order mark.",
+        "S": "Reads the task list and schedules it with the algorithms below.",
+        "A1": "First come, first served: tasks run in the order they arrive.",
+        "A2": "Runs tasks by priority. A stable sort keeps arrival order when priorities tie.",
+        "A5": "Shortest job first: the task with the smallest CPU burst goes next.",
+        "A3": "Round robin: tasks take turns, each running for at most a quantum of 10 before the next one.",
+        "A4": "Priority with round robin: tasks run by priority, and tasks with equal priority take turns.",
+        "O": "The output: when each task runs and when it finishes."
+      },
+      "sudoku": {
+        "G": "The input: a text file holding a 9×9 Sudoku grid.",
+        "M": "Reads the grid, starts the 11 threads, then reads their results to decide.",
+        "R": "One thread checks all the rows. A row is valid when it holds exactly the numbers 1 to 9.",
+        "C": "One thread checks all the columns, each one needing exactly the numbers 1 to 9.",
+        "B": "Nine threads, one per 3×3 box. Each box must hold exactly the numbers 1 to 9.",
+        "RS": "Each thread writes 1 or 0 into its own slot of this shared list, so no locks are needed.",
+        "V": "Prints Valid Sudoku if every slot says valid, otherwise Invalid Sudoku."
+      },
+      "db": {
+        "RG": "Region table. Each region links to its clients, and the report procedure walks from here.",
+        "CL": "Client table: linked to its region, its contracts and, through a link table, its consultants.",
+        "CT": "Contract table, between client and consultant. A stored procedure returns the most recent one.",
+        "CO": "Consultant table: linked to contracts, and through link tables to clients and classifications.",
+        "CF": "Classification table: consultant classifications, joined to consultants through a link table.",
+        "L1": "Link table for the many-to-many between clients and consultants, with a composite key.",
+        "L2": "Link table for the many-to-many between consultants and classifications, with a composite key.",
+        "TR": "Audit trigger: after an insert on Client, it adds a row saying who and when.",
+        "LG": "ClientLog: the audit rows (who and when) that the trigger writes."
+      },
+      "web": {
+        "H": "My part: the home page, with a sidebar menu that leads to the other pages.",
+        "CS": "My part: one stylesheet for every page, covering the header, navigation, footer and forms.",
+        "T0": "The pages my teammates built. They also wrote the manuals.",
+        "P1": "Enroll student page, built by a teammate and styled by my shared stylesheet.",
+        "P2": "Add instructor page, built by a teammate and styled by my shared stylesheet.",
+        "P3": "Add course page, built by a teammate and styled by my shared stylesheet.",
+        "P4": "Register page, built by a teammate and styled by my shared stylesheet.",
+        "P5": "Drop course page, built by a teammate and styled by my shared stylesheet."
+      },
+      "portfolio": {
+        "J": "All the site's text lives in JSON files, English and Spanish side by side.",
+        "R": "The React app (Vite, TypeScript, Tailwind). It reads the text from the JSON files.",
+        "SP": "The menu: a 3D spiral of cards in three.js, through React Three Fiber. It loops endlessly.",
+        "LV": "A plain list instead of the spiral, on phones and for anyone who asked for reduced motion.",
+        "P": "Each card opens a panel. It works with the keyboard and keeps focus inside.",
+        "GL": "A white wireframe globe that sits behind most panels.",
+        "B": "A corner badge with orbiting text. It opens the photo reel.",
+        "PR": "A reel of photos that opens from the corner badge.",
+        "GH": "The code lives on GitHub. Every push starts a new build.",
+        "V": "Vercel rebuilds the static site on every push. No backend, no tracking.",
+        "L": "The live site, the one you are on right now."
+      }
     }
   },
   "es": {
@@ -538,6 +628,96 @@
       },
       "portfolio": {
         "label": "Ilustración: un diagrama de cómo funciona este sitio. Los archivos JSON de contenido (en inglés y español) alimentan la app React (Vite, TypeScript, Tailwind; resaltada). La app muestra un menú espiral hecho con three.js y, en celulares, una vista de lista. El menú espiral abre un panel, con un globo de alambre blanco detrás, y tiene una insignia en la esquina que lleva a un carrete de fotos. Aparte, un push a GitHub hace que Vercel construya el sitio en vivo. Ilustración simplificada."
+      }
+    },
+    "diagramNotes": {
+      "orquestador": {
+        "O": "Tier 0: un enrutador elige el agente, un ejecutor lo corre, cada paso queda registrado y para a los 10 pasos.",
+        "A": "Los seis agentes especialistas, con unos 20 subagentes entre todos. Cada uno es una carpeta con un SKILL.md.",
+        "E": "Archivos de contexto de las empresas del grupo, para que cada respuesta quede ligada al negocio correcto.",
+        "AN": "Agente de análisis: le pasa el trabajo al motor de pronóstico Incrementales, otro proyecto mío.",
+        "OP": "Agente de oportunidades: uno de los seis especialistas que el enrutador puede elegir.",
+        "SQL": "Agente SQL: sus preguntas van a una herramienta de Amazon Athena. Solo lectura por defecto.",
+        "MO": "Agente de modelado: su trabajo va a un pipeline de dbt.",
+        "ST": "Agente de storytelling: uno de los seis especialistas que el enrutador puede elegir.",
+        "RE": "Agente de reportes: uno de los seis especialistas. Todo lo que escribe necesita que una persona lo confirme.",
+        "U": "Archivo de contexto de ueno bank, una de las empresas del grupo.",
+        "P": "Archivo de contexto de upay, una de las empresas del grupo.",
+        "C": "Archivo de contexto de monchis, una de las empresas del grupo."
+      },
+      "pep9": {
+        "H": "La entrada: código de máquina escrito como bytes en hexadecimal. La marca zz indica dónde termina.",
+        "L": "Carga los bytes en hexadecimal en la memoria hasta llegar a zz.",
+        "M": "64 KiB de memoria. Acá queda el programa cargado antes de correr.",
+        "F": "Buscar: toma la siguiente instrucción de la memoria. Ejecuta una instrucción por vez.",
+        "D": "Decodificar: identifica qué instrucción se buscó y se la pasa a ejecutar.",
+        "X": "Ejecutar: corre la instrucción, actualiza registros y banderas, y vuelve a buscar la siguiente.",
+        "R": "Registros A, X, SP y HP. Se muestran después de cada paso.",
+        "FL": "Banderas N, Z, V y C, que se muestran junto a los registros en cada paso.",
+        "O": "La salida está mapeada a la dirección de memoria 0xFC16."
+      },
+      "vmm": {
+        "A": "Una dirección lógica de 16 bits para traducir. La prueba usa 1.000 de ellas.",
+        "P": "8 bits de la dirección: el número de página. Se busca primero en el TLB.",
+        "OF": "Los otros 8 bits: dónde está el byte dentro de la página. Pasa directo a la dirección física.",
+        "T": "TLB: 16 entradas, reemplazo FIFO. Un acierto da el marco enseguida; la prueba tuvo 54 aciertos.",
+        "FR": "El marco de la memoria física que guarda la página.",
+        "PT": "Tabla de páginas: se usa si falla el TLB. Una página sin cargar es un fallo de página (244 en la prueba).",
+        "BS": "BACKING_STORE.bin: ante un fallo de página, su página de 256 bytes se copia al siguiente marco libre.",
+        "PA": "El marco más el desplazamiento forman la dirección física. Las 1.000 coinciden con la salida de referencia."
+      },
+      "sched": {
+        "F": "Cada tarea con nombre, prioridad y ráfaga de CPU. Se lee como utf-8-sig por su marca de orden de bytes.",
+        "S": "Lee la lista de tareas y la planifica con los algoritmos de abajo.",
+        "A1": "Primero en llegar, primero en ser atendido: las tareas corren en el orden en que llegan.",
+        "A2": "Corre las tareas por prioridad. Un ordenamiento estable mantiene el orden de llegada en los empates.",
+        "A5": "El trabajo más corto primero: sigue la tarea con la ráfaga de CPU más chica.",
+        "A3": "Round robin: las tareas se turnan y cada una corre como máximo un quantum de 10 antes de la siguiente.",
+        "A4": "Prioridad con round robin: corren por prioridad, y las de igual prioridad se turnan.",
+        "O": "La salida: cuándo corre y cuándo termina cada tarea."
+      },
+      "sudoku": {
+        "G": "La entrada: un archivo de texto con una grilla de Sudoku de 9×9.",
+        "M": "Lee la grilla, lanza los 11 hilos y después lee sus resultados para decidir.",
+        "R": "Un hilo revisa todas las filas. Una fila es válida si tiene exactamente los números del 1 al 9.",
+        "C": "Un hilo revisa todas las columnas; cada una necesita exactamente los números del 1 al 9.",
+        "B": "Nueve hilos, uno por cuadro de 3×3. Cada cuadro debe tener exactamente los números del 1 al 9.",
+        "RS": "Cada hilo escribe 1 o 0 en su propio casillero de esta lista compartida, así que no hacen falta bloqueos.",
+        "V": "Imprime Valid Sudoku si todos los casilleros dicen válido; si no, Invalid Sudoku."
+      },
+      "db": {
+        "RG": "Tabla de regiones. Cada región se enlaza con sus clientes, y el procedimiento de reporte arranca acá.",
+        "CL": "Tabla de clientes: ligada a su región, sus contratos y, por una tabla de enlace, sus consultores.",
+        "CT": "Tabla de contratos, entre cliente y consultor. Un procedimiento almacenado devuelve el más reciente.",
+        "CO": "Tabla de consultores: ligada a los contratos y, por tablas de enlace, a clientes y clasificaciones.",
+        "CF": "Tabla de clasificaciones de consultores, unida a los consultores por una tabla de enlace.",
+        "L1": "Tabla de enlace para el muchos a muchos entre clientes y consultores, con clave compuesta.",
+        "L2": "Tabla de enlace para el muchos a muchos entre consultores y clasificaciones, con clave compuesta.",
+        "TR": "Trigger de auditoría: después de una inserción en Cliente, agrega una fila con quién y cuándo.",
+        "LG": "ClientLog: las filas de auditoría (quién y cuándo) que escribe el trigger."
+      },
+      "web": {
+        "H": "Mi parte: la página de inicio, con un menú lateral que lleva a las demás páginas.",
+        "CS": "Mi parte: una hoja de estilos para todas las páginas: encabezado, navegación, pie y formularios.",
+        "T0": "Las páginas que hicieron mis compañeros. También escribieron los manuales.",
+        "P1": "Página para inscribir alumnos, hecha por un compañero y con mi hoja de estilos compartida.",
+        "P2": "Página para agregar instructores, hecha por un compañero y con mi hoja de estilos compartida.",
+        "P3": "Página para agregar cursos, hecha por un compañero y con mi hoja de estilos compartida.",
+        "P4": "Página de registro, hecha por un compañero y con mi hoja de estilos compartida.",
+        "P5": "Página para dar de baja un curso, hecha por un compañero y con mi hoja de estilos compartida."
+      },
+      "portfolio": {
+        "J": "Todo el texto del sitio vive en archivos JSON, con inglés y español lado a lado.",
+        "R": "La app React (Vite, TypeScript, Tailwind). Lee el texto de los archivos JSON.",
+        "SP": "El menú: una espiral 3D de tarjetas en three.js, con React Three Fiber. Gira en un ciclo sin fin.",
+        "LV": "Una lista simple en lugar de la espiral, en celulares y para quien pidió reducir el movimiento.",
+        "P": "Cada tarjeta abre un panel. Funciona con teclado y mantiene el foco adentro.",
+        "GL": "Un globo de alambre blanco que queda detrás de la mayoría de los paneles.",
+        "B": "Una insignia en la esquina con texto en órbita. Abre el carrete de fotos.",
+        "PR": "Un carrete de fotos que se abre desde la insignia de la esquina.",
+        "GH": "El código vive en GitHub. Cada push arranca un build nuevo.",
+        "V": "Vercel reconstruye el sitio estático con cada push. Sin backend y sin seguimiento.",
+        "L": "El sitio en vivo, el que estás viendo ahora."
       }
     }
   }

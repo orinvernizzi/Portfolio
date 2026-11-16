@@ -41,11 +41,12 @@ export interface Project {
 
 interface Content {
   ui: Record<
-    'spiral' | 'list' | 'menu' | 'close' | 'scrollHint' | 'downloadCv' | 'lang' | 'open' | 'viewCode' | 'newTab' | 'links' | 'tech' | 'badgeRing' | 'badgeLabel' | 'reelTitle' | 'reelPrev' | 'reelNext' | 'reelPause' | 'reelPlay' | 'reelCounter',
+    'spiral' | 'list' | 'menu' | 'close' | 'scrollHint' | 'downloadCv' | 'lang' | 'open' | 'viewCode' | 'newTab' | 'links' | 'tech' | 'badgeRing' | 'badgeLabel' | 'reelTitle' | 'reelPrev' | 'reelNext' | 'reelPause' | 'reelPlay' | 'reelCounter' | 'diagramExplore' | 'diagramEnlarge' | 'diagramHint' | 'zoomIn' | 'zoomOut' | 'zoomReset',
     string
   >
   alt: Record<'portrait' | 'hocr' | 'paraguay' | 'itti' | 'marietta' | 'cambridge' | 'cristorey' | 'techo' | 'techo1' | 'techo2', string>
   art: Record<string, { label: string }>
+  diagramNotes: Record<string, Record<string, string>>
   meta: { title: string; description: string; name: string; role: string; tagline: string; location: string }
   links: { email: string; linkedin: string; github: string; cv: string }
   sections: { id: string; title: string }[]

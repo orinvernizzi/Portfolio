@@ -28,9 +28,9 @@ portfolio/
     spiral/              the 3D menu: card faces, corner badge, photo reel
       reel-photos/       the photos for the corner badge and the reel
     styles/              theme.css (colours, font) and effects.css (animations)
-    components/          pieces shared by the panels: timeline, tech grid, menu drawer
+    components/          pieces shared by the panels: timeline, tech grid, menu drawer, diagram viewer
     lib/                 small helpers and the list of skill logos
-  tools/                 optional scripts that redraw pictures. The site never runs them
+  tools/                 optional scripts that redraw pictures or check the text. The site never runs them
     project-diagrams/    how the project diagrams and the folder map are drawn
       mermaid/           one text file per diagram and language (.mmd), and the script that draws them
         docs/            the text file for the folder map picture above
@@ -117,6 +117,17 @@ Three projects are screenshots (catch, dashboard, forecast), as `.webp`. They ar
 
 The text that describes each picture for screen readers is `art` at the bottom of `projects.json`.
 
+Tapping a project picture opens it big, with zoom buttons. That window is `src/components/DiagramViewer.tsx`. On the eight diagrams you can also tap a box: it lights up with its arrows and a one-line note shows underneath.
+
+### Change what a box says when tapped
+
+1. Open `src/content/projects.json` and find `diagramNotes` (after `art`, once under `en` and once under `es`).
+2. Find the project, then the box. Boxes are named by their id in the `.mmd` file: in `T["TLB<br/>16 entries"]` the id is `T`.
+3. Change the sentence. Keep it short (under about 110 characters) and change both languages.
+4. Run `npm run check-notes`. It says OK, or names the box that has no note (for example after you add a box to a `.mmd` file) or a note for a box that no longer exists.
+
+The look of a lit box (white outline, faded rest) is `.dv-*` in `src/styles/effects.css`. The words around it (the badge on the card, "Tap a box to see what it does", the zoom buttons) are `diagram*` and `zoom*` in `interface.json`.
+
 ### Add photos to the corner badge and the photo reel
 
 The corner badge is the small tilted photo at the bottom left of the spiral. Press it and the photo reel opens. Both use the same photos.
@@ -178,7 +189,7 @@ In `site.json`, under `meta`: `name`, `role`, `tagline`, `location`, plus `title
 
 1. In `src/content/projects.json`, copy an entry in `items` (in `en` and in `es`) and edit it. Fields: `id`, `group` (one of the `groups` ids: itti, rowing, systems, web), `title`, `tag`, `text`, `details` (bullets), `stack` (tech names), and optionally `legal`, `note`, `live`, `code`, `codeLabel`, `image`.
 2. Add its picture. For a diagram, write `tools/project-diagrams/mermaid/<id>.en.mmd` and `<id>.es.mmd` and run `npm run pictures` (see "Change a project card's picture" above). It creates `public/project-pictures/<id>.en.svg` and `<id>.es.svg` and adds the size to `src/content/pictureSizes.json`. For a screenshot, put `<id>.en.webp` and `<id>.es.webp` in `public/project-pictures/` and add `"image": "webp"` to the project.
-3. Add a description for the picture under `art` at the bottom of the file, as `"<id>": { "label": "..." }`, in both languages.
+3. Add a description for the picture under `art` at the bottom of the file, as `"<id>": { "label": "..." }`, in both languages. For a diagram, also add its box notes under `diagramNotes` and run `npm run check-notes`.
 4. `stack` names show as plain text tags on the project card. No logo is needed.
 
 ### Add a skill logo
@@ -255,7 +266,8 @@ To go live, push to GitHub (branch `main`). Vercel rebuilds by itself, and the n
 - `src/spiral/Spiral.tsx`, `Card3D.tsx`, `SpiralHud.tsx`, `SpiralBoundary.tsx`: the 3D engine and the on-screen controls of the spiral.
 - `src/spiral/badgePhotos.ts`: reads the reel photos folder.
 - `src/lib/useFocusTrap.ts`, `usePresence.ts`, `useReducedMotion.ts`: keyboard focus, open and close animations, reduced motion.
-- `src/components/Panel.tsx`, `MenuDrawer.tsx`, `TopBar.tsx`, `ListView.tsx`, `TechGrid.tsx`, `VantaGlobe.tsx`: the frame around the sections.
+- `src/components/Panel.tsx`, `MenuDrawer.tsx`, `TopBar.tsx`, `ListView.tsx`, `TechGrid.tsx`, `VantaGlobe.tsx`, `DiagramViewer.tsx`: the frame around the sections, and the window that opens a project picture.
+- `src/lib/diagramGraph.ts`: reads which boxes and arrows a diagram has, so a tapped box can light up its arrows.
 - `src/App.tsx`, `src/main.tsx`, `src/i18n.ts`: start-up and language.
 - `vite.config.ts`, `tsconfig.json`, `package-lock.json`: build settings.
 - Everything in `tools/` unless you are redrawing a picture.

@@ -79,6 +79,18 @@
 .reel-zoom-out { animation: reel-zoom-out 2.2s linear both; }
 .reel-btn:focus-visible { border-radius: 9999px; }
 
+/* Diagram viewer (src/components/DiagramViewer.tsx): unrelated boxes and arrows fade. The chosen box's white
+   outline is set in src/lib/diagramGraph.ts. !important because the diagram's own styles use an id selector. */
+.dv-svg .node { cursor: pointer; outline: none; }
+.dv-svg .node,
+.dv-svg .flowchart-link,
+.dv-svg .edgeLabel { transition: opacity 150ms ease-out; }
+.dv-dim .node:not(.dv-on, .dv-link),
+.dv-dim .flowchart-link:not(.dv-link),
+.dv-dim .edgeLabel:not(.dv-link) { opacity: 0.35; }
+.dv-svg .node:focus-visible > .label-container { stroke: #fff !important; stroke-width: 3.5px !important; }
+.dv-svg .flowchart-link.dv-link { stroke: #ededed !important; }
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

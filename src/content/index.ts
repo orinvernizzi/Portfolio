@@ -17,11 +17,12 @@ import site from './site.json'
 import skills from './skills.json'
 
 function build(lang: 'en' | 'es') {
-  const { art, ...projects } = projectsFile[lang]
+  const { art, diagramNotes, ...projects } = projectsFile[lang]
   return {
     ui: interfaceText[lang].ui,
     alt: interfaceText[lang].alt,
     art,
+    diagramNotes,
     meta: site[lang].meta,
     links: site[lang].links,
     sections: interfaceText[lang].sections,

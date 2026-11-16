@@ -15,7 +15,7 @@ JSON cannot hold comments, so this page explains what the keys mean.
 | Experience | `experience.json` | A list of entries: `period`, `role`, `org`, `place`, `logo`, `bullets` |
 | Things I work with | `skills.json` | `groups` (each has `title` and `items`), `other` (dashed tags), `languages` (one line) |
 | Education | `education.json` | A list of entries: `period`, `title`, `org`, `place`, `logo`, `url`, `urlOn`, `bullets` |
-| Projects | `projects.json` | `groups`, `items` (the project cards), `art` (picture descriptions) |
+| Projects | `projects.json` | `groups`, `items` (the project cards), `art` (picture descriptions), `diagramNotes` (what each diagram box says when tapped) |
 | Rowing | `rowing.json` | `lead`, `rosterUrl`, `rosterLabel`, `medals` |
 | Learning | `learning.json` | `lead`, `points` (bulleted list) |
 | Leadership | `leadership.json` | `lead`, `items` (entries like the ones in experience, plus `text` and `photos`) |
@@ -43,6 +43,7 @@ JSON cannot hold comments, so this page explains what the keys mean.
 - `live` and `code`: optional buttons. `codeLabel` replaces the words "View code".
 - `image`: `"webp"` for the screenshot projects (catch, forecast, dashboard). Leave it out for diagrams, which are SVG. The `portfolio` item, the last card in the Web group, is about this site and is a diagram.
 - `art` at the end of the file describes each picture for screen readers: `"art": { "<id>": { "label": "..." } }`.
+- `diagramNotes`, after `art`: one short sentence per diagram box, shown when a visitor taps that box in the enlarged diagram: `"diagramNotes": { "<project id>": { "<box id>": "..." } }`. The box id is the name before `["` in the `.mmd` file (`T` in `T["TLB<br/>16 entries"]`). `npm run check-notes` checks every box has a note in both languages.
 - `pictureSizes.json` (this folder) is not text. `npm run pictures` writes it: the size of each diagram, so the page can keep room for it. Do not edit it by hand.
 
 ## Keys inside a medal (`rowing.json`)
@@ -53,6 +54,7 @@ JSON cannot hold comments, so this page explains what the keys mean.
 
 - `ui`: button and label text. `badgeRing` is the text that runs around the corner badge, and `badgeLabel` is what a screen reader says for the badge.
   The `reel*` keys are the photo reel labels. `reelCounter` keeps `{n}` and `{total}` in place.
+  `diagramExplore` and `diagramEnlarge` are the small badges on the project pictures, `diagramHint` is the line under an enlarged diagram before a box is tapped, and `zoomIn`, `zoomOut`, `zoomReset` are its zoom buttons.
 - `alt`: picture descriptions for the portrait, the rowing photos, the logos and the two TECHO photos.
 - `sections`: the menu cards, in order. Each has `id` and `title`. The order here is the order around the spiral.
   The `id` must exist in `src/sections/registry.tsx` and `src/spiral/cardFaces.ts`.
