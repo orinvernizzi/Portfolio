@@ -26,7 +26,6 @@ portfolio/
     content/             ALL the text, one JSON file per section, English and Spanish together
     sections/            how each opened card is laid out (one file per card)
     spiral/              the 3D menu: card faces, corner badge, photo reel
-      reel-photos/       the photos for the corner badge and the reel
     styles/              theme.css (colours, font) and effects.css (animations)
     components/          pieces shared by the panels: timeline, tech grid, menu drawer, diagram viewer
     lib/                 small helpers and the list of skill logos
@@ -117,7 +116,7 @@ Three projects are screenshots (catch, dashboard, forecast), as `.webp`. They ar
 
 The text that describes each picture for screen readers is `art` at the bottom of `projects.json`.
 
-Tapping a project picture opens it big, with zoom buttons. That window is `src/components/DiagramViewer.tsx`. On the eight diagrams you can also tap a box: it lights up with its arrows and a one-line note shows underneath.
+Tapping a diagram opens it big, with zoom buttons. That window is `src/components/DiagramViewer.tsx`. The three screenshots are plain pictures. On the eight diagrams you can also tap a box: it lights up with its arrows and a one-line note shows underneath.
 
 ### Change what a box says when tapped
 
@@ -132,11 +131,10 @@ The look of a lit box (white outline, faded rest) is `.dv-*` in `src/styles/effe
 
 The corner badge is the small tilted photo at the bottom left of the spiral. Press it and the photo reel opens. Both use the same photos.
 
-1. Drop your photos in `src/spiral/reel-photos/`.
-2. Name them so they sort in the order you want: `badge-1.webp`, `badge-2.webp`, `badge-3.webp`, then `badge-10.webp` after `badge-9.webp`. Numbers are counted properly, so you do not need leading zeros.
-3. Delete the three placeholder photos when you add your own. With an empty folder the badge shows a plain grey tile and pressing it does nothing.
+1. Drop your photo in `public/photos/`.
+2. Open `src/spiral/badgePhotos.ts` and add one line with its path, like `'/photos/my-photo.webp',`. The photos play in the order of that list.
 
-That is all. No code to change. If the dev server does not show a new photo, refresh the page.
+That is all. If the dev server does not show a new photo, refresh the page. The list is empty? Then the badge shows a plain grey tile and pressing it does nothing.
 
 Size advice: about 1600 px on the long side, WebP or JPG (PNG works), under 160 kB each so the reel opens fast. In the reel every photo is shown whole, so wide, tall and square photos all work. The small tile is cropped to 16:9 and hangs off the corner, so only its top right part is visible. Keep the face in the upper right of the photo.
 
@@ -168,7 +166,7 @@ To change the font: run `npm install @fontsource-variable/<font-name>`, add `imp
 Colours that are not in `theme.css`:
 
 - Menu card faces: `src/spiral/cardFaces.ts`, `cardStyle.ts` and a few inside `cardDrawing.ts` (the skill tiles, the chart on the Projects card).
-- The globe behind the panels: `src/lib/vanta.ts` (`color`, `color2`, `backgroundColor`, written like `0xffffff`).
+- The landscape behind the panels: the knobs at the top of `src/components/Landscape.tsx` (speed, dot size and spacing, mountain height, haze, twinkle, colours).
 - The black behind the spiral and the floor grid: `BG` and `gridHelper` in `src/spiral/Spiral.tsx`.
 - The medal metals: `TONES` at the top of `src/components/Medal.tsx`.
 - Diagram pictures: `themeVariables` near the top of `tools/project-diagrams/mermaid/build-mermaid.mjs`, then `npm run pictures`.
@@ -264,9 +262,9 @@ To go live, push to GitHub (branch `main`). Vercel rebuilds by itself, and the n
 ## Files you should not need to touch
 
 - `src/spiral/Spiral.tsx`, `Card3D.tsx`, `SpiralHud.tsx`, `SpiralBoundary.tsx`: the 3D engine and the on-screen controls of the spiral.
-- `src/spiral/badgePhotos.ts`: reads the reel photos folder.
+- `src/spiral/badgePhotos.ts`: the list of reel photos (the only part you edit) and the code that loads them.
 - `src/lib/useFocusTrap.ts`, `usePresence.ts`, `useReducedMotion.ts`: keyboard focus, open and close animations, reduced motion.
-- `src/components/Panel.tsx`, `MenuDrawer.tsx`, `TopBar.tsx`, `ListView.tsx`, `TechGrid.tsx`, `VantaGlobe.tsx`, `DiagramViewer.tsx`: the frame around the sections, and the window that opens a project picture.
+- `src/components/Panel.tsx`, `MenuDrawer.tsx`, `TopBar.tsx`, `ListView.tsx`, `TechGrid.tsx`, `Landscape.tsx`, `DiagramViewer.tsx`: the frame around the sections, the animated background, and the window that opens a project diagram.
 - `src/lib/diagramGraph.ts`: reads which boxes and arrows a diagram has, so a tapped box can light up its arrows.
 - `src/App.tsx`, `src/main.tsx`, `src/i18n.ts`: start-up and language.
 - `vite.config.ts`, `tsconfig.json`, `package-lock.json`: build settings.

@@ -5,7 +5,7 @@ import { highlight, nodeIdOf, readDiagram, type DiagramGraph } from '../lib/diag
 import { useFocusTrap } from '../lib/useFocusTrap'
 import { usePresence } from '../lib/usePresence'
 
-// A project picture opened big, with zoom. Diagrams (.svg) are also explorable: tap a box to light it
+// A project diagram (.svg) opened big, with zoom. Tap a box to light it
 // up with its arrows and read its note. Notes: diagramNotes in src/content/projects.json.
 // Labels (zoom, hint): ui.zoom* and ui.diagram* in src/content/interface.json. Highlight look: .dv-* in effects.css.
 
@@ -32,7 +32,6 @@ interface Props {
   id: string
   title: string
   alt: string
-  photo: boolean
   width: number
   height: number
 }
@@ -43,7 +42,7 @@ export function DiagramViewer(props: Props) {
   return createPortal(<Viewer {...props} active={active} />, document.body)
 }
 
-function Viewer({ open, onClose, id, title, alt, photo, width, height, active }: Props & { active: boolean }) {
+function Viewer({ open, onClose, id, title, alt, width, height, active }: Props & { active: boolean }) {
   const { ui, diagramNotes } = useContent()
   const lang = useLang()
   const ref = useRef<HTMLDivElement>(null)
@@ -58,7 +57,7 @@ function Viewer({ open, onClose, id, title, alt, photo, width, height, active }:
   const [box, setBox] = useState({ w: 0, h: 0 })
   const [zoom, setZoom] = useState(1)
   const [shown, setShown] = useState<string | null>(null)
-  const src = `/project-pictures/${id}.${lang}.${photo ? 'webp' : 'svg'}`
+  const src = `/project-pictures/${id}.${lang}.svg`
   useFocusTrap(ref, open, onClose)
 
   useEffect(() => {
@@ -80,7 +79,6 @@ function Viewer({ open, onClose, id, title, alt, photo, width, height, active }:
 
   // Inject the diagram once; React never renders children into `host`, so it leaves it alone.
   useEffect(() => {
-    if (photo) return
     let live = true
     loadSvg(src)
       .then((text) => {
@@ -108,7 +106,7 @@ function Viewer({ open, onClose, id, title, alt, photo, width, height, active }:
     return () => {
       live = false
     }
-  }, [src, alt, photo])
+  }, [src, alt])
 
   const show = () => {
     const next = hover.current ?? pin.current
@@ -127,7 +125,7 @@ function Viewer({ open, onClose, id, title, alt, photo, width, height, active }:
   // Fit the picture to the window, but keep diagram text readable; zoom multiplies that.
   const ratio = width / height
   const fitW = Math.max(0, Math.min(box.w - PAD * 2, (box.h - PAD * 2) * ratio))
-  const baseW = photo ? fitW : Math.max(fitW, (width * MIN_TEXT_PX) / DIAGRAM_TEXT_PX)
+  const baseW = Math.max(fitW, (width * MIN_TEXT_PX) / DIAGRAM_TEXT_PX)
   const minZoom = Math.min(1, fitW / baseW)
   const contentW = Math.round(baseW * zoom)
 
@@ -204,24 +202,22 @@ function Viewer({ open, onClose, id, title, alt, photo, width, height, active }:
           }}
         >
           <div className="relative m-auto shrink-0" style={{ padding: PAD, width: contentW ? contentW + PAD * 2 : undefined }}>
-            {(photo || !svgReady) && <img src={src} alt={alt} width={width} height={height} draggable={false} className="block h-auto w-full select-none" />}
-            {!photo && <div ref={host} hidden={!svgReady} />}
+            {!svgReady && <img src={src} alt={alt} width={width} height={height} draggable={false} className="block h-auto w-full select-none" />}
+            <div ref={host} hidden={!svgReady} />
           </div>
         </div>
 
         <footer className="flex shrink-0 flex-col gap-3 border-t border-line px-4 py-3 sm:flex-row sm:items-center md:px-6">
-          {!photo && (
-            <p aria-live="polite" className="m-0 min-h-[2.75rem] flex-1 text-[15px] leading-snug text-fg/90">
-              {shown ? (
-                <>
-                  <strong className="font-semibold text-fg">{label}</strong>
-                  {note && <span className="text-fg/85"> · {note}</span>}
-                </>
-              ) : (
-                <span className="text-muted">{svgReady ? ui.diagramHint : ''}</span>
-              )}
-            </p>
-          )}
+          <p aria-live="polite" className="m-0 min-h-[2.75rem] flex-1 text-[15px] leading-snug text-fg/90">
+            {shown ? (
+              <>
+                <strong className="font-semibold text-fg">{label}</strong>
+                {note && <span className="text-fg/85"> · {note}</span>}
+              </>
+            ) : (
+              <span className="text-muted">{svgReady ? ui.diagramHint : ''}</span>
+            )}
+          </p>
           <div className="flex items-center gap-2 sm:ml-auto">
             <button type="button" onClick={() => zoomTo(zoom / ZOOM_STEP)} aria-disabled={zoom <= minZoom + 0.001} aria-label={ui.zoomOut} className={roundButton}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true">

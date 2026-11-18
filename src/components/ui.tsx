@@ -1,3 +1,5 @@
+// Small pieces shared by the panels: tag chips, button links, icons, external links and logo chips.
+// Logo files are the LOGOS table near the bottom (public/logos); icon shapes are in Icon.
 import type { ReactNode } from 'react'
 
 export function Chip({ children, accent = false }: { children: ReactNode; accent?: boolean }) {

@@ -217,7 +217,7 @@
         "tag": "Web · personal project",
         "text": "A bilingual (English and Spanish) portfolio, and the site you are on. Its menu is a 3D spiral of cards that you scroll through in an endless loop, and each card opens a panel. On phones, and for anyone who asked their device to reduce motion, it is a plain list instead.",
         "details": [
-          "Black and white on purpose, with photos and brand-coloured logos. A white wireframe globe sits behind most panels, and a corner badge with orbiting text opens a photo reel. I kept it simple.",
+          "Black and white on purpose, with photos and brand-coloured logos. An animated landscape of dotted mountains, rebuilt in three.js, sits behind every panel, and a corner badge with orbiting text opens a photo reel. I kept it simple.",
           "React, TypeScript, Vite and Tailwind. The spiral is three.js through React Three Fiber, with the card faces painted on a canvas.",
           "All the text lives in JSON files, English and Spanish side by side. The project diagrams are written as Mermaid text and rendered to SVG by a script.",
           "A static site with no backend and no tracking. It is hosted on Vercel, which rebuilds it on every push to GitHub.",
@@ -266,7 +266,7 @@
         "label": "Illustration: a diagram of the course registration site. On the left, two boxes marked as my part: the home page and the shared stylesheet. They connect to a box of teammates’ pages: enroll student, add instructor, add course, register and drop course. The home page connects through its menu, and the stylesheet with a dotted arrow, because it styles every page. Simplified illustration."
       },
       "portfolio": {
-        "label": "Illustration: a diagram of how this site works. The content JSON files (English and Spanish) feed the React app (Vite, TypeScript, Tailwind; highlighted). The app shows a spiral menu made with three.js, and a list view on phones. The spiral menu opens a panel, with a white wireframe globe behind it, and has a corner badge that leads to a photo reel. Separately, a push to GitHub makes Vercel build the live site. Simplified illustration."
+        "label": "Illustration: a diagram of how this site works. The content JSON files (English and Spanish) feed the React app (Vite, TypeScript, Tailwind; highlighted). The app shows a spiral menu made with three.js, and a list view on phones. The spiral menu opens a panel, with an animated landscape of dotted mountains behind it, and has a corner badge that leads to a photo reel. Separately, a push to GitHub makes Vercel build the live site. Simplified illustration."
       }
     },
     "diagramNotes": {
@@ -351,7 +351,7 @@
         "SP": "The menu: a 3D spiral of cards in three.js, through React Three Fiber. It loops endlessly.",
         "LV": "A plain list instead of the spiral, on phones and for anyone who asked for reduced motion.",
         "P": "Each card opens a panel. It works with the keyboard and keeps focus inside.",
-        "GL": "A white wireframe globe that sits behind most panels.",
+        "GL": "An animated landscape of dotted mountains, rebuilt in three.js, that sits behind every panel.",
         "B": "A corner badge with orbiting text. It opens the photo reel.",
         "PR": "A reel of photos that opens from the corner badge.",
         "GH": "The code lives on GitHub. Every push starts a new build.",
@@ -578,7 +578,7 @@
         "tag": "Web · proyecto personal",
         "text": "Un portafolio bilingüe (inglés y español), y el sitio en el que estás. Su menú es una espiral 3D de tarjetas por la que te desplazas en un ciclo sin fin, y cada tarjeta abre un panel. En celulares, y para quien pidió a su dispositivo reducir el movimiento, es una lista simple.",
         "details": [
-          "En blanco y negro a propósito, con fotos y logos con los colores de cada marca. Un globo de alambre blanco queda detrás de la mayoría de los paneles, y una insignia en la esquina con texto en órbita abre un carrete de fotos. Lo mantuve simple.",
+          "En blanco y negro a propósito, con fotos y logos con los colores de cada marca. Un paisaje animado de montañas de puntos, reconstruido en three.js, queda detrás de cada panel, y una insignia en la esquina con texto en órbita abre un carrete de fotos. Lo mantuve simple.",
           "React, TypeScript, Vite y Tailwind. La espiral es three.js a través de React Three Fiber, con las caras de las tarjetas pintadas en un canvas.",
           "Todo el texto vive en archivos JSON, con inglés y español lado a lado. Los diagramas de los proyectos están escritos como texto Mermaid y un script los convierte en SVG.",
           "Un sitio estático, sin backend y sin seguimiento. Está alojado en Vercel, que lo reconstruye con cada push a GitHub.",
@@ -627,7 +627,7 @@
         "label": "Ilustración: un diagrama del sitio de inscripción a cursos. A la izquierda, dos cajas marcadas como mi parte: la página de inicio y la hoja de estilos compartida. Se conectan con una caja de páginas de compañeros: inscribir alumno, agregar instructor, agregar curso, registrarse y baja de curso. La página de inicio se conecta por su menú y la hoja de estilos con una flecha punteada, porque da estilo a todas las páginas. Ilustración simplificada."
       },
       "portfolio": {
-        "label": "Ilustración: un diagrama de cómo funciona este sitio. Los archivos JSON de contenido (en inglés y español) alimentan la app React (Vite, TypeScript, Tailwind; resaltada). La app muestra un menú espiral hecho con three.js y, en celulares, una vista de lista. El menú espiral abre un panel, con un globo de alambre blanco detrás, y tiene una insignia en la esquina que lleva a un carrete de fotos. Aparte, un push a GitHub hace que Vercel construya el sitio en vivo. Ilustración simplificada."
+        "label": "Ilustración: un diagrama de cómo funciona este sitio. Los archivos JSON de contenido (en inglés y español) alimentan la app React (Vite, TypeScript, Tailwind; resaltada). La app muestra un menú espiral hecho con three.js y, en celulares, una vista de lista. El menú espiral abre un panel, con un paisaje animado de montañas de puntos detrás, y tiene una insignia en la esquina que lleva a un carrete de fotos. Aparte, un push a GitHub hace que Vercel construya el sitio en vivo. Ilustración simplificada."
       }
     },
     "diagramNotes": {
@@ -712,7 +712,7 @@
         "SP": "El menú: una espiral 3D de tarjetas en three.js, con React Three Fiber. Gira en un ciclo sin fin.",
         "LV": "Una lista simple en lugar de la espiral, en celulares y para quien pidió reducir el movimiento.",
         "P": "Cada tarjeta abre un panel. Funciona con teclado y mantiene el foco adentro.",
-        "GL": "Un globo de alambre blanco que queda detrás de la mayoría de los paneles.",
+        "GL": "Un paisaje animado de montañas de puntos, reconstruido en three.js, que queda detrás de cada panel.",
         "B": "Una insignia en la esquina con texto en órbita. Abre el carrete de fotos.",
         "PR": "Un carrete de fotos que se abre desde la insignia de la esquina.",
         "GH": "El código vive en GitHub. Cada push arranca un build nuevo.",

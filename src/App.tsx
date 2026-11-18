@@ -1,3 +1,5 @@
+// The whole page: holds which view is on (spiral or list), which panel is open and whether the menu drawer is open.
+// Phones, no WebGL and reduced motion start in the list view. Section text: src/content. Section components: src/sections/registry.tsx.
 import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { TopBar, type View } from './components/TopBar'
 import { MenuDrawer } from './components/MenuDrawer'

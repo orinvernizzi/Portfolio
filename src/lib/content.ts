@@ -1,3 +1,5 @@
+// The shape (types) of the site text and the two hooks the components use: useContent() and useLang().
+// When you add a field to a .json file in src/content, add it to the Content type here too.
 import { useTranslation } from 'react-i18next'
 import type { Lang } from '../i18n'
 
@@ -41,7 +43,7 @@ export interface Project {
 
 interface Content {
   ui: Record<
-    'spiral' | 'list' | 'menu' | 'close' | 'scrollHint' | 'downloadCv' | 'lang' | 'open' | 'viewCode' | 'newTab' | 'links' | 'tech' | 'badgeRing' | 'badgeLabel' | 'reelTitle' | 'reelPrev' | 'reelNext' | 'reelPause' | 'reelPlay' | 'reelCounter' | 'diagramExplore' | 'diagramEnlarge' | 'diagramHint' | 'zoomIn' | 'zoomOut' | 'zoomReset',
+    'spiral' | 'list' | 'menu' | 'close' | 'scrollHint' | 'downloadCv' | 'lang' | 'open' | 'viewCode' | 'newTab' | 'links' | 'tech' | 'badgeRing' | 'badgeLabel' | 'reelTitle' | 'reelPrev' | 'reelNext' | 'reelPause' | 'reelPlay' | 'reelCounter' | 'diagramExplore' | 'diagramHint' | 'zoomIn' | 'zoomOut' | 'zoomReset',
     string
   >
   alt: Record<'portrait' | 'hocr' | 'paraguay' | 'itti' | 'marietta' | 'cambridge' | 'cristorey' | 'techo' | 'techo1' | 'techo2', string>

@@ -6,7 +6,7 @@
   The two exceptions are --color-accent and --color-ink in @theme, and --font-sans.
 
   Colours that are NOT here: the menu card faces (src/spiral/cardFaces.ts, cardStyle.ts, cardDrawing.ts),
-  the globe (src/lib/vanta.ts), the spiral background (BG in src/spiral/Spiral.tsx), the medal metals
+  the panel landscape (knobs in src/components/Landscape.tsx), the spiral background (BG in src/spiral/Spiral.tsx), the medal metals
   (src/components/Medal.tsx) and the diagram pictures (tools/project-diagrams/mermaid/build-mermaid.mjs).
   Keep text at 4.5:1 contrast or better against its background so it stays readable.
 */
@@ -36,7 +36,7 @@
   --surface: #0a0a0a; /* cards and panels that sit on the page background */
   --line: #1f1f1f; /* thin borders and dividers */
   --chip: #111; /* background of the small tag pills */
-  --accent-text: #e5e5e5; /* light grey, 4.5:1+ over the brightest globe line */
+  --accent-text: #e5e5e5; /* light grey, 4.5:1+ over the scrimmed landscape */
   color-scheme: dark;
 }
 

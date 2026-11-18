@@ -1,3 +1,5 @@
+// The dated list used by Experience, Education and Leadership: period, title, place, logo, bullets and optional photos.
+// Entries: experience.json, education.json, leadership.json. The two TECHO photos are the PHOTOS table just below.
 import { useContent, type Block } from '../lib/content'
 import { ExtLink, LogoChip } from './ui'
 

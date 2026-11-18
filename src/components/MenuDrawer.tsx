@@ -1,3 +1,5 @@
+// The slide-in menu opened by the top bar's menu button: a numbered list of every section.
+// The section names are `sections` in src/content/interface.json.
 import { useRef } from 'react'
 import { useContent } from '../lib/content'
 import { useFocusTrap } from '../lib/useFocusTrap'

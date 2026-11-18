@@ -1,12 +1,13 @@
-// The list of photos for the corner badge and the photo reel.
-// Every .jpg, .jpeg, .png or .webp you drop in src/spiral/reel-photos/ shows up here by itself,
-// sorted by file name with numbers in order (badge-2 comes before badge-10). No code to change.
+// The photos for the corner badge and the photo reel, in play order. They are the files in public/photos.
+// To add one: drop it in public/photos and add its path to this list.
 // The rest of the file loads each photo once and remembers its width and height for the reel.
-export const PHOTOS: string[] = Object.entries(
-  import.meta.glob<string>('./reel-photos/*.{jpg,jpeg,png,webp}', { eager: true, query: '?url', import: 'default' }),
-)
-  .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
-  .map(([, url]) => url)
+export const PHOTOS: string[] = [
+  '/photos/portrait.webp',
+  '/photos/rowing-paraguay.webp',
+  '/photos/rowing-hocr.webp',
+  '/photos/techo-1.webp',
+  '/photos/techo-2.webp',
+]
 
 const FALLBACK_RATIO = 3 / 2
 const ratios = new Map<string, number>()

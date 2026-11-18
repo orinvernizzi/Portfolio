@@ -23,7 +23,7 @@ npm run folder-map  # redraw docs/folder-map.svg
 | Colours, fonts, sizes | `src/styles/theme.css` |
 | Animations and effects | `src/styles/effects.css` |
 | Menu cards: photo, logo, colours | `src/spiral/cardFaces.ts` |
-| Corner badge and photo reel photos | `src/spiral/reel-photos/` |
+| Corner badge and photo reel photos | `src/spiral/badgePhotos.ts` (list) and `public/photos` |
 | Photos, logos, tech icons, project pictures, CVs | `public/photos`, `public/logos`, `public/tech-icons`, `public/project-pictures`, `public/cv` |
 | What each opened card looks like | `src/sections/` |
 | Project diagrams: Mermaid text files and the script that draws them (optional) | `tools/project-diagrams/mermaid/` |

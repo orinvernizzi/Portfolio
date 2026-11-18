@@ -54,7 +54,7 @@ JSON cannot hold comments, so this page explains what the keys mean.
 
 - `ui`: button and label text. `badgeRing` is the text that runs around the corner badge, and `badgeLabel` is what a screen reader says for the badge.
   The `reel*` keys are the photo reel labels. `reelCounter` keeps `{n}` and `{total}` in place.
-  `diagramExplore` and `diagramEnlarge` are the small badges on the project pictures, `diagramHint` is the line under an enlarged diagram before a box is tapped, and `zoomIn`, `zoomOut`, `zoomReset` are its zoom buttons.
+  `diagramExplore` is the small badge on the diagram pictures, `diagramHint` is the line under an enlarged diagram before a box is tapped, and `zoomIn`, `zoomOut`, `zoomReset` are its zoom buttons.
 - `alt`: picture descriptions for the portrait, the rowing photos, the logos and the two TECHO photos.
 - `sections`: the menu cards, in order. Each has `id` and `title`. The order here is the order around the spiral.
   The `id` must exist in `src/sections/registry.tsx` and `src/spiral/cardFaces.ts`.

@@ -4,7 +4,7 @@ import { PHOTOS, preloadPhotos } from './badgePhotos'
 import { PhotoReel } from './PhotoReel'
 
 // The small photo tile in the bottom-left corner of the spiral, with text running around it.
-// Photos come from src/spiral/reel-photos/ (see badgePhotos.ts). The ring text is ui.badgeRing in
+// Photos come from the list in badgePhotos.ts. The ring text is ui.badgeRing in
 // src/content/interface.json. The tilt (-15deg) and the hover wobble are in src/styles/effects.css (.badge-tile).
 
 // ---- Knobs: change these numbers ----

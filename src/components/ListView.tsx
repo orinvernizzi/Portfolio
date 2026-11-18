@@ -1,3 +1,5 @@
+// The plain scrolling page (phones, reduced motion, no WebGL): every section one after another, then the footer links.
+// Section text: src/content. Which component draws each section: src/sections/registry.tsx. Footer links: src/content/site.json.
 import { useEffect } from 'react'
 import { SECTION_VIEWS } from '../sections/registry'
 import { Intro } from '../sections/Intro'

@@ -91,6 +91,46 @@
 .dv-svg .node:focus-visible > .label-container { stroke: #fff !important; stroke-width: 3.5px !important; }
 .dv-svg .flowchart-link.dv-link { stroke: #ededed !important; }
 
+/* Top switch (spiral / list): on hover or keyboard focus each letter takes its own colour, one after another, with a small hop.
+   Timing: 0.4s colour fade, 0.55s hop, 45ms between letters. Bright colours on the dark bar, deeper ones on the white (active) pill. */
+.hop {
+  --c1: #c084fc; --c2: #f472b6; --c3: #ff6b4a; --c4: #fb923c; --c5: #60a5fa;
+}
+.hop[aria-pressed='true'] {
+  --c1: #7e22ce; --c2: #be185d; --c3: #b91c1c; --c4: #c2410c; --c5: #1d4ed8;
+}
+.hop-l {
+  display: inline-block;
+  transform-origin: center bottom;
+  transition: color 0.4s cubic-bezier(0.45, 0, 0.55, 1);
+}
+.hop-l:nth-child(5n + 1) { --c: var(--c1); }
+.hop-l:nth-child(5n + 2) { --c: var(--c2); }
+.hop-l:nth-child(5n + 3) { --c: var(--c3); }
+.hop-l:nth-child(5n + 4) { --c: var(--c4); }
+.hop-l:nth-child(5n + 5) { --c: var(--c5); }
+@keyframes hop-lift {
+  0% { transform: translateY(0); }
+  30% { transform: translateY(-4px); }
+  60% { transform: translateY(1px); }
+  100% { transform: translateY(0); }
+}
+@media (hover: hover) and (pointer: fine) {
+  .hop:hover .hop-l {
+    color: var(--c);
+    transition-delay: calc(var(--i) * 45ms);
+    animation: hop-lift 0.55s ease-out calc(var(--i) * 45ms) both;
+  }
+}
+.hop:focus-visible .hop-l {
+  color: var(--c);
+  transition-delay: calc(var(--i) * 45ms);
+  animation: hop-lift 0.55s ease-out calc(var(--i) * 45ms) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hop-l { animation: none !important; transition-delay: 0s !important; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

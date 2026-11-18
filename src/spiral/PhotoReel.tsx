@@ -6,7 +6,7 @@ import { usePresence } from '../lib/usePresence'
 import { useReducedMotion } from '../lib/useReducedMotion'
 import { PHOTOS, getRatio, loadPhoto } from './badgePhotos'
 
-// The photo reel that opens when you press the corner badge. Photos come from src/spiral/reel-photos/.
+// The photo reel that opens when you press the corner badge. Photos come from the list in badgePhotos.ts.
 // The labels (title, previous, next, pause) are ui.reel* in src/content/interface.json.
 // The slow zoom on each photo and the fade-in are in src/styles/effects.css (.reel-*), but the
 // timings below win: they are set on each element from here.

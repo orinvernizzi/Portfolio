@@ -1,13 +1,25 @@
-import { useRef, useState } from 'react'
+// The window that opens over the spiral when you pick a section: animated landscape behind, title bar, the section inside.
+// The section shown comes from src/sections/registry.tsx; the dark layer over the landscape is the gradient below.
+import { Component, lazy, Suspense, useRef, useState, type ComponentType, type ReactNode } from 'react'
 import { SECTION_VIEWS } from '../sections/registry'
 import { useContent } from '../lib/content'
 import { useFocusTrap } from '../lib/useFocusTrap'
 import { usePresence } from '../lib/usePresence'
 import { Icon } from './ui'
-import { VantaGlobe } from './VantaGlobe'
+// Loaded on first panel open so three.js stays out of the main bundle. If the chunk fails to load, the panel stays plain black.
+const Landscape = lazy<ComponentType>(() =>
+  import('./Landscape').then((m) => ({ default: m.Landscape })).catch(() => ({ default: () => null })),
+)
 
-// Sections without a photo get the live globe behind them.
-const GLOBE_SECTIONS = new Set(['experience', 'skills', 'education', 'projects', 'learning', 'leadership', 'contact'])
+class LandscapeBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
+  state = { failed: false }
+  static getDerivedStateFromError() {
+    return { failed: true }
+  }
+  render() {
+    return this.state.failed ? null : this.props.children
+  }
+}
 
 interface Props {
   sectionId: string | null
@@ -45,13 +57,21 @@ export function Panel({ sectionId, onClose }: Props) {
         tabIndex={-1}
         className={`relative flex max-h-full w-full max-w-6xl flex-col overflow-hidden rounded-2xl border border-line bg-black text-fg shadow-2xl transition duration-300 ease-out md:rounded-3xl ${active ? 'dialog-open' : 'dialog-enter'}`}
       >
-        {GLOBE_SECTIONS.has(shown) && (
-          <>
-            <VantaGlobe />
-            <div className="pointer-events-none absolute inset-0 z-[1] bg-black/75" aria-hidden="true" />
-          </>
-        )}
-        <header className="relative z-10 flex shrink-0 items-center justify-between gap-3 border-b border-line bg-black/80 px-4 py-2 backdrop-blur md:px-10 md:py-2">
+        <LandscapeBoundary>
+          <Suspense fallback={null}>
+            <Landscape />
+          </Suspense>
+        </LandscapeBoundary>
+        <div
+          className="pointer-events-none absolute inset-0 z-[1] bg-black/20"
+          style={{
+            // backgroundImage, not background: the shorthand would wipe out the bg-black/20 base.
+            backgroundImage:
+              'linear-gradient(to right, rgb(0 0 0 / 0.5), rgb(0 0 0 / 0.3) 55%, rgb(0 0 0 / 0.2)), linear-gradient(to top, rgb(0 0 0 / 0.5), transparent 45%)',
+          }}
+          aria-hidden="true"
+        />
+        <header className="relative z-10 flex shrink-0 items-center justify-between gap-3 border-b border-line bg-black/70 px-4 py-2 backdrop-blur md:px-10 md:py-2">
           <div className="min-w-0">
             <p className="eyebrow m-0 !text-[11px] leading-none">
               {String(index + 1).padStart(2, '0')} / {String(c.sections.length).padStart(2, '0')}

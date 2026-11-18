@@ -1,4 +1,6 @@
-import type { RefObject } from 'react'
+// The top bar: name, the spiral / list switch, language button and menu button.
+// The switch words are ui.spiral and ui.list in src/content/interface.json. The coloured hover letters are .hop in src/styles/effects.css.
+import type { CSSProperties, RefObject } from 'react'
 import { setLanguage } from '../i18n'
 import { useContent, useLang } from '../lib/content'
 
@@ -17,14 +19,22 @@ interface Props {
 export function TopBar({ view, canSpiral, solid, menuRef, menuOpen, onView, onMenu }: Props) {
   const c = useContent()
   const lang = useLang()
+  // Each letter is its own aria-hidden span (colour and lift on hover); aria-label keeps the whole word for screen readers.
   const seg = (v: View, text: string) => (
     <button
       type="button"
+      aria-label={text}
       aria-pressed={view === v}
       onClick={() => onView(v)}
-      className={`min-h-11 rounded-full px-4 text-sm font-semibold transition-colors ${view === v ? 'bg-white text-ink' : 'text-fg hover:bg-white/10'}`}
+      className={`hop min-h-11 rounded-full px-4 text-sm font-semibold transition-colors ${view === v ? 'bg-white text-ink' : 'text-fg hover:bg-white/10'}`}
     >
-      {text}
+      <span aria-hidden="true">
+        {[...text].map((ch, i) => (
+          <span key={i} className="hop-l" style={{ '--i': i } as CSSProperties}>
+            {ch}
+          </span>
+        ))}
+      </span>
     </button>
   )
 

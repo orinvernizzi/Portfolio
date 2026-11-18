@@ -1,3 +1,5 @@
+// Everything drawn on top of the spiral: the keyboard menu, the "01 / 11" counter, the scroll hint, the corner badge and the side ticks.
+// The hint and labels come from `ui` in src/content/interface.json.
 import { CornerBadge } from './CornerBadge'
 
 interface Props {
