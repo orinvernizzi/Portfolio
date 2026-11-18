@@ -1,37 +1,37 @@
 # project-diagrams
 
-Draws the pictures on the project cards that are diagrams, and the folder map in `docs/`. You only need it when you want to change one of them. The site never runs it.
+Draws the diagram pictures on the project cards, plus the folder map in `docs/`. Only needed when changing one. The site never runs it.
 
-Each diagram is a short text file written in Mermaid, a way of describing a diagram in words:
+Each diagram is a short Mermaid text file (a diagram written in words):
 
-- `mermaid/<id>.en.mmd` and `mermaid/<id>.es.mmd`: one diagram per project and language. The ids are orquestador, pep9, vmm, sched, sudoku, db, web and portfolio.
-- `mermaid/docs/folder-map.mmd`: the folder map used in START-HERE.md (English only).
+- `mermaid/<id>.en.mmd` and `mermaid/<id>.es.mmd`: one per project and language. Ids: orquestador, pep9, vmm, sched, sudoku, db, web, portfolio.
+- `mermaid/docs/folder-map.mmd`: the folder map in START-HERE.md (English only).
 - `mermaid/build-mermaid.mjs`: the script that draws them.
 
 ## Change or add a diagram
 
-1. Edit the `.mmd` file, in both languages. The text inside the quotes is the label of a box. Write `<br/>` to break a label into two lines.
-2. Run `npm run pictures`. For one diagram only: `node tools/project-diagrams/mermaid/build-mermaid.mjs sudoku`.
-3. For a new project, copy an existing pair of files to `<id>.en.mmd` and `<id>.es.mmd` and edit them.
+1. Edit the `.mmd`, both languages. Text inside the quotes = box label. `<br/>` splits a label into two lines.
+2. Run `npm run pictures`. Just one: `node tools/project-diagrams/mermaid/build-mermaid.mjs sudoku`.
+3. New project: copy a pair to `<id>.en.mmd` and `<id>.es.mmd` and edit them.
 
-The script loads Mermaid from the web and draws in a hidden Edge or Chrome window, so it needs internet and one of those browsers. If either is missing it prints a message and leaves every file as it was.
+The script loads Mermaid from the web and draws in a hidden Edge or Chrome window, so it needs internet and one of those. Missing either? It says so and leaves every file alone.
 
 ## What it writes
 
-- `public/project-pictures/<id>.<en|es>.svg`: the picture on the card.
-- `src/content/pictureSizes.json`: the size of each picture. The Projects panel reads it so the page keeps the right space while the picture loads.
-- `docs/folder-map.svg`: only when you run `npm run folder-map`, or `npm run pictures` (which draws everything).
+- `public/project-pictures/<id>.<en|es>.svg`: the card picture.
+- `src/content/pictureSizes.json`: each picture's size, so the Projects panel saves the right space while it loads.
+- `docs/folder-map.svg`: only with `npm run folder-map` or `npm run pictures` (which draws everything).
 
-Do not edit these files by hand. The next run overwrites them.
+Don't edit these by hand, the next run overwrites them.
 
 ## Keep diagrams narrow
 
-`MAX_WIDTH` at the top of the script is the widest a card diagram may be, in drawing units: 520. A phone shows the picture about 320 px wide, so a wider drawing would shrink its text below a readable size. A drawing narrower than 440 is centred on a canvas that wide, so the text looks about the same size on every card.
+`MAX_WIDTH` at the top of the script is the widest a card diagram can be: 520 drawing units. A phone shows it about 320 px wide, so anything wider makes the text unreadable. Anything narrower than 440 gets centred on a 440 canvas so text looks the same size on every card.
 
-If a diagram is too wide, the script stops and names the file. Nothing is written. Put at most two boxes in a row, shorten the labels, or split a long chain into two rows.
+Too wide? The script stops, names the file, writes nothing. Max two boxes per row, shorter labels, or split a long chain into two rows.
 
-Pictures in `docs/` are read on a computer, so they have their own limit, `MAX_WIDTH_DOCS` (900).
+`docs/` pictures are read on a computer, so they get their own limit, `MAX_WIDTH_DOCS` (900).
 
-## Look and size of the drawings
+## Look and size
 
-The colours and the font size are in `config` near the top of the script (`themeVariables`). Boxes are measured with a wide font and extra spacing, so labels still fit when the viewer's monospace font is wider. The finished SVG has no scripts and no outside links, and each file stays under 40 kB.
+Colours and font size are in `config` near the top of the script (`themeVariables`). Boxes are measured with a wide font and extra spacing so labels still fit if the viewer's monospace font is wider. The SVGs have no scripts and no outside links, and each stays under 40 kB.

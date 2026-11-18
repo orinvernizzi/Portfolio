@@ -1,44 +1,40 @@
 # Portfolio
 
-Bilingual (EN/ES) personal portfolio with two views: a 3D spiral of cards (React Three Fiber) and a classic single-page list. Built with Vite, React 19, TypeScript and Tailwind 4.
+My portfolio, in English and Spanish. Two views: a 3D spiral of cards (React Three Fiber) and a plain one-page list. Vite, React 19, TypeScript, Tailwind 4.
 
-**Want to change something? Read [START-HERE.md](START-HERE.md).**
+**Want to change something? Go to [START-HERE.md](START-HERE.md).**
 
 ## Run it
 
 ```powershell
 npm install
-npm run dev       # http://localhost:5173
-npm run build     # type-check + production build into dist/
-npm run preview   # serve the production build
-npm run pictures    # redraw the project diagrams from tools/project-diagrams/mermaid (needs internet and Edge or Chrome)
-npm run folder-map  # redraw docs/folder-map.svg
+npm run dev          # http://localhost:5173
+npm run build        # type-check + build into dist/
+npm run preview      # serve the build
+npm run pictures     # redraw the project diagrams (needs internet and Edge or Chrome)
+npm run folder-map   # redraw docs/folder-map.svg
+npm run check-notes  # check every diagram box has a note, in EN and ES
 ```
 
-## Where things live
+## Where stuff is
 
 | What | Where |
 | --- | --- |
-| All text, EN and ES side by side | `src/content/*.json` (one file per section) |
+| All the text, EN and ES together | `src/content/*.json` (one per section) |
 | Colours, fonts, sizes | `src/styles/theme.css` |
 | Animations and effects | `src/styles/effects.css` |
 | Menu cards: photo, logo, colours | `src/spiral/cardFaces.ts` |
-| Corner badge and photo reel photos | `src/spiral/badgePhotos.ts` (list) and `public/photos` |
-| Photos, logos, tech icons, project pictures, CVs | `public/photos`, `public/logos`, `public/tech-icons`, `public/project-pictures`, `public/cv` |
-| What each opened card looks like | `src/sections/` |
-| Project diagrams: Mermaid text files and the script that draws them (optional) | `tools/project-diagrams/mermaid/` |
-| Other scripts that regenerate pictures (optional) | `tools/` |
+| Corner badge and photo reel | `src/spiral/badgePhotos.ts` (list) and `public/photos` |
+| Photos, logos, tech icons, project pictures, CVs | `public/` |
+| How each opened card looks | `src/sections/` |
+| Project diagrams (Mermaid text files + the script that draws them) | `tools/project-diagrams/mermaid/` |
 
-## Behavior notes
+## How it behaves
 
-- Default view is the list on screens under 768px, with reduced motion, or without WebGL. The spiral toggle stays available unless WebGL is missing.
-- Spiral: wheel, touch/mouse drag or arrow keys move through the cards. Click a card, press Enter, or use the menu to open its panel. Esc closes it.
-- The language choice is stored in `localStorage` and falls back to the browser language.
+- Under 768px, with reduced motion, or without WebGL it starts on the list. You can still switch to the spiral unless there's no WebGL.
+- Spiral: wheel, drag or arrow keys to move. Click a card, hit Enter, or use the menu to open it. Esc closes.
+- The language choice is saved in `localStorage`. First visit uses the browser language.
 
-## Deploy to Vercel
+## Deploy
 
-It is a plain Vite SPA, so no extra config is needed.
-
-1. Push the repo to GitHub and import it in Vercel.
-2. Framework preset: Vite. Build command `npm run build`, output directory `dist`.
-3. Deploy.
+Plain Vite app, no extra config. It's on Vercel: push to `main` and it rebuilds on its own. For a fresh setup, import the repo in Vercel with the Vite preset (build `npm run build`, output `dist`).

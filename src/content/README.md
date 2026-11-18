@@ -1,60 +1,59 @@
-# src/content: all the text of the site
+# src/content: all the text on the site
 
-One JSON file per section. Every file has the same shape at the top: `{ "en": ..., "es": ... }`.
-English and Spanish live side by side in the same file, so change both or Spanish keeps the old text.
-JSON cannot hold comments, so this page explains what the keys mean.
+One JSON per section, all shaped `{ "en": ..., "es": ... }`. EN and ES live in the same file, so change both or Spanish keeps the old text.
+JSON can't have comments, so this page says what the keys mean.
 
-`index.ts` merges these files for the app. You never edit it unless you add a new section.
+`index.ts` merges these files for the app. Only touch it when adding a new section.
 
 ## Which file feeds which card
 
-| Card on the menu | File | What is inside |
+| Card | File | What's inside |
 | --- | --- | --- |
 | Hello | `site.json` | `meta`: `name`, `role`, `tagline`, `location`, `title` (browser tab), `description` (search result text). `links`: `email`, `linkedin`, `github`, `cv` |
 | About me | `about.json` | `lead` (big sentence), `points` (numbered list) |
-| Experience | `experience.json` | A list of entries: `period`, `role`, `org`, `place`, `logo`, `bullets` |
+| Experience | `experience.json` | list of entries: `period`, `role`, `org`, `place`, `logo`, `bullets` |
 | Things I work with | `skills.json` | `groups` (each has `title` and `items`), `other` (dashed tags), `languages` (one line) |
-| Education | `education.json` | A list of entries: `period`, `title`, `org`, `place`, `logo`, `url`, `urlOn`, `bullets` |
+| Education | `education.json` | list of entries: `period`, `title`, `org`, `place`, `logo`, `url`, `urlOn`, `bullets` |
 | Projects | `projects.json` | `groups`, `items` (the project cards), `art` (picture descriptions), `diagramNotes` (what each diagram box says when tapped) |
 | Rowing | `rowing.json` | `lead`, `rosterUrl`, `rosterLabel`, `medals` |
-| Learning | `learning.json` | `lead`, `points` (bulleted list) |
-| Leadership | `leadership.json` | `lead`, `items` (entries like the ones in experience, plus `text` and `photos`) |
-| Contact | `contact.json` | `lead` (the sentence above the email). The email and buttons come from `site.json` |
+| Learning | `learning.json` | `lead`, `points` (bullets) |
+| Leadership | `leadership.json` | `lead`, `items` (like experience entries, plus `text` and `photos`) |
+| Contact | `contact.json` | `lead` (the line above the email). Email and buttons come from `site.json` |
 
-`interface.json` is the text that is not a section: button labels, the ring text of the corner badge, picture descriptions, and the list of menu cards.
+`interface.json` is everything that isn't a section: button labels, the corner badge ring text, picture descriptions, and the list of menu cards.
 
-## Keys inside a timeline entry (experience, education, leadership)
+## Timeline entry keys (experience, education, leadership)
 
 - `period`: the date line above the heading.
 - `role` (experience) or `title` (education, leadership): the heading.
-- `org`, `place`: the grey line under the heading.
+- `org`, `place`: the grey line under it.
 - `logo`: `itti`, `marietta`, `cambridge`, `cristorey` or `techo`. The list is `LOGOS` in `src/components/ui.tsx`.
-- `url`: a link on the org name. With `"urlOn": "title"` the heading itself becomes the link.
+- `url`: link on the org name. With `"urlOn": "title"` the heading is the link instead.
 - `bullets`: the list under the heading. `text`: one paragraph instead of a list.
 - `photos` (leadership only): `"techo1"` and/or `"techo2"`. The files are named in `src/components/Timeline.tsx`.
 
-## Keys inside a project (`projects.json`, `items`)
+## Project keys (`projects.json`, `items`)
 
-- `id`: also the name of the picture file. Do not rename it without renaming the pictures.
-- `group`: must match the `id` of one of the `groups` above it (`itti`, `rowing`, `systems`, `web`).
+- `id`: also the picture file name. Don't rename it without renaming the pictures.
+- `group`: has to match one of the `groups` ids above it (`itti`, `rowing`, `systems`, `web`).
 - `title`, `tag` (small line above the title), `text` (short paragraph), `details` (bullets).
-- `stack`: names of the tech tags. They show as plain text tags on the card.
-- `legal` (highlighted box) and `note` (small grey text) are optional.
-- `live` and `code`: optional buttons. `codeLabel` replaces the words "View code".
-- `image`: `"webp"` for the screenshot projects (catch, forecast, dashboard). Leave it out for diagrams, which are SVG. The `portfolio` item, the last card in the Web group, is about this site and is a diagram.
-- `art` at the end of the file describes each picture for screen readers: `"art": { "<id>": { "label": "..." } }`.
-- `diagramNotes`, after `art`: one short sentence per diagram box, shown when a visitor taps that box in the enlarged diagram: `"diagramNotes": { "<project id>": { "<box id>": "..." } }`. The box id is the name before `["` in the `.mmd` file (`T` in `T["TLB<br/>16 entries"]`). `npm run check-notes` checks every box has a note in both languages.
-- `pictureSizes.json` (this folder) is not text. `npm run pictures` writes it: the size of each diagram, so the page can keep room for it. Do not edit it by hand.
+- `stack`: tech names, shown as plain text tags.
+- `legal` (highlighted box) and `note` (small grey text): optional.
+- `live` and `code`: optional buttons. `codeLabel` replaces "View code".
+- `image`: `"webp"` for the screenshot projects (catch, forecast, dashboard). Leave it out for diagrams (SVG). The `portfolio` item, last card in Web, is about this site and is a diagram.
+- `art` at the end: screen reader text for each picture, `"art": { "<id>": { "label": "..." } }`.
+- `diagramNotes`, after `art`: one short sentence per diagram box, shown when someone taps it in the big diagram: `"diagramNotes": { "<project id>": { "<box id>": "..." } }`. The box id is the name before `["` in the `.mmd` file (`T` in `T["TLB<br/>16 entries"]`). `npm run check-notes` checks every box has a note in both languages.
+- `pictureSizes.json` (this folder) isn't text. `npm run pictures` writes it with each diagram's size, so the page saves room for it. Don't edit it by hand.
 
-## Keys inside a medal (`rowing.json`)
+## Medal keys (`rowing.json`)
 
-`medals`: `["silver"]`, `["bronze"]` or both (two medals drawn side by side). `label` (the big word), `event`, `place`, `year`.
+`medals`: `["silver"]`, `["bronze"]` or both (two medals side by side). `label` (the big word), `event`, `place`, `year`.
 
-## Keys in `interface.json`
+## `interface.json` keys
 
-- `ui`: button and label text. `badgeRing` is the text that runs around the corner badge, and `badgeLabel` is what a screen reader says for the badge.
-  The `reel*` keys are the photo reel labels. `reelCounter` keeps `{n}` and `{total}` in place.
-  `diagramExplore` is the small badge on the diagram pictures, `diagramHint` is the line under an enlarged diagram before a box is tapped, and `zoomIn`, `zoomOut`, `zoomReset` are its zoom buttons.
-- `alt`: picture descriptions for the portrait, the rowing photos, the logos and the two TECHO photos.
-- `sections`: the menu cards, in order. Each has `id` and `title`. The order here is the order around the spiral.
-  The `id` must exist in `src/sections/registry.tsx` and `src/spiral/cardFaces.ts`.
+- `ui`: buttons and labels. `badgeRing` is the text spinning around the corner badge, `badgeLabel` is what a screen reader says for it.
+  `reel*` keys are the photo reel labels. `reelCounter` keeps `{n}` and `{total}` in place.
+  `diagramExplore` is the small badge on diagram pictures, `diagramHint` is the line under a big diagram before a box is tapped, and `zoomIn`, `zoomOut`, `zoomReset` are its zoom buttons.
+- `alt`: picture descriptions for the portrait, rowing photos, logos and the two TECHO photos.
+- `sections`: the menu cards, in order (that's the order around the spiral). Each has `id` and `title`.
+  The `id` has to exist in `src/sections/registry.tsx` and `src/spiral/cardFaces.ts`.

@@ -1,103 +1,109 @@
 # Start here
 
-This is your portfolio site. It has a spiral menu of 10 cards. Click a card (or press Enter) and a panel opens with that section. On phones, and for anyone with "reduce motion" turned on, you get a plain list of the same sections instead of the spiral. Everything is in English and Spanish, and the language button swaps all of it.
+This is my portfolio. It's a spiral of 10 cards. Click one (or hit Enter) and its panel opens. On phones, or if "reduce motion" is on, you get a plain list of the same sections instead. Everything is in English and Spanish, and the language button flips all of it.
 
-I kept the site easy to edit. You will touch three places 90% of the time: `src/content` for the text, `public` for the pictures, and `src/styles/theme.css` for colours and the font. Everything else is the machinery that draws the cards, and most of it you can leave alone.
+90% of the time I only touch 3 places:
 
-Almost every file you might edit has a short note at the top in plain words. When a number can be changed on purpose (how long a photo stays on screen, how fast the ring text runs), it sits at the top of its file with a name and a comment.
+- `src/content` for the text
+- `public` for the pictures
+- `src/styles/theme.css` for colours and the font
 
-## Where things live
+The rest is the stuff that draws the cards. Mostly leave it alone.
+
+Almost every file has a short note at the top saying what it does. Numbers you'd actually want to tweak (how long a photo stays up, how fast the ring text spins) sit at the top of their file with a name and a comment.
+
+## Where stuff is
 
 ![Folder map: the main folders on the left, and on the right the things you might want to change, with arrows to the folder that controls each one](docs/folder-map.svg)
 
 ```
 portfolio/
   START-HERE.md          this guide
-  index.html             browser tab title and tab icon (before the page loads)
+  index.html             tab title and tab icon (before the page loads)
   package.json           the commands: npm run dev, npm run build
   docs/                  the folder map picture above
-  public/                every picture and file the site hands out untouched
-    photos/              portrait, rowing photos, TECHO photos
+  public/                every picture and file the site hands out as is
+    photos/              portrait, rowing, TECHO
     logos/               school and company logos
     tech-icons/          the small skill logos (Python, React...)
     project-pictures/    the picture on each project card
     cv/                  the two CV PDFs
   src/
-    content/             ALL the text, one JSON file per section, English and Spanish together
-    sections/            how each opened card is laid out (one file per card)
+    content/             ALL the text, one JSON per section, EN and ES together
+    sections/            how each opened card looks (one file per card)
     spiral/              the 3D menu: card faces, corner badge, photo reel
     styles/              theme.css (colours, font) and effects.css (animations)
-    components/          pieces shared by the panels: timeline, tech grid, menu drawer, diagram viewer
+    components/          shared panel pieces: timeline, tech grid, menu drawer, diagram viewer
     lib/                 small helpers and the list of skill logos
-  tools/                 optional scripts that redraw pictures or check the text. The site never runs them
-    project-diagrams/    how the project diagrams and the folder map are drawn
-      mermaid/           one text file per diagram and language (.mmd), and the script that draws them
-        docs/            the text file for the folder map picture above
+  tools/                 optional scripts for the diagrams. The site never runs them
+    project-diagrams/    how the project diagrams and the folder map get drawn
+      mermaid/           one text file per diagram and language (.mmd), plus the script
+        docs/            the text file for the folder map above
 ```
 
-Two folders you never open: `node_modules/` (downloaded packages) and `dist/` (the built site, rebuilt every time).
+Never open `node_modules/` (downloaded packages) or `dist/` (the built site, gets rebuilt every time).
 
 ## I want to...
 
 ### Change the text of a card
 
-All the words are in `src/content`. Open the file for the card, find the sentence, change it. English and Spanish sit side by side in the same file, under `"en"` and `"es"`. If you only change `en`, Spanish keeps the old text.
+All the words are in `src/content`. Open the card's file, find the sentence, change it. EN and ES sit in the same file under `"en"` and `"es"`. Only change `en` and Spanish keeps the old text.
 
-| Card on the menu | File | What is inside |
+| Card | File | What's inside |
 | --- | --- | --- |
 | Hello | `site.json` | `meta` (name, role, tagline, location), `links` |
 | About me | `about.json` | `lead`, `points` |
-| Experience | `experience.json` | a list of entries: period, role, org, place, logo, bullets |
+| Experience | `experience.json` | list of entries: period, role, org, place, logo, bullets |
 | Things I work with | `skills.json` | `groups` (title and items), `other`, `languages` |
-| Education | `education.json` | a list of entries: period, title, org, place, logo, url, bullets |
+| Education | `education.json` | list of entries: period, title, org, place, logo, url, bullets |
 | Projects | `projects.json` | `groups`, `items` (one per project), `art` |
 | Rowing | `rowing.json` | `lead`, roster link, `medals` |
 | Learning | `learning.json` | `lead`, `points` |
 | Leadership | `leadership.json` | `lead`, `items` |
-| Contact | `contact.json` | `lead` (the email and buttons come from `site.json`) |
+| Contact | `contact.json` | `lead` (email and buttons come from `site.json`) |
 
-Button labels, the corner badge text, picture descriptions and the names of the menu cards are in `interface.json`. `src/content/README.md` explains every key.
+Button labels, the corner badge text, picture descriptions and the menu card names are in `interface.json`. `src/content/README.md` explains every key.
 
 ### Change the picture, logo or colours of a menu card
 
-Open `src/spiral/cardFaces.ts`. It is one table with an entry per card, named by the section id (`intro`, `about`, `experience`...). The fields:
+`src/spiral/cardFaces.ts`. One table, one entry per card, named by section id (`intro`, `about`, `experience`...). Fields:
 
-- `photo`: `src` is the file in `public` (for example `/photos/portrait.webp`). `fx` and `fy` run from 0 to 1 and say which part of the photo stays in view when it is cropped. `fx: 0` keeps the left edge, `1` the right edge. `fy: 0` keeps the top, `1` the bottom.
-- `logo`: the logo drawn on the card, as a file in `public`.
-- `background`: one colour, or two colours for a diagonal gradient. Education uses three (white centre, then two blues).
-- `lines`: the colour of the rings or outlines on top of the background.
-- `logoColor`: the colour a logo is filled with, on the cards that recolour it.
-- `titleColor`: `'white'` or `'dark'`, for the number and title. Use `'dark'` on light backgrounds.
+- `photo`: `src` is the file in `public` (like `/photos/portrait.webp`). `fx` and `fy` go 0 to 1 and pick which part stays in view when it's cropped. `fx: 0` = left edge, `1` = right. `fy: 0` = top, `1` = bottom.
+- `logo`: the logo on the card, a file in `public`.
+- `background`: one colour, or two for a diagonal gradient. Education uses three (white centre, two blues).
+- `lines`: colour of the rings or outlines on top.
+- `logoColor`: fill colour for logos, on the cards that recolour them.
+- `titleColor`: `'white'` or `'dark'` for the number and title. `'dark'` on light backgrounds.
 
-Not every field works on every card. Photos only show on Hello, About me and Rowing. Logos only show on Experience and Education. If you set a field on a card that does not use it, nothing happens. To use a new photo, drop it in `public/photos/` and change `src`. If you replace a file keeping its name, the card changes with no edit at all. Note that `portrait.webp`, `rowing-paraguay.webp` and `rowing-hocr.webp` also appear inside the opened panels.
+Not every field works on every card. Photos only show on Hello, About me and Rowing. Logos only on Experience and Education. Set a field a card doesn't use and nothing happens. New photo? Drop it in `public/photos/` and change `src`. Replace a file with the same name and the card updates with zero edits. Heads up: `portrait.webp`, `rowing-paraguay.webp` and `rowing-hocr.webp` also show inside the opened panels.
 
-The font and sizes of the card artwork are in `src/spiral/cardStyle.ts`. The lime green on some cards is `ACCENT` there.
+Font and sizes of the card art are in `src/spiral/cardStyle.ts`. The lime green is `ACCENT` there.
 
 ### Change the pictures inside the opened cards
 
-- Hello: `public/photos/portrait.webp`. It is named in `src/sections/Intro.tsx`, in the `img` near the bottom.
-- Rowing: `public/photos/rowing-paraguay.webp` and `public/photos/rowing-hocr.webp`. Both are named in `src/sections/Rowing.tsx`.
-- Leadership (TECHO): `public/photos/techo-1.webp` and `public/photos/techo-2.webp`. They are named at the top of `src/components/Timeline.tsx`, and `leadership.json` chooses them with `"photos": ["techo1", "techo2"]`.
+- Hello: `public/photos/portrait.webp`, named in the `img` near the bottom of `src/sections/Intro.tsx`.
+- Rowing: `public/photos/rowing-paraguay.webp` and `rowing-hocr.webp`, named in `src/sections/Rowing.tsx`.
+- Leadership (TECHO): `public/photos/techo-1.webp` and `techo-2.webp`, named at the top of `src/components/Timeline.tsx`. `leadership.json` picks them with `"photos": ["techo1", "techo2"]`.
 
-Easiest way: replace the file and keep the same name. If you give it a new name, change the name in the file listed above. A portrait about 2:3 works for Hello, and the TECHO photos are cropped to 3:4. The rowing photos are cropped to 4:3. Their descriptions for screen readers are under `alt` in `interface.json`, so update those too.
+Easiest: replace the file, same name. New name? Change it in the file above. Portrait works best around 2:3, TECHO photos get cropped to 3:4, rowing ones to 4:3. Screen reader descriptions are under `alt` in `interface.json`, update those too.
 
 ### Change a project card's picture
 
-Project pictures live in `public/project-pictures/` and are named `<project-id>.<en|es>.<svg|webp>`. For example `sudoku.en.svg` and `sudoku.es.svg`. The id is the `id` of the project in `projects.json`. A project with `"image": "webp"` uses a `.webp` file, every other project uses `.svg`. The site picks the file from the language, so you need one picture per language.
+They're in `public/project-pictures/`, named `<project-id>.<en|es>.<svg|webp>`, like `sudoku.en.svg` and `sudoku.es.svg`. The id is the project's `id` in `projects.json`. Projects with `"image": "webp"` use `.webp`, the rest `.svg`. The site picks by language, so you need one per language.
 
-Eight projects are diagrams (orquestador, pep9, vmm, sched, sudoku, db, web, portfolio). They are drawn by a script from small text files, not by hand. Each diagram has two of them, one per language: `tools/project-diagrams/mermaid/<id>.en.mmd` and `tools/project-diagrams/mermaid/<id>.es.mmd`. They are written in Mermaid, a way of describing a diagram in words.
+8 projects are diagrams (orquestador, pep9, vmm, sched, sudoku, db, web, portfolio). A script draws them from small text files, not by hand. Each one has two: `tools/project-diagrams/mermaid/<id>.en.mmd` and `<id>.es.mmd`. They're Mermaid, basically a diagram written in words.
 
-To change a label, open the file and edit the text inside the quotes. Do it in both languages. To break a long label into two lines, write `<br/>` where the break goes. Then run:
+To change a label, edit the text inside the quotes, in both languages. `<br/>` breaks a label into two lines. Then:
 
 ```
 npm run pictures
 ```
 
-That redraws every diagram, writes the SVG files in `public/project-pictures/` and updates `src/content/pictureSizes.json` by itself. That file holds the size of each picture, so the page can keep the right space for it while it loads. For one diagram only, run `node tools/project-diagrams/mermaid/build-mermaid.mjs sudoku`. The script needs internet (it loads Mermaid from the web) and Edge or Chrome. Without them it prints a message and changes nothing. Do not edit the SVG files by hand. The next run would overwrite your edit.
+That redraws every diagram, writes the SVGs to `public/project-pictures/` and updates `src/content/pictureSizes.json` on its own (the size of each picture, so the page saves space for it while it loads). Just one diagram: `node tools/project-diagrams/mermaid/build-mermaid.mjs sudoku`. Needs internet (it loads Mermaid from the web) and Edge or Chrome. Without them it says so and changes nothing. Don't edit the SVGs by hand, the next run overwrites them.
 
-Keep diagrams narrow. On a phone the picture is about 320 px wide, so a wide diagram makes its text tiny. If one is too wide, the script stops with a message that names the file. Fix it by putting at most two boxes in a row, shortening the labels, or splitting a long chain into two rows. Nothing is written until every diagram fits.
+Keep diagrams narrow. A phone shows them about 320 px wide, so a wide one = tiny text. If one's too wide the script stops and names the file. Fix: max two boxes per row, shorter labels, or split a long chain into two rows. Nothing gets written until all of them fit.
 
-A small diagram looks like this:
+A small one looks like this:
 
 ```
 flowchart TD
@@ -108,164 +114,164 @@ flowchart TD
   class B top
 ```
 
-`-->` is a solid arrow and `-.->` a dotted one. The last two lines give box B a brighter outline. Copy an existing file to see more, for example `sudoku.en.mmd`.
+`-->` is a solid arrow, `-.->` dotted. The last two lines give box B a brighter outline. Copy an existing file to see more, like `sudoku.en.mmd`.
 
-To add a diagram for a new project, copy an existing pair to `<id>.en.mmd` and `<id>.es.mmd`, edit both, and run `npm run pictures`. The picture and its size appear by themselves. The folder map picture at the top of this guide is made the same way: edit `tools/project-diagrams/mermaid/docs/folder-map.mmd` and run `npm run folder-map`.
+New project diagram: copy a pair to `<id>.en.mmd` and `<id>.es.mmd`, edit both, run `npm run pictures`. Picture and size show up by themselves. The folder map at the top works the same: edit `tools/project-diagrams/mermaid/docs/folder-map.mmd`, run `npm run folder-map`.
 
-Three projects are screenshots (catch, dashboard, forecast), as `.webp`. They are made by the scripts in `tools/project-screenshots/`, and `tools/project-screenshots/README.md` has the steps for each. You can also just put any 1500 x 900 `.webp` in `public/project-pictures/` with the same file name.
+3 projects are screenshots (catch, dashboard, forecast), as `.webp`. To change one, drop any 1500 x 900 `.webp` in `public/project-pictures/` with the same name.
 
-The text that describes each picture for screen readers is `art` at the bottom of `projects.json`.
+Screen reader text for each picture is `art` at the bottom of `projects.json`.
 
-Tapping a diagram opens it big, with zoom buttons. That window is `src/components/DiagramViewer.tsx`. The three screenshots are plain pictures. On the eight diagrams you can also tap a box: it lights up with its arrows and a one-line note shows underneath.
+Tap a diagram and it opens big with zoom buttons (`src/components/DiagramViewer.tsx`). The 3 screenshots are just pictures. On the 8 diagrams you can also tap a box: it lights up with its arrows and a one-line note shows under it.
 
 ### Change what a box says when tapped
 
-1. Open `src/content/projects.json` and find `diagramNotes` (after `art`, once under `en` and once under `es`).
-2. Find the project, then the box. Boxes are named by their id in the `.mmd` file: in `T["TLB<br/>16 entries"]` the id is `T`.
-3. Change the sentence. Keep it short (under about 110 characters) and change both languages.
-4. Run `npm run check-notes`. It says OK, or names the box that has no note (for example after you add a box to a `.mmd` file) or a note for a box that no longer exists.
+1. `src/content/projects.json`, find `diagramNotes` (after `art`, once under `en` and once under `es`).
+2. Find the project, then the box. Boxes go by their id in the `.mmd` file: in `T["TLB<br/>16 entries"]` the id is `T`.
+3. Change the sentence. Keep it short (under ~110 characters), both languages.
+4. Run `npm run check-notes`. It says OK, or names a box with no note (like after adding a box to a `.mmd`) or a note for a box that's gone.
 
-The look of a lit box (white outline, faded rest) is `.dv-*` in `src/styles/effects.css`. The words around it (the badge on the card, "Tap a box to see what it does", the zoom buttons) are `diagram*` and `zoom*` in `interface.json`.
+The lit-box look (white outline, rest faded) is `.dv-*` in `src/styles/effects.css`. The words around it (card badge, "Tap a box to see what it does", zoom buttons) are `diagram*` and `zoom*` in `interface.json`.
 
-### Add photos to the corner badge and the photo reel
+### Add photos to the corner badge and the reel
 
-The corner badge is the small tilted photo at the bottom left of the spiral. Press it and the photo reel opens. Both use the same photos.
+The corner badge is the small tilted photo bottom left of the spiral. Press it and the photo reel opens. Same photos for both.
 
-1. Drop your photo in `public/photos/`.
-2. Open `src/spiral/badgePhotos.ts` and add one line with its path, like `'/photos/my-photo.webp',`. The photos play in the order of that list.
+1. Drop the photo in `public/photos/`.
+2. In `src/spiral/badgePhotos.ts`, add a line with its path, like `'/photos/my-photo.webp',`. They play in that order.
 
-That is all. If the dev server does not show a new photo, refresh the page. The list is empty? Then the badge shows a plain grey tile and pressing it does nothing.
+That's it. Dev server not showing it? Refresh. Empty list = plain grey tile that does nothing.
 
-Size advice: about 1600 px on the long side, WebP or JPG (PNG works), under 160 kB each so the reel opens fast. In the reel every photo is shown whole, so wide, tall and square photos all work. The small tile is cropped to 16:9 and hangs off the corner, so only its top right part is visible. Keep the face in the upper right of the photo.
+Size tips: ~1600 px on the long side, WebP or JPG (PNG works), under 160 kB each so the reel opens fast. The reel shows every photo whole, so any shape works. The small tile is cropped to 16:9 and hangs off the corner, so only the top right shows. Keep the face up there.
 
 ### Change how long a photo stays, or the ring text
 
 - Seconds per photo on the small tile: `SECONDS_PER_PHOTO` in `src/spiral/CornerBadge.tsx` (3.2).
-- How fast the ring text runs around the tile: `RING_SECONDS_PER_TURN` in the same file (12 seconds for one turn, smaller is faster).
-- Seconds per photo inside the reel: `SECONDS_PER_PHOTO` in `src/spiral/PhotoReel.tsx` (1.7). `FADE_SECONDS` there is the crossfade.
-- The ring text itself: `badgeRing` under `ui` in `src/content/interface.json`, in both `en` and `es`. The text is repeated to fill the ring, so a short phrase is fine. End it with a separator and a space, like the current one does.
-- The tilt of the tile: `.badge-tile` in `src/styles/effects.css` (`rotate(-15deg)`).
+- Ring text speed: `RING_SECONDS_PER_TURN`, same file (12 seconds per turn, smaller = faster).
+- Seconds per photo in the reel: `SECONDS_PER_PHOTO` in `src/spiral/PhotoReel.tsx` (1.7). `FADE_SECONDS` there is the crossfade.
+- The ring text: `badgeRing` under `ui` in `src/content/interface.json`, `en` and `es`. It repeats to fill the ring, so short is fine. End it with a separator and a space like the current one.
+- Tile tilt: `.badge-tile` in `src/styles/effects.css` (`rotate(-15deg)`).
 
 ### Change colours and fonts
 
-Open `src/styles/theme.css`. It has a note on every group. The main ones:
+`src/styles/theme.css`, every group has a note. Main ones:
 
-- `--bg`: page background.
-- `--fg`: main text colour.
-- `--muted`: quieter text.
-- `--surface`: panels and cards on top of the background.
-- `--line`: thin borders.
-- `--chip`: background of the small tag pills.
-- `--accent-text`: colour of dates, small labels and numbers.
-- `--color-accent`: the accent, white at the moment. Buttons, timeline dots, bullets and the progress bar follow it.
-- `--color-ink`: text that sits on the accent (button labels). Keep it dark while the accent is light.
-- `--font-sans`: the font.
+- `--bg`: page background
+- `--fg`: main text
+- `--muted`: quieter text
+- `--surface`: panels and cards on top of the background
+- `--line`: thin borders
+- `--chip`: background of the small tag pills
+- `--accent-text`: dates, small labels, numbers
+- `--color-accent`: the accent, white right now. Buttons, timeline dots, bullets and the progress bar follow it.
+- `--color-ink`: text on top of the accent (button labels). Keep it dark while the accent is light.
+- `--font-sans`: the font
 
-To change the font: run `npm install @fontsource-variable/<font-name>`, add `import '@fontsource-variable/<font-name>'` in `src/main.tsx` next to the Inter line, and put the font's name in `--font-sans`. Spiral cards draw their titles on a canvas with their own copy of the name: `FONT` in `src/spiral/cardStyle.ts`, and the two `document.fonts.load` lines in `src/spiral/cardDrawing.ts`. Change those too or the cards keep Inter.
+New font: `npm install @fontsource-variable/<font-name>`, add `import '@fontsource-variable/<font-name>'` in `src/main.tsx` next to the Inter line, and put the name in `--font-sans`. The spiral cards draw titles on a canvas with their own copy of the name: `FONT` in `src/spiral/cardStyle.ts` and the two `document.fonts.load` lines in `src/spiral/cardDrawing.ts`. Change those too or the cards stay on Inter.
 
-Colours that are not in `theme.css`:
+Colours that aren't in `theme.css`:
 
-- Menu card faces: `src/spiral/cardFaces.ts`, `cardStyle.ts` and a few inside `cardDrawing.ts` (the skill tiles, the chart on the Projects card).
-- The landscape behind the panels: the knobs at the top of `src/components/Landscape.tsx` (speed, dot size and spacing, mountain height, haze, twinkle, colours).
-- The black behind the spiral and the floor grid: `BG` and `gridHelper` in `src/spiral/Spiral.tsx`.
-- The medal metals: `TONES` at the top of `src/components/Medal.tsx`.
+- Menu card faces: `src/spiral/cardFaces.ts`, `cardStyle.ts` and a few in `cardDrawing.ts` (skill tiles, the chart on the Projects card).
+- The landscape behind the panels: knobs at the top of `src/components/Landscape.tsx` (speed, dot size and spacing, mountain height, haze, twinkle, colours).
+- Black behind the spiral and the floor grid: `BG` and `gridHelper` in `src/spiral/Spiral.tsx`.
+- Medal metals: `TONES` at the top of `src/components/Medal.tsx`.
 - Diagram pictures: `themeVariables` near the top of `tools/project-diagrams/mermaid/build-mermaid.mjs`, then `npm run pictures`.
-- Phone browser bar colour: `theme-color` in `index.html`.
-- A few colours written straight into components, such as `bg-black/50` or `border-white/20`. Search the file for the class if you want to change one.
+- Phone browser bar: `theme-color` in `index.html`.
+- A few written straight into components, like `bg-black/50` or `border-white/20`. Search the file for the class.
 
 ### Change links, email, LinkedIn, GitHub or the CV
 
-Open `src/content/site.json`. Under `links` you have `email`, `linkedin`, `github` and `cv`, once for `en` and once for `es`. Change both. Project links (`live`, `code`) are in `projects.json`, and the rowing roster link is `rosterUrl` in `rowing.json`.
+`src/content/site.json`, under `links`: `email`, `linkedin`, `github`, `cv`, once for `en` and once for `es`. Change both. Project links (`live`, `code`) are in `projects.json`, the rowing roster link is `rosterUrl` in `rowing.json`.
 
-The CV is a PDF in `public/cv/`: `Nicolas_Invernizzi_CV_EN.pdf` and `Nicolas_Invernizzi_CV_ES.pdf`. Replace the file and keep the same name, and the Download CV buttons pick it up. If you rename it, change `cv` in `site.json` to match.
+The CVs are in `public/cv/`: `Nicolas_Invernizzi_CV_EN.pdf` and `Nicolas_Invernizzi_CV_ES.pdf`. Replace with the same name and the Download CV buttons pick it up. Rename it and you have to change `cv` in `site.json`.
 
 ### Change my name, title or tagline
 
-In `site.json`, under `meta`: `name`, `role`, `tagline`, `location`, plus `title` (the browser tab and search result title) and `description` (the search result text). Do it in `en` and `es`. `index.html` also has a `<title>` and description. The site replaces them as soon as it loads, so they only matter for the first moment and for tools that do not run the page. Update them as well so they agree.
+`site.json` under `meta`: `name`, `role`, `tagline`, `location`, plus `title` (tab and search result title) and `description` (search result text). Both languages. `index.html` has its own `<title>` and description too. The site swaps them as soon as it loads, so they only matter for that first moment and for tools that don't run the page. Keep them matching anyway.
 
 ### Add a new project
 
-1. In `src/content/projects.json`, copy an entry in `items` (in `en` and in `es`) and edit it. Fields: `id`, `group` (one of the `groups` ids: itti, rowing, systems, web), `title`, `tag`, `text`, `details` (bullets), `stack` (tech names), and optionally `legal`, `note`, `live`, `code`, `codeLabel`, `image`.
-2. Add its picture. For a diagram, write `tools/project-diagrams/mermaid/<id>.en.mmd` and `<id>.es.mmd` and run `npm run pictures` (see "Change a project card's picture" above). It creates `public/project-pictures/<id>.en.svg` and `<id>.es.svg` and adds the size to `src/content/pictureSizes.json`. For a screenshot, put `<id>.en.webp` and `<id>.es.webp` in `public/project-pictures/` and add `"image": "webp"` to the project.
-3. Add a description for the picture under `art` at the bottom of the file, as `"<id>": { "label": "..." }`, in both languages. For a diagram, also add its box notes under `diagramNotes` and run `npm run check-notes`.
-4. `stack` names show as plain text tags on the project card. No logo is needed.
+1. In `src/content/projects.json`, copy an entry in `items` (`en` and `es`) and edit it. Fields: `id`, `group` (one of the `groups` ids: itti, rowing, systems, web), `title`, `tag`, `text`, `details` (bullets), `stack` (tech names), and optional `legal`, `note`, `live`, `code`, `codeLabel`, `image`.
+2. Add its picture. Diagram: write `tools/project-diagrams/mermaid/<id>.en.mmd` and `<id>.es.mmd`, run `npm run pictures` (see above). It makes `public/project-pictures/<id>.en.svg` and `<id>.es.svg` and adds the size to `pictureSizes.json`. Screenshot: put `<id>.en.webp` and `<id>.es.webp` in `public/project-pictures/` and add `"image": "webp"` to the project.
+3. Add a picture description under `art` at the bottom, as `"<id>": { "label": "..." }`, both languages. For a diagram, also add its box notes under `diagramNotes` and run `npm run check-notes`.
+4. `stack` names show as plain text tags. No logo needed.
 
 ### Add a skill logo
 
-1. Save the logo as `public/tech-icons/<slug>.svg`. A white or light logo works best on the black tiles.
-2. Add one line to `src/lib/techIcons.ts`: the name as you write it in `skills.json`, then the slug and the label shown on hover.
-3. Use that name in `skills.json`, under `items` (spell it exactly the same, capital letters count).
+1. Save it as `public/tech-icons/<slug>.svg`. White or light logos look best on the black tiles.
+2. Add a line to `src/lib/techIcons.ts`: the name as written in `skills.json`, then the slug and the hover label.
+3. Use that name in `skills.json` under `items` (exact same spelling, caps count).
 
-A name in `skills.json` that is not in `techIcons.ts` still shows up, just as a plain text tag. The Skills menu card shows the logos of the first 30 skills that have one.
+A name that's not in `techIcons.ts` still shows, just as a plain text tag. The Skills menu card shows logos for the first 30 skills that have one.
 
 ### Replace a school or company logo
 
-The logos inside the Experience and Education panels are listed in `LOGOS` in `src/components/ui.tsx`. Replace the file in `public/logos/` keeping its name, or change `src` there. The logos on the menu cards are different files (`itti-white.svg` and `marietta.svg`), set in `cardFaces.ts`.
+Logos inside the Experience and Education panels are in `LOGOS` in `src/components/ui.tsx`. Replace the file in `public/logos/` with the same name, or change `src` there. The menu card logos are different files (`itti-white.svg` and `marietta.svg`), set in `cardFaces.ts`.
 
-The light versions used on the black panels (`marietta-dark.svg`, `cambridge-dark.png`) are made from `marietta.svg` and `cambridge.png` by `tools/logos-and-icons/make-dark-logos.py`. If you replace one of those two originals, run that script (the steps are in `tools/logos-and-icons/README.md`).
+The panels are black, so two logos use light versions (`marietta-dark.svg`, `cambridge-dark.png`). `marietta.svg` and `cambridge.png` are the originals. Replace one, replace its light version too.
 
-### Change the Education or Experience entries
+### Change Education or Experience entries
 
-Open `education.json` or `experience.json`. Each entry in the list is one block on the timeline. Add, remove or reorder entries, in `en` and in `es`. `logo` picks a logo from `LOGOS` (itti, marietta, cambridge, cristorey, techo). `url` makes the org name a link, and `"urlOn": "title"` makes the heading the link instead. Education currently has the school links in `url`.
+`education.json` or `experience.json`. Each entry is one block on the timeline. Add, remove or reorder, in `en` and `es`. `logo` picks from `LOGOS` (itti, marietta, cambridge, cristorey, techo). `url` makes the org name a link, `"urlOn": "title"` makes the heading the link instead. Education has the school links in `url` right now.
 
 ### Change the medals
 
-In `src/content/rowing.json`, under `medals`. Each has `medals` (`["silver"]`, `["bronze"]`, or both), `label`, `event`, `place` and `year`. The medal drawing is `src/components/Medal.tsx`.
+`src/content/rowing.json` under `medals`. Each has `medals` (`["silver"]`, `["bronze"]` or both), `label`, `event`, `place` and `year`. The drawing is `src/components/Medal.tsx`.
 
 ### Change the order or names of the menu cards
 
-In `src/content/interface.json`, the `sections` list, once in `en` and once in `es`. The order of that list is the order around the spiral, and it sets the number on each card. `title` is the name shown on the card, in the menu and in the panel. Do not change an `id`: the code uses it to find the card's layout and its face. If you reorder, do it the same way in both languages.
+`src/content/interface.json`, the `sections` list, in `en` and `es`. List order = order around the spiral, and it sets each card's number. `title` is the name on the card, the menu and the panel. Don't touch an `id`, the code uses it to find the card's layout and face. Reorder the same way in both languages.
 
 ### Add a whole new section
 
-Say you want a "Pets" card. The easiest way is to copy a simple section, like Learning, and rename.
+Say a "Pets" card. Easiest is copying a simple one like Learning and renaming.
 
 1. Text: copy `src/content/learning.json` to `src/content/pets.json` and edit it (both languages).
-2. Merge it: in `src/content/index.ts` add `import pets from './pets.json'` and the line `pets: pets[lang],` inside `build()`. Add `pets: { lead: string; points: string[] }` to the `Content` type in `src/lib/content.ts`.
-3. Layout: copy `src/sections/Learning.tsx` to `src/sections/Pets.tsx`, rename the function, and read from `pets`.
+2. Merge it: in `src/content/index.ts` add `import pets from './pets.json'` and `pets: pets[lang],` inside `build()`. Add `pets: { lead: string; points: string[] }` to the `Content` type in `src/lib/content.ts`.
+3. Layout: copy `src/sections/Learning.tsx` to `src/sections/Pets.tsx`, rename the function, read from `pets`.
 4. Register it: in `src/sections/registry.tsx` import `Pets` and add `pets: Pets,` to the table.
-5. Menu entry: add `{ "id": "pets", "title": "Pets" }` to `sections` in `interface.json` (both languages), in the place where you want the card.
-6. Card face: add a `pets` entry to `CARD_FACES` in `src/spiral/cardFaces.ts`. Then add a `pets` painter to the `PAINTERS` table in `src/spiral/cardDrawing.ts` (copy `learning` or `contact` and edit it). Without a painter the card has no background, only its number and title.
-7. Run `npm run build`, then look at the spiral. The build catches code mistakes. It cannot tell you that a card has no painter.
+5. Menu entry: add `{ "id": "pets", "title": "Pets" }` to `sections` in `interface.json` (both languages), where you want the card.
+6. Card face: add a `pets` entry to `CARD_FACES` in `src/spiral/cardFaces.ts`, then a `pets` painter in `PAINTERS` in `src/spiral/cardDrawing.ts` (copy `learning` or `contact`). No painter = no background, just number and title.
+7. Run `npm run build` and look at the spiral. The build catches code mistakes, but it won't tell you a card has no painter.
 
-### Change the speed of the spiral
+### Change the spiral speed
 
-`WHEEL_SPEED` (mouse wheel and trackpad) and `DRAG_SPEED` (mouse and finger drag) at the top of `src/lib/useScrollProgress.ts`. A bigger number is faster. How softly the cards glide to a stop is the `6` in the `useFrame` line of `src/spiral/Spiral.tsx` (bigger is snappier).
+`WHEEL_SPEED` (wheel and trackpad) and `DRAG_SPEED` (mouse and finger drag) at the top of `src/lib/useScrollProgress.ts`. Bigger = faster. How softly the cards glide to a stop is the `6` in the `useFrame` line of `src/spiral/Spiral.tsx` (bigger = snappier).
 
-### Run it, check it and put it online
+### Run it, check it, put it online
 
 ```
-npm run dev       # opens a live preview at http://localhost:5173
-npm run build     # checks the code and builds the site into dist/
+npm run dev       # live preview at http://localhost:5173
+npm run build     # checks the code and builds into dist/
 ```
 
-`npm run dev` updates the page every time you save a file. Run `npm run build` before you push. If it passes, the site will build on Vercel too. On this computer npm sometimes fails because of a broken entry in the system PATH. If that happens, run these two instead, from PowerShell:
+`npm run dev` refreshes every time you save. Run `npm run build` before pushing. If it passes here, it passes on Vercel. On this computer npm sometimes breaks because of a bad entry in the system PATH. If so, run these from PowerShell instead:
 
 ```
 node node_modules/typescript/bin/tsc -b
 node node_modules/vite/bin/vite.js build
 ```
 
-To go live, push to GitHub (branch `main`). Vercel rebuilds by itself, and the new version is up in about a minute. On this project, ask Claude to commit and push.
+To go live, push to GitHub (`main`). Vercel rebuilds on its own, up in about a minute. Or just ask Claude to commit and push.
 
-## Rules that save you from breaking it
+## Rules so I don't break it
 
-- Change English and Spanish together. They are separate texts, and nothing translates for you.
-- When you swap a picture, keep the file name. If you change the name, change it everywhere it is written (the section notes above say where).
-- Run `npm run build` before you push.
-- Do not edit `dist/` or `node_modules/`. They are rebuilt and your edits would be lost.
-- JSON is strict. Every item except the last in a list needs a comma, and text needs straight double quotes, like "this". A quote inside text needs a backslash in front: `\"`. Do not leave a comma after the last item.
-- If you make a typo, the build stops and names the file and line (for a JSON mistake it says where the JSON broke). Fix that spot and run it again.
-- Keep the same set of keys in `en` and `es`. A key that exists in one and not the other leaves a blank in that language.
-- Do not rename a section `id` or a project `id` without renaming everything that uses it (pictures, card faces, registry).
+- Change EN and ES together. Nothing translates for you.
+- Swapping a picture? Keep the name. Change the name and you have to change it everywhere it's written (the sections above say where).
+- `npm run build` before pushing.
+- Don't edit `dist/` or `node_modules/`. They get rebuilt and the edits are gone.
+- JSON is picky. Comma after every item except the last, straight double quotes "like this", and a quote inside text needs a backslash: `\"`. No comma after the last item.
+- Typo? The build stops and names the file and line (for JSON it says where it broke). Fix that spot, run again.
+- Same keys in `en` and `es`. A key missing in one leaves a blank in that language.
+- Don't rename a section `id` or project `id` without renaming everything that uses it (pictures, card faces, registry).
 
-## Files you should not need to touch
+## Files I shouldn't need to touch
 
-- `src/spiral/Spiral.tsx`, `Card3D.tsx`, `SpiralHud.tsx`, `SpiralBoundary.tsx`: the 3D engine and the on-screen controls of the spiral.
-- `src/spiral/badgePhotos.ts`: the list of reel photos (the only part you edit) and the code that loads them.
-- `src/lib/useFocusTrap.ts`, `usePresence.ts`, `useReducedMotion.ts`: keyboard focus, open and close animations, reduced motion.
-- `src/components/Panel.tsx`, `MenuDrawer.tsx`, `TopBar.tsx`, `ListView.tsx`, `TechGrid.tsx`, `Landscape.tsx`, `DiagramViewer.tsx`: the frame around the sections, the animated background, and the window that opens a project diagram.
+- `src/spiral/Spiral.tsx`, `Card3D.tsx`, `SpiralHud.tsx`, `SpiralBoundary.tsx`: the 3D engine and the spiral's on-screen controls.
+- `src/spiral/badgePhotos.ts`: the reel photo list (the only part I edit) plus the code that loads them.
+- `src/lib/useFocusTrap.ts`, `usePresence.ts`, `useReducedMotion.ts`: keyboard focus, open/close animations, reduced motion.
+- `src/components/Panel.tsx`, `MenuDrawer.tsx`, `TopBar.tsx`, `ListView.tsx`, `TechGrid.tsx`, `Landscape.tsx`, `DiagramViewer.tsx`: the frame around the sections, the animated background, and the diagram window.
 - `src/lib/diagramGraph.ts`: reads which boxes and arrows a diagram has, so a tapped box can light up its arrows.
 - `src/App.tsx`, `src/main.tsx`, `src/i18n.ts`: start-up and language.
 - `vite.config.ts`, `tsconfig.json`, `package-lock.json`: build settings.
-- Everything in `tools/` unless you are redrawing a picture.
+- Everything in `tools/` unless I'm redrawing a diagram.
