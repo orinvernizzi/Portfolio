@@ -1,3 +1,5 @@
+// The 3D spiral menu: cards on a ring, drawn on a transparent canvas over the landscape (src/components/LandscapeLayer.tsx).
+// The dark vignette div near the bottom keeps the edges calm; fog (BG) darkens far cards. See docs/flowcharts/spiral.md.
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Card3D, RADIUS } from './Card3D'
@@ -36,9 +38,7 @@ function Scene({ progress, onOpen }: { progress: SpiralProgress; onOpen: (index:
 
   return (
     <>
-      <color attach="background" args={[BG]} />
       <fog attach="fog" args={[BG, 13, 30]} />
-      <gridHelper args={[80, 80, '#262626', '#111111']} position={[0, -4.6, 0]} />
       <group rotation={[0, 0, 0.07]}>
         <group>
           {c.sections.map((s, i) => (
@@ -106,7 +106,7 @@ export default function Spiral({ enabled, onOpen, jumpTo, onContextLost }: Props
         frameloop={live ? 'always' : 'never'} // idle while a panel, the menu or the reel covers the spiral
         dpr={[1, 2]}
         camera={{ fov: 36, position: [0, 1.1, CAMERA_Z], near: 0.1, far: 80 }}
-        gl={{ antialias: true, powerPreference: 'high-performance' }}
+        gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }} // transparent: the landscape canvas shows through
         aria-hidden="true"
         onCreated={({ gl }) =>
           gl.domElement.addEventListener('webglcontextlost', () => mounted.current && onContextLost())

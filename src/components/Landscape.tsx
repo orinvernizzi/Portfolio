@@ -1,10 +1,18 @@
-// Night mountain landscape behind every panel: craggy ridges around a dotted basin, grey lit slopes, a soft haze at the horizon,
+// Night mountain landscape behind the spiral: craggy ridges around a dotted basin, grey lit slopes, a soft haze at the horizon,
 // all drifting slowly toward you. Terrain and dots are drawn by shaders that share one height function (HEIGHT_GLSL).
-// Knobs are in the block below. Reduced motion draws a single still frame. WebGL errors leave the panel plain black.
-import { Component, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
+// Knobs are in the block below. Reduced motion draws a single still frame. WebGL errors leave the background plain black.
+//
+// Life cycle (one canvas, made when the spiral view shows, freed when it goes away; see LandscapeLayer.tsx):
+// 1. LandscapeLayer mounts this once the spiral is on. Terrain, dots and shaders are built once (getAssets).
+// 2. The canvas stays paused ('never') while the shaders compile (compileAsync, so the page doesn't freeze), then starts drawing.
+// 3. It fades in (300 ms) once its first frame is on screen, and tells the preloader (landscapeReady.ts).
+// 4. While a panel is open it is covered, so the layer passes paused and it stops drawing ('never'); closing resumes it.
+// 5. Leaving the spiral view unmounts this and frees everything.
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 import { useReducedMotion } from '../lib/useReducedMotion'
+import { signalLandscapeReady } from '../lib/landscapeReady'
 
 // ---- Knobs ----
 const SPEED = 3 // forward drift, world units per second
@@ -162,75 +170,123 @@ void main(){
 // Phones and very sharp screens get a lighter mesh, fewer dots and no extra pixel ratio.
 const isSmall = () => window.innerWidth < 768 || window.devicePixelRatio > 2
 
-function Scene({ animate, small }: { animate: boolean; small: boolean }) {
+// Geometry and materials are built once and kept until the canvas goes away (there is only ever one canvas).
+interface Assets {
+  small: boolean
+  uOffset: { value: number }
+  terrain: { geo: THREE.BufferGeometry; mat: THREE.ShaderMaterial }
+  dots: { geo: THREE.BufferGeometry; mat: THREE.ShaderMaterial }
+  sky: { geo: THREE.BufferGeometry; mat: THREE.ShaderMaterial }
+}
+let assets: Assets | null = null
+
+function getAssets(small: boolean): Assets {
+  if (assets?.small === small) return assets
+  disposeAssets()
+  const uOffset = { value: 0 }
+
+  const terrainGeo = new THREE.PlaneGeometry(WIDTH, DEPTH, small ? 170 : 260, small ? 130 : 210)
+  terrainGeo.rotateX(-Math.PI / 2)
+  terrainGeo.translate(0, 0, FRONT - DEPTH / 2)
+  const terrainMat = new THREE.ShaderMaterial({
+    vertexShader: TERRAIN_VERT,
+    fragmentShader: TERRAIN_FRAG,
+    uniforms: { uOffset, uTint: { value: new THREE.Color(SLOPE_COLOR) } },
+    polygonOffset: true,
+    polygonOffsetFactor: 1,
+    polygonOffsetUnits: 1,
+  })
+
+  const skyGeo = new THREE.SphereGeometry(380, 24, 16)
+  const skyMat = new THREE.ShaderMaterial({
+    vertexShader: SKY_VERT,
+    fragmentShader: SKY_FRAG,
+    side: THREE.BackSide,
+    depthWrite: false,
+    depthTest: false,
+  })
+
+  const spacing = small ? DOT_SPACING * 1.6 : DOT_SPACING
+  const cols = Math.floor(WIDTH / spacing)
+  const rows = Math.floor(DEPTH / spacing)
+  const cell = new Float32Array(cols * rows * 2)
+  let k = 0
+  for (let i = 0; i < cols; i++) {
+    for (let j = 0; j < rows; j++) {
+      cell[k++] = (i - cols / 2) * spacing
+      cell[k++] = j * spacing
+    }
+  }
+  const dotsGeo = new THREE.BufferGeometry()
+  dotsGeo.setAttribute('aCell', new THREE.BufferAttribute(cell, 2))
+  dotsGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(cols * rows * 3), 3))
+  const dotsMat = new THREE.ShaderMaterial({
+    vertexShader: DOT_VERT,
+    fragmentShader: DOT_FRAG,
+    uniforms: {
+      uOffset,
+      uTime: { value: 0 },
+      uSize: { value: DOT_SIZE },
+      uPixelRatio: { value: 1 },
+      uColor: { value: new THREE.Color(DOT_COLOR) },
+    },
+    transparent: true,
+    depthWrite: false,
+  })
+
+  assets = {
+    small,
+    uOffset,
+    terrain: { geo: terrainGeo, mat: terrainMat },
+    dots: { geo: dotsGeo, mat: dotsMat },
+    sky: { geo: skyGeo, mat: skyMat },
+  }
+  return assets
+}
+
+function disposeAssets() {
+  if (!assets) return
+  for (const o of [assets.terrain, assets.dots, assets.sky]) {
+    o.geo.dispose()
+    o.mat.dispose()
+  }
+  assets = null
+}
+
+function Scene({ animate, small, paused, onCompiled, onFrame }: { animate: boolean; small: boolean; paused: boolean; onCompiled: () => void; onFrame: () => void }) {
   const dpr = useThree((s) => s.viewport.dpr)
+  const frameloop = useThree((s) => s.frameloop)
+  const invalidate = useThree((s) => s.invalidate)
+  const gl = useThree((s) => s.gl)
+  const scene = useThree((s) => s.scene)
+  const camera = useThree((s) => s.camera)
   const pointer = useRef({ x: 0, y: 0 })
 
-  const shared = useMemo(() => ({ uOffset: { value: 0 } }), [])
-  const terrain = useMemo(() => {
-    const geo = new THREE.PlaneGeometry(WIDTH, DEPTH, small ? 170 : 260, small ? 130 : 210)
-    geo.rotateX(-Math.PI / 2)
-    geo.translate(0, 0, FRONT - DEPTH / 2)
-    const mat = new THREE.ShaderMaterial({
-      vertexShader: TERRAIN_VERT,
-      fragmentShader: TERRAIN_FRAG,
-      uniforms: { uOffset: shared.uOffset, uTint: { value: new THREE.Color(SLOPE_COLOR) } },
-      polygonOffset: true,
-      polygonOffsetFactor: 1,
-      polygonOffsetUnits: 1,
-    })
-    return { geo, mat }
-  }, [shared, small])
+  const { uOffset, terrain, dots, sky } = useMemo(() => getAssets(small), [small])
 
-  const sky = useMemo(() => {
-    const geo = new THREE.SphereGeometry(380, 24, 16)
-    const mat = new THREE.ShaderMaterial({
-      vertexShader: SKY_VERT,
-      fragmentShader: SKY_FRAG,
-      side: THREE.BackSide,
-      depthWrite: false,
-      depthTest: false,
-    })
-    return { geo, mat }
-  }, [])
-
-  const dots = useMemo(() => {
-    const spacing = small ? DOT_SPACING * 1.6 : DOT_SPACING
-    const cols = Math.floor(WIDTH / spacing)
-    const rows = Math.floor(DEPTH / spacing)
-    const cell = new Float32Array(cols * rows * 2)
-    let k = 0
-    for (let i = 0; i < cols; i++) {
-      for (let j = 0; j < rows; j++) {
-        cell[k++] = (i - cols / 2) * spacing
-        cell[k++] = j * spacing
-      }
+  // Compile the shaders without blocking the page; the canvas only starts drawing after this.
+  useEffect(() => {
+    let cancelled = false
+    const go = () => {
+      if (!cancelled) onCompiled()
     }
-    const geo = new THREE.BufferGeometry()
-    geo.setAttribute('aCell', new THREE.BufferAttribute(cell, 2))
-    geo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(cols * rows * 3), 3))
-    const mat = new THREE.ShaderMaterial({
-      vertexShader: DOT_VERT,
-      fragmentShader: DOT_FRAG,
-      uniforms: {
-        uOffset: shared.uOffset,
-        uTime: { value: 0 },
-        uSize: { value: DOT_SIZE },
-        uPixelRatio: { value: 1 },
-        uColor: { value: new THREE.Color(DOT_COLOR) },
-      },
-      transparent: true,
-      depthWrite: false,
-    })
-    return { geo, mat }
-  }, [shared, small])
+    gl.compileAsync(scene, camera).then(go, go)
+    return () => {
+      cancelled = true
+    }
+  }, [gl, scene, camera, onCompiled])
 
   useEffect(() => {
     dots.mat.uniforms.uPixelRatio.value = dpr
   }, [dots, dpr])
 
+  // A canvas that only draws on request (reduced motion) needs one request when it starts or wakes up.
   useEffect(() => {
-    if (!animate) return
+    if (frameloop !== 'never') invalidate()
+  }, [frameloop, invalidate])
+
+  useEffect(() => {
+    if (!animate || paused) return
     const move = (e: PointerEvent) => {
       if (e.pointerType !== 'mouse') return // touch scrolling shouldn't sway the camera
       pointer.current.x = (e.clientX / window.innerWidth) * 2 - 1
@@ -238,22 +294,13 @@ function Scene({ animate, small }: { animate: boolean; small: boolean }) {
     }
     window.addEventListener('pointermove', move, { passive: true })
     return () => window.removeEventListener('pointermove', move)
-  }, [animate])
-
-  useEffect(
-    () => () => {
-      for (const o of [terrain, dots, sky]) {
-        o.geo.dispose()
-        o.mat.dispose()
-      }
-    },
-    [terrain, dots, sky],
-  )
+  }, [animate, paused])
 
   useFrame((state, delta) => {
-    if (!animate) return
+    onFrame()
+    if (!animate || paused) return
     const dt = Math.min(delta, 0.1)
-    shared.uOffset.value += dt * SPEED
+    uOffset.value += dt * SPEED
     dots.mat.uniforms.uTime.value += dt
     const cam = state.camera
     cam.position.x += (pointer.current.x * PARALLAX - cam.position.x) * Math.min(1, dt * 2)
@@ -270,51 +317,42 @@ function Scene({ animate, small }: { animate: boolean; small: boolean }) {
   )
 }
 
-class WebglGuard extends Component<{ children: ReactNode }, { failed: boolean }> {
-  state = { failed: false }
-  static getDerivedStateFromError() {
-    return { failed: true }
-  }
-  render() {
-    return this.state.failed ? null : this.props.children
-  }
-}
-
-// True while a full-screen picture viewer is open (it sets data-viewer on <html>), so the landscape stops drawing.
-function useViewerOpen() {
-  const [open, setOpen] = useState(() => 'viewer' in document.documentElement.dataset)
-  useEffect(() => {
-    const root = document.documentElement
-    const sync = () => setOpen('viewer' in root.dataset)
-    const mo = new MutationObserver(sync)
-    mo.observe(root, { attributes: true, attributeFilter: ['data-viewer'] })
-    return () => mo.disconnect()
-  }, [])
-  return open
-}
-
-// Decorative layer; the panel supplies the black behind it and the dark gradient above it.
-export function Landscape() {
+// Decorative layer: LandscapeLayer puts it under the spiral. `paused` = a panel covers it, so stop drawing.
+export function Landscape({ paused }: { paused: boolean }) {
   const reduced = useReducedMotion()
   const small = useMemo(isSmall, [])
-  const paused = useViewerOpen()
+  const [compiled, setCompiled] = useState(false)
+  const [ready, setReady] = useState(false)
+  const seenFrame = useRef(false)
+
+  useEffect(() => () => disposeAssets(), [])
+
+  const onCompiled = useCallback(() => setCompiled(true), [])
+  const onFrame = useCallback(() => {
+    if (seenFrame.current) return
+    seenFrame.current = true
+    // After the frame has been drawn, not before: that is when it can actually be seen.
+    requestAnimationFrame(() => {
+      performance.mark('landscape:first-frame')
+      setReady(true)
+      signalLandscapeReady()
+    })
+  }, [])
+
   return (
-    <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 bg-black">
-      <WebglGuard>
-        <Canvas
-          resize={{ offsetSize: true }}
-          frameloop={reduced || paused ? 'demand' : 'always'}
-          dpr={small ? 1 : [1, 1.5]}
-          gl={{ antialias: true, alpha: false, powerPreference: 'low-power' }}
-          camera={{ fov: CAMERA.fov, near: 0.5, far: 450, position: [0, CAMERA.y, CAMERA.z] }}
-          onCreated={({ camera, gl }) => {
-            camera.lookAt(0, CAMERA.lookY, CAMERA.lookZ)
-            gl.setClearColor('#000000')
-          }}
-        >
-          <Scene animate={!reduced} small={small} />
-        </Canvas>
-      </WebglGuard>
-    </div>
+    <Canvas
+      resize={{ offsetSize: true }}
+      frameloop={!compiled || paused ? 'never' : reduced ? 'demand' : 'always'}
+      dpr={small ? 1 : [1, 1.5]}
+      gl={{ antialias: true, alpha: false, powerPreference: 'low-power' }}
+      camera={{ fov: CAMERA.fov, near: 0.5, far: 450, position: [0, CAMERA.y, CAMERA.z] }}
+      style={{ opacity: ready ? 1 : 0, transition: ready && !reduced ? 'opacity 300ms ease-out' : 'none' }}
+      onCreated={({ camera, gl }) => {
+        camera.lookAt(0, CAMERA.lookY, CAMERA.lookZ)
+        gl.setClearColor('#000000')
+      }}
+    >
+      <Scene animate={!reduced} small={small} paused={paused} onCompiled={onCompiled} onFrame={onFrame} />
+    </Canvas>
   )
 }

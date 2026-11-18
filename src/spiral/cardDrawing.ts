@@ -261,38 +261,15 @@ const PAINTERS: Record<string, Painter> = {
     ctx.fillRect(0, 0, CARD_W, CARD_H)
     skillLogos(ctx, s)
   },
-  projects(ctx, _s, face) {
-    diagonal(ctx, face)
-    ctx.strokeStyle = 'rgba(217,242,79,0.1)'
-    ctx.lineWidth = 2
-    for (let i = 1; i < 9; i++) {
-      ctx.beginPath()
-      ctx.moveTo(0, 150 + i * 56)
-      ctx.lineTo(CARD_W, 150 + i * 56)
-      ctx.stroke()
+  projects(ctx, _s, face, img) {
+    // Plain white face with the black repo line icon above the dark title.
+    ctx.fillStyle = face.background as string
+    ctx.fillRect(0, 0, CARD_W, CARD_H)
+    if (img) {
+      const w = 520
+      const h = Math.round(w * (img.height / img.width))
+      ctx.drawImage(img, (CARD_W - w) / 2, 380 - h / 2, w, h)
     }
-    const pts = [0, 0.55, 0.35, 0.6, 0.45, 0.75, 0.62, 0.9].map((v, i) => [60 + i * 86, 560 - v * 320])
-    ctx.beginPath()
-    pts.forEach(([x, y], i) => (i ? ctx.lineTo(x, y - 40) : ctx.moveTo(x, y - 40)))
-    for (let i = pts.length - 1; i >= 0; i--) ctx.lineTo(pts[i][0], pts[i][1] + 40)
-    ctx.closePath()
-    ctx.fillStyle = 'rgba(217,242,79,0.14)'
-    ctx.fill()
-    ctx.beginPath()
-    pts.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)))
-    ctx.strokeStyle = ACCENT
-    ctx.lineWidth = 6
-    ctx.lineJoin = 'round'
-    ctx.stroke()
-    pts.forEach(([x, y]) => {
-      ctx.fillStyle = INK
-      ctx.beginPath()
-      ctx.arc(x, y, 11, 0, Math.PI * 2)
-      ctx.fill()
-      ctx.strokeStyle = ACCENT
-      ctx.lineWidth = 4
-      ctx.stroke()
-    })
   },
   learning(ctx, _s, face) {
     diagonal(ctx, face)

@@ -12,6 +12,8 @@ The rest is the stuff that draws the cards. Mostly leave it alone.
 
 Almost every file has a short note at the top saying what it does. Numbers you'd actually want to tweak (how long a photo stays up, how fast the ring text spins) sit at the top of their file with a name and a comment.
 
+Want to see how the parts work together (the spiral, the background, panels, the top bar)? The diagrams in [docs/flowcharts/](docs/flowcharts/README.md) walk through each one.
+
 ## Where stuff is
 
 ![Folder map: the main folders on the left, and on the right the things you might want to change, with arrows to the folder that controls each one](docs/folder-map.svg)
@@ -171,9 +173,10 @@ New font: `npm install @fontsource-variable/<font-name>`, add `import '@fontsour
 
 Colours that aren't in `theme.css`:
 
-- Menu card faces: `src/spiral/cardFaces.ts`, `cardStyle.ts` and a few in `cardDrawing.ts` (skill tiles, the chart on the Projects card).
-- The landscape behind the panels: knobs at the top of `src/components/Landscape.tsx` (speed, dot size and spacing, mountain height, haze, twinkle, colours).
-- Black behind the spiral and the floor grid: `BG` and `gridHelper` in `src/spiral/Spiral.tsx`.
+- Menu card faces: `src/spiral/cardFaces.ts`, `cardStyle.ts` and a few in `cardDrawing.ts` (skill tiles). The Projects card is plain white with `public/logos/repo.svg`.
+- The mountain landscape behind the spiral: knobs at the top of `src/components/Landscape.tsx` (speed, dot size and spacing, mountain height, haze, twinkle, colours).
+- The panel background (black with a grid floor): constants at the top of `src/components/GridBackdrop.tsx`.
+- Fog and the dark edge vignette on the spiral: `BG`, `<fog>` and the gradient `div` in `src/spiral/Spiral.tsx`.
 - Medal metals: `TONES` at the top of `src/components/Medal.tsx`.
 - Diagram pictures: `themeVariables` near the top of `tools/project-diagrams/mermaid/build-mermaid.mjs`, then `npm run pictures`.
 - Phone browser bar: `theme-color` in `index.html`.
@@ -270,7 +273,7 @@ To go live, push to GitHub (`main`). Vercel rebuilds on its own, up in about a m
 - `src/spiral/Spiral.tsx`, `Card3D.tsx`, `SpiralHud.tsx`, `SpiralBoundary.tsx`: the 3D engine and the spiral's on-screen controls.
 - `src/spiral/badgePhotos.ts`: the reel photo list (the only part I edit) plus the code that loads them.
 - `src/lib/useFocusTrap.ts`, `usePresence.ts`, `useReducedMotion.ts`: keyboard focus, open/close animations, reduced motion.
-- `src/components/Panel.tsx`, `MenuDrawer.tsx`, `TopBar.tsx`, `ListView.tsx`, `TechGrid.tsx`, `Landscape.tsx`, `DiagramViewer.tsx`: the frame around the sections, the animated background, and the diagram window.
+- `src/components/Panel.tsx`, `MenuDrawer.tsx`, `TopBar.tsx`, `ListView.tsx`, `TechGrid.tsx`, `Landscape.tsx`, `LandscapeLayer.tsx`, `GridBackdrop.tsx`, `DiagramViewer.tsx`: the frame around the sections, the animated mountains behind the spiral, the panel's grid background, and the diagram window.
 - `src/lib/diagramGraph.ts`: reads which boxes and arrows a diagram has, so a tapped box can light up its arrows.
 - `src/App.tsx`, `src/main.tsx`, `src/i18n.ts`: start-up and language.
 - `vite.config.ts`, `tsconfig.json`, `package-lock.json`: build settings.

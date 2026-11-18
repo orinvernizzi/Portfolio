@@ -43,7 +43,7 @@ export interface Project {
 
 interface Content {
   ui: Record<
-    'spiral' | 'list' | 'menu' | 'close' | 'scrollHint' | 'downloadCv' | 'lang' | 'open' | 'viewCode' | 'newTab' | 'links' | 'tech' | 'badgeRing' | 'badgeLabel' | 'reelTitle' | 'reelPrev' | 'reelNext' | 'reelPause' | 'reelPlay' | 'reelCounter' | 'diagramExplore' | 'diagramHint' | 'zoomIn' | 'zoomOut' | 'zoomReset',
+    'spiral' | 'list' | 'menu' | 'close' | 'scrollHint' | 'loading' | 'downloadCv' | 'lang' | 'open' | 'viewCode' | 'newTab' | 'links' | 'tech' | 'badgeRing' | 'badgeLabel' | 'reelTitle' | 'reelPrev' | 'reelNext' | 'reelPause' | 'reelPlay' | 'reelCounter' | 'diagramExplore' | 'diagramHint' | 'zoomIn' | 'zoomOut' | 'zoomReset',
     string
   >
   alt: Record<'portrait' | 'hocr' | 'paraguay' | 'itti' | 'marietta' | 'cambridge' | 'cristorey' | 'techo' | 'techo1' | 'techo2', string>

@@ -5,9 +5,10 @@
 // To change a card: edit its entry below and save. Photos and logos are paths inside /public,
 // for example /photos/portrait.webp (the file is public/photos/portrait.webp).
 // Not every field does something on every card. A photo only shows on intro, about and rowing.
-// A logo only shows on experience and education. 'lines' is needed by experience, learning and leadership.
-// A background with two colours is a diagonal gradient (projects, learning, leadership).
-// Education has three: white centre, then two blues. The skills card gets its tech logos from skills.json.
+// A logo only shows on experience, education and projects. 'lines' is needed by experience, learning and leadership.
+// A background with two colours is a diagonal gradient (learning, leadership).
+// Education has three colours, a glow from the centre: white then two blues. Projects is plain white
+// with the black repo icon (public/logos/repo.svg). The skills card gets its tech logos from skills.json.
 // A brand new card also needs its own painter in cardDrawing.ts, see START-HERE.md.
 import { ACCENT, OFFWHITE } from './cardStyle'
 
@@ -54,8 +55,9 @@ export const CARD_FACES: Record<string, CardFace> = {
     titleColor: 'white',
   },
   projects: {
-    background: ['#171d08', '#0d0f06'],
-    titleColor: 'white',
+    logo: '/logos/repo.svg',
+    background: '#ffffff', // plain white card, black line icon
+    titleColor: 'dark',
   },
   rowing: {
     photo: { src: '/photos/rowing-hocr.webp', fx: 0.18, fy: 0.5 },

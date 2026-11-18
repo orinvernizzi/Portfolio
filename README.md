@@ -4,6 +4,8 @@ My portfolio, in English and Spanish. Two views: a 3D spiral of cards (React Thr
 
 **Want to change something? Go to [START-HERE.md](START-HERE.md).**
 
+How the main parts work, with diagrams: [docs/flowcharts/](docs/flowcharts/README.md).
+
 ## Run it
 
 ```powershell

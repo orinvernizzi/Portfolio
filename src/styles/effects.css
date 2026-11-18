@@ -141,3 +141,84 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* preloader (src/components/Preloader.tsx): black screen, white stepped counter, bar on the right edge, name swaps in for the counter.
+   Easing is expo-out, like the reference. The counter's height path is (1 - p) * (screen height - its own height). */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  color: #fff;
+  font-family: var(--font-sans);
+}
+.preloader-bg {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
+}
+.preloader[data-phase='exit'] .preloader-bg { opacity: 0; }
+.preloader[data-phase='exit'] { pointer-events: none; }
+.preloader-no,
+.preloader-name {
+  position: absolute;
+  left: 1.4vw;
+  overflow: hidden;
+  font-weight: 700;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.preloader-no {
+  top: -0.04em;
+  font-size: clamp(5rem, 9.14vw, 12rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+  opacity: 0;
+  transform: translateY(calc((1 - var(--p, 0)) * (100dvh - 1em)));
+  transition: opacity 0.3s ease-out;
+}
+.preloader-no.is-on { opacity: 1; }
+.preloader-no-in,
+.preloader-name-in {
+  display: block;
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.preloader:not([data-name='wait']) .preloader-no-in { transform: translateY(-110%); transition-duration: 0.6s; }
+.preloader-name {
+  top: 0;
+  padding-bottom: 0.06em;
+  font-size: clamp(2.25rem, 6.6vw, 8rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+}
+.preloader-name-in { transform: translateY(110%); }
+.preloader-name-in span { display: block; }
+.preloader[data-name='in'] .preloader-name-in { transform: none; }
+.preloader[data-name='out'] .preloader-name-in { transform: translateY(-110%); transition: transform 0.6s cubic-bezier(0.7, 0, 0.84, 0); }
+@media (min-width: 768px) {
+  .preloader-name-in span { display: inline; }
+}
+.preloader-line {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: max(3px, 0.34vw);
+  height: 100%;
+  background: #fff;
+  transform-origin: bottom;
+  transform: scaleY(var(--p, 0));
+  transition: transform 1.05s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.preloader[data-phase='exit'] .preloader-line { transform-origin: top; transform: scaleY(0); transition-duration: 1.2s; }
+/* Reduced motion: no movement. The name sits in the middle, fades in, then the whole screen fades out. */
+.preloader.is-reduced,
+.preloader.is-reduced .preloader-bg,
+.preloader.is-reduced .preloader-name-in { transition-duration: 0.3s !important; transition-delay: 0s !important; }
+.preloader.is-reduced .preloader-name { top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
+.preloader.is-reduced .preloader-name-in { transform: none !important; opacity: 0; transition-property: opacity; }
+.preloader.is-reduced[data-name='in'] .preloader-name-in { opacity: 1; }
+.preloader.is-reduced[data-phase='exit'] { opacity: 0; transition-property: opacity; }
+@media (prefers-reduced-motion: reduce) {
+  .preloader-bg { transition-delay: 0s; }
+}

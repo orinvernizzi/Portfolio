@@ -1,7 +1,7 @@
 // The "Projects" panel: project cards grouped by the groups in projects.json.
 // Text, links and stack: src/content/projects.json. The picture of each card is public/project-pictures/<id>.<en|es>.<svg|webp>
 // (webp when the project has "image": "webp"). Picture descriptions for screen readers: "art" in projects.json.
-import { useEffect, useState, type CSSProperties, type ReactNode } from 'react'
+import { useState, type CSSProperties, type ReactNode } from 'react'
 import { useContent, useLang, type Project } from '../lib/content'
 import { ButtonLink, ChipList, Icon } from '../components/ui'
 import { DiagramViewer } from '../components/DiagramViewer'
@@ -10,16 +10,9 @@ import pictureSizes from '../content/pictureSizes.json'
 // [width, height] of each diagram, written by `npm run pictures` (tools/project-diagrams/mermaid).
 const DIAGRAM_SIZES: Record<string, number[] | undefined> = pictureSizes
 
-// A diagram card's picture: tapping opens DiagramViewer. While it is open the panel landscape pauses (data-viewer on <html>).
+// A diagram card's picture: tapping opens DiagramViewer.
 function DiagramPicture({ p, fade, img, hint, alt, width, height }: { p: Project; fade: CSSProperties; img: ReactNode; hint: string; alt?: string; width: number; height: number }) {
   const [viewing, setViewing] = useState(false)
-  useEffect(() => {
-    if (!viewing) return
-    document.documentElement.dataset.viewer = ''
-    return () => {
-      delete document.documentElement.dataset.viewer
-    }
-  }, [viewing])
   return (
     <>
       <button type="button" onClick={() => setViewing(true)} aria-haspopup="dialog" className="group relative block w-full cursor-zoom-in border-0 bg-transparent p-0 text-left focus-visible:outline-none!">

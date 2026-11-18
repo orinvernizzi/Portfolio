@@ -4,7 +4,9 @@ import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { TopBar, type View } from './components/TopBar'
 import { MenuDrawer } from './components/MenuDrawer'
 import { Panel } from './components/Panel'
+import { LandscapeLayer } from './components/LandscapeLayer'
 import { ListView } from './components/ListView'
+import { Preloader } from './components/Preloader'
 import { SpiralBoundary } from './spiral/SpiralBoundary'
 
 const Spiral = lazy(() => import('./spiral/Spiral'))
@@ -73,6 +75,7 @@ export default function App() {
 
   return (
     <div className="min-h-dvh bg-bg text-fg">
+      <Preloader />
       <TopBar
         view={spiral ? 'spiral' : 'list'}
         canSpiral={webgl}
@@ -82,6 +85,7 @@ export default function App() {
         onView={setView}
         onMenu={() => setMenuOpen(true)}
       />
+      <LandscapeLayer enabled={spiral} open={panelId !== null} />
       {spiral ? (
         <div className="fixed inset-0">
           <SpiralBoundary onError={failSpiral}>

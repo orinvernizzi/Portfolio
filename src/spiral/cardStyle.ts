@@ -1,6 +1,6 @@
 // Numbers shared by every spiral card drawing: card size, the font, and three colours.
 // Which photo, logo and colours each card uses is set in cardFaces.ts, not here.
-// ACCENT is the lime green used on the projects, learning and contact cards, and INK and OFFWHITE
+// ACCENT is the lime green used on the learning card and the contact card circle, and INK and OFFWHITE
 // are the dark and light text colours. The site itself is white, these only touch the card faces.
 // If you change CARD_W or CARD_H, the drawings in cardDrawing.ts are laid out for 720 x 960, so check every card.
 export const CARD_W = 720
