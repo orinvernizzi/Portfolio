@@ -93,7 +93,7 @@ Easiest: replace the file, same name. New name? Change it in the file above. Por
 
 They're in `public/project-pictures/`, named `<project-id>.<en|es>.<svg|webp>`, like `sudoku.en.svg` and `sudoku.es.svg`. The id is the project's `id` in `projects.json`. Projects with `"image": "webp"` use `.webp`, the rest `.svg`. The site picks by language, so you need one per language.
 
-8 projects are diagrams (orquestador, pep9, vmm, sched, sudoku, db, web, portfolio). A script draws them from small text files, not by hand. Each one has two: `tools/project-diagrams/mermaid/<id>.en.mmd` and `<id>.es.mmd`. They're Mermaid, basically a diagram written in words.
+7 projects are diagrams (orquestador, pep9, vmm, sched, sudoku, db, web). A script draws them from small text files, not by hand. Each one has two: `tools/project-diagrams/mermaid/<id>.en.mmd` and `<id>.es.mmd`. They're Mermaid, basically a diagram written in words.
 
 To change a label, edit the text inside the quotes, in both languages. `<br/>` breaks a label into two lines. Then:
 
@@ -120,11 +120,11 @@ flowchart TD
 
 New project diagram: copy a pair to `<id>.en.mmd` and `<id>.es.mmd`, edit both, run `npm run pictures`. Picture and size show up by themselves. The folder map at the top works the same: edit `tools/project-diagrams/mermaid/docs/folder-map.mmd`, run `npm run folder-map`.
 
-3 projects are screenshots (catch, dashboard, forecast), as `.webp`. To change one, drop any 1500 x 900 `.webp` in `public/project-pictures/` with the same name.
+4 projects are screenshots (catch, dashboard, forecast, portfolio), as `.webp`. To change one, drop any 1500 x 900 `.webp` in `public/project-pictures/` with the same name. The portfolio one is the spiral itself, taken at 1366 x 768 and padded at the bottom to 1500 x 900 (the card fades that edge).
 
 Screen reader text for each picture is `art` at the bottom of `projects.json`.
 
-Tap a diagram and it opens big with zoom buttons (`src/components/DiagramViewer.tsx`). The 3 screenshots are just pictures. On the 8 diagrams you can also tap a box: it lights up with its arrows and a one-line note shows under it.
+Tap a diagram and it opens big with zoom buttons (`src/components/DiagramViewer.tsx`). The 4 screenshots are just pictures. On the 7 diagrams you can also tap a box: it lights up with its arrows and a one-line note shows under it.
 
 ### Change what a box says when tapped
 
@@ -194,7 +194,7 @@ The CVs are in `public/cv/`: `Nicolas_Invernizzi_CV_EN.pdf` and `Nicolas_Inverni
 
 ### Add a new project
 
-1. In `src/content/projects.json`, copy an entry in `items` (`en` and `es`) and edit it. Fields: `id`, `group` (one of the `groups` ids: itti, rowing, systems, web), `title`, `tag`, `text`, `details` (bullets), `stack` (tech names), and optional `legal`, `note`, `live`, `code`, `codeLabel`, `image`.
+1. In `src/content/projects.json`, copy an entry in `items` (`en` and `es`) and edit it. Fields: `id`, `group` (one of the `groups` ids: rowing, itti, portfolio, marietta), `title`, `tag`, `text`, `details` (bullets), `stack` (tech names), and optional `legal`, `note`, `live`, `code`, `codeLabel`, `image`.
 2. Add its picture. Diagram: write `tools/project-diagrams/mermaid/<id>.en.mmd` and `<id>.es.mmd`, run `npm run pictures` (see above). It makes `public/project-pictures/<id>.en.svg` and `<id>.es.svg` and adds the size to `pictureSizes.json`. Screenshot: put `<id>.en.webp` and `<id>.es.webp` in `public/project-pictures/` and add `"image": "webp"` to the project.
 3. Add a picture description under `art` at the bottom, as `"<id>": { "label": "..." }`, both languages. For a diagram, also add its box notes under `diagramNotes` and run `npm run check-notes`.
 4. `stack` names show as plain text tags. No logo needed.

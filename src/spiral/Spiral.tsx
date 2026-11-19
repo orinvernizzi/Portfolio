@@ -1,15 +1,17 @@
 // The 3D spiral menu: cards on a ring, drawn on a transparent canvas over the landscape (src/components/LandscapeLayer.tsx).
 // The dark vignette div near the bottom keeps the edges calm; fog (BG) darkens far cards. See docs/flowcharts/spiral.md.
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { Canvas, useFrame } from '@react-three/fiber'
-import { Card3D, RADIUS } from './Card3D'
+import { Canvas, useFrame, useThree } from '@react-three/fiber'
+import type * as THREE from 'three'
+import { Card3D, HEIGHT, RADIUS, WIDTH } from './Card3D'
+import { screenRect, type PanelOrigin, type ScreenRect } from './screenRect'
 import { SpiralHud } from './SpiralHud'
 import { useContent } from '../lib/content'
 import { mod, ringDelta, useScrollProgress, type SpiralProgress } from '../lib/useScrollProgress'
 
 interface Props {
   enabled: boolean
-  onOpen: (id: string) => void
+  onOpen: (id: string, origin?: PanelOrigin) => void
   jumpTo: { id: string; n: number } | null
   onContextLost: () => void
 }
@@ -19,8 +21,12 @@ const CAMERA_Z = 14.5
 // Distance needed to fit the front card (plus margin) in a narrow viewport.
 const FIT_WIDTH_FACTOR = 4.77
 
-function Scene({ progress, onOpen }: { progress: SpiralProgress; onOpen: (index: number) => void }) {
+function Scene({ progress, onOpen }: { progress: SpiralProgress; onOpen: (index: number, origin?: PanelOrigin) => void }) {
   const c = useContent()
+  const { camera, gl } = useThree()
+  const front = useRef<THREE.Group>(null) // an empty stand-in at the front card's spot, so the panel can close back into it
+  const openFrom = (i: number, from: ScreenRect) =>
+    onOpen(i, front.current ? { from, back: screenRect(front.current, WIDTH, HEIGHT, camera, gl.domElement) } : undefined)
   const reduced = useMemo(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches, [])
   const chips = useMemo(() => c.skills.groups.flatMap((g) => g.items), [c])
   const total = c.sections.length
@@ -40,6 +46,7 @@ function Scene({ progress, onOpen }: { progress: SpiralProgress; onOpen: (index:
     <>
       <fog attach="fog" args={[BG, 13, 30]} />
       <group rotation={[0, 0, 0.07]}>
+        <group ref={front} position={[0, 0, RADIUS]} />
         <group>
           {c.sections.map((s, i) => (
             <Card3D
@@ -52,7 +59,7 @@ function Scene({ progress, onOpen }: { progress: SpiralProgress; onOpen: (index:
               near={Math.abs(ringDelta(i, progress.index, total)) <= 4}
               progress={progress}
               reducedMotion={reduced}
-              onOpen={onOpen}
+              onOpen={openFrom}
             />
           ))}
         </group>
@@ -84,9 +91,9 @@ export default function Spiral({ enabled, onOpen, jumpTo, onContextLost }: Props
     if (i >= 0) goTo(i)
   }, [jumpTo])
 
-  const open = (i: number) => {
+  const open = (i: number, origin?: PanelOrigin) => {
     goTo(i)
-    onOpen(c.sections[i].id)
+    onOpen(c.sections[i].id, origin)
   }
 
   useEffect(() => {

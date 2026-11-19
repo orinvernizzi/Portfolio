@@ -5,13 +5,59 @@
   durations written here. The badge's seconds per photo and ring speed are in src/spiral/CornerBadge.tsx.
   The block at the very bottom turns animations off for people who set "reduce motion" on their device. Leave it.
 */
+/* Panel: grows out of the card you clicked and shrinks back into the front card on close.
+   Panel.tsx sets --panel-from (a translate + scale from the card's spot on screen); without it (menu, keyboard) it rises a little.
+   The open state's timings play when opening, the enter state's when closing. */
 .dialog-enter {
   opacity: 0;
-  transform: translateY(24px) scale(0.98);
+  transform: var(--panel-from, translateY(24px) scale(0.98));
+  will-change: transform, opacity;
+  transition: opacity var(--dur-base) ease-in, transform var(--dur-base) var(--ease-out);
 }
 .dialog-open {
   opacity: 1;
   transform: none;
+  transition: opacity var(--dur-base) var(--ease-out), transform var(--dur-slow) var(--ease-out);
+}
+/* The spiral panel's staged timings (tokens in theme.css). Delays only on open, so closing stays quick. */
+.dialog-panel.dialog-enter {
+  transition: opacity var(--dur-close) var(--ease-close), transform var(--dur-close) var(--ease-close);
+}
+.dialog-panel.dialog-open {
+  transition:
+    opacity 200ms var(--ease-out) var(--delay-panel),
+    transform var(--dur-open) var(--ease-open) var(--delay-panel);
+}
+.dialog-panel.dialog-enter .dialog-content {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 120ms ease-in, transform 120ms ease-in;
+}
+.dialog-panel.dialog-open .dialog-content {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity var(--dur-content) var(--ease-out) var(--delay-content),
+    transform var(--dur-content) var(--ease-out) var(--delay-content);
+}
+.dialog-scrim {
+  transition: opacity var(--dur-backdrop) var(--ease-out);
+}
+
+/* Lists inside panels and the list view fade and rise as they scroll in. Pure CSS (scroll-driven animation);
+   browsers without it (Firefox today) just show everything. Used on timeline entries, project cards and numbered points. */
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+  }
 }
 .drawer-enter {
   transform: translateX(100%);
@@ -49,7 +95,7 @@
   transform: rotate(-15deg);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   cursor: pointer;
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: transform 0.4s var(--ease-spring);
 }
 .badge-tile:hover,
 .badge-tile:focus-visible {
@@ -74,7 +120,7 @@
   to { transform: scale(1); }
 }
 .reel-fill { transform-origin: left; animation: reel-fill 1.7s linear both; }
-.reel-in { animation: reel-in 0.5s ease-out both; }
+.reel-in { animation: reel-in 0.5s var(--ease-out) both; }
 .reel-zoom-in { animation: reel-zoom-in 2.2s linear both; }
 .reel-zoom-out { animation: reel-zoom-out 2.2s linear both; }
 .reel-btn:focus-visible { border-radius: 9999px; }
@@ -139,6 +185,10 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+  .dialog-panel,
+  .dialog-panel .dialog-content {
+    transition-delay: 0s !important;
   }
 }
 

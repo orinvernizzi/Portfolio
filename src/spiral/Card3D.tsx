@@ -1,15 +1,16 @@
 import { useEffect, useRef, useState } from 'react'
-import { useFrame } from '@react-three/fiber'
+import { useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 import { paintCard } from './cardDrawing'
 import { CARD_H, CARD_W } from './cardStyle'
 import { ringDelta, type SpiralProgress } from '../lib/useScrollProgress'
+import { screenRect, type ScreenRect } from './screenRect'
 
 export const RADIUS = 6.2
 const STEP = 0.4
 const RISE = 1.05
-const WIDTH = 2.55
-const HEIGHT = (WIDTH * CARD_H) / CARD_W
+export const WIDTH = 2.55
+export const HEIGHT = (WIDTH * CARD_H) / CARD_W
 
 // Slightly curved plane: edges bend away from the viewer.
 const GEOMETRY = (() => {
@@ -32,7 +33,7 @@ interface Props {
   near: boolean
   progress: SpiralProgress
   reducedMotion: boolean
-  onOpen: (index: number) => void
+  onOpen: (index: number, from: ScreenRect) => void
 }
 
 function useCardTexture(enabled: boolean, id: string, title: string, index: number, total: number, chips: string[]) {
@@ -70,6 +71,7 @@ export function Card3D({ index, id, title, total, chips, near, progress, reduced
   if (near && !seen) setSeen(true)
   const texture = useCardTexture(seen, id, title, index, total, chips)
 
+  const gl = useThree((s) => s.gl)
   const root = useRef<THREE.Group>(null)
   const inner = useRef<THREE.Group>(null)
   const material = useRef<THREE.MeshBasicMaterial>(null)
@@ -111,7 +113,7 @@ export function Card3D({ index, id, title, total, chips, near, progress, reduced
           onClick={(e) => {
             if (e.delta > 8) return
             e.stopPropagation()
-            onOpen(index)
+            onOpen(index, screenRect(e.object, WIDTH, HEIGHT, e.camera, gl.domElement))
           }}
           onPointerOver={(e) => {
             e.stopPropagation()

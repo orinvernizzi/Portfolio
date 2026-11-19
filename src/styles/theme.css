@@ -37,7 +37,29 @@
   --line: #1f1f1f; /* thin borders and dividers */
   --chip: #111; /* background of the small tag pills */
   --accent-text: #e5e5e5; /* light grey, 4.5:1+ over the black panel background */
+  /* Motion: one set of timings and curves for the whole site (used in effects.css). */
+  --dur-fast: 150ms; /* button presses */
+  --dur-base: 280ms; /* fades, closing */
+  --dur-slow: 480ms; /* panel growing out of a card */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1); /* fast start, soft landing */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1); /* small overshoot */
+  /* Spiral panel, in this order: backdrop fades in, the box grows out of the card, then its content rises in.
+     Closing is shorter than opening; keep PANEL_EXIT_MS in src/components/Panel.tsx just above --dur-close. */
+  --dur-backdrop: 260ms;
+  --delay-panel: 60ms; /* box waits a beat for the backdrop */
+  --dur-open: 650ms;
+  --ease-open: var(--ease-out); /* replaced by the spring below where linear() works */
+  --delay-content: 220ms; /* after the box starts moving */
+  --dur-content: 380ms;
+  --dur-close: 300ms;
+  --ease-close: cubic-bezier(0.4, 0, 0.6, 1);
   color-scheme: dark;
+}
+/* Damped spring (about 1.5% overshoot, no visible bounce). */
+@supports (transition-timing-function: linear(0, 1)) {
+  :root {
+    --ease-open: linear(0, 0.095, 0.291, 0.498, 0.676, 0.81, 0.903, 0.961, 0.993, 1.009, 1.015, 1.015, 1.012, 1.009, 1.006, 1.004, 1.002, 1.001, 1);
+  }
 }
 
 html,
@@ -57,6 +79,13 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
+}
+
+/* Taps fire straight away and without the grey mobile flash; the press scale (active:scale-[0.96]) is the feedback. */
+a,
+button {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html.no-scroll,

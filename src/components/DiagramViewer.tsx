@@ -146,7 +146,7 @@ function Viewer({ open, onClose, id, title, alt, width, height, active }: Props 
 
   const note = shown ? diagramNotes[id]?.[shown] : undefined
   const label = shown ? graph.current?.labels.get(shown) : undefined
-  const roundButton = 'reel-btn flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/20 bg-black/50 text-white transition-colors hover:bg-white/15 aria-disabled:opacity-40 aria-disabled:hover:bg-black/50'
+  const roundButton = 'reel-btn flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/20 bg-black/50 text-white transition hover:bg-white/15 active:scale-[0.92] aria-disabled:opacity-40 aria-disabled:hover:bg-black/50'
 
   return (
     <div
@@ -224,7 +224,7 @@ function Viewer({ open, onClose, id, title, alt, width, height, active }: Props 
                 <path d="M5 12h14" />
               </svg>
             </button>
-            <button type="button" onClick={() => zoomTo(1)} aria-disabled={zoom === 1} className="reel-btn h-11 shrink-0 rounded-full border border-white/20 bg-black/50 px-4 text-sm font-medium text-white transition-colors hover:bg-white/15 aria-disabled:opacity-40 aria-disabled:hover:bg-black/50">
+            <button type="button" onClick={() => zoomTo(1)} aria-disabled={zoom === 1} className="reel-btn h-11 shrink-0 rounded-full border border-white/20 bg-black/50 px-4 text-sm font-medium text-white transition hover:bg-white/15 active:scale-[0.92] aria-disabled:opacity-40 aria-disabled:hover:bg-black/50">
               {ui.zoomReset}
             </button>
             <button type="button" onClick={() => zoomTo(zoom * ZOOM_STEP)} aria-disabled={zoom >= MAX_ZOOM} aria-label={ui.zoomIn} className={roundButton}>

@@ -3,6 +3,9 @@ import { useCallback, useEffect, useRef, useState, type RefObject } from 'react'
 // How fast the spiral turns. Bigger number = faster. You can change these two safely.
 const WHEEL_SPEED = 0.0035 // cards moved per pixel of mouse wheel or trackpad scroll
 const DRAG_SPEED = 0.006 // cards moved per pixel of mouse or finger drag
+const THROW_MS = 250 // a flick keeps going for about this long (its speed × this), then lands on a card
+const MAX_THROW = 2 // a flick moves at most this many extra cards
+const WHEEL_SETTLE_MS = 140 // after the wheel or trackpad stops this long, snap to the nearest card
 // How smoothly the cards glide to a stop is the `6` in the useFrame line of src/spiral/Spiral.tsx.
 
 // Positive modulo, so -1 mod 10 is 9.
@@ -14,7 +17,8 @@ export const ringDelta = (from: number, to: number, n: number) => mod(to - from 
 // Drives the spiral: wheel, touch/mouse drag and arrow keys move an unbounded
 // float position that wraps around the ring (endless loop). `current` is
 // eased toward `target` by the scene; both live in the same unwrapped frame,
-// so easing never takes the long way round.
+// so easing never takes the long way round. Letting go of a drag, or the wheel stopping,
+// always lands on a whole card (a quick flick throws it a card or two further first).
 export function useScrollProgress(count: number, enabled: boolean, el: RefObject<HTMLElement | null>) {
   const target = useRef(0)
   const current = useRef(0)
@@ -38,14 +42,22 @@ export function useScrollProgress(count: number, enabled: boolean, el: RefObject
     const node = el.current
     if (!node || !enabled) return
     let last: { x: number; y: number } | null = null
+    let samples: { t: number; p: number }[] = [] // recent drag positions, for the flick speed
+    let settle = 0
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const snap = (extra = 0) => move(Math.round(target.current + extra))
 
     const onWheel = (e: WheelEvent) => {
       e.preventDefault()
       const unit = e.deltaMode === 1 ? 16 : 1
       move(target.current + (e.deltaY + e.deltaX) * unit * WHEEL_SPEED)
+      window.clearTimeout(settle)
+      settle = window.setTimeout(() => snap(), WHEEL_SETTLE_MS)
     }
     const onDown = (e: PointerEvent) => {
       last = { x: e.clientX, y: e.clientY }
+      samples = [{ t: e.timeStamp, p: target.current }]
+      window.clearTimeout(settle)
     }
     const onMove = (e: PointerEvent) => {
       if (!last) return
@@ -53,9 +65,18 @@ export function useScrollProgress(count: number, enabled: boolean, el: RefObject
       const dy = e.clientY - last.y
       last = { x: e.clientX, y: e.clientY }
       move(target.current - (dx + dy) * DRAG_SPEED)
+      samples.push({ t: e.timeStamp, p: target.current })
+      while (samples.length > 2 && e.timeStamp - samples[0].t > 80) samples.shift()
     }
-    const onUp = () => {
+    // Let go: keep the flick going a little (momentum), then land on the nearest card.
+    const onUp = (e: PointerEvent) => {
+      if (!last) return
       last = null
+      const first = samples[0]
+      const end = samples[samples.length - 1]
+      const fresh = first && e.timeStamp - end.t < 80 && end.t > first.t // still moving when released
+      const speed = fresh ? (end.p - first.p) / (end.t - first.t) : 0
+      snap(reduced ? 0 : Math.max(-MAX_THROW, Math.min(MAX_THROW, speed * THROW_MS)))
     }
     const onKey = (e: KeyboardEvent) => {
       const t = e.target as HTMLElement | null
@@ -89,6 +110,7 @@ export function useScrollProgress(count: number, enabled: boolean, el: RefObject
       window.removeEventListener('pointerup', onUp)
       window.removeEventListener('pointercancel', onUp)
       window.removeEventListener('keydown', onKey)
+      window.clearTimeout(settle)
     }
   }, [count, el, enabled, goTo, move])
 

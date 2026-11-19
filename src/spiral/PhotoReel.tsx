@@ -112,7 +112,7 @@ function Reel({ open, active, onClose }: { open: boolean; active: boolean; onClo
     else setPaused((p) => !p)
   }
 
-  const navButton = 'reel-btn absolute top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/50 text-white backdrop-blur transition-colors hover:bg-black/75'
+  const navButton = 'reel-btn absolute top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/50 text-white backdrop-blur transition hover:bg-black/75 active:scale-[0.92]'
 
   return (
     <div
@@ -201,7 +201,7 @@ function Reel({ open, active, onClose }: { open: boolean; active: boolean; onClo
         type="button"
         onClick={onClose}
         aria-label={ui.close}
-        className="reel-btn absolute right-3 top-3 z-30 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-black/50 text-white backdrop-blur transition-colors hover:bg-white/15 sm:right-5 sm:top-5"
+        className="reel-btn absolute right-3 top-3 z-30 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-black/50 text-white backdrop-blur transition hover:bg-white/15 active:scale-[0.92] sm:right-5 sm:top-5"
       >
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true">
           <path d="M6 6l12 12M18 6 6 18" />

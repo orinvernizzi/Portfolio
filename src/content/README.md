@@ -35,12 +35,12 @@ JSON can't have comments, so this page says what the keys mean.
 ## Project keys (`projects.json`, `items`)
 
 - `id`: also the picture file name. Don't rename it without renaming the pictures.
-- `group`: has to match one of the `groups` ids above it (`itti`, `rowing`, `systems`, `web`).
+- `group`: has to match one of the `groups` ids above it (`rowing`, `itti`, `portfolio`, `marietta`). Groups show in the order they're listed.
 - `title`, `tag` (small line above the title), `text` (short paragraph), `details` (bullets).
 - `stack`: tech names, shown as plain text tags.
 - `legal` (highlighted box) and `note` (small grey text): optional.
 - `live` and `code`: optional buttons. `codeLabel` replaces "View code".
-- `image`: `"webp"` for the screenshot projects (catch, forecast, dashboard). Leave it out for diagrams (SVG). The `portfolio` item, last card in Web, is about this site and is a diagram.
+- `image`: `"webp"` for the screenshot projects (catch, forecast, dashboard, portfolio). Leave it out for diagrams (SVG). The `portfolio` item is about this site; its picture is a screenshot of the spiral.
 - `art` at the end: screen reader text for each picture, `"art": { "<id>": { "label": "..." } }`.
 - `diagramNotes`, after `art`: one short sentence per diagram box, shown when someone taps it in the big diagram: `"diagramNotes": { "<project id>": { "<box id>": "..." } }`. The box id is the name before `["` in the `.mmd` file (`T` in `T["TLB<br/>16 entries"]`). `npm run check-notes` checks every box has a note in both languages.
 - `pictureSizes.json` (this folder) isn't text. `npm run pictures` writes it with each diagram's size, so the page saves room for it. Don't edit it by hand.

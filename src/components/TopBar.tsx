@@ -26,7 +26,7 @@ export function TopBar({ view, canSpiral, solid, menuRef, menuOpen, onView, onMe
       aria-label={text}
       aria-pressed={view === v}
       onClick={() => onView(v)}
-      className={`hop min-h-11 rounded-full px-4 text-sm font-semibold transition-colors ${view === v ? 'bg-white text-ink' : 'text-fg hover:bg-white/10'}`}
+      className={`hop min-h-11 rounded-full px-4 text-sm font-semibold transition active:scale-[0.96] ${view === v ? 'bg-white text-ink' : 'text-fg hover:bg-white/10'}`}
     >
       <span aria-hidden="true">
         {[...text].map((ch, i) => (
@@ -63,7 +63,7 @@ export function TopBar({ view, canSpiral, solid, menuRef, menuOpen, onView, onMe
           lang={lang === 'en' ? 'es' : 'en'}
           aria-label={lang === 'en' ? 'Cambiar a español' : 'Switch to English'}
           onClick={() => setLanguage(lang === 'en' ? 'es' : 'en')}
-          className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-black/40 text-sm font-bold text-fg backdrop-blur transition-colors hover:bg-white/10"
+          className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-black/40 text-sm font-bold text-fg backdrop-blur transition hover:bg-white/10 active:scale-[0.92]"
         >
           {c.ui.lang}
         </button>
@@ -73,7 +73,7 @@ export function TopBar({ view, canSpiral, solid, menuRef, menuOpen, onView, onMe
           aria-haspopup="dialog"
           aria-expanded={menuOpen}
           onClick={onMenu}
-          className="min-h-11 rounded-full bg-white px-5 text-sm font-bold text-ink transition-colors hover:bg-white/80"
+          className="min-h-11 rounded-full bg-white px-5 text-sm font-bold text-ink transition hover:bg-white/80 active:scale-[0.96]"
         >
           {c.ui.menu}
         </button>

@@ -14,7 +14,7 @@ export function Timeline({ items }: { items: Block[] }) {
         const titleLinked = item.url && item.urlOn === 'title'
         const orgNode = item.url && !titleLinked && item.org ? <ExtLink href={item.url} newTab={ui.newTab}>{item.org}</ExtLink> : item.org
         return (
-          <li key={`${heading}-${i}`} className="relative">
+          <li key={`${heading}-${i}`} className="reveal relative">
             <span
               className="absolute -left-[31px] top-2 h-2.5 w-2.5 rounded-full bg-accent ring-4 ring-black md:-left-[39px]"
               aria-hidden="true"

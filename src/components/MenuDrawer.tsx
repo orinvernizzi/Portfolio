@@ -41,7 +41,7 @@ export function MenuDrawer({ open, onClose, onSelect }: Props) {
           className="ml-auto flex min-h-11 items-center gap-3 rounded-full text-sm font-medium"
         >
           {c.ui.close}
-          <span className="flex h-11 w-11 items-center justify-center rounded-full border border-line bg-white/5 transition-colors hover:bg-white/10">
+          <span className="flex h-11 w-11 items-center justify-center rounded-full border border-line bg-white/5 transition hover:bg-white/10 active:scale-[0.92]">
             <Icon name="close" />
           </span>
         </button>
@@ -52,7 +52,7 @@ export function MenuDrawer({ open, onClose, onSelect }: Props) {
                 <button
                   type="button"
                   onClick={() => onSelect(s.id)}
-                  className="group flex min-h-14 w-full items-baseline gap-4 py-3 text-left"
+                  className="group flex min-h-14 w-full items-baseline gap-4 py-3 text-left transition-opacity active:opacity-60"
                 >
                   <span className="font-mono text-sm text-muted">{String(i + 1).padStart(2, '0')}</span>
                   <span className="display text-2xl transition-transform group-hover:translate-x-1 sm:text-3xl">{s.title}</span>

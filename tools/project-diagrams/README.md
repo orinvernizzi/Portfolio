@@ -4,7 +4,7 @@ Draws the diagram pictures on the project cards, plus the folder map in `docs/`.
 
 Each diagram is a short Mermaid text file (a diagram written in words):
 
-- `mermaid/<id>.en.mmd` and `mermaid/<id>.es.mmd`: one per project and language. Ids: orquestador, pep9, vmm, sched, sudoku, db, web, portfolio.
+- `mermaid/<id>.en.mmd` and `mermaid/<id>.es.mmd`: one per project and language. Ids: orquestador, pep9, vmm, sched, sudoku, db, web.
 - `mermaid/docs/folder-map.mmd`: the folder map in START-HERE.md (English only).
 - `mermaid/build-mermaid.mjs`: the script that draws them.
 

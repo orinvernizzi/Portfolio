@@ -2,23 +2,51 @@
   "en": {
     "groups": [
       {
-        "id": "itti",
-        "title": "ITTI internship"
-      },
-      {
         "id": "rowing",
         "title": "Rowing"
       },
       {
-        "id": "systems",
-        "title": "Systems and low-level"
+        "id": "itti",
+        "title": "ITTI internship"
       },
       {
-        "id": "web",
-        "title": "Web, data and software"
+        "id": "portfolio",
+        "title": "This portfolio"
+      },
+      {
+        "id": "marietta",
+        "title": "Marietta College"
       }
     ],
     "items": [
+      {
+        "id": "catch",
+        "group": "rowing",
+        "title": "Catch Analysis",
+        "tag": "Full-stack · solo project",
+        "text": "A rowing training log I built on my own. It brings in erg data, checks it on a review screen and tells me after each session whether I improved. It sits behind a login and the code is private. Before it, I built ErgCalc, a Concept2 pace and watts planner with a logbook.",
+        "details": [
+          "Three ways in, one review screen: Concept2 Logbook sync (OAuth), a CSV or XLSX file, or a photo of the PM5 screen read by OCR in the browser. A live Bluetooth page exists too.",
+          "After each session it compares with the last and the best comparable session, and suggests reasons if it was slower.",
+          "Theil-Sen trend labels, training zones, fitness and fatigue curves, and a race-time predictor (Riegel and Paul’s law).",
+          "English and Spanish PWA on Supabase with row-level security. About 16,000 lines and 54 test files.",
+          "ErgCalc came first: a pace and watts planner with a logbook, as a web app and an iPhone app (Next.js and Expo). Its code is public; the link below is the ErgCalc repo. Catch Analysis itself is private. Watts come from pace with the Concept2 formula, W = 2.80 / (split ÷ 500)³, with the split in seconds per 500 m."
+        ],
+        "stack": [
+          "React",
+          "TypeScript",
+          "Tailwind",
+          "Supabase",
+          "Vercel",
+          "Vitest",
+          "Next.js",
+          "Expo"
+        ],
+        "live": "https://nico-rowing.vercel.app",
+        "code": "https://github.com/orinvernizzi/erg-pace-calculator",
+        "codeLabel": "View ErgCalc code",
+        "image": "webp"
+      },
       {
         "id": "orquestador",
         "group": "itti",
@@ -83,136 +111,8 @@
         "image": "webp"
       },
       {
-        "id": "catch",
-        "group": "rowing",
-        "title": "Catch Analysis",
-        "tag": "Full-stack · solo project",
-        "text": "A rowing training log I built on my own. It brings in erg data, checks it on a review screen and tells me after each session whether I improved. It sits behind a login and the code is private. Before it, I built ErgCalc, a Concept2 pace and watts planner with a logbook.",
-        "details": [
-          "Three ways in, one review screen: Concept2 Logbook sync (OAuth), a CSV or XLSX file, or a photo of the PM5 screen read by OCR in the browser. A live Bluetooth page exists too.",
-          "After each session it compares with the last and the best comparable session, and suggests reasons if it was slower.",
-          "Theil-Sen trend labels, training zones, fitness and fatigue curves, and a race-time predictor (Riegel and Paul’s law).",
-          "English and Spanish PWA on Supabase with row-level security. About 16,000 lines and 54 test files.",
-          "ErgCalc came first: a pace and watts planner with a logbook, as a web app and an iPhone app (Next.js and Expo). Its code is public; the link below is the ErgCalc repo. Catch Analysis itself is private. Watts come from pace with the Concept2 formula, W = 2.80 / (split ÷ 500)³, with the split in seconds per 500 m."
-        ],
-        "stack": [
-          "React",
-          "TypeScript",
-          "Tailwind",
-          "Supabase",
-          "Vercel",
-          "Vitest",
-          "Next.js",
-          "Expo"
-        ],
-        "live": "https://nico-rowing.vercel.app",
-        "code": "https://github.com/orinvernizzi/erg-pace-calculator",
-        "codeLabel": "View ErgCalc code",
-        "image": "webp"
-      },
-      {
-        "id": "pep9",
-        "group": "systems",
-        "title": "Pep/9 CPU simulator",
-        "tag": "C · Computer Organization · team of four",
-        "text": "A C program that simulates the Pep/9 teaching computer. You feed it machine code as hex bytes and it runs one instruction at a time, printing the registers and flags after each step. Final project of CSCI 220, Fall 2025.",
-        "details": [
-          "64 KiB of memory, registers A, X, SP and HP, and the N, Z, V and C flags. Hex is loaded until the marker zz.",
-          "The core Pep/9 instruction set: loads and stores, add and subtract, shifts, compares, eight branches, CALL and RET, heap, and DECO, DECI and STRO.",
-          "Immediate, direct, indexed and stack-relative addressing. Output is mapped to address 0xFC16.",
-          "My part: I set up the team’s GitHub repo and built part of the instruction set. Indexed addressing was the hardest piece."
-        ],
-        "stack": [
-          "C",
-          "Pep/9",
-          "Git"
-        ]
-      },
-      {
-        "id": "vmm",
-        "group": "systems",
-        "title": "Virtual memory manager",
-        "tag": "Python · Operating Systems · individual",
-        "text": "A simulator that turns 16-bit logical addresses into physical ones, the way an operating system does with paging. A page is only loaded from the backing file the first time it is needed.",
-        "details": [
-          "A 16-bit address is an 8-bit page number plus an 8-bit offset. There is a 16-entry TLB with FIFO replacement and a page table.",
-          "On a page fault it copies a 256-byte page from BACKING_STORE.bin into the next free frame.",
-          "On the 1,000 test addresses: 244 page faults and 54 TLB hits.",
-          "All 1,000 address translations match the reference output."
-        ],
-        "stack": [
-          "Python"
-        ]
-      },
-      {
-        "id": "sched",
-        "group": "systems",
-        "title": "CPU scheduling simulator",
-        "tag": "Python · Operating Systems · individual",
-        "text": "A simulator for five CPU scheduling algorithms. It reads tasks (name, priority, CPU burst) from a file and prints when each task runs and finishes.",
-        "details": [
-          "FCFS, Priority, Round Robin (quantum 10), Priority with Round Robin, and SJF.",
-          "A stable sort keeps arrival order when priorities tie.",
-          "Bug fixed: the first task was skipped because the file started with a byte order mark. Reading it as utf-8-sig solved it."
-        ],
-        "stack": [
-          "Python"
-        ]
-      },
-      {
-        "id": "sudoku",
-        "group": "systems",
-        "title": "Multithreaded Sudoku validator",
-        "tag": "Python · Operating Systems · individual",
-        "text": "A Sudoku checker that splits the work across threads. It reads a 9×9 grid from a text file and prints Valid Sudoku or Invalid Sudoku.",
-        "details": [
-          "11 threads: one checks all rows, one checks all columns, and nine check the 3×3 boxes.",
-          "Each thread writes 1 or 0 into its own slot of a shared list, so no locks are needed.",
-          "A group is valid when it holds exactly the numbers 1 to 9."
-        ],
-        "stack": [
-          "Python",
-          "Threads"
-        ]
-      },
-      {
-        "id": "db",
-        "group": "web",
-        "title": "Database design",
-        "tag": "SQL · Databases · individual",
-        "text": "A seven-table database for a consulting firm, designed from an ER diagram and built in MariaDB. It tracks regions, clients, consultants, contracts and consultant classifications.",
-        "details": [
-          "Many-to-many relationships use link tables with composite keys.",
-          "Two triggers add an audit row (who and when) after an insert.",
-          "A stored procedure returns the most recent contract, and a report procedure walks region, client and consultant with three nested cursors.",
-          "I also studied normalization from 1NF through BCNF."
-        ],
-        "stack": [
-          "SQL",
-          "MariaDB",
-          "Visual Paradigm"
-        ]
-      },
-      {
-        "id": "web",
-        "group": "web",
-        "title": "Course registration web app",
-        "tag": "HTML · CSS · team of four",
-        "text": "A four-person school project: the front end of a course registration site. My part was the home page and the shared stylesheet.",
-        "details": [
-          "The home page has a sidebar menu. The shared stylesheet styles every page: header, navigation, footer and forms.",
-          "Teammates built the enrollment, instructor and course pages and wrote the manuals.",
-          "The linked repo is my fork of the team repo and holds only the early HTML and CSS pages."
-        ],
-        "stack": [
-          "HTML",
-          "CSS"
-        ],
-        "code": "https://github.com/orinvernizzi/Web-Programming"
-      },
-      {
         "id": "portfolio",
-        "group": "web",
+        "group": "portfolio",
         "title": "This portfolio",
         "tag": "Web · personal project",
         "text": "A bilingual (English and Spanish) portfolio, and the site you are on. Its menu is a 3D spiral of cards that you scroll through in an endless loop, and each card opens a panel. On phones, and for anyone who asked their device to reduce motion, it is a plain list instead.",
@@ -233,7 +133,108 @@
           "Vercel"
         ],
         "live": "https://nicolas-invernizzi-portfolio.vercel.app",
-        "code": "https://github.com/orinvernizzi/Portfolio"
+        "code": "https://github.com/orinvernizzi/Portfolio",
+        "image": "webp"
+      },
+      {
+        "id": "pep9",
+        "group": "marietta",
+        "title": "Pep/9 CPU simulator",
+        "tag": "C · Computer Organization · team of four",
+        "text": "A C program that simulates the Pep/9 teaching computer. You feed it machine code as hex bytes and it runs one instruction at a time, printing the registers and flags after each step. Final project of CSCI 220, Fall 2025.",
+        "details": [
+          "64 KiB of memory, registers A, X, SP and HP, and the N, Z, V and C flags. Hex is loaded until the marker zz.",
+          "The core Pep/9 instruction set: loads and stores, add and subtract, shifts, compares, eight branches, CALL and RET, heap, and DECO, DECI and STRO.",
+          "Immediate, direct, indexed and stack-relative addressing. Output is mapped to address 0xFC16.",
+          "My part: I set up the team’s GitHub repo and built part of the instruction set. Indexed addressing was the hardest piece."
+        ],
+        "stack": [
+          "C",
+          "Pep/9",
+          "Git"
+        ]
+      },
+      {
+        "id": "vmm",
+        "group": "marietta",
+        "title": "Virtual memory manager",
+        "tag": "Python · Operating Systems · individual",
+        "text": "A simulator that turns 16-bit logical addresses into physical ones, the way an operating system does with paging. A page is only loaded from the backing file the first time it is needed.",
+        "details": [
+          "A 16-bit address is an 8-bit page number plus an 8-bit offset. There is a 16-entry TLB with FIFO replacement and a page table.",
+          "On a page fault it copies a 256-byte page from BACKING_STORE.bin into the next free frame.",
+          "On the 1,000 test addresses: 244 page faults and 54 TLB hits.",
+          "All 1,000 address translations match the reference output."
+        ],
+        "stack": [
+          "Python"
+        ]
+      },
+      {
+        "id": "sched",
+        "group": "marietta",
+        "title": "CPU scheduling simulator",
+        "tag": "Python · Operating Systems · individual",
+        "text": "A simulator for five CPU scheduling algorithms. It reads tasks (name, priority, CPU burst) from a file and prints when each task runs and finishes.",
+        "details": [
+          "FCFS, Priority, Round Robin (quantum 10), Priority with Round Robin, and SJF.",
+          "A stable sort keeps arrival order when priorities tie.",
+          "Bug fixed: the first task was skipped because the file started with a byte order mark. Reading it as utf-8-sig solved it."
+        ],
+        "stack": [
+          "Python"
+        ]
+      },
+      {
+        "id": "sudoku",
+        "group": "marietta",
+        "title": "Multithreaded Sudoku validator",
+        "tag": "Python · Operating Systems · individual",
+        "text": "A Sudoku checker that splits the work across threads. It reads a 9×9 grid from a text file and prints Valid Sudoku or Invalid Sudoku.",
+        "details": [
+          "11 threads: one checks all rows, one checks all columns, and nine check the 3×3 boxes.",
+          "Each thread writes 1 or 0 into its own slot of a shared list, so no locks are needed.",
+          "A group is valid when it holds exactly the numbers 1 to 9."
+        ],
+        "stack": [
+          "Python",
+          "Threads"
+        ]
+      },
+      {
+        "id": "db",
+        "group": "marietta",
+        "title": "Database design",
+        "tag": "SQL · Databases · individual",
+        "text": "A seven-table database for a consulting firm, designed from an ER diagram and built in MariaDB. It tracks regions, clients, consultants, contracts and consultant classifications.",
+        "details": [
+          "Many-to-many relationships use link tables with composite keys.",
+          "Two triggers add an audit row (who and when) after an insert.",
+          "A stored procedure returns the most recent contract, and a report procedure walks region, client and consultant with three nested cursors.",
+          "I also studied normalization from 1NF through BCNF."
+        ],
+        "stack": [
+          "SQL",
+          "MariaDB",
+          "Visual Paradigm"
+        ]
+      },
+      {
+        "id": "web",
+        "group": "marietta",
+        "title": "Course registration web app",
+        "tag": "HTML · CSS · team of four",
+        "text": "A four-person school project: the front end of a course registration site. My part was the home page and the shared stylesheet.",
+        "details": [
+          "The home page has a sidebar menu. The shared stylesheet styles every page: header, navigation, footer and forms.",
+          "Teammates built the enrollment, instructor and course pages and wrote the manuals.",
+          "The linked repo is my fork of the team repo and holds only the early HTML and CSS pages."
+        ],
+        "stack": [
+          "HTML",
+          "CSS"
+        ],
+        "code": "https://github.com/orinvernizzi/Web-Programming"
       }
     ],
     "art": {
@@ -266,7 +267,7 @@
         "label": "Illustration: a diagram of the course registration site. On the left, two boxes marked as my part: the home page and the shared stylesheet. They connect to a box of teammates’ pages: enroll student, add instructor, add course, register and drop course. The home page connects through its menu, and the stylesheet with a dotted arrow, because it styles every page. Simplified illustration."
       },
       "portfolio": {
-        "label": "Illustration: a diagram of how this site works. The content JSON files (English and Spanish) feed the React app (Vite, TypeScript, Tailwind; highlighted). The app shows a spiral menu made with three.js, and a list view on phones. The spiral menu opens a panel, with an animated landscape of dotted mountains behind it, and has a corner badge that leads to a photo reel. Separately, a push to GitHub makes Vercel build the live site. Simplified illustration."
+        "label": "Screenshot of this site's home screen: a 3D spiral of tilted cards over a landscape of grey dotted mountains. The front card, Hello, shows my portrait; around it are the About me, Experience, Contact and Leadership cards. At the top, my name, a spiral or list switch, the language button and the menu; bottom left, the round photo badge with orbiting text."
       }
     },
     "diagramNotes": {
@@ -344,42 +345,57 @@
         "P3": "Add course page, built by a teammate and styled by my shared stylesheet.",
         "P4": "Register page, built by a teammate and styled by my shared stylesheet.",
         "P5": "Drop course page, built by a teammate and styled by my shared stylesheet."
-      },
-      "portfolio": {
-        "J": "All the site's text lives in JSON files, English and Spanish side by side.",
-        "R": "The React app (Vite, TypeScript, Tailwind). It reads the text from the JSON files.",
-        "SP": "The menu: a 3D spiral of cards in three.js, through React Three Fiber. It loops endlessly.",
-        "LV": "A plain list instead of the spiral, on phones and for anyone who asked for reduced motion.",
-        "P": "Each card opens a panel. It works with the keyboard and keeps focus inside.",
-        "GL": "An animated landscape of dotted mountains, rebuilt in three.js, that sits behind every panel.",
-        "B": "A corner badge with orbiting text. It opens the photo reel.",
-        "PR": "A reel of photos that opens from the corner badge.",
-        "GH": "The code lives on GitHub. Every push starts a new build.",
-        "V": "Vercel rebuilds the static site on every push. No backend, no tracking.",
-        "L": "The live site, the one you are on right now."
       }
     }
   },
   "es": {
     "groups": [
       {
-        "id": "itti",
-        "title": "Pasantía en ITTI"
-      },
-      {
         "id": "rowing",
         "title": "Remo"
       },
       {
-        "id": "systems",
-        "title": "Sistemas y bajo nivel"
+        "id": "itti",
+        "title": "Pasantía en ITTI"
       },
       {
-        "id": "web",
-        "title": "Web, datos y software"
+        "id": "portfolio",
+        "title": "Este portafolio"
+      },
+      {
+        "id": "marietta",
+        "title": "Marietta College"
       }
     ],
     "items": [
+      {
+        "id": "catch",
+        "group": "rowing",
+        "title": "Catch Analysis",
+        "tag": "Full-stack · proyecto individual",
+        "text": "Un registro de entrenamiento de remo que construí yo solo. Trae datos del erg, los revisa en una pantalla de verificación y me dice después de cada sesión si mejoré. Está detrás de un login y el código es privado. Antes construí ErgCalc, un planificador de ritmo y watts de Concept2 con logbook.",
+        "details": [
+          "Tres formas de entrada, una sola pantalla de revisión: sincronización con Concept2 Logbook (OAuth), un archivo CSV o XLSX, o una foto de la pantalla del PM5 leída con OCR en el navegador. También hay una página en vivo por Bluetooth.",
+          "Después de cada sesión compara con la última y la mejor sesión comparable, y sugiere motivos si fue más lenta.",
+          "Etiquetas de tendencia con Theil-Sen, zonas de entrenamiento, curvas de estado físico y fatiga, y un predictor de tiempos (Riegel y ley de Paul).",
+          "PWA en inglés y español sobre Supabase con seguridad por fila. Unas 16.000 líneas y 54 archivos de pruebas.",
+          "Primero fue ErgCalc: un planificador de ritmo y watts con logbook, como app web y app para iPhone (Next.js y Expo). Su código es público; el enlace de abajo es el repositorio de ErgCalc. Catch Analysis en sí es privado. Los watts salen del ritmo con la fórmula de Concept2, W = 2,80 / (split ÷ 500)³, con el split en segundos por 500 m."
+        ],
+        "stack": [
+          "React",
+          "TypeScript",
+          "Tailwind",
+          "Supabase",
+          "Vercel",
+          "Vitest",
+          "Next.js",
+          "Expo"
+        ],
+        "live": "https://nico-rowing.vercel.app",
+        "code": "https://github.com/orinvernizzi/erg-pace-calculator",
+        "codeLabel": "Ver código de ErgCalc",
+        "image": "webp"
+      },
       {
         "id": "orquestador",
         "group": "itti",
@@ -444,136 +460,8 @@
         "image": "webp"
       },
       {
-        "id": "catch",
-        "group": "rowing",
-        "title": "Catch Analysis",
-        "tag": "Full-stack · proyecto individual",
-        "text": "Un registro de entrenamiento de remo que construí yo solo. Trae datos del erg, los revisa en una pantalla de verificación y me dice después de cada sesión si mejoré. Está detrás de un login y el código es privado. Antes construí ErgCalc, un planificador de ritmo y watts de Concept2 con logbook.",
-        "details": [
-          "Tres formas de entrada, una sola pantalla de revisión: sincronización con Concept2 Logbook (OAuth), un archivo CSV o XLSX, o una foto de la pantalla del PM5 leída con OCR en el navegador. También hay una página en vivo por Bluetooth.",
-          "Después de cada sesión compara con la última y la mejor sesión comparable, y sugiere motivos si fue más lenta.",
-          "Etiquetas de tendencia con Theil-Sen, zonas de entrenamiento, curvas de estado físico y fatiga, y un predictor de tiempos (Riegel y ley de Paul).",
-          "PWA en inglés y español sobre Supabase con seguridad por fila. Unas 16.000 líneas y 54 archivos de pruebas.",
-          "Primero fue ErgCalc: un planificador de ritmo y watts con logbook, como app web y app para iPhone (Next.js y Expo). Su código es público; el enlace de abajo es el repositorio de ErgCalc. Catch Analysis en sí es privado. Los watts salen del ritmo con la fórmula de Concept2, W = 2,80 / (split ÷ 500)³, con el split en segundos por 500 m."
-        ],
-        "stack": [
-          "React",
-          "TypeScript",
-          "Tailwind",
-          "Supabase",
-          "Vercel",
-          "Vitest",
-          "Next.js",
-          "Expo"
-        ],
-        "live": "https://nico-rowing.vercel.app",
-        "code": "https://github.com/orinvernizzi/erg-pace-calculator",
-        "codeLabel": "Ver código de ErgCalc",
-        "image": "webp"
-      },
-      {
-        "id": "pep9",
-        "group": "systems",
-        "title": "Simulador de CPU Pep/9",
-        "tag": "C · Organización de Computadoras · equipo de cuatro",
-        "text": "Un programa en C que simula la computadora didáctica Pep/9. Le das código de máquina como bytes en hexadecimal y ejecuta una instrucción por vez, mostrando los registros y las banderas en cada paso. Proyecto final de CSCI 220, otoño de 2025.",
-        "details": [
-          "64 KiB de memoria, registros A, X, SP y HP, y las banderas N, Z, V y C. El hexadecimal se carga hasta la marca zz.",
-          "El conjunto base de instrucciones de Pep/9: cargas y almacenamientos, suma y resta, desplazamientos, comparaciones, ocho saltos, CALL y RET, heap, y DECO, DECI y STRO.",
-          "Direccionamiento inmediato, directo, indexado y relativo a la pila. La salida está mapeada a la dirección 0xFC16.",
-          "Mi parte: preparé el repositorio de GitHub del equipo y construí parte del conjunto de instrucciones. El direccionamiento indexado fue lo más difícil."
-        ],
-        "stack": [
-          "C",
-          "Pep/9",
-          "Git"
-        ]
-      },
-      {
-        "id": "vmm",
-        "group": "systems",
-        "title": "Administrador de memoria virtual",
-        "tag": "Python · Sistemas Operativos · individual",
-        "text": "Un simulador que convierte direcciones lógicas de 16 bits en direcciones físicas, como lo hace un sistema operativo con paginación. Una página solo se carga desde el archivo de respaldo la primera vez que hace falta.",
-        "details": [
-          "Una dirección de 16 bits es un número de página de 8 bits más un desplazamiento de 8 bits. Hay un TLB de 16 entradas con reemplazo FIFO y una tabla de páginas.",
-          "Ante un fallo de página copia una página de 256 bytes desde BACKING_STORE.bin al siguiente marco libre.",
-          "Con las 1.000 direcciones de prueba: 244 fallos de página y 54 aciertos de TLB.",
-          "Las 1.000 traducciones de direcciones coinciden con la salida de referencia."
-        ],
-        "stack": [
-          "Python"
-        ]
-      },
-      {
-        "id": "sched",
-        "group": "systems",
-        "title": "Simulador de planificación de CPU",
-        "tag": "Python · Sistemas Operativos · individual",
-        "text": "Un simulador de cinco algoritmos de planificación de CPU. Lee las tareas (nombre, prioridad, ráfaga de CPU) desde un archivo e imprime cuándo corre y termina cada una.",
-        "details": [
-          "FCFS, Prioridad, Round Robin (quantum 10), Prioridad con Round Robin y SJF.",
-          "Un ordenamiento estable mantiene el orden de llegada cuando hay empate de prioridad.",
-          "Error corregido: se salteaba la primera tarea porque el archivo empezaba con una marca de orden de bytes. Leerlo como utf-8-sig lo resolvió."
-        ],
-        "stack": [
-          "Python"
-        ]
-      },
-      {
-        "id": "sudoku",
-        "group": "systems",
-        "title": "Validador de Sudoku con hilos",
-        "tag": "Python · Sistemas Operativos · individual",
-        "text": "Un verificador de Sudoku que reparte el trabajo entre hilos. Lee una grilla de 9×9 desde un archivo de texto e imprime Valid Sudoku o Invalid Sudoku.",
-        "details": [
-          "11 hilos: uno revisa todas las filas, uno todas las columnas y nueve revisan los cuadros de 3×3.",
-          "Cada hilo escribe 1 o 0 en su propio casillero de una lista compartida, así que no hacen falta bloqueos.",
-          "Un grupo es válido cuando tiene exactamente los números del 1 al 9."
-        ],
-        "stack": [
-          "Python",
-          "Hilos"
-        ]
-      },
-      {
-        "id": "db",
-        "group": "web",
-        "title": "Diseño de bases de datos",
-        "tag": "SQL · Bases de Datos · individual",
-        "text": "Una base de datos de siete tablas para una consultora, diseñada a partir de un diagrama ER y construida en MariaDB. Registra regiones, clientes, consultores, contratos y clasificaciones de consultores.",
-        "details": [
-          "Las relaciones de muchos a muchos usan tablas de enlace con claves compuestas.",
-          "Dos triggers agregan una fila de auditoría (quién y cuándo) después de cada inserción.",
-          "Un procedimiento almacenado devuelve el contrato más reciente y un procedimiento de reporte recorre región, cliente y consultor con tres cursores anidados.",
-          "También estudié normalización, de 1FN hasta BCNF."
-        ],
-        "stack": [
-          "SQL",
-          "MariaDB",
-          "Visual Paradigm"
-        ]
-      },
-      {
-        "id": "web",
-        "group": "web",
-        "title": "App web de inscripción a cursos",
-        "tag": "HTML · CSS · equipo de cuatro",
-        "text": "Un proyecto de la universidad en equipo de cuatro: el front end de un sitio de inscripción a cursos. Mi parte fue la página de inicio y la hoja de estilos compartida.",
-        "details": [
-          "La página de inicio tiene un menú lateral. La hoja de estilos compartida le da estilo a todas las páginas: encabezado, navegación, pie y formularios.",
-          "Mis compañeros hicieron las páginas de inscripción, instructores y cursos, y escribieron los manuales.",
-          "El repositorio enlazado es mi fork del repositorio del equipo y solo tiene las primeras páginas en HTML y CSS."
-        ],
-        "stack": [
-          "HTML",
-          "CSS"
-        ],
-        "code": "https://github.com/orinvernizzi/Web-Programming"
-      },
-      {
         "id": "portfolio",
-        "group": "web",
+        "group": "portfolio",
         "title": "Este portafolio",
         "tag": "Web · proyecto personal",
         "text": "Un portafolio bilingüe (inglés y español), y el sitio en el que estás. Su menú es una espiral 3D de tarjetas por la que te desplazas en un ciclo sin fin, y cada tarjeta abre un panel. En celulares, y para quien pidió a su dispositivo reducir el movimiento, es una lista simple.",
@@ -594,7 +482,108 @@
           "Vercel"
         ],
         "live": "https://nicolas-invernizzi-portfolio.vercel.app",
-        "code": "https://github.com/orinvernizzi/Portfolio"
+        "code": "https://github.com/orinvernizzi/Portfolio",
+        "image": "webp"
+      },
+      {
+        "id": "pep9",
+        "group": "marietta",
+        "title": "Simulador de CPU Pep/9",
+        "tag": "C · Organización de Computadoras · equipo de cuatro",
+        "text": "Un programa en C que simula la computadora didáctica Pep/9. Le das código de máquina como bytes en hexadecimal y ejecuta una instrucción por vez, mostrando los registros y las banderas en cada paso. Proyecto final de CSCI 220, otoño de 2025.",
+        "details": [
+          "64 KiB de memoria, registros A, X, SP y HP, y las banderas N, Z, V y C. El hexadecimal se carga hasta la marca zz.",
+          "El conjunto base de instrucciones de Pep/9: cargas y almacenamientos, suma y resta, desplazamientos, comparaciones, ocho saltos, CALL y RET, heap, y DECO, DECI y STRO.",
+          "Direccionamiento inmediato, directo, indexado y relativo a la pila. La salida está mapeada a la dirección 0xFC16.",
+          "Mi parte: preparé el repositorio de GitHub del equipo y construí parte del conjunto de instrucciones. El direccionamiento indexado fue lo más difícil."
+        ],
+        "stack": [
+          "C",
+          "Pep/9",
+          "Git"
+        ]
+      },
+      {
+        "id": "vmm",
+        "group": "marietta",
+        "title": "Administrador de memoria virtual",
+        "tag": "Python · Sistemas Operativos · individual",
+        "text": "Un simulador que convierte direcciones lógicas de 16 bits en direcciones físicas, como lo hace un sistema operativo con paginación. Una página solo se carga desde el archivo de respaldo la primera vez que hace falta.",
+        "details": [
+          "Una dirección de 16 bits es un número de página de 8 bits más un desplazamiento de 8 bits. Hay un TLB de 16 entradas con reemplazo FIFO y una tabla de páginas.",
+          "Ante un fallo de página copia una página de 256 bytes desde BACKING_STORE.bin al siguiente marco libre.",
+          "Con las 1.000 direcciones de prueba: 244 fallos de página y 54 aciertos de TLB.",
+          "Las 1.000 traducciones de direcciones coinciden con la salida de referencia."
+        ],
+        "stack": [
+          "Python"
+        ]
+      },
+      {
+        "id": "sched",
+        "group": "marietta",
+        "title": "Simulador de planificación de CPU",
+        "tag": "Python · Sistemas Operativos · individual",
+        "text": "Un simulador de cinco algoritmos de planificación de CPU. Lee las tareas (nombre, prioridad, ráfaga de CPU) desde un archivo e imprime cuándo corre y termina cada una.",
+        "details": [
+          "FCFS, Prioridad, Round Robin (quantum 10), Prioridad con Round Robin y SJF.",
+          "Un ordenamiento estable mantiene el orden de llegada cuando hay empate de prioridad.",
+          "Error corregido: se salteaba la primera tarea porque el archivo empezaba con una marca de orden de bytes. Leerlo como utf-8-sig lo resolvió."
+        ],
+        "stack": [
+          "Python"
+        ]
+      },
+      {
+        "id": "sudoku",
+        "group": "marietta",
+        "title": "Validador de Sudoku con hilos",
+        "tag": "Python · Sistemas Operativos · individual",
+        "text": "Un verificador de Sudoku que reparte el trabajo entre hilos. Lee una grilla de 9×9 desde un archivo de texto e imprime Valid Sudoku o Invalid Sudoku.",
+        "details": [
+          "11 hilos: uno revisa todas las filas, uno todas las columnas y nueve revisan los cuadros de 3×3.",
+          "Cada hilo escribe 1 o 0 en su propio casillero de una lista compartida, así que no hacen falta bloqueos.",
+          "Un grupo es válido cuando tiene exactamente los números del 1 al 9."
+        ],
+        "stack": [
+          "Python",
+          "Hilos"
+        ]
+      },
+      {
+        "id": "db",
+        "group": "marietta",
+        "title": "Diseño de bases de datos",
+        "tag": "SQL · Bases de Datos · individual",
+        "text": "Una base de datos de siete tablas para una consultora, diseñada a partir de un diagrama ER y construida en MariaDB. Registra regiones, clientes, consultores, contratos y clasificaciones de consultores.",
+        "details": [
+          "Las relaciones de muchos a muchos usan tablas de enlace con claves compuestas.",
+          "Dos triggers agregan una fila de auditoría (quién y cuándo) después de cada inserción.",
+          "Un procedimiento almacenado devuelve el contrato más reciente y un procedimiento de reporte recorre región, cliente y consultor con tres cursores anidados.",
+          "También estudié normalización, de 1FN hasta BCNF."
+        ],
+        "stack": [
+          "SQL",
+          "MariaDB",
+          "Visual Paradigm"
+        ]
+      },
+      {
+        "id": "web",
+        "group": "marietta",
+        "title": "App web de inscripción a cursos",
+        "tag": "HTML · CSS · equipo de cuatro",
+        "text": "Un proyecto de la universidad en equipo de cuatro: el front end de un sitio de inscripción a cursos. Mi parte fue la página de inicio y la hoja de estilos compartida.",
+        "details": [
+          "La página de inicio tiene un menú lateral. La hoja de estilos compartida le da estilo a todas las páginas: encabezado, navegación, pie y formularios.",
+          "Mis compañeros hicieron las páginas de inscripción, instructores y cursos, y escribieron los manuales.",
+          "El repositorio enlazado es mi fork del repositorio del equipo y solo tiene las primeras páginas en HTML y CSS."
+        ],
+        "stack": [
+          "HTML",
+          "CSS"
+        ],
+        "code": "https://github.com/orinvernizzi/Web-Programming"
       }
     ],
     "art": {
@@ -627,7 +616,7 @@
         "label": "Ilustración: un diagrama del sitio de inscripción a cursos. A la izquierda, dos cajas marcadas como mi parte: la página de inicio y la hoja de estilos compartida. Se conectan con una caja de páginas de compañeros: inscribir alumno, agregar instructor, agregar curso, registrarse y baja de curso. La página de inicio se conecta por su menú y la hoja de estilos con una flecha punteada, porque da estilo a todas las páginas. Ilustración simplificada."
       },
       "portfolio": {
-        "label": "Ilustración: un diagrama de cómo funciona este sitio. Los archivos JSON de contenido (en inglés y español) alimentan la app React (Vite, TypeScript, Tailwind; resaltada). La app muestra un menú espiral hecho con three.js y, en celulares, una vista de lista. El menú espiral abre un panel, con un paisaje animado de montañas de puntos detrás, y tiene una insignia en la esquina que lleva a un carrete de fotos. Aparte, un push a GitHub hace que Vercel construya el sitio en vivo. Ilustración simplificada."
+        "label": "Captura de la pantalla de inicio de este sitio: una espiral 3D de tarjetas inclinadas sobre un paisaje de montañas grises de puntos. La tarjeta del frente, Hola, muestra mi retrato; alrededor están las tarjetas Sobre mí, Experiencia, Contacto y Liderazgo. Arriba, mi nombre, un selector entre espiral y lista, el botón de idioma y el menú; abajo a la izquierda, la insignia redonda de fotos con texto en órbita."
       }
     },
     "diagramNotes": {
@@ -705,19 +694,6 @@
         "P3": "Página para agregar cursos, hecha por un compañero y con mi hoja de estilos compartida.",
         "P4": "Página de registro, hecha por un compañero y con mi hoja de estilos compartida.",
         "P5": "Página para dar de baja un curso, hecha por un compañero y con mi hoja de estilos compartida."
-      },
-      "portfolio": {
-        "J": "Todo el texto del sitio vive en archivos JSON, con inglés y español lado a lado.",
-        "R": "La app React (Vite, TypeScript, Tailwind). Lee el texto de los archivos JSON.",
-        "SP": "El menú: una espiral 3D de tarjetas en three.js, con React Three Fiber. Gira en un ciclo sin fin.",
-        "LV": "Una lista simple en lugar de la espiral, en celulares y para quien pidió reducir el movimiento.",
-        "P": "Cada tarjeta abre un panel. Funciona con teclado y mantiene el foco adentro.",
-        "GL": "Un paisaje animado de montañas de puntos, reconstruido en three.js, que queda detrás de cada panel.",
-        "B": "Una insignia en la esquina con texto en órbita. Abre el carrete de fotos.",
-        "PR": "Un carrete de fotos que se abre desde la insignia de la esquina.",
-        "GH": "El código vive en GitHub. Cada push arranca un build nuevo.",
-        "V": "Vercel reconstruye el sitio estático con cada push. Sin backend y sin seguimiento.",
-        "L": "El sitio en vivo, el que estás viendo ahora."
       }
     }
   }

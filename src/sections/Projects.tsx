@@ -15,7 +15,7 @@ function DiagramPicture({ p, fade, img, hint, alt, width, height }: { p: Project
   const [viewing, setViewing] = useState(false)
   return (
     <>
-      <button type="button" onClick={() => setViewing(true)} aria-haspopup="dialog" className="group relative block w-full cursor-zoom-in border-0 bg-transparent p-0 text-left focus-visible:outline-none!">
+      <button type="button" onClick={() => setViewing(true)} aria-haspopup="dialog" className="group relative block w-full cursor-zoom-in border-0 bg-transparent p-0 text-left transition-transform duration-150 active:scale-[0.985] focus-visible:outline-none!">
         <div className="pb-10" style={fade}>{img}</div>
         {/* Bottom right: the one corner no diagram uses, kept out of the fade so it stays readable. It also shows keyboard focus. */}
         <span className="pointer-events-none absolute bottom-11 right-3 inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-black/75 px-2.5 py-1 text-xs font-medium text-fg backdrop-blur-sm transition-colors group-hover:border-white/40 group-hover:bg-black/90 group-focus-visible:border-white group-focus-visible:outline group-focus-visible:outline-2 group-focus-visible:outline-offset-2 group-focus-visible:outline-white">
@@ -41,7 +41,7 @@ function ProjectCard({ p, lang, alt, open, viewCode, hint }: { p: Project; lang:
     <img src={`/project-pictures/${p.id}.${lang}.${ext}`} width={width} height={height} loading="lazy" decoding="async" alt={alt ?? ''} className="block h-auto w-full" />
   )
   return (
-    <article aria-labelledby={`project-${p.id}`} className="flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface">
+    <article aria-labelledby={`project-${p.id}`} className="reveal flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface">
       {/* The picture fades into the card colour; the extra bottom padding gives the fade room. */}
       {photo ? (
         <div className="pb-10" style={fade}>{img}</div>
