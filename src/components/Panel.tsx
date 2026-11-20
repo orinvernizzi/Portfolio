@@ -1,4 +1,5 @@
 // The window that opens over the spiral when you pick a section: CSS grid-floor background (GridBackdrop), title bar, the section inside.
+// No backdrop-blur here on purpose (see .dialog-panel in effects.css).
 // The section shown comes from src/sections/registry.tsx. No WebGL here, so it opens instantly; the landscape is behind the spiral.
 // Opened from a spiral card, it grows out of that card and shrinks back into the front card (.dialog-* in src/styles/effects.css).
 import { useLayoutEffect, useRef, useState } from 'react'
@@ -64,7 +65,7 @@ export function Panel({ sectionId, origin, onClose }: Props) {
   return (
     <div className="fixed inset-0 z-40 flex items-center justify-center p-2 sm:p-4 md:p-8">
       <div
-        className={`dialog-scrim absolute inset-0 bg-black/80 backdrop-blur-[3px] ${active ? 'opacity-100' : 'opacity-0'}`}
+        className={`dialog-scrim absolute inset-0 bg-black/85 ${active ? 'opacity-100' : 'opacity-0'}`}
         onClick={onClose}
         aria-hidden="true"
       />
@@ -77,7 +78,7 @@ export function Panel({ sectionId, origin, onClose }: Props) {
         className={`dialog-panel relative flex max-h-full w-full max-w-6xl flex-col overflow-hidden rounded-2xl border border-line bg-black text-fg shadow-2xl md:rounded-3xl ${active ? 'dialog-open' : 'dialog-enter'}`}
       >
         <GridBackdrop />
-        <header className="dialog-content relative z-10 flex shrink-0 items-center justify-between gap-3 border-b border-line bg-black/70 px-4 py-2 backdrop-blur md:px-10 md:py-2">
+        <header className="dialog-content relative z-10 flex shrink-0 items-center justify-between gap-3 border-b border-line bg-black/85 px-4 py-2 md:px-10 md:py-2">
           <div className="min-w-0">
             <p className="eyebrow m-0 !text-[11px] leading-none">
               {String(index + 1).padStart(2, '0')} / {String(c.sections.length).padStart(2, '0')}

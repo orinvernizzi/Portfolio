@@ -15,7 +15,7 @@ function DiagramPicture({ p, fade, img, hint, alt, width, height }: { p: Project
   const [viewing, setViewing] = useState(false)
   return (
     <>
-      <button type="button" onClick={() => setViewing(true)} aria-haspopup="dialog" className="group relative block w-full cursor-zoom-in border-0 bg-transparent p-0 text-left transition-transform duration-150 active:scale-[0.985] focus-visible:outline-none!">
+      <button type="button" onClick={() => setViewing(true)} aria-haspopup="dialog" className="project-pic group relative block w-full cursor-zoom-in border-0 bg-transparent p-0 text-left transition-transform duration-150 active:scale-[0.985] focus-visible:outline-none!">
         <div className="pb-10" style={fade}>{img}</div>
         {/* Bottom right: the one corner no diagram uses, kept out of the fade so it stays readable. It also shows keyboard focus. */}
         <span className="pointer-events-none absolute bottom-11 right-3 inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-black/75 px-2.5 py-1 text-xs font-medium text-fg backdrop-blur-sm transition-colors group-hover:border-white/40 group-hover:bg-black/90 group-focus-visible:border-white group-focus-visible:outline group-focus-visible:outline-2 group-focus-visible:outline-offset-2 group-focus-visible:outline-white">
@@ -30,8 +30,25 @@ function DiagramPicture({ p, fade, img, hint, alt, width, height }: { p: Project
   )
 }
 
-function ProjectCard({ p, lang, alt, open, viewCode, hint }: { p: Project; lang: string; alt?: string; open: string; viewCode: string; hint: string }) {
+// A photo card's picture is the link itself (the live site, else the code), like a thumbnail: on hover it zooms
+// a little and an arrow badge fades in (.project-pic in src/styles/effects.css).
+function LinkedPicture({ href, label, fade, img }: { href: string; label: string; fade: CSSProperties; img: ReactNode }) {
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer" aria-label={label} className="project-pic relative block focus-visible:outline-none!">
+      <div className="pb-10" style={fade}>{img}</div>
+      <span className="project-pic-badge pointer-events-none absolute bottom-11 right-3 flex h-10 w-10 items-center justify-center rounded-lg bg-white text-ink" aria-hidden="true">
+        <Icon name="arrow" />
+      </span>
+    </a>
+  )
+}
+
+function ProjectCard({ p, lang, alt, open, viewCode, newTab, hint }: { p: Project; lang: string; alt?: string; open: string; viewCode: string; newTab: string; hint: string }) {
   const photo = p.image === 'webp'
+  const picLink = photo ? (p.live ?? p.code) : undefined // the picture takes over this link's button
+  const liveButton = p.live !== picLink ? p.live : undefined
+  const codeButton = p.code !== picLink ? p.code : undefined
+  const picLabel = `${p.title}: ${picLink === p.live ? open : (p.codeLabel ?? viewCode)} (${newTab})`
   const ext = photo ? 'webp' : 'svg'
   const [width, height] = photo ? [1500, 900] : (DIAGRAM_SIZES[p.id] ?? [720, 432])
   const solid = p.id === 'catch' ? 55 : 78 // where the picture starts melting into the card (the Catch app screen melts earlier)
@@ -43,7 +60,9 @@ function ProjectCard({ p, lang, alt, open, viewCode, hint }: { p: Project; lang:
   return (
     <article aria-labelledby={`project-${p.id}`} className="reveal flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface">
       {/* The picture fades into the card colour; the extra bottom padding gives the fade room. */}
-      {photo ? (
+      {photo && picLink ? (
+        <LinkedPicture href={picLink} label={picLabel} fade={fade} img={img} />
+      ) : photo ? (
         <div className="pb-10" style={fade}>{img}</div>
       ) : (
         <DiagramPicture p={p} fade={fade} img={img} hint={hint} alt={alt} width={width} height={height} />
@@ -68,16 +87,16 @@ function ProjectCard({ p, lang, alt, open, viewCode, hint }: { p: Project; lang:
         <div className="mt-auto pt-2">
           <ChipList items={p.stack} label={p.title} />
         </div>
-        {(p.live || p.code) && (
+        {(liveButton || codeButton) && (
           <div className="flex flex-wrap gap-2 pt-1">
-            {p.live && (
-              <ButtonLink href={p.live} external primary>
+            {liveButton && (
+              <ButtonLink href={liveButton} external primary>
                 {open}
                 <Icon name="arrow" />
               </ButtonLink>
             )}
-            {p.code && (
-              <ButtonLink href={p.code} external>
+            {codeButton && (
+              <ButtonLink href={codeButton} external>
                 {p.codeLabel ?? viewCode}
                 <Icon name="arrow" />
               </ButtonLink>
@@ -110,6 +129,7 @@ export function Projects() {
                   alt={c.art[p.id]?.label}
                   open={c.ui.open}
                   viewCode={c.ui.viewCode}
+                  newTab={c.ui.newTab}
                   hint={c.ui.diagramExplore}
                 />
               ))}

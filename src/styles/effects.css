@@ -19,7 +19,10 @@
   transform: none;
   transition: opacity var(--dur-base) var(--ease-out), transform var(--dur-slow) var(--ease-out);
 }
-/* The spiral panel's staged timings (tokens in theme.css). Delays only on open, so closing stays quick. */
+/* The spiral panel's staged timings (tokens in theme.css). Delays only on open, so closing stays quick.
+   will-change stays on the whole time, so the panel keeps its own layer as the open animation starts. No blur behind
+   or inside it: a backdrop blur over the two WebGL canvases gets recomputed every frame of the animation. */
+.dialog-panel { will-change: transform, opacity; }
 .dialog-panel.dialog-enter {
   transition: opacity var(--dur-close) var(--ease-close), transform var(--dur-close) var(--ease-close);
 }
@@ -177,7 +180,36 @@
   .hop-l { animation: none !important; transition-delay: 0s !important; }
 }
 
+/* Project card pictures (src/sections/Projects.tsx): a slow, soft zoom on hover, and on linked photos an arrow badge.
+   The fade mask sits on the wrapper, so only the image grows; the card's overflow-hidden clips it. */
+.project-pic img {
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.project-pic:hover img,
+.project-pic:focus-visible img {
+  transform: scale(1.035);
+}
+.project-pic-badge {
+  opacity: 0;
+  transition: opacity 0.18s ease-out;
+}
+.project-pic:hover .project-pic-badge,
+.project-pic:focus-visible .project-pic-badge {
+  opacity: 1;
+}
+@media (hover: none) {
+  .project-pic-badge { opacity: 1; } /* touch screens can't hover: always show that the picture is a link */
+}
+.project-pic:focus-visible .project-pic-badge {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .project-pic:hover img,
+  .project-pic:focus-visible img {
+    transform: none;
+  }
   *,
   *::before,
   *::after {

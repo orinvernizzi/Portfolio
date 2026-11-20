@@ -20,6 +20,8 @@ const BG = '#000000'
 const CAMERA_Z = 14.5
 // Distance needed to fit the front card (plus margin) in a narrow viewport.
 const FIT_WIDTH_FACTOR = 4.77
+// How long the spiral keeps drawing after it's covered: the glide below (exp(-6t)) is ~99% there by then.
+const GLIDE_MS = 750
 
 function Scene({ progress, onOpen }: { progress: SpiralProgress; onOpen: (index: number, origin?: PanelOrigin) => void }) {
   const c = useContent()
@@ -37,8 +39,9 @@ function Scene({ progress, onOpen }: { progress: SpiralProgress; onOpen: (index:
     const cam = state.camera
     const aspect = state.size.width / state.size.height
     cam.position.z = aspect < 0.6 ? Math.max(CAMERA_Z, RADIUS + FIT_WIDTH_FACTOR / aspect) : CAMERA_Z
-    cam.position.x += (state.pointer.x * 0.45 - cam.position.x) * 0.04
-    cam.position.y += (1.1 + state.pointer.y * 0.2 - cam.position.y) * 0.04
+    const follow = 1 - Math.exp(-2.5 * dt) // same feel at 60, 120 or 144 fps
+    cam.position.x += (state.pointer.x * 0.45 - cam.position.x) * follow
+    cam.position.y += (1.1 + state.pointer.y * 0.2 - cam.position.y) * follow
     cam.lookAt(0, -0.35, 0)
   })
 
@@ -76,6 +79,18 @@ export default function Spiral({ enabled, onOpen, jumpTo, onContextLost }: Props
   const progress = useScrollProgress(c.sections.length, live, root)
   const { goTo, index } = progress
 
+  // Keep drawing a moment after the spiral is covered, so a card picked from the side finishes
+  // gliding to the front instead of freezing halfway (and lurching when the panel closes).
+  const [drawing, setDrawing] = useState(live)
+  useEffect(() => {
+    if (live) {
+      setDrawing(true)
+      return
+    }
+    const t = window.setTimeout(() => setDrawing(false), GLIDE_MS)
+    return () => window.clearTimeout(t)
+  }, [live])
+
   // Unmounting the canvas also fires webglcontextlost; only a loss while mounted is a failure.
   const mounted = useRef(true)
   useEffect(() => {
@@ -110,8 +125,8 @@ export default function Spiral({ enabled, onOpen, jumpTo, onContextLost }: Props
       <h1 className="sr-only">{c.meta.name}</h1>
       <Canvas
         flat
-        frameloop={live ? 'always' : 'never'} // idle while a panel, the menu or the reel covers the spiral
-        dpr={[1, 2]}
+        frameloop={drawing ? 'always' : 'never'} // idle while a panel, the menu or the reel covers the spiral
+        dpr={[1, 1.5]} // same cap as the landscape: two full-screen canvases at 2x is a lot of pixels
         camera={{ fov: 36, position: [0, 1.1, CAMERA_Z], near: 0.1, far: 80 }}
         gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }} // transparent: the landscape canvas shows through
         aria-hidden="true"

@@ -5,7 +5,8 @@ const WHEEL_SPEED = 0.0035 // cards moved per pixel of mouse wheel or trackpad s
 const DRAG_SPEED = 0.006 // cards moved per pixel of mouse or finger drag
 const THROW_MS = 250 // a flick keeps going for about this long (its speed × this), then lands on a card
 const MAX_THROW = 2 // a flick moves at most this many extra cards
-const WHEEL_SETTLE_MS = 140 // after the wheel or trackpad stops this long, snap to the nearest card
+const WHEEL_SETTLE_MS = 140 // after the wheel or trackpad stops this long, snap to the next card in that direction
+const WHEEL_DEADBAND = 0.05 // a wheel move smaller than this (in cards) snaps back instead
 // How smoothly the cards glide to a stop is the `6` in the useFrame line of src/spiral/Spiral.tsx.
 
 // Positive modulo, so -1 mod 10 is 9.
@@ -46,18 +47,30 @@ export function useScrollProgress(count: number, enabled: boolean, el: RefObject
     let settle = 0
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const snap = (extra = 0) => move(Math.round(target.current + extra))
+    // Wheel stopped: measure from the card the scroll started on. Moved at least a little → land at least
+    // one card that way (so one mouse notch, about a third of a card, never springs back); otherwise the nearest card.
+    let wheelStart: number | null = null
+    const settleWheel = () => {
+      const start = wheelStart ?? Math.round(target.current)
+      wheelStart = null
+      const moved = target.current - start
+      if (Math.abs(moved) < WHEEL_DEADBAND) return move(start)
+      move(start + Math.sign(moved) * Math.max(1, Math.round(Math.abs(moved))))
+    }
 
     const onWheel = (e: WheelEvent) => {
       e.preventDefault()
+      if (wheelStart === null) wheelStart = Math.round(target.current)
       const unit = e.deltaMode === 1 ? 16 : 1
       move(target.current + (e.deltaY + e.deltaX) * unit * WHEEL_SPEED)
       window.clearTimeout(settle)
-      settle = window.setTimeout(() => snap(), WHEEL_SETTLE_MS)
+      settle = window.setTimeout(settleWheel, WHEEL_SETTLE_MS)
     }
     const onDown = (e: PointerEvent) => {
       last = { x: e.clientX, y: e.clientY }
       samples = [{ t: e.timeStamp, p: target.current }]
       window.clearTimeout(settle)
+      wheelStart = null
     }
     const onMove = (e: PointerEvent) => {
       if (!last) return
